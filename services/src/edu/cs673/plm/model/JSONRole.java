@@ -14,6 +14,12 @@ public class JSONRole{
 	public JSONRole(){
 	}
 
+	/************************************************************
+	Function name: JSONRole()
+	Author: Christian Heckendorf
+	Created date: 10/04/2013
+	Purpose: Initializes a JSONRole from a Role
+	************************************************************/
 	public JSONRole(Role role){
 		id=role.getId();
 		name=role.getName();
