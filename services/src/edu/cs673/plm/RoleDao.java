@@ -3,7 +3,7 @@ Filename: RoleDao.java
 Author: Christian Heckendorf
 Created Date: 9/29/13
 Purpose: Accesses the Role entity
-Features: None yet
+Features: Role management
 ***************************************************************/
 package edu.cs673.plm;
 
@@ -20,6 +20,12 @@ public class RoleDao {
 	public static final long ROLE_STAKEHOLDER = 1;
 	public static final long ROLE_PROJECT_LEADER = 2;
 
+	/************************************************************
+	Function name: getRoleList()
+	Author: Christian Heckendorf
+	Created date: 10/04/2013
+	Purpose: Returns a list of available roles
+	************************************************************/
 	public static RoleList getRoleList(Dba dba){
 		EntityManager em = dba.getActiveEm();
 		Query q = em.createQuery("select role from Role role");
@@ -31,6 +37,21 @@ public class RoleDao {
 				rl.addRole(r);
 			}
 			return rl;
+		} catch(Exception e){
+			return null;
+		}
+	}
+
+	/************************************************************
+	Function name: findRoleById()
+	Author: Christian Heckendorf
+	Created date: 10/04/2013
+	Purpose: Returns a role based on the ID
+	************************************************************/
+	public static Role findRoleById(Dba dba, long rid){
+		EntityManager em = dba.getActiveEm();
+		try{
+			return em.find(Role.class,rid);
 		} catch(Exception e){
 			return null;
 		}

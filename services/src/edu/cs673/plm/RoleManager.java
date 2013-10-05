@@ -18,6 +18,7 @@ import javax.ws.rs.core.MediaType;
 import edu.cs673.plm.model.TokenMessage;
 import edu.cs673.plm.model.StatusMessage;
 import edu.cs673.plm.model.User;
+import edu.cs673.plm.model.Role;
 import edu.cs673.plm.model.RoleList;
 import edu.cs673.plm.model.JSONUserRole;
 import edu.cs673.plm.model.UserProject;
@@ -59,6 +60,32 @@ public class RoleManager {
 			User user = UserDao.getUserById(dba,uid);
 			UserProject up = UserProjectDao.findUserProjectByPid(dba,uid,pid);
 			ur = new JSONUserRole(user,up.getRole());
+		} finally{
+			dba.closeEm();
+		}
+
+		return ur;
+	}
+
+	/************************************************************
+	Function name: setUserRole()
+	Author: Christian Heckendorf
+	Created date: 10/04/2013
+	Purpose: Sets a new role for a user
+	************************************************************/
+	@Path( "/p/{pid}/u/{uid}/r/{rid}" )
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public JSONUserRole setUserRole(@PathParam("pid") long pid, @PathParam("uid") long uid, @PathParam("rid") long rid, TokenMessage token) {
+		JSONUserRole ur = null;
+		Dba dba = new Dba(false);
+		try{
+			Role r = RoleDao.findRoleById(dba,rid);
+			User user = UserDao.getUserById(dba,uid);
+			UserProject up = UserProjectDao.findUserProjectByPid(dba,uid,pid);
+			UserProjectDao.setRole(dba,up,r);
+			ur = new JSONUserRole(user,r);
 		} finally{
 			dba.closeEm();
 		}

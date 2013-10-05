@@ -12,6 +12,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import edu.cs673.plm.model.UserProject;
+import edu.cs673.plm.model.Role;
 
 public class UserProjectDao {
 	/************************************************************
@@ -29,6 +30,23 @@ public class UserProjectDao {
 			return (UserProject)q.getSingleResult();
 		} catch(Exception e){
 			return null;
+		}
+	}
+
+	/************************************************************
+	Function name: setRole()
+	Author: Christian Heckendorf
+	Created date: 10/04/2013
+	Purpose: Sets the role for a user on a project
+	************************************************************/
+	public static void setRole(Dba dba, UserProject up, Role role){
+		EntityManager em = dba.getActiveEm();
+		try{
+			Query q = em.createQuery("update UserProject up set up.role = :role where up.id = :id")
+					.setParameter("role",role)
+					.setParameter("id",up.getId());
+			q.executeUpdate();
+		} catch(Exception e){
 		}
 	}
 }
