@@ -154,6 +154,14 @@
 		\item{CATALINA\_BASE}
 	\end{itemize}
 
+	For running test cases you will need to install the following jars for JUnit4 into your ANT\_HOME directory:
+	\begin{itemize}
+		\item{junit.jar}
+		\item{hamcrest-core.jar}
+	\end{itemize}
+
+	For more information, see: https://github.com/junit-team/junit/wiki/Download-and-Install
+
 	\subsection{Building and Deploying}
 
 	To build and deploy, run the following commands from the root of the project:
@@ -165,6 +173,15 @@
 	    ant clean
 	\end{lstlisting}\end{minipage}
 
-	You may also need to restart the tomcat server for the changes to be loaded.
+	You may also need to delete the plm directory under webapps and restart the tomcat server for the changes to be loaded.
+
+	\subsection{Testing}
+
+	To run the test cases for the service code, run the following commands from the root of the project:
+
+	\begin{minipage}{0.95\textwidth}\begin{lstlisting}
+	    cd services
+	    ant test
+	\end{lstlisting}\end{minipage}
 
 \end{document}
