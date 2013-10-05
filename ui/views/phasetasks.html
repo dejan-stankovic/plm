@@ -1,0 +1,455 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Manage CheckList</title>
+    <script src="../js/lib/require.js"></script>
+    <!--<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>-->
+    <!--<script type="text/javascript" src="http://cdn.kendostatic.com/2013.1.514/js/kendo.all.min.js"></script>-->
+    <!--<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>-->
+    <link rel="stylesheet" href="http://cdn.kendostatic.com/2013.1.514/styles/kendo.common.min.css" />
+    <link rel="stylesheet" href="http://cdn.kendostatic.com/2013.1.514/styles/kendo.bootstrap.min.css" />
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/phasetasks.css" />
+
+    <script id="requireInit" type="text/javascript">
+        require.config({
+            baseUrl: "../js/lib",
+            paths: {
+                app: "../app",
+                data: "../data",
+                utils: "../utils",
+                jquery: "jquery.min",
+                kendo: "kendo.web.min"
+            },
+            shim: {
+                kendo: {
+                    deps: ["jquery"],
+                    exports: "kendo"
+                }
+            },
+            waitSeconds: 15
+        });
+
+        // Load the phase tasks module
+        require(["../app/phasetasks"], function () {
+
+        });
+
+    </script>
+</head>
+<body>
+    <script type="text/x-kendo-template" id="panelBarItemTemplate">
+        <li class="k-item k-state-default"> 
+            <span id='${Id}HeaderRow'  class="k-link k-header k-active"  onclick="onRowSelect('Phase',  ${Id}, -1, '${Id}HeaderRow', 'psd${SequenceNumber}Grid');">
+                <table style="width: 100%">
+                    <tr>
+                        <td style="width: 5%;">
+                            <div>
+                                <a title='Add User Task' id='psd${SequenceNumber}AddTaskLink' style='display:none' href='##' class='icon_16 add' onclick="return openAddTaskPopup(${Id});"></a>
+                                <a title='Load Template' id='psd${SequenceNumber}EditPhaseLink' style='display:none' href='##' class='icon_16 text' onclick="return editPhase(${Id}, false);"></a>
+                            </div>
+                        </td>
+                        <td style="width: 50%;" data-bind="text:Title"></td>
+                        <td style="width: 20%;"></td>
+                        <td style="width: 20%;font-size:small">
+                            <span id="psd${SequenceNumber}GenericLinks"></span>
+                        </td>
+                        <td style="width: 5%;">
+                            <div style="text-align: center">
+                                <a id='psd${SequenceNumber}LockLink' title='Phase is locked' style='display:${(IsLocked)?"" : "none"}' href='##' class='icon_16 lock'></a>
+                                <a title='Reset Phase' id='psd${SequenceNumber}ResetPhaseLink' style='display:none' href='\#' class='icon_16 reset' onclick="return editPhase(${Id}, true);"></a>
+                                <a title=${State} id='psd${SequenceNumber}PhaseStatusLink' class='${(IsNa) ? "icon_16 na" : (State == "PendingInitiate")?"icon_16 warning" : (State == "InProgress")?"icon_16 inprocess": (State == "Complete")?"icon_16 signedoff":"icon_16 inactive"}' href='\#'></a>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </span>
+            <div style="background: white">
+                <div style="border: 2px solid cornflowerblue; margin: 2px 0px 2px 0px" id="psd${SequenceNumber}Grid" />
+            </div>
+            <div style="margin: 0px 0px 0px 0px;border: 2px dotted cornflowerblue;display:${State== "Complete" ? '' : 'none'}" id="psd${SequenceNumber}Footer">
+                <span style="width:5%;display:inline-block;margin:2px 2px 2px 2px"></span>
+                <span style="width:50%;display:inline-block"><a href="SignOffMgmt.html" id="psd${SequenceNumber}SignOffLink">SignOff [Status - ${SignOffState}] </a></span>
+                <span style="width:20%;display:inline-block"></span>
+                <span style="width:20%;display:inline-block"></span>
+                <span style="width:3%;display:inline-block">
+                    <span id="psd${SequenceNumber}SignOffStatus" class='${(SignOffState == "PendingInitiate")?"icon_16 warning" : (SignOffState == "InProgress")?"icon_16 inprocess": (SignOffState == "Complete")?"icon_16 signedoff":""}'></span>
+                </span>
+            </div>
+        </li>
+    </script>
+    <script type="text/x-kendo-tmpl" id="newTaskTemplate">
+        <div class="product">
+            <div> 
+                <div><img src="Images/${Name}.png" alt="test image" /></div>
+                <div>
+                    <div  style="text-align:center;font-size:small">
+                        <span class='selectSection'><a href="\#" onclick="selectTemplate('${Name}');" style="display:${IsSelected ? 'none' : ''}">Select</a></span>
+                        <span class="icon_16 signedoff" style="display:${IsSelected ? '' : 'none'}"></span>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="product-description">
+                <h3>${Description}</h3>
+            </div>
+        </div>
+    </script>
+    <script type="text/x-kendo-tmpl" id="phaseEditTemplate">
+        <div id="phaseEditPopup" class="row-fluid" style="border: 1px solid orangered">
+            <table id="Table2" role="grid" style="width: 100%; border: solid 2px cornflowerblue; margin-top: 10px">
+                <thead>
+                    <tr class="k-alt">
+                        <td colspan="2" style="font-size: large; font-weight: 700; color: cornflowerblue">Select Template</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div id="selectTemplateList"></div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <br />
+            <table id="phaseEditGrid">
+                <tr>
+                    <td>Phase :</td>
+                    <td>${Title}</td>
+                </tr>
+                <tr>
+                    <td>Select Generics: </td>
+                    <td>
+                        <div id=genericsSection>
+                            <select id="generics" style="width: 460px" multiple="multiple" data-placeholder="Select generics..." />
+                        </div>
+                        <div id="newGenericsSection">
+                            <select id="newGenerics" style="width: 460px" multiple="multiple" data-placeholder="Select generics..." />
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <br />
+            <br />
+            <div style="width: 100%; text-align: center">
+                <button title="Save without checkoff flag recorded" class="btn btn-primary" onclick="saveEditPhase();">Save</button>&nbsp;
+                 <button id="approvePhaseBtn" title="Not Applicable, flag will indicate red" style='display:${((State == "PendingInitiate") && (CanApprove))?"" : "none"}' class="btn btn-danger" onclick="approveEditPhase();">NA</button>&nbsp;
+                <button class="btn" onclick="cancelEditPhase();">Cancel</button>
+            </div>
+        </div>
+    </script>
+
+    <div id="htmlContents">
+        <header>
+            <div class="navbar navbar-inverse bs-docs-nav" style="border-bottom: 6px solid cornflowerblue;" data-app-model="navbar" id="search">
+                <div class="navbar-inner" style="border-bottom: 5px solid gray; border-top: 3px solid gray">
+                    <span class="content-wrapper" style="display: inline; margin-top: 5px">
+                        <span class="float-left">
+                            <a class="brand site-title" runat="server" href="#">Product Line Environment 2.0</a>
+                            <ul class="nav">
+                                <li><a href="#" onclick="navigateToGeneric();">Generic Summary</a></li>
+                                <li><a href="#" onclick="navigateToSignOff();">Manage SignOff</a></li>
+                                <li><a href="#" onclick="manageGenericMapping();">Manage Generic Mapping</a></li>
+                            </ul>
+                        </span>
+                        <span class="navbar-search form-search pull-right">
+                            <span class="input-append">
+                                <input type="text" data-bind="value: searchText" class="search-query" placeholder="search..." name="searchText" />
+                                <button data-bind="click: search" class="btn">Search</button>
+                            </span>
+                        </span>
+                    </span>
+                </div>
+            </div>
+            <div></div>
+        </header>
+        <div id="body">
+            <div id="phaseEditPopupContainer"></div>
+            <div id="taskPopup" class="k-grid-content" style="border: 1px solid orangered">
+                <table id="taskGrid" role="grid">
+                    <tr>
+                        <td>Title: </td>
+                        <td>
+                            <input id="taskTitle" style="width: 420px" type="text" /></td>
+                    </tr>
+                    <tr class="k-alt">
+                        <td role="gridcell">Description: </td>
+                        <td>
+                            <textarea id="taskDescription" rows="3" cols="50" style="width: 410px"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td>Template: </td>
+                        <td>
+                            <input id="taskTemplate" style="width: 410px" type="text" value="template1" />
+                        </td>
+                    </tr>
+                    <tr class="k-alt">
+                        <td>Role: </td>
+                        <td>
+                            <select id="taskRole">
+                                <option>Applications Engineer</option>
+                                <option>Design Engineer</option>
+                                <option>Marketing Engineer</option>
+                            </select></td>
+                    </tr>
+                    <tr>
+                        <td>Approver: </td>
+                        <td>
+                            <label id="taskApprover"></label>
+                        </td>
+                    </tr>
+                    <tr class="k-alt">
+                        <td>Approved on: </td>
+                        <td>
+                            <label id="taskApprovedOn"></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Comments: </td>
+                        <td>
+                            <label id="taskComments"></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td align="center">
+                            <button class="btn btn-primary" onclick="saveEditTask();">Save</button>&nbsp;
+                    <button class="btn" onclick="cancelEditTask();">Cancel</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div id="addTaskPopup" class="k-grid-content" style="border: 1px solid orangered">
+                <table id="addTaskGrid" role="grid">
+                    <tr class="k-alt">
+                        <td>Title: </td>
+                        <td>
+                            <input id="newTitle" type="text" style="width: 420px" /></td>
+                    </tr>
+                    <tr>
+                        <td role="gridcell">Description: </td>
+                        <td>
+                            <textarea id="newTaskDescription" style="width: 420px" rows="3" cols="50"></textarea></td>
+                    </tr>
+                    <tr class="k-alt">
+                        <td>Template: </td>
+                        <td>
+                            <input id="newTemplate" type="text" style="width: 420px" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Role: </td>
+                        <td>
+                            <select id="newApproverRoles">
+                                <option>Applications Engineer</option>
+                                <option>Design Engineer</option>
+                                <option>Engineering Manager/Director</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td align="center">
+                            <button class="btn" onclick="return addNewTask();">Add</button>&nbsp;
+                    <button class="btn" onclick="return closeAddTaskPopup();">Cancel</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div id="taskSignOffPopup" class="k-grid-content" style="border: 1px solid orangered">
+                <table id="taskSignOffGrid" role="grid">
+                    <tr>
+                        <td>Comments: </td>
+                        <td>
+                            <textarea id="signOffComments" rows="3" cols="50" style="width: 480px"></textarea></td>
+                    </tr>
+                    <tr class="k-alt">
+                        <td>Links: </td>
+                        <td>
+                            <span id="linksSection">
+                                <table border="0" class="table  table-condensed" style="width: 100%" id="linksGrid"></table>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <span id="editLinkSection">
+                                <input class="input-mini" id="linkAttachmentTitle" type="text" style="width: 120px" placeholder="title..." />&nbsp;
+                            <input class="input-mini" id="linkAttachmentUrl" type="text" style="width: 310px" placeholder="url..." />
+                                <span style="vertical-align: central" onclick="addLinkAttachment();" class="icon_16 add" />
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Attachments: </td>
+                        <td>
+                            <div id="signOffPopupAttachments"></div>
+                            <div class="demo-section">
+                                <form method="post" action="submit">
+                                    <div class="demo-section">
+                                        <input name="files" id="signOffPopupFile" type="file" />
+                                    </div>
+                                </form>
+
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td align="center">
+                            <button class="btn btn-danger" title="Not Applicable, flag will indicate red" id="naPopupSaveBtn" onclick="return signOffTask(true, true);">NA</button>&nbsp;
+                            <button class="btn btn-primary" title="save without check off flag recorded" id="savePopupSaveBtn" onclick="return signOffTask(false);">Save</button>&nbsp;
+                            <button class="btn btn-primary" title="save and record, flag will indicate green" id="signOffPopupSaveBtn" onclick="return signOffTask(true);">SignOff</button>&nbsp;
+                            <button class="btn" onclick="return closeSignOffPopup();">Cancel</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div id="taskSnapshotPopup" class="k-grid-content" style="border: 1px solid orangered">
+                <table id="Table1">
+                    <tr>
+                        <td>Generic: </td>
+                        <td>
+                            <select id="snapshotGenerics" style="width: 300px">
+                                <option>ADG1234</option>
+                                <option>ADG5678</option>
+                                <option>ADG6789</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+                <table id="genericSummaryGrid" role="grid" style="border: solid 2px cornflowerblue; margin-top: 10px">
+                    <thead>
+                        <tr class="k-alt">
+                            <td colspan="2" style="font-size: large; font-weight: 700; color: #808080">Current Phase PSD : Generic Start</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div id="snapshotGrid"></div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <div id="emailTaskPopup" class="k-grid-content" style="border: 1px solid orangered">
+                <table id="emailTaskGrid" role="grid" class="table table-condensed">
+                    <tr>
+                        <td style="width: 15%">To: </td>
+                        <td>
+                            <select id="emailTeamMembers" />
+                        </td>
+                    </tr>
+                    <tr class="k-alt">
+                        <td>To (Email Ids): </td>
+                        <td>
+                            <input type="text" style="width: 700px" />&nbsp;<span class="icon_16 warning" title="Please enter semi colon separated email ids."></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Title: </td>
+                        <td>
+                            <label class="help-block" id="emailTaskTitle" style="width: 420px" />
+                        </td>
+                    </tr>
+                    <tr class="k-alt">
+                        <td>Comments: </td>
+                        <td>
+                            <textarea id="emailAdditionalInfo" rows="10" cols="10" style="width: 750px"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="vertical-align: text-bottom">Page Link: </td>
+                        <td>
+                            <a href="CheckListMgmt.html?generic=ADG1234#">Check List Management</a><br />
+                            <br />
+                        </td>
+                    </tr>
+                    <tr class="success">
+                        <td colspan="2" style="text-align: center">
+                            <button class="btn btn-primary" onclick="emailTask();">Send Email</button>&nbsp;&nbsp;
+                             <button class="btn" onclick="cancelEmailTask();">Cancel</button>&nbsp;
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div id="taskCheckList" style="width: 90%; margin-left: 30px; margin-top: 20px">
+                <div id="alertSection" class="alert" style="width: 50%; text-align: center; margin-left: 25%;">
+                    <a href="#" class="close" data-dismiss="alert">&times</a>
+                    <b>
+                        <label id="alertMsg">please click on save to commit changes.</label></b>
+                </div>
+                <div id="headerButtons" style="width: 100%;">
+                    <span style="display: inline-block; width: 30%; margin-left: 5px;"></span>
+                    <span class="text-info" id="" style="display: inline-block; width: 40%; text-align: center; color: orangered; font-size: x-large">Task CheckList[<span id="genericName"></span>]</span>
+                    <span style="display: inline-block; width: 29%; text-align: right">
+                        <input class="btn btn-primary" style="display: none" id="editCurrentPhaseBtn" onclick="editCheckList(true);" type="button" value="Edit Current Phase" />
+                    </span>
+                </div>
+
+                <div id="panelBarContainer" style="margin: 10px;">
+                    <table style="width: 100%">
+                        <tr id="toolbarRow">
+                            <td>
+                                <span class="icon_24 download-enable" title="Initiate Current Phase" id="initiatePhaseBtn"></span>&nbsp;
+                                <span class="icon_24 download-disable" title="Initiate Current Phase" id="initiatePhaseDisabledBtn"></span>&nbsp;
+                                <span class="icon_24 edit-enable" title="Edit Task(only manually added task can be edited)" id="editBtn"></span>&nbsp;
+                                <span class="icon_24 edit-disable" title="Edit Task(only manually added task can be edited)" id="editDisabledBtn"></span>&nbsp;
+                                <span class="icon_24 moveup-enable" title="Move Up Task(only manually added task can be moved)" id="moveUpBtn"></span>&nbsp;
+                                <span class="icon_24 moveup-disable" title="Move Up Task(only manually added task can be moved)" id="moveUpDisabledBtn"></span>&nbsp;
+                                <span class="icon_24 movedown-enable" title="Move Down Task(only manually added task can be moved)" id="moveDownBtn"></span>&nbsp;
+                                <span class="icon_24 movedown-disable" title="Move Down Task(only manually added task can be moved)" id="moveDownDisabledBtn"></span>&nbsp;
+                                <span class="icon_24 add-task-enable" title="Add Task for selected phase" id="addBtn"></span>&nbsp;
+                                <span class="icon_24 add-task-disable" title="Add Task for selected phase" id="addDisabledBtn"></span>&nbsp;
+                                <span class="icon_24 delete-enable" title="Delete Task(Only manually added task can be deleted)" id="deleteBtn"></span>&nbsp;
+                                <span class="icon_24 delete-disable" title="Delete Task(Only manually added task can be deleted)" id="deleteDisabledBtn"></span>&nbsp;
+                                <span class="icon_24 refresh-enable" title="Reload Current Phase(un" id="reloadBtn"></span>&nbsp;
+                                <span class="icon_24 refresh-disable" title="Reload Current Phase" id="reloadDisabledBtn"></span>&nbsp;
+                                <span class="icon_16 tapeout-enable" title="Initiate Tapeout Iteration" onclick="initiateTapeout();" id="initiateTapeoutBtn"></span>&nbsp;
+                                <span class="icon_24 tapeout-disable" title="Initiate Tapeout Iteration" id="initiateTapeoutDisableBtn"></span>&nbsp;
+                                <span class="icon_24 mail" title="Email Team Members" id="emailBtn"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <ul id="panelbar" class="k-widget k-reset k-header k-panelbar" data-bind="source: Phases" data-template="panelBarItemTemplate"></ul>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div style="width: 100%">
+                    <span style="display: inline-block; width: 30%">
+                        <input class="btn btn-primary" id="resetCurrentPhaseBtn" onclick="resetCheckList();" type="button" value="Reset CheckList" />
+                    </span>
+                    <span style="display: inline-block; width: 69%; text-align: right">
+                        <input class="btn btn-primary" type="button" id="saveTasksBtn" title="Save Task Modifications and Tapeout Iterations" value="Save CheckList" onclick="saveCheckList(true, true);" />
+                    </span>
+                </div>
+            </div>
+        </div>
+        <footer style="text-align: center; width: 70%; background-color: white; color: #514e4e">
+            <div>
+                <div>
+                    <p><b>&copy; 2013 - Analog Devices Inc</b></p>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
