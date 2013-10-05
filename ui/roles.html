@@ -1,0 +1,115 @@
+<!--
+Filename: roles.html
+Author: Christian Heckendorf
+Created date: 10/02/2013
+Purpose: Example role management interface
+Feature: None
+-->
+<html>
+<head>
+	<title>Hello!</title>
+	<meta charset="utf-8">
+	<script src="jquery-1.10.2.min.js"></script>
+	<script>
+		var tok;
+
+		/************************************************************
+		Function name: getRoles
+		Author: Christian Heckendorf
+		Created date: 10/04/2013
+		Purpose: Lists available roles on the system
+		************************************************************/
+		function getRoles(){
+			$.ajax({
+				type: 'GET',
+				url: '/plm/rest/rolemanage',
+				contentType: 'application/json; charset=UTF-8',
+				accepts: {
+					text: 'application/json'
+				},
+				dataType: 'json',
+				data: JSON.stringify({
+					token: tok
+				}),
+				success: function(data){
+					for(x in data.roles){
+						$("div#third").append("<h1>"+data.roles[x].id+", "+data.roles[x].name+"</h1>");
+					}
+				},
+				error: function(data){
+					alert("error");
+				}
+			});
+		}
+
+		/************************************************************
+		Function name: getRole
+		Author: Christian Heckendorf
+		Created date: 10/02/2013
+		Purpose: Finds the user's role in a project
+		************************************************************/
+		function getRole(){
+			$.ajax({
+				type: 'GET',
+				url: '/plm/rest/rolemanage/p/1/u/1',
+				contentType: 'application/json; charset=UTF-8',
+				accepts: {
+					text: 'application/json'
+				},
+				dataType: 'json',
+				data: JSON.stringify({
+					token: tok
+				}),
+				success: function(data){
+					$("h1#first").html(data.userId+", "+data.userName);
+					$("h1#second").html(data.roleId+", "+data.roleName);
+					getRoles();
+				},
+				error: function(data){
+					alert("error");
+				}
+			});
+		}
+
+		/************************************************************
+		Function name: loginUser
+		Author: Christian Heckendorf
+		Created date: 09/30/2013
+		Purpose: Logs in a user
+		************************************************************/
+		function loginUser(){
+			$.ajax({
+				type: 'POST',
+				url: '/plm/rest/login',
+				contentType: 'application/json; charset=UTF-8',
+				accepts: {
+					text: 'application/json'
+				},
+				dataType: 'json',
+				data: JSON.stringify({
+					name: 'auser',
+					password: 'apassword'
+				}),
+				success: function(data){
+					$("h1#first").html(data.message);
+					tok = data.message;
+					if(data.code==0){
+						getRole();
+					}
+				},
+				error: function(data){
+					alert("error");
+				}
+			});
+		}
+	</script>
+</head>
+<body onload="loginUser()">
+	User:
+	<h1 id="first"></h1>
+	Role:
+	<h1 id="second"></h1>
+	Role List:
+	<div id="third"></div>
+</body>
+</html>
