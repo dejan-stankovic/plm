@@ -1,0 +1,77 @@
+/************************************************************
+Filename: UserProjectDao.java
+Author: Christian Heckendorf
+Created date: 10/03/2013
+Purpose: Helper methods to acces the UserProject table
+Feature: None
+************************************************************/
+package edu.cs673.plm;
+
+import java.util.List;
+import java.util.ArrayList;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+
+import edu.cs673.plm.model.UserProject;
+import edu.cs673.plm.model.Role;
+import edu.cs673.plm.model.JSONUser;
+import edu.cs673.plm.model.User;
+
+public class UserProjectDao {
+	/************************************************************
+	Function name: getMemberList()
+	Author: Christian Heckendorf
+	Created date: 10/05/2013
+	Purpose: Returns a list of users associated with a project
+	************************************************************/
+	public static List<JSONUser> getMemberList(Dba dba, long pid){
+		EntityManager em = dba.getActiveEm();
+		Query q = em.createQuery("select userProject.user from UserProject userProject where userProject.project.id = :pid")
+					.setParameter("pid",pid);
+		try{
+			List<User> users = (List<User>)q.getResultList();
+			List<JSONUser> jusers = new ArrayList<JSONUser>();
+			for(User u : users){
+				jusers.add(new JSONUser(u));
+			}
+			return jusers;
+		} catch(Exception e){
+			return null;
+		}
+	}
+
+	/************************************************************
+	Function name: findUserProjectByPid()
+	Author: Christian Heckendorf
+	Created date: 10/03/2013
+	Purpose: Finds a UserProject in a list
+	************************************************************/
+	public static UserProject findUserProjectByPid(Dba dba, long uid, long pid){
+		EntityManager em = dba.getActiveEm();
+		Query q = em.createQuery("select userProject from UserProject userProject where userProject.user.id = :uid and userProject.project.id = :pid")
+					.setParameter("uid",uid)
+					.setParameter("pid",pid);
+		try{
+			return (UserProject)q.getSingleResult();
+		} catch(Exception e){
+			return null;
+		}
+	}
+
+	/************************************************************
+	Function name: setRole()
+	Author: Christian Heckendorf
+	Created date: 10/04/2013
+	Purpose: Sets the role for a user on a project
+	************************************************************/
+	public static void setRole(Dba dba, UserProject up, Role role){
+		EntityManager em = dba.getActiveEm();
+		try{
+			Query q = em.createQuery("update UserProject up set up.role = :role where up.id = :id")
+					.setParameter("role",role)
+					.setParameter("id",up.getId());
+			q.executeUpdate();
+		} catch(Exception e){
+		}
+	}
+}
