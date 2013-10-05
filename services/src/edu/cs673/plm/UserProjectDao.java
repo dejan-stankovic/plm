@@ -8,13 +8,38 @@ Feature: None
 package edu.cs673.plm;
 
 import java.util.List;
+import java.util.ArrayList;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import edu.cs673.plm.model.UserProject;
 import edu.cs673.plm.model.Role;
+import edu.cs673.plm.model.JSONUser;
+import edu.cs673.plm.model.User;
 
 public class UserProjectDao {
+	/************************************************************
+	Function name: getMemberList()
+	Author: Christian Heckendorf
+	Created date: 10/05/2013
+	Purpose: Returns a list of users associated with a project
+	************************************************************/
+	public static List<JSONUser> getMemberList(Dba dba, long pid){
+		EntityManager em = dba.getActiveEm();
+		Query q = em.createQuery("select userProject.user from UserProject userProject where userProject.project.id = :pid")
+					.setParameter("pid",pid);
+		try{
+			List<User> users = (List<User>)q.getResultList();
+			List<JSONUser> jusers = new ArrayList<JSONUser>();
+			for(User u : users){
+				jusers.add(new JSONUser(u));
+			}
+			return jusers;
+		} catch(Exception e){
+			return null;
+		}
+	}
+
 	/************************************************************
 	Function name: findUserProjectByPid()
 	Author: Christian Heckendorf

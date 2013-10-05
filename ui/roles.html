@@ -14,6 +14,36 @@ Feature: None
 		var tok;
 
 		/************************************************************
+		Function name: getUsersInProject
+		Author: Christian Heckendorf
+		Created date: 10/05/2013
+		Purpose: Gets a list of users associated with a project
+		************************************************************/
+		function getUsersInProject(){
+			$.ajax({
+				type: 'GET',
+				url: '/plm/rest/projectmanage/p/1/users',
+				contentType: 'application/json; charset=UTF-8',
+				accepts: {
+					text: 'application/json'
+				},
+				dataType: 'json',
+				data: JSON.stringify({
+					token: tok
+				}),
+				success: function(data){
+					// A list of users is returned
+					for(x in data.users){
+						$("div#fifth").append("<h1>"+data.users[x].id+", "+data.users[x].name+"</h1>");
+					}
+				},
+				error: function(data){
+					alert("error");
+				}
+			});
+		}
+
+		/************************************************************
 		Function name: setRole
 		Author: Christian Heckendorf
 		Created date: 10/04/2013
@@ -90,7 +120,6 @@ Feature: None
 				success: function(data){
 					$("h1#first").html(data.userId+", "+data.userName);
 					$("h1#second").html(data.roleId+", "+data.roleName);
-					getRoles();
 					// We'll also update the user's role after 3 seconds as an example
 					setTimeout(function(){setRole();},3000);
 				},
@@ -120,10 +149,11 @@ Feature: None
 					password: 'apassword'
 				}),
 				success: function(data){
-					$("h1#first").html(data.message);
 					tok = data.message;
 					if(data.code==0){
 						getRole();
+						getRoles();
+						getUsersInProject();
 					}
 				},
 				error: function(data){
@@ -142,5 +172,7 @@ Feature: None
 	<div id="third"></div>
 	Updated User Role:
 	<h1 id="fourth"></h1>
+	Users In Project:
+	<div id="fifth"></div>
 </body>
 </html>
