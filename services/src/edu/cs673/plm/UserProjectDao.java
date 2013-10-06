@@ -59,6 +59,23 @@ public class UserProjectDao {
 	}
 
 	/************************************************************
+	Function name: getRole()
+	Author: Christian Heckendorf
+	Created date: 10/06/2013
+	Purpose: Returns the role for a user in a project
+	************************************************************/
+	public static Role getRole(Dba dba, long uid, long pid){
+		try{
+			User user = UserDao.getUserById(dba,uid);
+			UserProject up = findUserProjectByPid(dba,uid,pid);
+			return up.getRole();
+		} catch(Exception e){
+			return null;
+		}
+	}
+
+
+	/************************************************************
 	Function name: setRole()
 	Author: Christian Heckendorf
 	Created date: 10/04/2013

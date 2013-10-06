@@ -2,6 +2,10 @@ use plm;
 
 insert into `Role`(id,name) values (1,"Stakeholder");
 insert into `Role`(id,name) values (2,"Project Leader");
+insert into `Role`(id,name) values (3,"Business Analyst");
+insert into `Role`(id,name) values (4,"Quality Assurance");
+insert into `Role`(id,name) values (5,"Developer");
+insert into `Role`(id,name) values (6,"Release Manager");
 
 insert into `User`(id,name,password) values (1,"auser","apassword");
 insert into `User`(id,name,password) values (2,"anotheruser","apassword");

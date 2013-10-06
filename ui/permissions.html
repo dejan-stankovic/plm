@@ -1,0 +1,81 @@
+<!--
+Filename: permissions.html
+Author: Christian Heckendorf
+Created date: 10/05/2013
+Purpose: Example permission checking interface
+Feature: None
+-->
+<html>
+<head>
+	<title>Hello!</title>
+	<meta charset="utf-8">
+	<script src="jquery-1.10.2.min.js"></script>
+	<script>
+		var tok;
+
+		/************************************************************
+		Function name: getPermissions
+		Author: Christian Heckendorf
+		Created date: 10/02/2013
+		Purpose: Finds the user's permissions in a project
+		************************************************************/
+		function getPermissions(){
+			$.ajax({
+				type: 'POST',
+				url: '/plm/rest/permission/p/1',
+				contentType: 'application/json; charset=UTF-8',
+				accepts: {
+					text: 'application/json'
+				},
+				dataType: 'json',
+				data: JSON.stringify({
+					token: tok
+				}),
+				success: function(data){
+					for(x in data.permissions){
+						$("div#first").append("<h1>"+data.permissions[x]+"</h1>");
+					}
+				},
+				error: function(data){
+					alert("error");
+				}
+			});
+		}
+
+		/************************************************************
+		Function name: loginUser
+		Author: Christian Heckendorf
+		Created date: 09/30/2013
+		Purpose: Logs in a user
+		************************************************************/
+		function loginUser(){
+			$.ajax({
+				type: 'POST',
+				url: '/plm/rest/login',
+				contentType: 'application/json; charset=UTF-8',
+				accepts: {
+					text: 'application/json'
+				},
+				dataType: 'json',
+				data: JSON.stringify({
+					name: 'auser',
+					password: 'apassword'
+				}),
+				success: function(data){
+					tok = data.message;
+					if(data.code==0){
+						getPermissions();
+					}
+				},
+				error: function(data){
+					alert("error");
+				}
+			});
+		}
+	</script>
+</head>
+<body onload="loginUser()">
+	Permissions for logged in user:
+	<div id="first"></div>
+</body>
+</html>

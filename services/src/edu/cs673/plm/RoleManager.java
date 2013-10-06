@@ -31,7 +31,7 @@ public class RoleManager {
 	Created date: 10/01/2013
 	Purpose: Returns a list of available roles
 	************************************************************/
-	@GET
+	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public RoleList getRoles(TokenMessage token){
@@ -50,16 +50,18 @@ public class RoleManager {
 	Purpose: Gets the current role for the user
 	************************************************************/
 	@Path( "/p/{pid}/u/{uid}" )
-	@GET
+	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public JSONUserRole getUserRole(@PathParam("pid") long pid, @PathParam("uid") long uid, TokenMessage token) {
 		JSONUserRole ur = null;
 		Dba dba = new Dba(true);
 		try{
-			User user = UserDao.getUserById(dba,uid);
-			UserProject up = UserProjectDao.findUserProjectByPid(dba,uid,pid);
-			ur = new JSONUserRole(user,up.getRole());
+			if(Permission.canAccess(dba,new SessionToken(token.getToken()),pid,Permission.SET_ROLE)){
+				User user = UserDao.getUserById(dba,uid);
+				Role r = UserProjectDao.getRole(dba,uid,pid);
+				ur = new JSONUserRole(user,r);
+			}
 		} finally{
 			dba.closeEm();
 		}
@@ -81,11 +83,13 @@ public class RoleManager {
 		JSONUserRole ur = null;
 		Dba dba = new Dba(false);
 		try{
-			Role r = RoleDao.findRoleById(dba,rid);
-			User user = UserDao.getUserById(dba,uid);
-			UserProject up = UserProjectDao.findUserProjectByPid(dba,uid,pid);
-			UserProjectDao.setRole(dba,up,r);
-			ur = new JSONUserRole(user,r);
+			if(Permission.canAccess(dba,new SessionToken(token.getToken()),pid,Permission.SET_ROLE)){
+				Role r = RoleDao.findRoleById(dba,rid);
+				User user = UserDao.getUserById(dba,uid);
+				UserProject up = UserProjectDao.findUserProjectByPid(dba,uid,pid);
+				UserProjectDao.setRole(dba,up,r);
+				ur = new JSONUserRole(user,r);
+			}
 		} finally{
 			dba.closeEm();
 		}
