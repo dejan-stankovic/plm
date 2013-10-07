@@ -21,7 +21,7 @@ Feature: None
 		************************************************************/
 		function getUsersInProject(){
 			$.ajax({
-				type: 'GET',
+				type: 'POST',
 				url: '/plm/rest/projectmanage/p/1/users',
 				contentType: 'application/json; charset=UTF-8',
 				accepts: {
@@ -78,7 +78,7 @@ Feature: None
 		************************************************************/
 		function getRoles(){
 			$.ajax({
-				type: 'GET',
+				type: 'POST',
 				url: '/plm/rest/rolemanage',
 				contentType: 'application/json; charset=UTF-8',
 				accepts: {
@@ -107,7 +107,7 @@ Feature: None
 		************************************************************/
 		function getRole(){
 			$.ajax({
-				type: 'GET',
+				type: 'POST',
 				url: '/plm/rest/rolemanage/p/1/u/1',
 				contentType: 'application/json; charset=UTF-8',
 				accepts: {

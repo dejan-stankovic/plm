@@ -24,7 +24,7 @@ import edu.cs673.plm.model.UserProject;
 @Path( "/projectmanage" )
 public class ProjectManager {
 	@Path( "/p/{pid}/users" )
-	@GET
+	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	/************************************************************
@@ -37,8 +37,10 @@ public class ProjectManager {
 		UserList ul = null;
 		Dba dba = new Dba(true);
 		try{
-			ul = new UserList();
-			ul.setUsers(UserProjectDao.getMemberList(dba,pid));
+			if(Permission.canAccess(dba,new SessionToken(token.getToken()),pid,Permission.VIEW_PROJECT)){
+				ul = new UserList();
+				ul.setUsers(UserProjectDao.getMemberList(dba,pid));
+			}
 		} finally{
 			dba.closeEm();
 		}
