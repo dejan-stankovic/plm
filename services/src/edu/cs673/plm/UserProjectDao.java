@@ -15,9 +15,33 @@ import javax.persistence.Query;
 import edu.cs673.plm.model.UserProject;
 import edu.cs673.plm.model.Role;
 import edu.cs673.plm.model.JSONUser;
+import edu.cs673.plm.model.JSONProject;
 import edu.cs673.plm.model.User;
+import edu.cs673.plm.model.Project;
 
 public class UserProjectDao {
+	/************************************************************
+	Function name: getProjectList()
+	Author: Christian Heckendorf
+	Created date: 10/07/2013
+	Purpose: Returns a list of projects a user is a member of
+	************************************************************/
+	public static List<JSONProject> getProjectList(Dba dba, long uid){
+		EntityManager em = dba.getActiveEm();
+		Query q = em.createQuery("select userProject.project from UserProject userProject where userProject.user.id = :uid")
+					.setParameter("uid",uid);
+		try{
+			List<Project> projects = (List<Project>)q.getResultList();
+			List<JSONProject> jprojects = new ArrayList<JSONProject>();
+			for(Project p : projects){
+				jprojects.add(new JSONProject(p));
+			}
+			return jprojects;
+		} catch(Exception e){
+			return null;
+		}
+	}
+
 	/************************************************************
 	Function name: getMemberList()
 	Author: Christian Heckendorf
