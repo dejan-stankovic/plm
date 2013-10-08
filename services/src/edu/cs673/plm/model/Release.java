@@ -16,9 +16,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.FetchType;
 import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
+import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
+@Table(name="`Release`")
 public class Release{
 	@Id
 	@GeneratedValue(generator="increment")
@@ -27,7 +29,7 @@ public class Release{
 	private String version;
 
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="releaseId")
+	@JoinColumn(name="projectId")
 	private Project project;
 
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="release")

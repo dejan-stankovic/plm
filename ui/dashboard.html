@@ -14,6 +14,35 @@ Feature: None
 		var tok;
 
 		/************************************************************
+		Function name: getReleases
+		Author: Christian Heckendorf
+		Created date: 10/08/2013
+		Purpose: Returns a list of releases in a project
+		************************************************************/
+		function getReleases(){
+			$.ajax({
+				type: 'POST',
+				url: '/plm/rest/projectmanage/releases/p/1',
+				contentType: 'application/json; charset=UTF-8',
+				accepts: {
+					text: 'application/json'
+				},
+				dataType: 'json',
+				data: JSON.stringify({
+					token: tok
+				}),
+				success: function(data){
+					for(x in data.releases){
+						$("div#fourth").append("<h1>"+data.releases[x].id+", "+data.releases[x].version+"</h1>");
+					}
+				},
+				error: function(data){
+					alert("error");
+				}
+			});
+		}
+
+		/************************************************************
 		Function name: getProjects
 		Author: Christian Heckendorf
 		Created date: 10/08/2013
@@ -125,6 +154,7 @@ Feature: None
 						getTasksInRelease();
 						getTasks();
 						getProjects();
+						getReleases();
 					}
 				},
 				error: function(data){
@@ -141,5 +171,7 @@ Feature: None
 	<div id="second"></div>
 	Tasks in release:
 	<div id="third"></div>
+	Releases in project:
+	<div id="fourth"></div>
 </body>
 </html>
