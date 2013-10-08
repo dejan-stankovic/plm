@@ -26,10 +26,10 @@ public class UserDao {
 	************************************************************/
 	public static List<JSONTask> getTaskList(Dba dba, long uid, long rid){
 		EntityManager em = dba.getActiveEm();
-		Query q = em.createQuery("select task from Task task, UserStory userStory"+
-								"where task.userStoryId = userStory.Id"+
-								"and task.assignedId = :uid"+
-								"and userStory.releaseId = :rid")
+		Query q = em.createQuery("select t from Task t, UserStory userStory "+
+								"where t.userStory.id = userStory.id "+
+								"and t.userAssigned.id = :uid "+
+								"and userStory.release.id = :rid")
 					.setParameter("uid",uid)
 					.setParameter("rid",rid);
 		try{
@@ -52,7 +52,7 @@ public class UserDao {
 	************************************************************/
 	public static List<JSONTask> getTaskList(Dba dba, long uid){
 		EntityManager em = dba.getActiveEm();
-		Query q = em.createQuery("select task from Task task where task.assignedId = :uid")
+		Query q = em.createQuery("select t from Task t where t.userAssigned.id = :uid")
 					.setParameter("uid",uid);
 		try{
 			List<Task> tasks = (List<Task>)q.getResultList();

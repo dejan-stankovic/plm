@@ -23,16 +23,16 @@ import edu.cs673.plm.model.UserProject;
 
 @Path( "/projectmanage" )
 public class ProjectManager {
-	@Path( "/p/{pid}/users" )
-	@POST
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
 	/************************************************************
 	Function name: getUserList()
 	Author: Christian Heckendorf
 	Created date: 10/05/2013
 	Purpose: Returns a list of users associated with a project
 	************************************************************/
+	@Path( "/p/{pid}/users" )
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
 	public UserList getUserList(@PathParam("pid") long pid, TokenMessage token) {
 		UserList ul = null;
 		Dba dba = new Dba(true);
