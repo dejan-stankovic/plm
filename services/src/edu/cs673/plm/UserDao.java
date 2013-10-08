@@ -21,6 +21,32 @@ public class UserDao {
 	/************************************************************
 	Function name: getTaskList()
 	Author: Christian Heckendorf
+	Created date: 10/08/2013
+	Purpose: Returns a list of tasks for a release for a user
+	************************************************************/
+	public static List<JSONTask> getTaskList(Dba dba, long uid, long rid){
+		EntityManager em = dba.getActiveEm();
+		Query q = em.createQuery("select task from Task task, UserStory userStory"+
+								"where task.userStoryId = userStory.Id"+
+								"and task.assignedId = :uid"+
+								"and userStory.releaseId = :rid")
+					.setParameter("uid",uid)
+					.setParameter("rid",rid);
+		try{
+			List<Task> tasks = (List<Task>)q.getResultList();
+			List<JSONTask> jtasks = new ArrayList<JSONTask>();
+			for(Task t : tasks){
+				jtasks.add(new JSONTask(t));
+			}
+			return jtasks;
+		} catch(Exception e){
+			return null;
+		}
+	}
+
+	/************************************************************
+	Function name: getTaskList()
+	Author: Christian Heckendorf
 	Created date: 10/07/2013
 	Purpose: Returns a list of tasks assigned to a user
 	************************************************************/
