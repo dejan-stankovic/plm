@@ -1,54 +1,19 @@
-<!--
-Filename: login.html
-Author: Christian Heckendorf
-Created date: 09/30/2013
-Purpose: Example login and token renewal interface
-Feature: None
--->
 <html>
 <head>
-	<title>Hello!</title>
-	<meta charset="utf-8">
+<title>
+Login page
+</title>
 	<script src="jquery-1.10.2.min.js"></script>
 	<script>
 		var tok;
 
 		/************************************************************
-		Function name: renewToken
-		Author: Christian Heckendorf
-		Created date: 09/30/2013
-		Purpose: Renews a token
-		************************************************************/
-		function renewToken(){
-			$.ajax({
-				type: 'POST',
-				url: '/plm/rest/renewtoken',
-				contentType: 'application/json; charset=UTF-8',
-				accepts: {
-					text: 'application/json'
-				},
-				dataType: 'json',
-				data: JSON.stringify({
-					token: tok
-				}),
-				success: function(data){
-					// You should also check data.code
-					//// 0 = success, >0 = some error
-					$("h1#second").html(data.message);
-				},
-				error: function(data){
-					alert("error");
-				}
-			});
-		}
-
-		/************************************************************
 		Function name: loginUser
-		Author: Christian Heckendorf
+		Author: Rachit Gupta and Vipul Kumar
 		Created date: 09/30/2013
 		Purpose: Logs in a user
 		************************************************************/
-		function loginUser(){
+		function loginUser(form){
 			$.ajax({
 				type: 'POST',
 				url: '/plm/rest/login',
@@ -58,20 +23,21 @@ Feature: None
 				},
 				dataType: 'json',
 				data: JSON.stringify({
-					name: 'someName',
-					password: 'somePassword'
+					name: form.userid.value,
+					password: form.pswrd.value
 				}),
 				success: function(data){
-					// You should also check data.code
-					//// 0 = success, >0 = some error
-					$("h1#first").html(data.message);
-
 					// Note: You might want to encrypt this and store as a cookie
 					tok = data.message;
-
-					// As an example we'll renew the token in 3 seconds
-					//// It currently expires in an hour; maybe refresh in 30 min and on page load?
-					setTimeout(function(){renewToken();},3000);
+ /*the following code checkes whether the entered userid and password are matching*/
+ if(data.code==0)
+  {
+    window.open('target.html')/*opens the target page while Id & password matches*/
+  }
+ else
+ {
+   alert("Invalid Username or Password")/*displays error message*/
+  }
 				},
 				error: function(data){
 					alert("error");
@@ -80,10 +46,18 @@ Feature: None
 		}
 	</script>
 </head>
-<body onload="loginUser()">
-	Token:
-	<h1 id="first"></h1>
-	Refreshed token:
-	<h1 id="second"></h1>
+<body>
+<form name="Sign IN">
+Username<input type="text" name="userid"/>
+Password<input type="password" name="pswrd"/>
+<input type="button" onclick="check(this.form)" value="Log In"/>
+<input type="reset" value="Cancel"/>
+</form>
+<script language="javascript">
+function check(form)/*function to check userid & password*/
+{
+  loginUser(form);
+}
+</script>
 </body>
 </html>
