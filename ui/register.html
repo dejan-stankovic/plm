@@ -15,6 +15,29 @@ Feature: None
 	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 	<script>
+		
+		function regUser(){
+			$.ajax({
+				type: 'POST',
+				url: '/plm/rest/register',
+				contentType: 'application/json; charset=UTF-8',
+				accepts: {
+					text: 'application/json'
+				},
+				dataType: 'json',
+				data: JSON.stringify({
+					name: 'someName',
+					password: 'somePassword'
+				}),
+				success: function(data){
+					$("h1").html(data.message);
+				},
+				error: function(data){
+					alert("error");
+				}
+			});
+		}
+
 		$(function() {
 		$( document ).tooltip();
 		});
