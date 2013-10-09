@@ -1,6 +1,13 @@
-﻿.content-wrapper
+* {
+margin: 0;
+}
+
+.content-wrapper
 {
-    margin: 0 auto;
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -4em;
     max-width: 1450px;
 }
 
@@ -20,12 +27,11 @@ header .content-wrapper
     padding-top: 20px;
 }
 
-footer
-{
+.footer, .push {
     clear: both;
     background-color: #e2e2e2;
     font-size: .8em;
-    height: 100px;
+    height: 4em;
 }
 
 
