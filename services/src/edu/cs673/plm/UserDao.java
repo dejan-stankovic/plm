@@ -7,13 +7,65 @@ Features: Probably all features
 ***************************************************************/
 package edu.cs673.plm;
 
+import java.util.List;
+import java.util.ArrayList;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import edu.cs673.plm.model.User;
 import edu.cs673.plm.model.StatusMessage;
+import edu.cs673.plm.model.JSONTask;
+import edu.cs673.plm.model.Task;
 
 public class UserDao {
+	/************************************************************
+	Function name: getTaskList()
+	Author: Christian Heckendorf
+	Created date: 10/08/2013
+	Purpose: Returns a list of tasks for a release for a user
+	************************************************************/
+	public static List<JSONTask> getTaskList(Dba dba, long uid, long rid){
+		EntityManager em = dba.getActiveEm();
+		Query q = em.createQuery("select t from Task t, UserStory userStory "+
+								"where t.userStory.id = userStory.id "+
+								"and t.userAssigned.id = :uid "+
+								"and userStory.release.id = :rid")
+					.setParameter("uid",uid)
+					.setParameter("rid",rid);
+		try{
+			List<Task> tasks = (List<Task>)q.getResultList();
+			List<JSONTask> jtasks = new ArrayList<JSONTask>();
+			for(Task t : tasks){
+				jtasks.add(new JSONTask(t));
+			}
+			return jtasks;
+		} catch(Exception e){
+			return null;
+		}
+	}
+
+	/************************************************************
+	Function name: getTaskList()
+	Author: Christian Heckendorf
+	Created date: 10/07/2013
+	Purpose: Returns a list of tasks assigned to a user
+	************************************************************/
+	public static List<JSONTask> getTaskList(Dba dba, long uid){
+		EntityManager em = dba.getActiveEm();
+		Query q = em.createQuery("select t from Task t where t.userAssigned.id = :uid")
+					.setParameter("uid",uid);
+		try{
+			List<Task> tasks = (List<Task>)q.getResultList();
+			List<JSONTask> jtasks = new ArrayList<JSONTask>();
+			for(Task t : tasks){
+				jtasks.add(new JSONTask(t));
+			}
+			return jtasks;
+		} catch(Exception e){
+			return null;
+		}
+	}
+
 	/************************************************************
 	Function name: getUserById()
 	Author: Christian Heckendorf
