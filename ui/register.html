@@ -26,8 +26,8 @@ Feature: None
 				},
 				dataType: 'json',
 				data: JSON.stringify({
-					name: 'someName',
-					password: 'somePassword'
+					name: form.userid.value,
+					password: form.pswrd.value
 				}),
 				success: function(data){
 					$("h1").html(data.message);
