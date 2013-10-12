@@ -1,0 +1,206 @@
+﻿<!--
+Filename: login.html
+Author: Manav
+Created date: 09/30/2013
+Purpose: view that shows the plm home page
+Feature: None
+-->
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Home</title>
+    <script src="../js/lib/jquery.min.js"></script>
+    <script src="../js/lib/kendo.all.min.js"></script>
+    <script src="../js/lib/bootstrap.min.js"></script>
+    <script src="../js/app/common.js"></script>
+    <script src="../js/app/home.js"></script>
+    <link rel="stylesheet" href="http://cdn.kendostatic.com/2013.2.918/styles/kendo.common.min.css" />
+    <link rel="stylesheet" href="http://cdn.kendostatic.com/2013.2.918/styles/kendo.bootstrap.min.css" />
+
+    <link rel="stylesheet" href="../css/app.css" />
+    <!--<link rel="stylesheet" href="../css/bootstrap.min.css" />-->
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" />
+    <style scoped>
+        #vertical
+        {
+            min-height: 850px;
+            width: 95%;
+            margin: 0 auto;
+        }
+
+        .header
+        {
+            background-color: rgba(60, 70, 80, 0.10);
+        }
+
+        #middle-pane
+        {
+            background-color: rgba(60, 70, 80, 0.10);
+        }
+
+        #bottom-pane
+        {
+            background-color: rgba(60, 70, 80, 0.15);
+        }
+
+        #left-pane, #center-pane, #right-pane
+        {
+            background-color: rgba(60, 70, 80, 0.05);
+        }
+
+        .pane-content
+        {
+            padding: 0 0px;
+        }
+    </style>
+    <script id="requireInit" type="text/javascript">
+        /* require.config({
+             baseUrl: "../js/lib",
+             paths: {
+                 app: "../app",
+                 data: "../data",
+                 utils: "../utils",
+                 jquery: "jquery.min",
+                 kendo: "kendo.all.min"
+             },
+             shim: {
+                 kendo: {
+                     deps: ["jquery"],
+                     exports: "kendo"
+                 }
+             },
+             waitSeconds: 15
+         });
+ 
+         // Load the phase tasks module
+         require(["../app/grid"], function () {
+             alert('hi');
+         });
+         */
+    </script>
+</head>
+<body style="background-image: url('../Css/Images/background.png'); opacity: 0.9">
+
+    <header>
+        <div class="navbar navbar-inverse bs-docs-nav" style="border-bottom: 6px solid cornflowerblue;" data-app-model="navbar" id="search">
+            <div class="navbar-inner" style="border-bottom: 5px solid gray; border-top: 3px solid gray">
+                <span class="content-wrapper" style="display: inline; margin-top: 5px">
+                    <span class="float-left">
+                        <a class="plmlogo brand site-title" style="width: 70px; height: 32px; display: inline-block;" href="#" />&nbsp;&nbsp;
+                        <a class="brand site-title" runat="server" href="home.html">Project Life Cycle Management 1.0</a>
+                        <ul class="nav">
+                            
+                        </ul>
+                    </span>
+                    <span class="navbar-search form-search pull-right">
+                        <span class="input-append">
+                            <input type="text" data-bind="value: searchText" class="search-query" placeholder="search..." name="searchText" />
+                            <button data-bind="click: search" class="btn">Search</button>
+                        </span>&nbsp;
+                        <span>
+                            <a href="login.html">signout</a>
+                        </span>
+                    </span>
+                </span>
+            </div>
+        </div>
+        <div></div>
+    </header>
+
+    <div id="example">
+        <div id="vertical">
+            <div id="top-pane">
+                <div id="horizontal" style="height: 100%; width: 100%;">
+                    <div id="left-pane">
+                        <div class="pane-content">
+                            <div id="panelbar-images"></div>
+                        </div>
+                    </div>
+                    <div id="center-pane">
+                        <div>
+                            <div id="body" style="width: 100%; margin-left: 0px;">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="span10 well">
+                                            <div id="carousel-example-generic" class="carousel slide">
+                                                <!-- Indicators -->
+                                                <ol class="carousel-indicators">
+                                                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                                                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                                                    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                                                    <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+                                                    <li data-target="#carousel-example-generic" data-slide-to="4"></li>
+                                                </ol>
+
+                                                <!-- Wrapper for slides -->
+                                                <div class="carousel-inner">
+                                                    <div class="item active">
+                                                        <img src="../css/Images/cs5.png" alt="Project Setup" />
+                                                        <div class="carousel-caption">
+                                                            <h3>Project Setup</h3>
+                                                            <p>Project needs to be setup in PLM</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="item">
+                                                        <img src="../css/Images/cs6.png" alt="PLM Phases" />
+                                                        <div class="carousel-caption">
+                                                            <h3>PLM Phase</h3>
+                                                            <p>Life cycle of PLM</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="item">
+                                                        <img src="../css/Images/cs4.png" alt="General Lifecycle" />
+                                                        <div class="carousel-caption">
+                                                            <h3>General Lifecycle</h3>
+                                                            <p>Life cycle of a project</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="item">
+                                                        <img src="../css/Images/cs2.jpg" alt="Agile Process" />
+                                                        <div class="carousel-caption">
+                                                            <h3>Agile Process</h3>
+                                                            <p>Typical agile process</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="item">
+                                                        <img src="../css/Images/cs1.jpg" alt="Agile More Info" />
+                                                        <div class="carousel-caption">
+                                                            <h3>Agile life cycle</h3>
+                                                            <p>More information on Agile life cycle</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Controls -->
+                                                <a class="carousel-control left" href="#carousel-example-generic" data-slide="prev">
+                                                    <span class="icon-prev"></span>
+                                                </a>
+                                                <a class="carousel-control right" href="#carousel-example-generic" data-slide="next">
+                                                    <span class="icon-next"></span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer style="text-align: center; width: 100%; color: #514e4e">
+        <div>
+            <div>
+                <p><b>&copy; 2013 - METCS673F13P4</b></p>
+            </div>
+        </div>
+    </footer>
+
+
+</body>
+</html>
