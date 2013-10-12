@@ -1,5 +1,15 @@
 \umluniassoc[geometry=-|]{Login}{UserDao}
+\umluniassoc[geometry=-|]{Login}{User}
+\umluniassoc[geometry=-|]{Login}{StatusMessage}
 \umluniassoc[geometry=-|]{Login}{Dba}
 \umluniassoc[geometry=-|]{Login}{SessionToken}
 \umluniassoc[geometry=-|]{SessionToken}{UnixTime}
 \umluniassoc[geometry=-|]{SessionToken}{SecKey}
+\umluniassoc[geometry=-|]{UserDao}{Dba}
+\umluniassoc[geometry=-|]{UserDao}{User}
+\umluniassoc[geometry=-|]{UserDao}{StatusMessage}
+
+\umluniassoc[geometry=-|]{Register}{StatusMessage}
+\umluniassoc[geometry=-|]{Register}{User}
+\umluniassoc[geometry=-|]{Register}{UserDao}
+\umluniassoc[geometry=-|]{Register}{Dba}
