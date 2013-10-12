@@ -5,80 +5,130 @@
 \usepackage{tikz-uml}
 
 \begin{document}
+%\begin{tikzpicture}
+%\umlclass[x=0,y=0]{UserProjectDao}{}{getRole(Dba dba, long uid, long pid) \\ getMemberList(Dba dba, long pid) \\ setRole(Dba dba, UserProject up, Role role) \\ findUserProjectByPid(Dba dba, long uid, long pid) \\ getProjectList(Dba dba, long uid) }
+%\umlclass[x=0,y=0]{UserDao}{}{getTaskList(Dba dba, long uid, long rid) \\ getUserId(Dba dba, User user) \\ getUserById(Dba dba, long uid) \\ createUser(Dba dba, User user) \\ nameValid(EntityManager em, User user) }
+%\umlclass[x=0,y=0]{Dba}{outer \\ initialized \\ emf \\ lock }{isRollbackOnly() \\ getActiveEm() \\ Dba(boolean readOnly) \\ openEm(boolean readOnly) \\ markRollback() \\ initialize() \\ closeEm() }
+%\umlclass[x=0,y=0]{PermissionList}{permissions }{setPermissions(List<String> permissions) \\ getPermissions() }
+%\umlclass[x=0,y=0]{TaskList}{tasks }{getTasks() \\ setTasks(List<JSONTask> tasks) \\ addTask(Task task) }
+%\umlclass[x=0,y=0]{Dashboard}{}{getTaskList(TokenMessage token) \\ getProjectList(TokenMessage token) }
+%\umlclass[x=0,y=0]{UserList}{users }{setUsers(List<JSONUser> users) \\ addUser(User user) \\ getUsers() }
+%\umlclass[x=0,y=0]{Login}{}{getLoginMessage(User user) }
+%\umlclass[x=0,y=0]{JSONUser}{name \\ id }{getId() \\ setId(long id) \\ getName() \\ setName(String name) \\ JSONUser(User user) }
+%\umlclass[x=0,y=0]{ProjectDao}{}{getReleaseList(Dba dba, long pid) \\ getMemberCount(Dba dba, Project project) }
+%\umlclass[x=0,y=0]{StatusMessage}{message \\ code }{getCode() \\ setCode(int code) \\ getMessage() \\ StatusMessage(int code, String message) \\ setMessage(String message) }
+%\umlclass[x=0,y=0]{UserStory}{tasks \\ name \\ release \\ id \\ bugs \\ description }{setRelease(Release release) \\ setId(long id) \\ setDescription(String description) \\ getName() \\ getRelease() \\ setName(String name) \\ setBugs(List<Bug> bugs) \\ getDescription() \\ getBugs() \\ getId() \\ getTasks() \\ setTasks(List<Task> tasks) }
+%\umlclass[x=0,y=0]{JSONUserRole}{roleId \\ userId \\ userName \\ roleName }{setRoleName(String roleName) \\ setUserName(String userName) \\ getUserName() \\ getRoleId() \\ JSONUserRole(User user, Role role) \\ setRoleId(long roleId) \\ getRoleName() \\ getUserId() \\ setUserId(long userId) }
+%\umlclass[x=0,y=0]{RoleList}{roles }{addRole(Role role) \\ setRoles(List<JSONRole> roles) \\ getRoles() }
+%\umlclass[x=0,y=0]{RoleManager}{}{getUserRole(@athParam”) long pid, @PathParam(”) long uid, TokenMessage token) \\ getRoles(TokenMessage token) \\ setUserRole(@athParam”) long pid, @PathParam(”) long uid, @PathParam(”) long rid, TokenMessage token) }
+%\umlclass[x=0,y=0]{Permission}{names \\ INVITE\_USER \\ EDIT\_BUG \\ CREATE\_USER\_STORY \\ CREATE\_RELEASE \\ EDIT\_RELEASE \\ VIEW\_PROJECT \\ SET\_ROLE \\ CREATE\_BUG \\ CREATE\_TASK \\ EDIT\_TASK \\ rolePermissions }{canAccess(long roleId, int permission) \\ getPermissions(long roleId) }
+%\umlclass[x=0,y=0]{UnixTime}{MINUTE \\ HOUR \\ DAY }{currentTime() }
+%\umlclass[x=0,y=0]{TokenMessage}{token }{setToken(String token) \\ getToken() }
+%\umlclass[x=0,y=0]{JSONRole}{name \\ id }{getId() \\ setId(long id) \\ JSONRole(Role role) \\ getName() \\ setName(String name) }
+%\umlclass[x=0,y=0]{JSONTask}{name \\ id }{getId() \\ setId(long id) \\ getName() \\ JSONTask(Task task) \\ setName(String name) }
+%\umlclass[x=0,y=0]{JSONProject}{name \\ id }{getId() \\ setId(long id) \\ getName() \\ setName(String name) \\ JSONProject(Project project) }
+%\umlclass[x=0,y=0]{User}{password \\ bugsCreated \\ tasksAssigned \\ userProjects \\ name \\ bugsAssigned \\ id }{getUserProjects() \\ setId(long id) \\ setBugsCreated(List<Bug> bugsCreated) \\ getName() \\ setTasksAssigned(List<Task> tasksAssigned) \\ getPassword() \\ setName(String name) \\ setBugsAssigned(List<Bug> bugsAssigned) \\ getBugsAssigned() \\ getId() \\ getTasksAssigned() \\ setUserProjects(List<UserProject> userProjects) \\ getBugsCreated() \\ setPassword(String password) }
+%\umlclass[x=0,y=0]{Task}{userStory \\ name \\ id \\ userAssigned \\ description }{setId(long id) \\ setDescription(String description) \\ getName() \\ setUserStory(UserStory userStory) \\ setName(String name) \\ getDescription() \\ getId() \\ setUserAssigned(User userAssigned) \\ getUserAssigned() \\ getUserStory() }
+%\umlclass[x=0,y=0]{Bug}{userCreated \\ userStory \\ name \\ id \\ userAssigned \\ description }{setUserCreated(User userCreated) \\ setId(long id) \\ setDescription(String description) \\ getName() \\ setUserStory(UserStory userStory) \\ setName(String name) \\ getDescription() \\ getId() \\ setUserAssigned(User userAssigned) \\ getUserAssigned() \\ getUserCreated() \\ getUserStory() }
+%\umlclass[x=0,y=0]{Release}{version \\ project \\ id \\ userStories }{getVersion() \\ getProject() \\ setId(long id) \\ setVersion(String version) \\ getUserStories() \\ getId() \\ setUserStories(List<UserStory> userStories) \\ setProject(Project project) }
+%\umlclass[x=0,y=0]{JSONRelease}{version \\ id }{getId() \\ setId(long id) \\ JSONRelease(Release release) \\ getversion() \\ setversion(String version) }
+%\umlclass[x=0,y=0]{ReleaseList}{releases }{getReleases() \\ addRelease(Release release) \\ setReleases(List<JSONRelease> releases) }
+%\umlclass[x=0,y=0]{Register}{}{getRegisterMessage(User user) }
+%\umlclass[x=0,y=0]{SecKey}{outer \\ initialized \\ lock \\ kg }{getKey() \\ initialize() \\ SecKey() }
+%\umlclass[x=0,y=0]{Role}{userProjects \\ name \\ id }{getUserProjects() \\ getId() \\ setId(long id) \\ getName() \\ setUserProjects(List<UserProject> userProjects) \\ setName(String name) }
+%\umlclass[x=0,y=0]{PermissionService}{}{getUserPermissions(@athParam”) long pid, TokenMessage token) }
+%\umlclass[x=0,y=0]{RenewToken}{}{getRenewMessage(TokenMessage token) }
+%\umlclass[x=0,y=0]{ProjectManager}{}{getReleaseList(@athParam”) long pid, TokenMessage token) \\ getUserList(@athParam”) long pid, TokenMessage token) }
+%\umlclass[x=0,y=0]{RoleDao}{ROLE\_DEVELOPER \\ ROLE\_PROJECT\_LEADER \\ ROLE\_STAKEHOLDER \\ ROLE\_QUALITY\_ASSURANCE \\ ROLE\_RELEASE\_MANAGER \\ ROLE\_BUSINESS\_ANALYST }{getRoleList(Dba dba) \\ findRoleById(Dba dba, long rid) }
+%\umlclass[x=0,y=0]{SessionToken}{exp \\ uid }{generateToken() \\ getDataBytes() \\ getExp() \\ hexStringToByteArray(String data) \\ generateHash(byte[] data) \\ SessionToken(long uid) \\ byteArrayToHex(byte[] data) \\ getUid() \\ parseToken(String token) }
+%\umlclass[x=0,y=0]{UserProject}{project \\ user \\ id \\ role }{getProject() \\ setId(long id) \\ setUser(User user) \\ getId() \\ getRole() \\ getUser() \\ setRole(Role role) \\ setProject(Project project) }
+%\umlclass[x=0,y=0]{ProjectList}{projects }{addProject(Project project) \\ setProjects(List<JSONProject> projects) \\ getProjects() }
+%\umlclass[x=0,y=0]{Project}{releases \\ userProjects \\ name \\ id }{getUserProjects() \\ setId(long id) \\ getName() \\ setName(String name) \\ getId() \\ getReleases() \\ setUserProjects(List<UserProject> userProjects) \\ setReleases(List<Release> releases) }
+%\end{tikzpicture}
 \begin{tikzpicture}
-\umlclass[x=0,y=0]{UserProjectDao}{}{getRole(Dba dba, long uid, long pid) \\ getMemberList(Dba dba, long pid) \\ setRole(Dba dba, UserProject up, Role role) \\ findUserProjectByPid(Dba dba, long uid, long pid) \\ getProjectList(Dba dba, long uid) }
-\umlclass[x=0,y=0]{UserDao}{}{getTaskList(Dba dba, long uid, long rid) \\ getUserId(Dba dba, User user) \\ getUserById(Dba dba, long uid) \\ createUser(Dba dba, User user) \\ nameValid(EntityManager em, User user) }
-\umlclass[x=0,y=0]{Dba}{outer \\ initialized \\ emf \\ lock }{isRollbackOnly() \\ getActiveEm() \\ Dba(boolean readOnly) \\ openEm(boolean readOnly) \\ markRollback() \\ initialize() \\ closeEm() }
-\umlclass[x=0,y=0]{PermissionList}{permissions }{setPermissions(List<String> permissions) \\ getPermissions() }
-\umlclass[x=0,y=0]{TaskList}{tasks }{getTasks() \\ setTasks(List<JSONTask> tasks) \\ addTask(Task task) }
-\umlclass[x=0,y=0]{Dashboard}{}{getTaskList(TokenMessage token) \\ getProjectList(TokenMessage token) }
-\umlclass[x=0,y=0]{UserList}{users }{setUsers(List<JSONUser> users) \\ addUser(User user) \\ getUsers() }
-\umlclass[x=0,y=0]{Login}{}{getLoginMessage(User user) }
-\umlclass[x=0,y=0]{JSONUser}{name \\ id }{getId() \\ setId(long id) \\ getName() \\ setName(String name) \\ JSONUser(User user) }
-\umlclass[x=0,y=0]{ProjectDao}{}{getReleaseList(Dba dba, long pid) \\ getMemberCount(Dba dba, Project project) }
-\umlclass[x=0,y=0]{StatusMessage}{message \\ code }{getCode() \\ setCode(int code) \\ getMessage() \\ StatusMessage(int code, String message) \\ setMessage(String message) }
-\umlclass[x=0,y=0]{UserStory}{tasks \\ name \\ release \\ id \\ bugs \\ description }{setRelease(Release release) \\ setId(long id) \\ setDescription(String description) \\ getName() \\ getRelease() \\ setName(String name) \\ setBugs(List<Bug> bugs) \\ getDescription() \\ getBugs() \\ getId() \\ getTasks() \\ setTasks(List<Task> tasks) }
-\umlclass[x=0,y=0]{JSONUserRole}{roleId \\ userId \\ userName \\ roleName }{setRoleName(String roleName) \\ setUserName(String userName) \\ getUserName() \\ getRoleId() \\ JSONUserRole(User user, Role role) \\ setRoleId(long roleId) \\ getRoleName() \\ getUserId() \\ setUserId(long userId) }
-\umlclass[x=0,y=0]{RoleList}{roles }{addRole(Role role) \\ setRoles(List<JSONRole> roles) \\ getRoles() }
-\umlclass[x=0,y=0]{RoleManager}{}{getUserRole(@athParam”) long pid, @PathParam(”) long uid, TokenMessage token) \\ getRoles(TokenMessage token) \\ setUserRole(@athParam”) long pid, @PathParam(”) long uid, @PathParam(”) long rid, TokenMessage token) }
-\umlclass[x=0,y=0]{Permission}{names \\ INVITE\_USER \\ EDIT\_BUG \\ CREATE\_USER\_STORY \\ CREATE\_RELEASE \\ EDIT\_RELEASE \\ VIEW\_PROJECT \\ SET\_ROLE \\ CREATE\_BUG \\ CREATE\_TASK \\ EDIT\_TASK \\ rolePermissions }{canAccess(long roleId, int permission) \\ getPermissions(long roleId) }
-\umlclass[x=0,y=0]{UnixTime}{MINUTE \\ HOUR \\ DAY }{currentTime() }
-\umlclass[x=0,y=0]{TokenMessage}{token }{setToken(String token) \\ getToken() }
-\umlclass[x=0,y=0]{JSONRole}{name \\ id }{getId() \\ setId(long id) \\ JSONRole(Role role) \\ getName() \\ setName(String name) }
-\umlclass[x=0,y=0]{JSONTask}{name \\ id }{getId() \\ setId(long id) \\ getName() \\ JSONTask(Task task) \\ setName(String name) }
-\umlclass[x=0,y=0]{JSONProject}{name \\ id }{getId() \\ setId(long id) \\ getName() \\ setName(String name) \\ JSONProject(Project project) }
-\umlclass[x=0,y=0]{User}{password \\ bugsCreated \\ tasksAssigned \\ userProjects \\ name \\ bugsAssigned \\ id }{getUserProjects() \\ setId(long id) \\ setBugsCreated(List<Bug> bugsCreated) \\ getName() \\ setTasksAssigned(List<Task> tasksAssigned) \\ getPassword() \\ setName(String name) \\ setBugsAssigned(List<Bug> bugsAssigned) \\ getBugsAssigned() \\ getId() \\ getTasksAssigned() \\ setUserProjects(List<UserProject> userProjects) \\ getBugsCreated() \\ setPassword(String password) }
-\umlclass[x=0,y=0]{Task}{userStory \\ name \\ id \\ userAssigned \\ description }{setId(long id) \\ setDescription(String description) \\ getName() \\ setUserStory(UserStory userStory) \\ setName(String name) \\ getDescription() \\ getId() \\ setUserAssigned(User userAssigned) \\ getUserAssigned() \\ getUserStory() }
-\umlclass[x=0,y=0]{Bug}{userCreated \\ userStory \\ name \\ id \\ userAssigned \\ description }{setUserCreated(User userCreated) \\ setId(long id) \\ setDescription(String description) \\ getName() \\ setUserStory(UserStory userStory) \\ setName(String name) \\ getDescription() \\ getId() \\ setUserAssigned(User userAssigned) \\ getUserAssigned() \\ getUserCreated() \\ getUserStory() }
-\umlclass[x=0,y=0]{Release}{version \\ project \\ id \\ userStories }{getVersion() \\ getProject() \\ setId(long id) \\ setVersion(String version) \\ getUserStories() \\ getId() \\ setUserStories(List<UserStory> userStories) \\ setProject(Project project) }
-\umlclass[x=0,y=0]{JSONRelease}{version \\ id }{getId() \\ setId(long id) \\ JSONRelease(Release release) \\ getversion() \\ setversion(String version) }
-\umlclass[x=0,y=0]{ReleaseList}{releases }{getReleases() \\ addRelease(Release release) \\ setReleases(List<JSONRelease> releases) }
-\umlclass[x=0,y=0]{Register}{}{getRegisterMessage(User user) }
-\umlclass[x=0,y=0]{SecKey}{outer \\ initialized \\ lock \\ kg }{getKey() \\ initialize() \\ SecKey() }
-\umlclass[x=0,y=0]{Role}{userProjects \\ name \\ id }{getUserProjects() \\ getId() \\ setId(long id) \\ getName() \\ setUserProjects(List<UserProject> userProjects) \\ setName(String name) }
-\umlclass[x=0,y=0]{PermissionService}{}{getUserPermissions(@athParam”) long pid, TokenMessage token) }
-\umlclass[x=0,y=0]{RenewToken}{}{getRenewMessage(TokenMessage token) }
-\umlclass[x=0,y=0]{ProjectManager}{}{getReleaseList(@athParam”) long pid, TokenMessage token) \\ getUserList(@athParam”) long pid, TokenMessage token) }
-\umlclass[x=0,y=0]{RoleDao}{ROLE\_DEVELOPER \\ ROLE\_PROJECT\_LEADER \\ ROLE\_STAKEHOLDER \\ ROLE\_QUALITY\_ASSURANCE \\ ROLE\_RELEASE\_MANAGER \\ ROLE\_BUSINESS\_ANALYST }{getRoleList(Dba dba) \\ findRoleById(Dba dba, long rid) }
+\umlclass[x=-7,y=0]{Login}{}{getLoginMessage(User user) }
+\umlclass[x=0,y=-10]{Register}{}{getRegisterMessage(User user) }
+\umlclass[x=-7,y=-10]{UserDao}{}{getTaskList(Dba dba, long uid, long rid) \\ getUserId(Dba dba, User user) \\ getUserById(Dba dba, long uid) \\ createUser(Dba dba, User user) \\ nameValid(EntityManager em, User user) }
 \umlclass[x=0,y=0]{SessionToken}{exp \\ uid }{generateToken() \\ getDataBytes() \\ getExp() \\ hexStringToByteArray(String data) \\ generateHash(byte[] data) \\ SessionToken(long uid) \\ byteArrayToHex(byte[] data) \\ getUid() \\ parseToken(String token) }
-\umlclass[x=0,y=0]{UserProject}{project \\ user \\ id \\ role }{getProject() \\ setId(long id) \\ setUser(User user) \\ getId() \\ getRole() \\ getUser() \\ setRole(Role role) \\ setProject(Project project) }
-\umlclass[x=0,y=0]{ProjectList}{projects }{addProject(Project project) \\ setProjects(List<JSONProject> projects) \\ getProjects() }
-\umlclass[x=0,y=0]{Project}{releases \\ userProjects \\ name \\ id }{getUserProjects() \\ setId(long id) \\ getName() \\ setName(String name) \\ getId() \\ getReleases() \\ setUserProjects(List<UserProject> userProjects) \\ setReleases(List<Release> releases) }
-\end{tikzpicture}
-\begin{tikzpicture}
-\umlclass[x=0,y=0]{Login}{}{getLoginMessage(User user) }
-\umlclass[x=-10,y=0]{User}{password \\ bugsCreated \\ tasksAssigned \\ userProjects \\ name \\ bugsAssigned \\ id }{getUserProjects() \\ setId(long id) \\ setBugsCreated(List<Bug> bugsCreated) \\ getName() \\ setTasksAssigned(List<Task> tasksAssigned) \\ getPassword() \\ setName(String name) \\ setBugsAssigned(List<Bug> bugsAssigned) \\ getBugsAssigned() \\ getId() \\ getTasksAssigned() \\ setUserProjects(List<UserProject> userProjects) \\ getBugsCreated() \\ setPassword(String password) }
-\umlclass[x=-10,y=10]{UserDao}{}{getTaskList(Dba dba, long uid, long rid) \\ getUserId(Dba dba, User user) \\ getUserById(Dba dba, long uid) \\ createUser(Dba dba, User user) \\ nameValid(EntityManager em, User user) }
-\umlclass[x=0,y=10]{Dba}{outer \\ initialized \\ emf \\ lock }{isRollbackOnly() \\ getActiveEm() \\ Dba(boolean readOnly) \\ openEm(boolean readOnly) \\ markRollback() \\ initialize() \\ closeEm() }
-\umlclass[x=10,y=15]{StatusMessage}{message \\ code }{getCode() \\ setCode(int code) \\ getMessage() \\ StatusMessage(int code, String message) \\ setMessage(String message) }
-\umlclass[x=10,y=0]{SessionToken}{exp \\ uid }{generateToken() \\ getDataBytes() \\ getExp() \\ hexStringToByteArray(String data) \\ generateHash(byte[] data) \\ SessionToken(long uid) \\ byteArrayToHex(byte[] data) \\ getUid() \\ parseToken(String token) }
-\umlclass[x=10,y=-5]{SecKey}{outer \\ initialized \\ lock \\ kg }{getKey() \\ initialize() \\ SecKey() }
-\umlclass[x=10,y=5]{UnixTime}{MINUTE \\ HOUR \\ DAY }{currentTime() }
-\umluniassoc[geometry=-|-,anchor1=170,anchor2=-20]{Login}{UserDao}
-\umluniassoc[geometry=--]{Login}{User}
-\umluniassoc[geometry=-|-,anchor1=10,anchor2=-160]{Login}{StatusMessage}
-\umluniassoc[geometry=--]{Login}{Dba}
+\umlclass[x=0,y=-6]{SecKey}{outer \\ initialized \\ lock \\ kg }{getKey() \\ initialize() \\ SecKey() }
+\umlclass[x=0,y=5]{UnixTime}{MINUTE \\ HOUR \\ DAY }{currentTime() }
+\umlclass[x=7,y=0]{RenewToken}{}{getRenewMessage(TokenMessage token) }
+\umluniassoc[geometry=--]{Login}{UserDao}
 \umluniassoc[geometry=--]{Login}{SessionToken}
 \umluniassoc[geometry=--]{SessionToken}{UnixTime}
 \umluniassoc[geometry=--]{SessionToken}{SecKey}
-\umluniassoc[geometry=--]{UserDao}{Dba}
-\umluniassoc[geometry=--]{UserDao}{User}
-\umluniassoc[geometry=|-]{UserDao}{StatusMessage}
+\umluniassoc[geometry=--]{Register}{UserDao}
+\umluniassoc[geometry=--]{RenewToken}{SessionToken}
 \end{tikzpicture}
 \begin{tikzpicture}
-\umlclass[x=0,y=0]{Register}{}{getRegisterMessage(User user) }
-\umlclass[x=-10,y=0]{User}{password \\ bugsCreated \\ tasksAssigned \\ userProjects \\ name \\ bugsAssigned \\ id }{getUserProjects() \\ setId(long id) \\ setBugsCreated(List<Bug> bugsCreated) \\ getName() \\ setTasksAssigned(List<Task> tasksAssigned) \\ getPassword() \\ setName(String name) \\ setBugsAssigned(List<Bug> bugsAssigned) \\ getBugsAssigned() \\ getId() \\ getTasksAssigned() \\ setUserProjects(List<UserProject> userProjects) \\ getBugsCreated() \\ setPassword(String password) }
-\umlclass[x=-10,y=10]{UserDao}{}{getTaskList(Dba dba, long uid, long rid) \\ getUserId(Dba dba, User user) \\ getUserById(Dba dba, long uid) \\ createUser(Dba dba, User user) \\ nameValid(EntityManager em, User user) }
-\umlclass[x=0,y=10]{Dba}{outer \\ initialized \\ emf \\ lock }{isRollbackOnly() \\ getActiveEm() \\ Dba(boolean readOnly) \\ openEm(boolean readOnly) \\ markRollback() \\ initialize() \\ closeEm() }
-\umlclass[x=10,y=15]{StatusMessage}{message \\ code }{getCode() \\ setCode(int code) \\ getMessage() \\ StatusMessage(int code, String message) \\ setMessage(String message) }
-\umluniassoc[geometry=-|-,anchor1=10,anchor2=-160]{Register}{StatusMessage}
-\umluniassoc[geometry=-|-,anchor1=170,anchor2=-20]{Register}{UserDao}
-\umluniassoc[geometry=--]{Register}{User}
-\umluniassoc[geometry=--]{Register}{Dba}
-\umluniassoc[geometry=--]{UserDao}{Dba}
-\umluniassoc[geometry=--]{UserDao}{User}
-\umluniassoc[geometry=|-]{UserDao}{StatusMessage}
+\umlclass[x=0,y=7]{ProjectManager}{}{getReleaseList(@athParam”) long pid, TokenMessage token) \\ getUserList(@athParam”) long pid, TokenMessage token) }
+\umlclass[x=0,y=-7]{Permission}{names \\ INVITE\_USER \\ EDIT\_BUG \\ CREATE\_USER\_STORY \\ CREATE\_RELEASE \\ EDIT\_RELEASE \\ VIEW\_PROJECT \\ SET\_ROLE \\ CREATE\_BUG \\ CREATE\_TASK \\ EDIT\_TASK \\ rolePermissions }{canAccess(Dba dba, SessionToken st, long pid, int permission) \\ canAccess(long roleId, int permission) \\ getPermissions(long roleId) }
+\umlclass[x=5,y=0]{ProjectDao}{}{getReleaseList(Dba dba, long pid) \\ getMemberCount(Dba dba, Project project) }
+\umlclass[x=-5,y=0]{UserProjectDao}{}{getRole(Dba dba, long uid, long pid) \\ getMemberList(Dba dba, long pid) \\ setRole(Dba dba, UserProject up, Role role) \\ findUserProjectByPid(Dba dba, long uid, long pid) \\ getProjectList(Dba dba, long uid) }
+\umlclass[x=13,y=0]{SessionToken}{exp \\ uid }{generateToken() \\ getDataBytes() \\ getExp() \\ hexStringToByteArray(String data) \\ generateHash(byte[] data) \\ SessionToken(long uid) \\ byteArrayToHex(byte[] data) \\ getUid() \\ parseToken(String token) }
+\umlclass[x=13,y=-6]{SecKey}{outer \\ initialized \\ lock \\ kg }{getKey() \\ initialize() \\ SecKey() }
+\umlclass[x=13,y=5]{UnixTime}{MINUTE \\ HOUR \\ DAY }{currentTime() }
+\umluniassoc[geometry=|-,anchors=-100 and 0]{ProjectManager}{UserProjectDao}
+\umluniassoc[geometry=|-,anchors=-80 and 180]{ProjectManager}{ProjectDao}
+\umluniassoc[geometry=--]{ProjectManager}{Permission}
+\umluniassoc[geometry=-|-,anchors=0 and 140]{ProjectManager}{SessionToken}
+\umluniassoc[geometry=-|,anchors=30 and -90]{Permission}{ProjectDao}
+\umluniassoc[geometry=-|,anchors=150 and -90]{Permission}{UserProjectDao}
+\umluniassoc[geometry=-|-,anchors=0 and -150]{Permission}{SessionToken}
+\umluniassoc[geometry=--]{SessionToken}{UnixTime}
+\umluniassoc[geometry=--]{SessionToken}{SecKey}
 \end{tikzpicture}
 \begin{tikzpicture}
+\umlclass[x=0,y=0]{PermissionService}{}{getUserPermissions(@athParam”) long pid, TokenMessage token) }
+\umlclass[x=0,y=-13]{Permission}{names \\ INVITE\_USER \\ EDIT\_BUG \\ CREATE\_USER\_STORY \\ CREATE\_RELEASE \\ EDIT\_RELEASE \\ VIEW\_PROJECT \\ SET\_ROLE \\ CREATE\_BUG \\ CREATE\_TASK \\ EDIT\_TASK \\ rolePermissions }{canAccess(Dba dba, SessionToken st, long pid, int permission) \\ canAccess(long roleId, int permission) \\ getPermissions(long roleId) }
+\umlclass[x=10,y=-13]{ProjectDao}{}{getReleaseList(Dba dba, long pid) \\ getMemberCount(Dba dba, Project project) }
+\umlclass[x=0,y=5]{UserDao}{}{getTaskList(Dba dba, long uid, long rid) \\ getUserId(Dba dba, User user) \\ getUserById(Dba dba, long uid) \\ createUser(Dba dba, User user) \\ nameValid(EntityManager em, User user) }
+\umlclass[x=5,y=-5]{UserProjectDao}{}{getRole(Dba dba, long uid, long pid) \\ getMemberList(Dba dba, long pid) \\ setRole(Dba dba, UserProject up, Role role) \\ findUserProjectByPid(Dba dba, long uid, long pid) \\ getProjectList(Dba dba, long uid) }
+\umlclass[x=12,y=0]{SessionToken}{exp \\ uid }{generateToken() \\ getDataBytes() \\ getExp() \\ hexStringToByteArray(String data) \\ generateHash(byte[] data) \\ SessionToken(long uid) \\ byteArrayToHex(byte[] data) \\ getUid() \\ parseToken(String token) }
+\umlclass[x=12,y=-6]{SecKey}{outer \\ initialized \\ lock \\ kg }{getKey() \\ initialize() \\ SecKey() }
+\umlclass[x=12,y=5]{UnixTime}{MINUTE \\ HOUR \\ DAY }{currentTime() }
+\umluniassoc[geometry=--]{PermissionService}{SessionToken}
+\umluniassoc[geometry=--]{PermissionService}{UserDao}
+\umluniassoc[geometry=|-|,anchors=-70 and 90]{PermissionService}{UserProjectDao}
+\umluniassoc[geometry=--]{PermissionService}{Permission}
+\umluniassoc[geometry=--]{Permission}{ProjectDao}
+\umluniassoc[geometry=|-|,anchors=60 and -90]{Permission}{UserProjectDao}
+\umluniassoc[geometry=-|,anchors=20 and -130]{Permission}{SessionToken}
+\umluniassoc[geometry=--]{SessionToken}{UnixTime}
+\umluniassoc[geometry=--]{SessionToken}{SecKey}
+\end{tikzpicture}
+\begin{tikzpicture}
+\umlclass[x=0,y=0]{Dashboard}{}{getTaskList(TokenMessage token) \\ getProjectList(TokenMessage token) }
+\umlclass[x=0,y=6]{UserDao}{}{getTaskList(Dba dba, long uid, long rid) \\ getUserId(Dba dba, User user) \\ getUserById(Dba dba, long uid) \\ createUser(Dba dba, User user) \\ nameValid(EntityManager em, User user) }
+\umlclass[x=0,y=-6]{UserProjectDao}{}{getRole(Dba dba, long uid, long pid) \\ getMemberList(Dba dba, long pid) \\ setRole(Dba dba, UserProject up, Role role) \\ findUserProjectByPid(Dba dba, long uid, long pid) \\ getProjectList(Dba dba, long uid) }
+\umlclass[x=9,y=0]{SessionToken}{exp \\ uid }{generateToken() \\ getDataBytes() \\ getExp() \\ hexStringToByteArray(String data) \\ generateHash(byte[] data) \\ SessionToken(long uid) \\ byteArrayToHex(byte[] data) \\ getUid() \\ parseToken(String token) }
+\umlclass[x=9,y=-6]{SecKey}{outer \\ initialized \\ lock \\ kg }{getKey() \\ initialize() \\ SecKey() }
+\umlclass[x=9,y=5]{UnixTime}{MINUTE \\ HOUR \\ DAY }{currentTime() }
+\umluniassoc[geometry=--]{Dashboard}{UserDao}
+\umluniassoc[geometry=--]{Dashboard}{UserProjectDao}
+\umluniassoc[geometry=--]{Dashboard}{SessionToken}
+\umluniassoc[geometry=--]{SessionToken}{UnixTime}
+\umluniassoc[geometry=--]{SessionToken}{SecKey}
+\end{tikzpicture}
+\begin{tikzpicture}
+\umlclass[x=0,y=0]{RoleManager}{}{getUserRole(@athParam”) long pid, @PathParam(”) long uid, TokenMessage token) \\ getRoles(TokenMessage token) \\ setUserRole(@athParam”) long pid, @PathParam(”) long uid, @PathParam(”) long rid, TokenMessage token) }
+\umlclass[x=-6,y=6]{UserDao}{}{getTaskList(Dba dba, long uid, long rid) \\ getUserId(Dba dba, User user) \\ getUserById(Dba dba, long uid) \\ createUser(Dba dba, User user) \\ nameValid(EntityManager em, User user) }
+\umlclass[x=6,y=6]{RoleDao}{ROLE\_DEVELOPER \\ ROLE\_PROJECT\_LEADER \\ ROLE\_STAKEHOLDER \\ ROLE\_QUALITY\_ASSURANCE \\ ROLE\_RELEASE\_MANAGER \\ ROLE\_BUSINESS\_ANALYST }{getRoleList(Dba dba) \\ findRoleById(Dba dba, long rid) }
+\umlclass[x=-5,y=-5]{UserProjectDao}{}{getRole(Dba dba, long uid, long pid) \\ getMemberList(Dba dba, long pid) \\ setRole(Dba dba, UserProject up, Role role) \\ findUserProjectByPid(Dba dba, long uid, long pid) \\ getProjectList(Dba dba, long uid) }
+\umlclass[x=0,y=-13]{Permission}{names \\ INVITE\_USER \\ EDIT\_BUG \\ CREATE\_USER\_STORY \\ CREATE\_RELEASE \\ EDIT\_RELEASE \\ VIEW\_PROJECT \\ SET\_ROLE \\ CREATE\_BUG \\ CREATE\_TASK \\ EDIT\_TASK \\ rolePermissions }{canAccess(Dba dba, SessionToken st, long pid, int permission) \\ canAccess(long roleId, int permission) \\ getPermissions(long roleId) }
+\umlclass[x=10,y=-13]{ProjectDao}{}{getReleaseList(Dba dba, long pid) \\ getMemberCount(Dba dba, Project project) }
+\umlclass[x=13,y=0]{SessionToken}{exp \\ uid }{generateToken() \\ getDataBytes() \\ getExp() \\ hexStringToByteArray(String data) \\ generateHash(byte[] data) \\ SessionToken(long uid) \\ byteArrayToHex(byte[] data) \\ getUid() \\ parseToken(String token) }
+\umlclass[x=13,y=-6]{SecKey}{outer \\ initialized \\ lock \\ kg }{getKey() \\ initialize() \\ SecKey() }
+\umlclass[x=13,y=5]{UnixTime}{MINUTE \\ HOUR \\ DAY }{currentTime() }
+\umluniassoc[geometry=|-,anchors=100 and 0]{RoleManager}{UserDao}
+\umluniassoc[geometry=|-,anchors=80 and 180]{RoleManager}{RoleDao}
+\umluniassoc[geometry=|-|,anchors=-100 and 90]{RoleManager}{UserProjectDao}
+\umluniassoc[geometry=--]{RoleManager}{Permission}
+\umluniassoc[geometry=--]{RoleManager}{SessionToken}
+\umluniassoc[geometry=-|,anchors=180 and -90]{Permission}{UserProjectDao}
+\umluniassoc[geometry=--]{Permission}{ProjectDao}
+\umluniassoc[geometry=-|-,anchors=20 and -150]{Permission}{SessionToken}
+\umluniassoc[geometry=--]{SessionToken}{UnixTime}
+\umluniassoc[geometry=--]{SessionToken}{SecKey}
 \end{tikzpicture}
 \end{document}

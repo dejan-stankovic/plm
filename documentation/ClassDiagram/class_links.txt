@@ -1,18 +1,44 @@
-\umluniassoc[geometry=-|-,anchor1=170,anchor2=-20]{Login}{UserDao}
-\umluniassoc[geometry=--]{Login}{User}
-\umluniassoc[geometry=-|-,anchor1=10,anchor2=-160]{Login}{StatusMessage}
-\umluniassoc[geometry=--]{Login}{Dba}
+\umluniassoc[geometry=--]{Login}{UserDao}
 \umluniassoc[geometry=--]{Login}{SessionToken}
 \umluniassoc[geometry=--]{SessionToken}{UnixTime}
 \umluniassoc[geometry=--]{SessionToken}{SecKey}
-\umluniassoc[geometry=--]{UserDao}{Dba}
-\umluniassoc[geometry=--]{UserDao}{User}
-\umluniassoc[geometry=|-]{UserDao}{StatusMessage}
+\umluniassoc[geometry=--]{Register}{UserDao}
+\umluniassoc[geometry=--]{RenewToken}{SessionToken}
 
-\umluniassoc[geometry=-|-,anchor1=10,anchor2=-160]{Register}{StatusMessage}
-\umluniassoc[geometry=-|-,anchor1=170,anchor2=-20]{Register}{UserDao}
-\umluniassoc[geometry=--]{Register}{User}
-\umluniassoc[geometry=--]{Register}{Dba}
-\umluniassoc[geometry=--]{UserDao}{Dba}
-\umluniassoc[geometry=--]{UserDao}{User}
-\umluniassoc[geometry=|-]{UserDao}{StatusMessage}
+\umluniassoc[geometry=|-,anchors=-100 and 0]{ProjectManager}{UserProjectDao}
+\umluniassoc[geometry=|-,anchors=-80 and 180]{ProjectManager}{ProjectDao}
+\umluniassoc[geometry=--]{ProjectManager}{Permission}
+\umluniassoc[geometry=-|-,anchors=0 and 140]{ProjectManager}{SessionToken}
+\umluniassoc[geometry=-|,anchors=30 and -90]{Permission}{ProjectDao}
+\umluniassoc[geometry=-|,anchors=150 and -90]{Permission}{UserProjectDao}
+\umluniassoc[geometry=-|-,anchors=0 and -150]{Permission}{SessionToken}
+\umluniassoc[geometry=--]{SessionToken}{UnixTime}
+\umluniassoc[geometry=--]{SessionToken}{SecKey}
+
+\umluniassoc[geometry=--]{PermissionService}{SessionToken}
+\umluniassoc[geometry=--]{PermissionService}{UserDao}
+\umluniassoc[geometry=|-|,anchors=-70 and 90]{PermissionService}{UserProjectDao}
+\umluniassoc[geometry=--]{PermissionService}{Permission}
+\umluniassoc[geometry=--]{Permission}{ProjectDao}
+\umluniassoc[geometry=|-|,anchors=60 and -90]{Permission}{UserProjectDao}
+\umluniassoc[geometry=-|,anchors=20 and -130]{Permission}{SessionToken}
+\umluniassoc[geometry=--]{SessionToken}{UnixTime}
+\umluniassoc[geometry=--]{SessionToken}{SecKey}
+
+\umluniassoc[geometry=--]{Dashboard}{UserDao}
+\umluniassoc[geometry=--]{Dashboard}{UserProjectDao}
+\umluniassoc[geometry=--]{Dashboard}{SessionToken}
+\umluniassoc[geometry=--]{SessionToken}{UnixTime}
+\umluniassoc[geometry=--]{SessionToken}{SecKey}
+
+\umluniassoc[geometry=|-,anchors=100 and 0]{RoleManager}{UserDao}
+\umluniassoc[geometry=|-,anchors=80 and 180]{RoleManager}{RoleDao}
+\umluniassoc[geometry=|-|,anchors=-100 and 90]{RoleManager}{UserProjectDao}
+\umluniassoc[geometry=--]{RoleManager}{Permission}
+\umluniassoc[geometry=--]{RoleManager}{SessionToken}
+\umluniassoc[geometry=-|,anchors=180 and -90]{Permission}{UserProjectDao}
+\umluniassoc[geometry=--]{Permission}{ProjectDao}
+\umluniassoc[geometry=-|-,anchors=20 and -150]{Permission}{SessionToken}
+\umluniassoc[geometry=--]{SessionToken}{UnixTime}
+\umluniassoc[geometry=--]{SessionToken}{SecKey}
+
