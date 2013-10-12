@@ -1,0 +1,5 @@
+\umluniassoc[geometry=-|]{Login}{UserDao}
+\umluniassoc[geometry=-|]{Login}{Dba}
+\umluniassoc[geometry=-|]{Login}{SessionToken}
+\umluniassoc[geometry=-|]{SessionToken}{UnixTime}
+\umluniassoc[geometry=-|]{SessionToken}{SecKey}
