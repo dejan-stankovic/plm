@@ -66,5 +66,19 @@
 \umluniassoc[geometry=|-]{UserDao}{StatusMessage}
 \end{tikzpicture}
 \begin{tikzpicture}
+\umlclass[x=0,y=0]{Register}{}{getRegisterMessage(User user) }
+\umlclass[x=-10,y=0]{User}{password \\ bugsCreated \\ tasksAssigned \\ userProjects \\ name \\ bugsAssigned \\ id }{getUserProjects() \\ setId(long id) \\ setBugsCreated(List<Bug> bugsCreated) \\ getName() \\ setTasksAssigned(List<Task> tasksAssigned) \\ getPassword() \\ setName(String name) \\ setBugsAssigned(List<Bug> bugsAssigned) \\ getBugsAssigned() \\ getId() \\ getTasksAssigned() \\ setUserProjects(List<UserProject> userProjects) \\ getBugsCreated() \\ setPassword(String password) }
+\umlclass[x=-10,y=10]{UserDao}{}{getTaskList(Dba dba, long uid, long rid) \\ getUserId(Dba dba, User user) \\ getUserById(Dba dba, long uid) \\ createUser(Dba dba, User user) \\ nameValid(EntityManager em, User user) }
+\umlclass[x=0,y=10]{Dba}{outer \\ initialized \\ emf \\ lock }{isRollbackOnly() \\ getActiveEm() \\ Dba(boolean readOnly) \\ openEm(boolean readOnly) \\ markRollback() \\ initialize() \\ closeEm() }
+\umlclass[x=10,y=15]{StatusMessage}{message \\ code }{getCode() \\ setCode(int code) \\ getMessage() \\ StatusMessage(int code, String message) \\ setMessage(String message) }
+\umluniassoc[geometry=-|-,anchor1=10,anchor2=-160]{Register}{StatusMessage}
+\umluniassoc[geometry=-|-,anchor1=170,anchor2=-20]{Register}{UserDao}
+\umluniassoc[geometry=--]{Register}{User}
+\umluniassoc[geometry=--]{Register}{Dba}
+\umluniassoc[geometry=--]{UserDao}{Dba}
+\umluniassoc[geometry=--]{UserDao}{User}
+\umluniassoc[geometry=|-]{UserDao}{StatusMessage}
+\end{tikzpicture}
+\begin{tikzpicture}
 \end{tikzpicture}
 \end{document}
