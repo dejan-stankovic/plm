@@ -33,7 +33,7 @@ $(document).ready(function () {
         select : onitemSelected,
         dataSource: [
             {
-                text: "Views", imageUrl: "../../css/images/edit_enable.png",
+                text: "Views", imageUrl: "../css/Images/edit_enable.png",
                 items: [
                     { text: "Dashboard", imageUrl: "http://demos.kendoui.com/content/shared/icons/16/star.png" },
                     { text: "Notifications", imageUrl: "http://demos.kendoui.com/content/shared/icons/16/photo.png" },
@@ -41,19 +41,19 @@ $(document).ready(function () {
                 ]
             },
             {
-                text: "Search", imageUrl: "../../css/images/addtask_enable.png",
+                text: "Search", imageUrl: "../css/Images/addtask_enable.png",
                 items: [
                     { text: "Search By Type", imageUrl: "http://demos.kendoui.com/content/shared/icons/16/photo.png" },
                 ]
             },
             {
-                text: "Release Management", imageUrl: "../../css/images/download_enable.png",
+                text: "Release Management", imageUrl: "../css/Images/download_enable.png",
                 items: [
                     { text: "Manage Release", imageUrl: "http://demos.kendoui.com/content/shared/icons/16/star.png" },
                 ]
             },
             {
-                text: "Configuration", imageUrl: "../../css/images/gear-icon.png",
+                text: "Configuration", imageUrl: "../css/Images/gear-icon.png",
                 items: [
                     { text: "Manage Projects", imageUrl: "http://demos.kendoui.com/content/shared/icons/16/photo.png" },
                     { text: "Manage Users", imageUrl: "http://demos.kendoui.com/content/shared/icons/16/video.png" },
@@ -61,7 +61,7 @@ $(document).ready(function () {
                 ]
             },
             {
-                text: "Reporting", imageUrl: "../../css/images/inactive_16.png",
+                text: "Reporting", imageUrl: "../css/Images/inactive_16.png",
                 items: [
                     { text: "Resource Allocation", imageUrl: "http://demos.kendoui.com/content/shared/icons/16/star.png" },
                 ]
