@@ -39,16 +39,109 @@ function getTasks(){
 }
 
 /************************************************************
+Function name: getReleases
+Author: Christian Heckendorf
+Created date: 10/13/2013
+Purpose: Updates a list of releases in a project
+************************************************************/
+function getReleases(pid){
+	var tok;
+
+	tok = getToken();
+	//pid = $("select#projectddl option:selected").val();
+
+	$("select#releaseddl").html("");
+
+	$.ajax({
+		type: 'POST',
+		url: '/plm/rest/projectmanage/releases/p/'+pid,
+		contentType: 'application/json; charset=UTF-8',
+		accepts: {
+			text: 'application/json'
+		},
+		dataType: 'json',
+		data: JSON.stringify({
+			token: tok
+		}),
+		success: function(data){
+			var combobox, results;
+			combobox = $("select#releaseddl").data("kendoComboBox");
+
+			for(x in data.releases){
+				combobox.dataSource.add(data.releases[x]);
+			}
+		},
+		error: function(data){
+			alert("error");
+		}
+	});
+}
+
+/************************************************************
+Function name: getProjects
+Author: Christian Heckendorf
+Created date: 10/13/2013
+Purpose: Updates the list of projects a user in involved in
+************************************************************/
+function getProjects(){
+	var tok;
+	tok = getToken();
+
+	$.ajax({
+		type: 'POST',
+		url: '/plm/rest/dashboard/projects',
+		contentType: 'application/json; charset=UTF-8',
+		accepts: {
+			text: 'application/json'
+		},
+		dataType: 'json',
+		data: JSON.stringify({
+			token: tok
+		}),
+		success: function(data){
+			var combobox, results;
+			combobox = $("select#projectddl").data("kendoComboBox");
+			results = 0;
+
+			for(x in data.projects){
+				results = 1;
+				combobox.dataSource.add(data.projects[x]);
+			}
+			
+			if(results>0){
+				getReleases(combobox.dataItem().id);
+			}
+		},
+		error: function(data){
+			alert("error");
+		}
+	});
+}
+
+/************************************************************
 		Function name: onready
-		Author: Manav
+		Author: Manav, Christian
 		Created date: 09/30/2013
 		Purpose: ready function invoked when page is rendered
-**************************************************************/
+ **************************************************************/
 
 $(document).ready(function () {
-    $("#projectddl").kendoComboBox();
-    $("#releaseddl").kendoComboBox();
+    $("#projectddl").kendoComboBox({
+		dataSource: [],
+		dataTextField: "name",
+		dataValueField: "id",
+		select: function(){
+			getReleases(this.value());
+		}
+	});
+    $("#releaseddl").kendoComboBox({
+		dataSource: [],
+		dataTextField: "version",
+		dataTextValue: "id"
+	});
     $("#statusddl").kendoMultiSelect();
+
+    getProjects();
 
     var dashdata = [];
     getTasks();
