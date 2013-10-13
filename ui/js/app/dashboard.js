@@ -6,14 +6,77 @@
 **************************************************************************/
 
 /************************************************************
+Function name: clearTasks
+Author: Christian Heckendorf
+Created date: 10/13/2013
+Purpose: Removes all tasks from the grid
+************************************************************/
+function clearTasks(){
+	var g;
+	g = $("#grid").data("kendoGrid");
+	g.setDataSource(new kendo.data.DataSource({
+		data: [],
+		group: {
+			field: "Type"
+		},
+		pageSize: 5
+	}));
+}
+
+/************************************************************
+Function name: filterTasks
+Author: Christian Heckendorf
+Created date: 10/13/2013
+Purpose: Sets the list of tasks based on the filter
+************************************************************/
+function filterTasks(){
+	var g, tok, rid, cb;
+
+	tok = getToken();
+
+	clearTasks();
+
+	cb = $("select#releaseddl").data("kendoComboBox");
+	rid = cb.dataItem().id;
+
+	$.ajax({
+		type: 'POST',
+		url: '/plm/rest/dashboard/tasks/release/'+rid,
+		contentType: 'application/json; charset=UTF-8',
+		accepts: {
+			text: 'application/json'
+		},
+		dataType: 'json',
+		data: JSON.stringify({
+			token: tok
+		}),
+		success: function(data){
+			/* TODO: status filter */
+			var grid = $("#grid").data("kendoGrid");
+			for(x in data.tasks){
+				data.tasks[x].Type="Task";
+				grid.dataSource.add(data.tasks[x]);
+			}
+		},
+		error: function(data){
+			alert("error");
+		}
+	});
+}
+
+/************************************************************
 Function name: getTasks
 Author: Christian Heckendorf
 Created date: 10/13/2013
 Purpose: Updates the grid with a user's tasks
 ************************************************************/
 function getTasks(){
-	var tok;
+	var g, tok;
+
 	tok = getToken();
+
+	clearTasks();
+
 	$.ajax({
 		type: 'POST',
 		url: '/plm/rest/dashboard/tasks',
@@ -45,10 +108,12 @@ Created date: 10/13/2013
 Purpose: Updates a list of releases in a project
 ************************************************************/
 function getReleases(pid){
-	var tok;
+	var cb, tok;
 
 	tok = getToken();
-	//pid = $("select#projectddl option:selected").val();
+
+	cb = $("select#releaseddl").data("kendoComboBox");
+	cb.setDataSource(new kendo.data.DataSource({ data: [] })); // Empty it first
 
 	$("select#releaseddl").html("");
 
@@ -84,8 +149,12 @@ Created date: 10/13/2013
 Purpose: Updates the list of projects a user in involved in
 ************************************************************/
 function getProjects(){
-	var tok;
+	var cb, tok;
+
 	tok = getToken();
+
+	cb = $("select#projectddl").data("kendoComboBox");
+	cb.setDataSource(new kendo.data.DataSource({ data: [] })); // Empty it first
 
 	$.ajax({
 		type: 'POST',
@@ -140,11 +209,16 @@ $(document).ready(function () {
 		dataTextValue: "id"
 	});
     $("#statusddl").kendoMultiSelect();
+	$("#filtertasks").click(function(){
+		filterTasks();
+	});
+	$("#resettasks").click(function(){
+		getTasks();
+	});
 
     getProjects();
 
     var dashdata = [];
-    getTasks();
 
     $("#grid").kendoGrid({
         dataSource: {
@@ -230,5 +304,7 @@ $(document).ready(function () {
             }
         }
     });
+
+    getTasks();
 });
 
