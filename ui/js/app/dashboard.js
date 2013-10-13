@@ -1,33 +1,239 @@
 /*************************************************************************
 		File name: dashboard.js
-		Author: Manav
+		Author: Manav, Christian
 		Created date: 09/30/2013
 		Purpose: client functionality associated with dashboard page
 **************************************************************************/
 
 /************************************************************
+Function name: clearTasks
+Author: Christian Heckendorf
+Created date: 10/13/2013
+Purpose: Removes all tasks from the grid
+************************************************************/
+function clearTasks(){
+	var g;
+	g = $("#grid").data("kendoGrid");
+	g.setDataSource(new kendo.data.DataSource({
+		data: [],
+		group: {
+			field: "Type"
+		},
+		pageSize: 5
+	}));
+}
+
+/************************************************************
+Function name: filterTasks
+Author: Christian Heckendorf
+Created date: 10/13/2013
+Purpose: Sets the list of tasks based on the filter
+************************************************************/
+function filterTasks(){
+	var g, tok, rid, cb;
+
+	tok = getToken();
+
+	clearTasks();
+
+	cb = $("select#releaseddl").data("kendoComboBox");
+	rid = cb.dataItem().id;
+
+	$.ajax({
+		type: 'POST',
+		url: '/plm/rest/dashboard/tasks/release/'+rid,
+		contentType: 'application/json; charset=UTF-8',
+		accepts: {
+			text: 'application/json'
+		},
+		dataType: 'json',
+		data: JSON.stringify({
+			token: tok
+		}),
+		success: function(data){
+			var grid = $("#grid").data("kendoGrid");
+			var multiselect = $("#statusddl").data("kendoMultiSelect");
+			var validStatus = multiselect.value();
+			var statusFilter = [];
+			for(x in validStatus){
+				statusFilter.push({
+					field: "status",
+					operator: "eq",
+					value: validStatus[x]
+				});
+			}
+			grid.dataSource.filter({
+				logic: "or",
+				filters: statusFilter
+			});
+			for(x in data.tasks){
+				data.tasks[x].Type="Task";
+				grid.dataSource.add(data.tasks[x]);
+			}
+		},
+		error: function(data){
+			alert("error");
+		}
+	});
+}
+
+/************************************************************
+Function name: getTasks
+Author: Christian Heckendorf
+Created date: 10/13/2013
+Purpose: Updates the grid with a user's tasks
+************************************************************/
+function getTasks(){
+	var g, tok;
+
+	tok = getToken();
+
+	clearTasks();
+
+	$.ajax({
+		type: 'POST',
+		url: '/plm/rest/dashboard/tasks',
+		contentType: 'application/json; charset=UTF-8',
+		accepts: {
+			text: 'application/json'
+		},
+		dataType: 'json',
+		data: JSON.stringify({
+			token: tok
+		}),
+		success: function(data){
+			var grid = $("#grid").data("kendoGrid");
+			for(x in data.tasks){
+				data.tasks[x].Type="Task";
+				grid.dataSource.add(data.tasks[x]);
+			}
+		},
+		error: function(data){
+			alert("error");
+		}
+	});
+}
+
+/************************************************************
+Function name: getReleases
+Author: Christian Heckendorf
+Created date: 10/13/2013
+Purpose: Updates a list of releases in a project
+************************************************************/
+function getReleases(pid){
+	var cb, tok;
+
+	tok = getToken();
+
+	cb = $("select#releaseddl").data("kendoComboBox");
+	cb.setDataSource(new kendo.data.DataSource({ data: [] })); // Empty it first
+
+	$.ajax({
+		type: 'POST',
+		url: '/plm/rest/projectmanage/releases/p/'+pid,
+		contentType: 'application/json; charset=UTF-8',
+		accepts: {
+			text: 'application/json'
+		},
+		dataType: 'json',
+		data: JSON.stringify({
+			token: tok
+		}),
+		success: function(data){
+			var combobox, results;
+			combobox = $("select#releaseddl").data("kendoComboBox");
+
+			for(x in data.releases){
+				combobox.dataSource.add(data.releases[x]);
+			}
+		},
+		error: function(data){
+			alert("error");
+		}
+	});
+}
+
+/************************************************************
+Function name: getProjects
+Author: Christian Heckendorf
+Created date: 10/13/2013
+Purpose: Updates the list of projects a user in involved in
+************************************************************/
+function getProjects(){
+	var cb, tok;
+
+	tok = getToken();
+
+	cb = $("select#projectddl").data("kendoComboBox");
+	cb.setDataSource(new kendo.data.DataSource({ data: [] })); // Empty it first
+
+	$.ajax({
+		type: 'POST',
+		url: '/plm/rest/dashboard/projects',
+		contentType: 'application/json; charset=UTF-8',
+		accepts: {
+			text: 'application/json'
+		},
+		dataType: 'json',
+		data: JSON.stringify({
+			token: tok
+		}),
+		success: function(data){
+			var combobox, results;
+			combobox = $("select#projectddl").data("kendoComboBox");
+			results = 0;
+
+			for(x in data.projects){
+				results = 1;
+				combobox.dataSource.add(data.projects[x]);
+			}
+			
+			if(results>0){
+				getReleases(combobox.dataItem().id);
+			}
+		},
+		error: function(data){
+			alert("error");
+		}
+	});
+}
+
+/************************************************************
 		Function name: onready
-		Author: Manav
+		Author: Manav, Christian
 		Created date: 09/30/2013
 		Purpose: ready function invoked when page is rendered
-**************************************************************/
+ **************************************************************/
 
 $(document).ready(function () {
-    $("#projectddl").kendoComboBox();
-    $("#releaseddl").kendoComboBox();
+    $("#projectddl").kendoComboBox({
+		dataSource: [],
+		dataTextField: "name",
+		dataValueField: "id",
+		select: function(){
+			getReleases(this.value());
+		}
+	});
+    $("#releaseddl").kendoComboBox({
+		dataSource: [],
+		dataTextField: "version",
+		dataTextValue: "id"
+	});
     $("#statusddl").kendoMultiSelect();
+	$("#filtertasks").click(function(){
+		filterTasks();
+	});
+	$("#resettasks").click(function(){
+		getTasks();
+	});
 
-    var data1 = [
-        { "Type": "User Story", "Title": "Employee login info", "Category": "Functional", "Status": "Initial", "Priority": "Medium", "Risk": "Medium" },
-        { "Type": "User Story", "Title": "Capture Employee details", "Category": "Functional", "Status": "InProgress", "Priority": "High", "Risk": "Low" },
-        { "Type": "Task", "Title": "Analyze employee login", "Category": "Analysis", "Status": "Initial", "Priority": "Medium", "Risk": "Medium" },
-        { "Type": "Task", "Title": "Implement employee login form", "Category": "Development", "Status": "Pending", "Priority": "High", "Risk": "High" },
-        { "Type": "Bug", "Title": "Employee detail accepts invalid chars.", "Category": "Bug", "Status": "Complete", "Priority": "High", "Risk": "High" },
-        { "Type": "Bug", "Title": "Error in login page", "Category": "Bug", "Status": "Initial", "Priority": "High", "Risk": "High" }
-    ];
+    getProjects();
+
+    var dashdata = [];
+
     $("#grid").kendoGrid({
         dataSource: {
-            data: data1,
+            data: dashdata,
             group: {
                 field: "Type"
             },
@@ -35,7 +241,7 @@ $(document).ready(function () {
         },
         columns: [{
             field: "Type",
-            Title: "Type",
+            title: "Type",
             width: "4%",
             template: function (item) {
                 if (item.Type == "Bug") {
@@ -49,39 +255,39 @@ $(document).ready(function () {
                 }
             } 
         }, {
-            field: "Title",
-            Title: "Title",
+            field: "name",
+            title: "Title",
             width: "55%",
-            template : "<a href='\\#'>${Title}</a>"
+            template : "<a href='\\#${id}'>${name}</a>"
         }, {
-            field: "Category",
-            Title: "Category",
+            field: "category",
+            title: "Category",
             width: "10%"
         },
         {
-            field: "Priority",
-            Title: "Priority",
+            field: "priority",
+            title: "Priority",
             width: "10%"
         }, {
-            field: "Risk",
-            Title: "Risk",
+            field: "risk",
+            title: "Risk",
             width: "10%"
         },
         {
-            field: "Status",
-            Title: "Status",
+            field: "status",
+            title: "Status",
             width: "10%",
             template: function (item) {
-                if (item.Status == "Initial") {
+                if (item.status == "Initial") {
                     return "<span style='text-align:center' class='icon_24 initial' title='Initial'></span>";
                 }
-                else if (item.Status == "Pending") {
+                else if (item.status == "Pending") {
                     return "<span style='text-align:center' class='icon_24 warning' title='Pending'></span>";
                 }
-                else if (item.Status == "InProgress") {
+                else if (item.status == "InProgress") {
                     return "<span style='text-align:center' class='icon_24 inprogress' title='InProgress'></span>";
                 }
-                else if (item.Status == "Complete") {
+                else if (item.status == "Complete") {
                     return "<span style='text-align:center' class='icon_24 complete' title='Complete'></span>";
                 }
                 else {
@@ -109,5 +315,7 @@ $(document).ready(function () {
             }
         }
     });
+
+    getTasks();
 });
 
