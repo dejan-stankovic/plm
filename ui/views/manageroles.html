@@ -1,4 +1,4 @@
-﻿<!--
+<!--
 Filename: manageroles.html
 Author: Alan
 Created date: 09/30/2013
@@ -27,10 +27,12 @@ Feature: None
             width: 95%;
             margin: 0 auto;
         }
+
         .header
         {
             background-color: rgba(60, 70, 80, 0.10);
         }
+
         #middle-pane
         {
             background-color: rgba(60, 70, 80, 0.10);
@@ -77,8 +79,8 @@ Feature: None
          */
     </script>
 </head>
-<body style="background-image:url('../Css/Images/background.png');opacity:0.9">
-                        
+<body style="background-image: url('../Css/Images/background.png'); opacity: 0.9">
+
     <header>
         <div class="navbar navbar-inverse bs-docs-nav" style="border-bottom: 6px solid cornflowerblue;" data-app-model="navbar" id="search">
             <div class="navbar-inner" style="border-bottom: 5px solid gray; border-top: 3px solid gray">
@@ -114,16 +116,9 @@ Feature: None
                         </div>
                     </div>
                     <div id="center-pane">
-                        <div class="jumbotron" style="margin-left:120px;margin-top:5px">
-                            <table style="border:0px dotted orangered;width:75%;text-align:center;margin:5px">
+                        <div class="jumbotron" style="margin-left: 120px; margin-top: 5px">
+                            <table style="border: 0px dotted orangered; width: 75%; text-align: center; margin: 5px">
                                 <tr>
-                                    <td>
-                                        <b>Project :</b>
-                                    </td>
-                                    <td>
-                                        <select id="projectddl">
-                                        </select>
-                                    </td>
                                     <td><b>Role :</b></td>
                                     <td>
                                         <select id="rolesddl">
@@ -131,8 +126,7 @@ Feature: None
                                     </td>
                                     <td><b>User :</b></td>
                                     <td>
-                                        <input id="usersac">
-                                        </input>
+                                        <input id="usersac" />
                                     </td>
                                     <td>
                                         <button id="filterBtn" class="btn btn-primary" value="Apply Filter">Filter</button>&nbsp;
@@ -140,17 +134,35 @@ Feature: None
                                     </td>
                                 </tr>
                             </table>
-                        </div><br /><br />
-                        <div id="rolesGrid"></div><br /><br />
+                        </div>
+                        <br />
+                        <br />
+                        <div id="rolesGrid"></div>
+                        <br />
+                        <br />
                         <div>
-
+                            <table style="border: 1px dotted orangered; width: 40%; text-align: center; margin: 5px">
+                                <tr>
+                                    <td><b>User :</b></td>
+                                    <td>
+                                        <input id="newUsersddl" />
+                                        
+                                    </td>
+                                    <td><b>Role :</b></td>
+                                    <td>
+                                        <select id="newRolesddl">
+                                        </select>&nbsp;
+                                        <span class="icon_16 add"></span>
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
+
     <footer style="text-align: center; width: 100%; color: #514e4e">
         <div>
             <div>
