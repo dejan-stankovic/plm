@@ -1,6 +1,6 @@
 /*************************************************************************
 		File name: dashboard.js
-		Author: Manav
+		Author: Manav, Christian
 		Created date: 09/30/2013
 		Purpose: client functionality associated with dashboard page
 **************************************************************************/
@@ -51,8 +51,21 @@ function filterTasks(){
 			token: tok
 		}),
 		success: function(data){
-			/* TODO: status filter */
 			var grid = $("#grid").data("kendoGrid");
+			var multiselect = $("#statusddl").data("kendoMultiSelect");
+			var validStatus = multiselect.value();
+			var statusFilter = [];
+			for(x in validStatus){
+				statusFilter.push({
+					field: "status",
+					operator: "eq",
+					value: validStatus[x]
+				});
+			}
+			grid.dataSource.filter({
+				logic: "or",
+				filters: statusFilter
+			});
 			for(x in data.tasks){
 				data.tasks[x].Type="Task";
 				grid.dataSource.add(data.tasks[x]);
@@ -114,8 +127,6 @@ function getReleases(pid){
 
 	cb = $("select#releaseddl").data("kendoComboBox");
 	cb.setDataSource(new kendo.data.DataSource({ data: [] })); // Empty it first
-
-	$("select#releaseddl").html("");
 
 	$.ajax({
 		type: 'POST',
@@ -230,7 +241,7 @@ $(document).ready(function () {
         },
         columns: [{
             field: "Type",
-            Title: "Type",
+            title: "Type",
             width: "4%",
             template: function (item) {
                 if (item.Type == "Bug") {
@@ -245,26 +256,26 @@ $(document).ready(function () {
             } 
         }, {
             field: "name",
-            Title: "Title",
+            title: "Title",
             width: "55%",
             template : "<a href='\\#${id}'>${name}</a>"
         }, {
             field: "category",
-            Title: "Category",
+            title: "Category",
             width: "10%"
         },
         {
             field: "priority",
-            Title: "Priority",
+            title: "Priority",
             width: "10%"
         }, {
             field: "risk",
-            Title: "Risk",
+            title: "Risk",
             width: "10%"
         },
         {
             field: "status",
-            Title: "Status",
+            title: "Status",
             width: "10%",
             template: function (item) {
                 if (item.status == "Initial") {
