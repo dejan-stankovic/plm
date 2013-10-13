@@ -1,4 +1,4 @@
-﻿/*************************************************************************
+/*************************************************************************
 		File name: manageroles.js
 		Author: Alan
 		Created date: 09/30/2013
@@ -13,26 +13,18 @@
 **************************************************************/
 
 $(document).ready(function () {
-    
-    var projects = ["Select","Employee Portal", "HR Portal", "SAP Integration"];
+
+    var projects = ["Select", "Employee Portal", "HR Portal", "SAP Integration"];
     var roles = ["Select", "Stake Holder", "Business Analyst", "Project Leader", "Developer", "QA Tester", "Release Manager"];
-    var users = ["Alan", "Christian", "Manav", "Rachit", "Tandy", "Yuvraj" ];
+    var users = ["Alan", "Christian", "Manav", "Rachit", "Tandy", "Yuvraj"];
     var roleMapData = [
         { "Project": "Employee Portal", "User": "Christian", "Role": "Project Leader" },
         { "Project": "Employee Portal", "User": "Manav", "Role": "Developer" },
          { "Project": "Employee Portal", "User": "Tandy", "Role": "QA Tester" },
         { "Project": "Employee Portal", "User": "Yuvraj", "Role": "Release Manager" },
-
-        { "Project": "HR Portal", "User": "Manav", "Role": "Project Leader" },
-        { "Project": "HR Portal", "User": "Rachit", "Role": "Developer" },
-         { "Project": "HR Portal", "User": "Yuvraj", "Role": "QA Tester" },
-        { "Project": "HR Portal", "User": "Tandy", "Role": "Release Manager" },
-
-        { "Project": "SAP Integration", "User": "Tandy", "Role": "Stake Holder" },
-        { "Project": "SAP Integration", "User": "Manav", "Role": "Business Analyst" },
-         { "Project": "SAP Integration", "User": "Alan", "Role": "Project Leader" },
-        { "Project": "SAP Integration", "User": "Yuvraj", "Role": "Developer" },
-        { "Project": "SAP Integration", "User": "Rachit", "Role": "QA Tester" },
+        { "Project": "HR Portal", "User": "Rachit", "Role": "Stake Holder" },
+        { "Project": "HR Portal", "User": "Vipul", "Role": "Release Manager" },
+        { "Project": "SAP Integration", "User": "Alan", "Role": "Business Analyst" },
     ];
     $("#projectddl").kendoComboBox({
         dataSource: projects,
@@ -48,6 +40,16 @@ $(document).ready(function () {
         placeholder: "select user...",
         separator: ", "
     });
+    $("#newRolesddl").kendoComboBox({
+        dataSource: roles,
+        optionLabel: "select role"
+    });
+    $("#newUsersddl").kendoAutoComplete({
+        dataSource: users,
+        filter: "startswith",
+        placeholder: "select user...",
+        separator: ", "
+    });
 
     $("#rolesGrid").kendoGrid({
         dataSource: {
@@ -58,6 +60,22 @@ $(document).ready(function () {
             mode: "multiple",
             allowUnsort: true
         },
+        columns: [{
+            field: "Edit",
+            Title: "Edit",
+            width: "5%",
+            filterable:false,
+            template: "<span style='align-content:center' style='text-align:center;' class='icon_24 delete' title='Delete User Role mapping'></span>"
+        }, {
+            field: "User",
+            Title: "User",
+            width: "80%"
+        }, {
+            field: "Role",
+            Title: "Role",
+            width: "10%"
+        }
+        ],
         reorderable: true,
         resizable: true,
         pageable: true,
