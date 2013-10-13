@@ -10,6 +10,10 @@ package edu.cs673.plm.model;
 public class JSONTask{
 	long id;
 	String name;
+	String category;
+	String priority;
+	String risk;
+	String status;
 
 	/************************************************************
 	Function name: JSONTask()
@@ -29,6 +33,12 @@ public class JSONTask{
 	public JSONTask(Task task){
 		id = task.getId();
 		name = task.getName();
+
+		/* TODO: When the database is filled in, link these up */
+		category = new String("Development");
+		priority = new String("High");
+		risk = new String("Medium");
+		status = new String("Pending");
 	}
 
 	/************************************************************
@@ -69,5 +79,85 @@ public class JSONTask{
 	************************************************************/
 	public void setName(String name){
 		this.name = name;
+	}
+
+	/************************************************************
+	Function name: getCategory()
+	Author: Christian Heckendorf
+	Created date: 10/13/2013
+	Purpose: Returns the category
+	************************************************************/
+	public String getCategory(){
+		return category;
+	}
+
+	/************************************************************
+	Function name: setCategory()
+	Author: Christian Heckendorf
+	Created date: 10/13/2013
+	Purpose: Sets the category
+	************************************************************/
+	public void setCategory(String category){
+		this.category = category;
+	}
+
+	/************************************************************
+	Function name: getPriority()
+	Author: Christian Heckendorf
+	Created date: 10/13/2013
+	Purpose: Returns the priority
+	************************************************************/
+	public String getPriority(){
+		return priority;
+	}
+
+	/************************************************************
+	Function name: setPriority()
+	Author: Christian Heckendorf
+	Created date: 10/13/2013
+	Purpose: Sets the priority
+	************************************************************/
+	public void setPriority(String priority){
+		this.priority = priority;
+	}
+
+	/************************************************************
+	Function name: getRisk()
+	Author: Christian Heckendorf
+	Created date: 10/13/2013
+	Purpose: Returns the risk
+	************************************************************/
+	public String getRisk(){
+		return risk;
+	}
+
+	/************************************************************
+	Function name: setRisk()
+	Author: Christian Heckendorf
+	Created date: 10/13/2013
+	Purpose: Sets the risk
+	************************************************************/
+	public void setRisk(String risk){
+		this.risk = risk;
+	}
+
+	/************************************************************
+	Function name: getStatus()
+	Author: Christian Heckendorf
+	Created date: 10/13/2013
+	Purpose: Returns the status
+	************************************************************/
+	public String getStatus(){
+		return status;
+	}
+
+	/************************************************************
+	Function name: setStatus()
+	Author: Christian Heckendorf
+	Created date: 10/13/2013
+	Purpose: Sets the status
+	************************************************************/
+	public void setStatus(String status){
+		this.status = status;
 	}
 }
