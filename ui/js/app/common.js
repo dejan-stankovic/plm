@@ -6,6 +6,47 @@
 **************************************************************************/
 
 /************************************************************
+Function name: setToken
+Author: Christian Heckendorf
+Created date: 10/13/2013
+Purpose: Stores the sesssion token
+************************************************************/
+function setToken(tok){
+	document.cookie = "token="+tok;
+}
+
+/************************************************************
+Function name: getToken
+Author: Christian Heckendorf
+Created date: 10/13/2013
+Purpose: Returns the stored session token
+************************************************************/
+function getToken(){
+	var c_value, c_start, c_name;
+
+	c_name = "token";
+	c_value = document.cookie;
+	c_start = c_value.indexOf(" " + c_name + "=");
+
+	if (c_start == -1) {
+		c_start = c_value.indexOf(c_name + "=");
+	}
+	if (c_start == -1) {
+		c_value = "";
+	}
+	else {
+		c_start = c_value.indexOf("=", c_start) + 1;
+		var c_end = c_value.indexOf(";", c_start);
+		if (c_end == -1) {
+			c_end = c_value.length;
+		}
+		c_value = unescape(c_value.substring(c_start,c_end));
+	}
+
+	return c_value;
+}
+
+/************************************************************
 		Function name: onready
 		Author: Manav
 		Created date: 09/30/2013
