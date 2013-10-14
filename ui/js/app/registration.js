@@ -59,7 +59,7 @@ function regUser(){
 Function name: resetHandler
 Author: Yuvaraj
 Created date: 10/13/2013
-Purpose: Cancels the login form
+Purpose: Cancels the registration form
 ************************************************************/
 function resetHandler() {
 	$("input#uname").val("");
