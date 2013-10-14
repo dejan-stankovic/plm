@@ -14,10 +14,10 @@ import javax.persistence.Query;
 
 import edu.cs673.plm.model.UserProject;
 import edu.cs673.plm.model.Role;
-import edu.cs673.plm.model.JSONUser;
-import edu.cs673.plm.model.JSONProject;
+import edu.cs673.plm.model.UserList;
 import edu.cs673.plm.model.User;
 import edu.cs673.plm.model.Project;
+import edu.cs673.plm.model.ProjectList;
 
 public class UserProjectDao {
 	/************************************************************
@@ -26,17 +26,14 @@ public class UserProjectDao {
 	Created date: 10/07/2013
 	Purpose: Returns a list of projects a user is a member of
 	************************************************************/
-	public static List<JSONProject> getProjectList(Dba dba, long uid){
+	public static ProjectList getProjectList(Dba dba, long uid){
 		EntityManager em = dba.getActiveEm();
 		Query q = em.createQuery("select userProject.project from UserProject userProject where userProject.user.id = :uid")
 					.setParameter("uid",uid);
 		try{
-			List<Project> projects = (List<Project>)q.getResultList();
-			List<JSONProject> jprojects = new ArrayList<JSONProject>();
-			for(Project p : projects){
-				jprojects.add(new JSONProject(p));
-			}
-			return jprojects;
+			ProjectList pl = new ProjectList();
+			pl.addProjects((List<Project>)q.getResultList());
+			return pl;
 		} catch(Exception e){
 			return null;
 		}
@@ -48,17 +45,14 @@ public class UserProjectDao {
 	Created date: 10/05/2013
 	Purpose: Returns a list of users associated with a project
 	************************************************************/
-	public static List<JSONUser> getMemberList(Dba dba, long pid){
+	public static UserList getMemberList(Dba dba, long pid){
 		EntityManager em = dba.getActiveEm();
 		Query q = em.createQuery("select userProject.user from UserProject userProject where userProject.project.id = :pid")
 					.setParameter("pid",pid);
 		try{
-			List<User> users = (List<User>)q.getResultList();
-			List<JSONUser> jusers = new ArrayList<JSONUser>();
-			for(User u : users){
-				jusers.add(new JSONUser(u));
-			}
-			return jusers;
+			UserList ul = new UserList();
+			ul.addUsers((List<User>)q.getResultList());
+			return ul;
 		} catch(Exception e){
 			return null;
 		}

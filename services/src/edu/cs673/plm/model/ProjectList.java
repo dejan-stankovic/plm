@@ -8,9 +8,20 @@ Feature: Dashboard
 package edu.cs673.plm.model;
 
 import java.util.List;
+import java.util.ArrayList;
 
 public class ProjectList{
 	private List<JSONProject> projects;
+
+	/************************************************************
+	Function name: ProjectList()
+	Author: Christian Heckendorf
+	Created date: 10/13/2013
+	Purpose: Default constructor
+	************************************************************/
+	public ProjectList(){
+		projects = new ArrayList<JSONProject>();
+	}
 
 	/************************************************************
 	Function name: addProject()
@@ -20,6 +31,18 @@ public class ProjectList{
 	************************************************************/
 	public void addProject(Project project){
 		projects.add(new JSONProject(project));
+	}
+
+	/************************************************************
+	Function name: addProjects()
+	Author: Christian Heckendorf
+	Created date: 10/13/2013
+	Purpose: Adds a list of projects
+	************************************************************/
+	public void addProjects(List<Project> projects){
+		for(Project p : projects){
+			this.addProject(p);
+		}
 	}
 
 	/************************************************************

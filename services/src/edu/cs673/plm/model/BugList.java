@@ -1,8 +1,8 @@
 /************************************************************
-Filename: ReleaseList.java
+Filename: BugList.java
 Author: Christian Heckendorf
-Created date: 10/07/2013
-Purpose: Holds a list of JSONReleases
+Created date: 10/13/2013
+Purpose: Holds a list of JSONBugs
 Feature: Dashboard
 ************************************************************/
 package edu.cs673.plm.model;
@@ -10,58 +10,58 @@ package edu.cs673.plm.model;
 import java.util.List;
 import java.util.ArrayList;
 
-public class ReleaseList{
-	private List<JSONRelease> releases;
+public class BugList{
+	private List<JSONBug> bugs;
 
 	/************************************************************
-	Function name: ReleaseList()
+	Function name: BugList()
 	Author: Christian Heckendorf
 	Created date: 10/13/2013
 	Purpose: Default constructor
 	************************************************************/
-	public ReleaseList(){
-		releases = new ArrayList<JSONRelease>();
+	public BugList(){
+		bugs = new ArrayList<JSONBug>();
 	}
 
 	/************************************************************
-	Function name: addRelease()
-	Author: Christian Heckendorf
-	Created date: 10/07/2013
-	Purpose: Adds a release to the list
-	************************************************************/
-	public void addRelease(Release release){
-		releases.add(new JSONRelease(release));
-	}
-
-	/************************************************************
-	Function name: addReleases()
+	Function name: addBug()
 	Author: Christian Heckendorf
 	Created date: 10/13/2013
-	Purpose: Adds a list of releases
+	Purpose: Adds a bug to the list
 	************************************************************/
-	public void addReleases(List<Release> releases){
-		for(Release r : releases){
-			this.addRelease(r);
+	public void addBug(Bug bug){
+		bugs.add(new JSONBug(bug));
+	}
+
+	/************************************************************
+	Function name: addBugs()
+	Author: Christian Heckendorf
+	Created date: 10/13/2013
+	Purpose: Adds a list of bugs
+	************************************************************/
+	public void addBugs(List<Bug> bugs){
+		for(Bug b : bugs){
+			this.addBug(b);
 		}
 	}
 
 	/************************************************************
-	Function name: getReleases()
+	Function name: getBugs()
 	Author: Christian Heckendorf
-	Created date: 10/07/2013
-	Purpose: Returns the list of releases
+	Created date: 10/13/2013
+	Purpose: Returns the list of bugs
 	************************************************************/
-	public List<JSONRelease> getReleases(){
-		return releases;
+	public List<JSONBug> getBugs(){
+		return bugs;
 	}
 
 	/************************************************************
-	Function name: setReleases()
+	Function name: setBugs()
 	Author: Christian Heckendorf
-	Created date: 10/07/2013
-	Purpose: Sets the list of releases
+	Created date: 10/13/2013
+	Purpose: Sets the list of bugs
 	************************************************************/
-	public void setReleases(List<JSONRelease> releases){
-		this.releases=releases;
+	public void setBugs(List<JSONBug> bugs){
+		this.bugs=bugs;
 	}
 }

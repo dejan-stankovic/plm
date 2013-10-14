@@ -39,8 +39,7 @@ public class ProjectManager {
 		Dba dba = new Dba(true);
 		try{
 			if(Permission.canAccess(dba,new SessionToken(token.getToken()),pid,Permission.VIEW_PROJECT)){
-				ul = new UserList();
-				ul.setUsers(UserProjectDao.getMemberList(dba,pid));
+				ul = UserProjectDao.getMemberList(dba,pid);
 			}
 		} finally{
 			dba.closeEm();
@@ -65,8 +64,7 @@ public class ProjectManager {
 		Dba dba = new Dba(true);
 		try{
 			if(Permission.canAccess(dba,new SessionToken(token.getToken()),pid,Permission.VIEW_PROJECT)){
-				rl = new ReleaseList();
-				rl.setReleases(ProjectDao.getReleaseList(dba,pid));
+				rl = ProjectDao.getReleaseList(dba,pid);
 			}
 		} finally{
 			dba.closeEm();

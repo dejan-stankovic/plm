@@ -8,9 +8,20 @@ Feature: Role management
 package edu.cs673.plm.model;
 
 import java.util.List;
+import java.util.ArrayList;
 
 public class RoleList{
 	private List<JSONRole> roles;
+
+	/************************************************************
+	Function name: RoleList()
+	Author: Christian Heckendorf
+	Created date: 10/13/2013
+	Purpose: Default constructor
+	************************************************************/
+	public RoleList(){
+		roles = new ArrayList<JSONRole>();
+	}
 
 	/************************************************************
 	Function name: getRoles()

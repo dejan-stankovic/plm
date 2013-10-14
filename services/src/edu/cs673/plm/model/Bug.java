@@ -28,6 +28,7 @@ public class Bug{
 	private String description;
 
 	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="userStoryId")
 	private UserStory userStory;
 
 	@ManyToOne(fetch=FetchType.LAZY)
