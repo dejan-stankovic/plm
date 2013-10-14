@@ -127,8 +127,8 @@
 \umluniassoc[geometry=--]{SessionToken}{SecKey}
 \end{tikzpicture}
 \begin{tikzpicture}
-\umlclass[x=0,y=0]{Dashboard}{}{getTaskList(TokenMessage token) \\ getProjectList(TokenMessage token) }
-\umlclass[x=0,y=6]{UserDao}{}{getTaskList(Dba dba, long uid, long rid) \\ getUserId(Dba dba, User user) \\ getUserById(Dba dba, long uid) \\ createUser(Dba dba, User user) \\ nameValid(EntityManager em, User user) }
+\umlclass[x=0,y=0]{Dashboard}{}{getTaskList(TokenMessage token) \\ getProjectList(TokenMessage token) \\ getBugList(TokenMessage token) }
+\umlclass[x=0,y=6]{UserDao}{}{getBugList(Dba dba, long uid, long rid) \\ getUserStoryList() \\ getTaskList(Dba dba, long uid, long rid) \\ getUserId(Dba dba, User user) \\ getUserById(Dba dba, long uid) \\ createUser(Dba dba, User user) \\ nameValid(EntityManager em, User user) }
 \umlclass[x=0,y=-6]{UserProjectDao}{}{getRole(Dba dba, long uid, long pid) \\ getMemberList(Dba dba, long pid) \\ setRole(Dba dba, UserProject up, Role role) \\ findUserProjectByPid(Dba dba, long uid, long pid) \\ getProjectList(Dba dba, long uid) }
 \umlclass[x=9,y=0]{SessionToken}{exp \\ uid }{generateToken() \\ getDataBytes() \\ getExp() \\ hexStringToByteArray(String data) \\ generateHash(byte[] data) \\ SessionToken(long uid) \\ byteArrayToHex(byte[] data) \\ getUid() \\ parseToken(String token) }
 \umlclass[x=9,y=-6]{SecKey}{outer \\ initialized \\ lock \\ kg }{getKey() \\ initialize() \\ SecKey() }
