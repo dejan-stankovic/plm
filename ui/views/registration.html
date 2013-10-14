@@ -98,27 +98,27 @@ Feature: None
                 <tr>
                     <td>First name *</td>
                     <td>
-                        <input type="text" name="fname" maxlength="20" placeholder=" example: Yuvaraj  " /></td>
+                        <input type="text" id="fname" maxlength="20" placeholder=" example: Yuvaraj  " /></td>
                 </tr>
                 <tr   class="success">
                     <td>Last name *</td>
                     <td>
-                        <input type="text" name="lname" maxlength="20" placeholder=" example: Gunasekaran  " /></td>
+                        <input type="text" id="lname" maxlength="20" placeholder=" example: Gunasekaran  " /></td>
                 </tr>
                 <tr>
                     <td>E-mail *</td>
                     <td>
-                        <input type="text" name="email" maxlength="20" placeholder="example: username@domain.com  " /></td>
+                        <input type="text" id="email" maxlength="20" placeholder="example: username@domain.com  " /></td>
                 </tr>
                 <tr   class="success">
                     <td>Username *</td>
                     <td>
-                        <input type="text" name="uname" maxlength="20" /></td>
+                        <input type="text" id="uname" maxlength="20" /></td>
                 </tr>
                 <tr>
                     <td>Password *</td>
                     <td>
-                        <input type="text" name="pwd" maxlength="20" title="Maximum of 8 characters"/></td>
+                        <input type="text" id="pwd" maxlength="20" title="Maximum of 8 characters"/></td>
                 </tr>
 				<tr>
                     <td>Date of birth</td>
@@ -134,9 +134,9 @@ Feature: None
                 </tr>
                 <tr   class="warning">
                     <td></td>
-                    <td class="success1">
-                        <a href="home.html">Submit </a>
-                        <a href="registration.html">Reset </a>
+                    <td class="success">
+                        <a id="submitbtn" href="home.html" class="btn btn-primary">Submit </a>&nbsp;&nbsp;
+                        <a id="cancelbtn" href="registration.html" class="btn btn-danger">Reset </a>
                     </td>
                 </tr>
             </table>
