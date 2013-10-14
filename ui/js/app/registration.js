@@ -1,26 +1,24 @@
 /*************************************************************************
 		File name: registration.js
 		Author: Yuvaraj
-		Created date: 09/30/2013
+		Created date: 10/13/2013
 		Purpose: client functionality associated with registration page
 **************************************************************************/
 
 /************************************************************
 		Function name: onready
 		Author: Yuvaraj
-		Created date: 09/30/2013
+		Created date: 10/13/2013
 		Purpose: Processes the registration form
 **************************************************************/
 
-$(document).ready(function () {
-    
 function regUser(){
 		var user;
 
 		$("#errormsg").html("");
 
 		user = $("input#uname").val();
-		pass = $("input#pass").val();
+		pass = $("input#pwd").val();
 
 
 				$.ajax({
@@ -56,4 +54,32 @@ function regUser(){
 					}
 				});
 		}
+
+/************************************************************
+Function name: cancelHandler
+Author: Yuvaraj
+Created date: 10/13/2013
+Purpose: Cancels the login form
+************************************************************/
+function resetHandler() {
+	$("input#uname").val("");
+	$("input#pwd").val("");
+	$("#errormsg").html("");
+}
+/************************************************************
+		Function name: onready
+		Author: Yuvaraj
+		Created date: 10/13/2013
+		Purpose: ready function invoked when page is rendered
+**************************************************************/
+$(document).ready(function () {
+
+$("a#submitbtn").click(function(){
+		regUser();
+	})
+	
+$("a#resetbtn").click(function(){
+		regHandler();
+	})
+	    
 });
