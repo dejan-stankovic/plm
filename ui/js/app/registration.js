@@ -6,7 +6,7 @@
 **************************************************************************/
 
 /************************************************************
-		Function name: onready
+		Function name: regUser
 		Author: Yuvaraj
 		Created date: 10/13/2013
 		Purpose: Processes the registration form
@@ -56,7 +56,7 @@ function regUser(){
 		}
 
 /************************************************************
-Function name: cancelHandler
+Function name: resetHandler
 Author: Yuvaraj
 Created date: 10/13/2013
 Purpose: Cancels the login form
