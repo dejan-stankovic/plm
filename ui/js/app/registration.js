@@ -57,21 +57,8 @@ function regUser(){
 **************************************************************/
 
 $(document).ready(function () {
-
-    $("input#pwd").click(function() {
-			$( document ).tooltip();
-		})
-	$("input#datepicker").click(function() {
-			$( document ).tooltip();
-		})
-	$(function() {
-		    		$( "a#submitbtn" )
-		     		.button()
-		      		.click(function( event ) {
-		      		event.preventDefault();
-		     		});
-		})
-	$(function() {
-    		$( "input#datepicker" ).datepicker();
-  		});
- });
+    
+    $(function() {
+		$(document).tooltip();
+		});
+});
