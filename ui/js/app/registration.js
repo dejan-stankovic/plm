@@ -11,12 +11,16 @@
 		Created date: 09/30/2013
 		Purpose: Processes the registration form
 **************************************************************/
+
+$(document).ready(function () {
+    
 function regUser(){
 		var user;
 
 		$("#errormsg").html("");
 
 		user = $("input#uname").val();
+		pass = $("input#pass").val();
 
 
 				$.ajax({
@@ -28,7 +32,8 @@ function regUser(){
 					},
 					dataType: 'json',
 					data: JSON.stringify({
-						name: user
+						name: user,
+						password: pass
 					}),
 					success: function(data){
 
@@ -40,25 +45,15 @@ function regUser(){
 						  }
 						 else if(data.code==1)
 						 {
-						   alert("Invalid Username or username already exists") /*displays error message*/
-	  					 }
+						   $("#errormsg").html("Invalid Username or Password"); /*displays error message*/
+			             }
+			               else { /* Usually internal error or other */
+				           $("#errormsg").html(data.message);
+			             }
 					},
 					error: function(data){
 						alert("error");
 					}
 				});
 		}
-
-/************************************************************
-		Function name: onready
-		Author: Yuvaraj
-		Created date: 09/30/2013
-		Purpose: ready function invoked when page is rendered
-**************************************************************/
-
-$(document).ready(function () {
-    
-    $(function() {
-		$(document).tooltip();
-		});
 });
