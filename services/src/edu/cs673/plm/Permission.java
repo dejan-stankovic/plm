@@ -26,6 +26,7 @@ public class Permission {
 		"EditBug",
 		"EditTask",
 		"EditRelease",
+		"EditProject",
 	};
 	public static final int VIEW_PROJECT = 0;
 	public static final int CREATE_RELEASE = 1;
@@ -37,11 +38,12 @@ public class Permission {
 	public static final int EDIT_BUG = 7;
 	public static final int EDIT_TASK = 8;
 	public static final int EDIT_RELEASE = 9;
+	public static final int EDIT_PROJECT = 10;
 
 	private static final int[][] rolePermissions = {
 		{}, // Empty -- Roles are 1-indexed
 		{VIEW_PROJECT}, // Stakeholder
-		{VIEW_PROJECT,CREATE_RELEASE,CREATE_TASK,INVITE_USER,SET_ROLE}, // Project Leader
+		{VIEW_PROJECT,CREATE_RELEASE,CREATE_TASK,INVITE_USER,SET_ROLE,EDIT_PROJECT}, // Project Leader
 		{VIEW_PROJECT,CREATE_USER_STORY}, // Business Analyst
 		{VIEW_PROJECT,CREATE_BUG}, // Quality Assurance
 		{VIEW_PROJECT,EDIT_BUG,EDIT_TASK}, // Developer
