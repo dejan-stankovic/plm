@@ -24,6 +24,49 @@ function clearTasks(){
 }
 
 /************************************************************
+Function name: dashboardTaskAjax
+Author: Christian Heckendorf
+Created date: 10/13/2013
+Purpose: Runs the dashboard ajax for some task service
+************************************************************/
+function dashboardTaskAjax(tok, field, tail, type){
+	$.ajax({
+		type: 'POST',
+		url: '/plm/rest/dashboard/'+field+tail,
+		contentType: 'application/json; charset=UTF-8',
+		accepts: {
+			text: 'application/json'
+		},
+		dataType: 'json',
+		data: JSON.stringify({
+			token: tok
+		}),
+		success: function(data){
+			var grid = $("#grid").data("kendoGrid");
+			for(x in data[field]){
+				data[field][x].Type=type;
+				grid.dataSource.add(data[field][x]);
+			}
+		},
+		error: function(data){
+			alert("error");
+		}
+	});
+
+}
+
+/************************************************************
+Function name: genericTaskFetch
+Author: Christian Heckendorf
+Created date: 10/13/2013
+Purpose: Wrapper to fetch tasks with optional service filter
+************************************************************/
+function genericTaskFetch(tok, tail){
+	dashboardTaskAjax(tok,"bugs",tail,"Bug");
+	dashboardTaskAjax(tok,"tasks",tail,"Task");
+}
+
+/************************************************************
 Function name: filterTasks
 Author: Christian Heckendorf
 Created date: 10/13/2013
@@ -39,42 +82,23 @@ function filterTasks(){
 	cb = $("select#releaseddl").data("kendoComboBox");
 	rid = cb.dataItem().id;
 
-	$.ajax({
-		type: 'POST',
-		url: '/plm/rest/dashboard/tasks/release/'+rid,
-		contentType: 'application/json; charset=UTF-8',
-		accepts: {
-			text: 'application/json'
-		},
-		dataType: 'json',
-		data: JSON.stringify({
-			token: tok
-		}),
-		success: function(data){
-			var grid = $("#grid").data("kendoGrid");
-			var multiselect = $("#statusddl").data("kendoMultiSelect");
-			var validStatus = multiselect.value();
-			var statusFilter = [];
-			for(x in validStatus){
-				statusFilter.push({
-					field: "status",
-					operator: "eq",
-					value: validStatus[x]
-				});
-			}
-			grid.dataSource.filter({
-				logic: "or",
-				filters: statusFilter
-			});
-			for(x in data.tasks){
-				data.tasks[x].Type="Task";
-				grid.dataSource.add(data.tasks[x]);
-			}
-		},
-		error: function(data){
-			alert("error");
-		}
+	var grid = $("#grid").data("kendoGrid");
+	var multiselect = $("#statusddl").data("kendoMultiSelect");
+	var validStatus = multiselect.value();
+	var statusFilter = [];
+	for(x in validStatus){
+		statusFilter.push({
+			field: "status",
+			operator: "eq",
+			value: validStatus[x]
+		});
+	}
+	grid.dataSource.filter({
+		logic: "or",
+		filters: statusFilter
 	});
+
+	genericTaskFetch(tok,"/release/"+rid);
 }
 
 /************************************************************
@@ -90,28 +114,7 @@ function getTasks(){
 
 	clearTasks();
 
-	$.ajax({
-		type: 'POST',
-		url: '/plm/rest/dashboard/tasks',
-		contentType: 'application/json; charset=UTF-8',
-		accepts: {
-			text: 'application/json'
-		},
-		dataType: 'json',
-		data: JSON.stringify({
-			token: tok
-		}),
-		success: function(data){
-			var grid = $("#grid").data("kendoGrid");
-			for(x in data.tasks){
-				data.tasks[x].Type="Task";
-				grid.dataSource.add(data.tasks[x]);
-			}
-		},
-		error: function(data){
-			alert("error");
-		}
-	});
+	genericTaskFetch(tok,"");
 }
 
 /************************************************************
