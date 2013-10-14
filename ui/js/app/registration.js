@@ -77,9 +77,9 @@ $(document).ready(function () {
 $("a#submitbtn").click(function(){
 		regUser();
 	})
-	
+
 $("a#resetbtn").click(function(){
-		regHandler();
+		resetHandler();
 	})
-	    
+
 });
