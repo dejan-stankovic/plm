@@ -16,7 +16,7 @@ function regUser(){
 
 		$("#errormsg").html("");
 
-		user = $("input#user").val();
+		user = $("input#uname").val();
 
 
 				$.ajax({
