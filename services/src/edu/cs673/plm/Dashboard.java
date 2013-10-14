@@ -22,6 +22,7 @@ import edu.cs673.plm.model.TaskList;
 import edu.cs673.plm.model.JSONProject;
 import edu.cs673.plm.model.JSONTask;
 import edu.cs673.plm.model.UserProject;
+import edu.cs673.plm.model.BugList;
 
 @Path( "/dashboard" )
 public class Dashboard {
@@ -40,8 +41,7 @@ public class Dashboard {
 		ProjectList pl = null;
 		Dba dba = new Dba(true);
 		try{
-			pl = new ProjectList();
-			pl.setProjects(UserProjectDao.getProjectList(dba,st.getUid()));
+			pl = UserProjectDao.getProjectList(dba,st.getUid());
 		} finally{
 			dba.closeEm();
 		}
@@ -64,8 +64,7 @@ public class Dashboard {
 		TaskList tl = null;
 		Dba dba = new Dba(true);
 		try{
-			tl = new TaskList();
-			tl.setTasks(UserDao.getTaskList(dba,st.getUid()));
+			tl = UserDao.getTaskList(dba,st.getUid());
 		} finally{
 			dba.closeEm();
 		}
@@ -88,12 +87,57 @@ public class Dashboard {
 		TaskList tl = null;
 		Dba dba = new Dba(true);
 		try{
-			tl = new TaskList();
-			tl.setTasks(UserDao.getTaskList(dba,st.getUid(),rid));
+			tl = UserDao.getTaskList(dba,st.getUid(),rid);
 		} finally{
 			dba.closeEm();
 		}
 
 		return tl;
+	}
+
+	/************************************************************
+	Function name: getBugList()
+	Author: Christian Heckendorf
+	Created date: 10/13/2013
+	Purpose: Returns a list of bugs assigned to a user
+	************************************************************/
+	@Path( "/bugs" )
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public BugList getBugList(TokenMessage token) {
+		SessionToken st = new SessionToken(token.getToken());
+		BugList bl = null;
+		Dba dba = new Dba(true);
+		try{
+			bl = UserDao.getBugList(dba,st.getUid());
+		} finally{
+			dba.closeEm();
+		}
+
+		return bl;
+	}
+
+	/************************************************************
+	Function name: getBugList()
+	Author: Christian Heckendorf
+	Created date: 10/08/2013
+	Purpose: Returns bugs assigned to a user under a release
+	************************************************************/
+	@Path( "/bugs/release/{rid}" )
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public BugList getBugList(@PathParam("rid") long rid, TokenMessage token) {
+		SessionToken st = new SessionToken(token.getToken());
+		BugList bl = null;
+		Dba dba = new Dba(true);
+		try{
+			bl = UserDao.getBugList(dba,st.getUid(),rid);
+		} finally{
+			dba.closeEm();
+		}
+
+		return bl;
 	}
 }

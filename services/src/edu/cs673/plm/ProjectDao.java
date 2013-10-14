@@ -14,7 +14,7 @@ import javax.persistence.Query;
 
 import edu.cs673.plm.model.Project;
 import edu.cs673.plm.model.Release;
-import edu.cs673.plm.model.JSONRelease;
+import edu.cs673.plm.model.ReleaseList;
 
 public class ProjectDao {
 	/***************************************************************
@@ -42,17 +42,14 @@ public class ProjectDao {
 	Created date: 10/08/2013
 	Purpose: Returns a list of releases under a project
 	************************************************************/
-	public static List<JSONRelease> getReleaseList(Dba dba, long pid){
+	public static ReleaseList getReleaseList(Dba dba, long pid){
 		EntityManager em = dba.getActiveEm();
 		Query q = em.createQuery("select r from Release r where r.project.id = :pid")
 					.setParameter("pid",pid);
 		try{
-			List<Release> releases = (List<Release>)q.getResultList();
-			List<JSONRelease> jreleases = new ArrayList<JSONRelease>();
-			for(Release r : releases){
-				jreleases.add(new JSONRelease(r));
-			}
-			return jreleases;
+			ReleaseList rl = new ReleaseList();
+			rl.addReleases((List<Release>)q.getResultList());
+			return rl;
 		} catch(Exception e){
 			return null;
 		}

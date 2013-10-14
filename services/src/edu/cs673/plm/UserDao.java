@@ -14,17 +14,61 @@ import javax.persistence.Query;
 
 import edu.cs673.plm.model.User;
 import edu.cs673.plm.model.StatusMessage;
-import edu.cs673.plm.model.JSONTask;
+import edu.cs673.plm.model.Bug;
 import edu.cs673.plm.model.Task;
+import edu.cs673.plm.model.TaskList;
+import edu.cs673.plm.model.BugList;
 
 public class UserDao {
+	/************************************************************
+	Function name: getBugList()
+	Author: Christian Heckendorf
+	Created date: 10/13/2013
+	Purpose: Returns a list of tasks for a release for a user
+	************************************************************/
+	public static BugList getBugList(Dba dba, long uid, long rid){
+		EntityManager em = dba.getActiveEm();
+		Query q = em.createQuery("select b from Bug b, UserStory userStory "+
+								"where b.userStory.id = userStory.id "+
+								"and b.userAssigned.id = :uid "+
+								"and userStory.release.id = :rid")
+					.setParameter("uid",uid)
+					.setParameter("rid",rid);
+		try{
+			BugList bl = new BugList();
+			bl.addBugs((List<Bug>)q.getResultList());
+			return bl;
+		} catch(Exception e){
+			return null;
+		}
+	}
+
+	/************************************************************
+	Function name: getBugList()
+	Author: Christian Heckendorf
+	Created date: 10/13/2013
+	Purpose: Returns a list of bugs assigned to a user
+	************************************************************/
+	public static BugList getBugList(Dba dba, long uid){
+		EntityManager em = dba.getActiveEm();
+		Query q = em.createQuery("select b from Bug b where b.userAssigned.id = :uid")
+					.setParameter("uid",uid);
+		try{
+			BugList bl = new BugList();
+			bl.addBugs((List<Bug>)q.getResultList());
+			return bl;
+		} catch(Exception e){
+			return null;
+		}
+	}
+
 	/************************************************************
 	Function name: getTaskList()
 	Author: Christian Heckendorf
 	Created date: 10/08/2013
 	Purpose: Returns a list of tasks for a release for a user
 	************************************************************/
-	public static List<JSONTask> getTaskList(Dba dba, long uid, long rid){
+	public static TaskList getTaskList(Dba dba, long uid, long rid){
 		EntityManager em = dba.getActiveEm();
 		Query q = em.createQuery("select t from Task t, UserStory userStory "+
 								"where t.userStory.id = userStory.id "+
@@ -33,12 +77,9 @@ public class UserDao {
 					.setParameter("uid",uid)
 					.setParameter("rid",rid);
 		try{
-			List<Task> tasks = (List<Task>)q.getResultList();
-			List<JSONTask> jtasks = new ArrayList<JSONTask>();
-			for(Task t : tasks){
-				jtasks.add(new JSONTask(t));
-			}
-			return jtasks;
+			TaskList tl = new TaskList();
+			tl.addTasks((List<Task>)q.getResultList());
+			return tl;
 		} catch(Exception e){
 			return null;
 		}
@@ -50,17 +91,14 @@ public class UserDao {
 	Created date: 10/07/2013
 	Purpose: Returns a list of tasks assigned to a user
 	************************************************************/
-	public static List<JSONTask> getTaskList(Dba dba, long uid){
+	public static TaskList getTaskList(Dba dba, long uid){
 		EntityManager em = dba.getActiveEm();
 		Query q = em.createQuery("select t from Task t where t.userAssigned.id = :uid")
 					.setParameter("uid",uid);
 		try{
-			List<Task> tasks = (List<Task>)q.getResultList();
-			List<JSONTask> jtasks = new ArrayList<JSONTask>();
-			for(Task t : tasks){
-				jtasks.add(new JSONTask(t));
-			}
-			return jtasks;
+			TaskList tl = new TaskList();
+			tl.addTasks((List<Task>)q.getResultList());
+			return tl;
 		} catch(Exception e){
 			return null;
 		}
