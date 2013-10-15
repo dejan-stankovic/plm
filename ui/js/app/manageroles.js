@@ -14,7 +14,7 @@ Created date: 10/14/2013
 Purpose: Sets the role for a user
 ************************************************************/
 function setRole(){
-	var tok,uid,rid;
+	var tok,pid,uid,rid;
 
 	uid = selectedUid;
 	rid = selectedRid;
@@ -23,10 +23,11 @@ function setRole(){
 		return;
 
 	tok = getToken();
+	pid = getCurProject();
 
 	$.ajax({
 		type: 'POST',
-		url: '/plm/rest/rolemanage/p/1/u/'+uid+'/r/'+rid,
+		url: '/plm/rest/rolemanage/p/'+pid+'/u/'+uid+'/r/'+rid,
 		contentType: 'application/json; charset=UTF-8',
 		accepts: {
 			text: 'application/json'
@@ -88,15 +89,17 @@ Purpose: Gets all roles in the system
 function getRole(){
 	var tok;
 	var uid = selectedUid;
+	var pid;
 
 	if(uid==null)
 		return;
 
 	tok = getToken();
+	pid = getCurProject();
 
 	$.ajax({
 		type: 'POST',
-		url: '/plm/rest/rolemanage/p/1/u/'+uid,
+		url: '/plm/rest/rolemanage/p/'+pid+'/u/'+uid,
 		contentType: 'application/json; charset=UTF-8',
 		accepts: {
 			text: 'application/json'
@@ -121,13 +124,14 @@ Created date: 10/14/2013
 Purpose: Gets all users in the project
 ************************************************************/
 function getUsersInProject(){
-	var tok;
+	var pid,tok;
 
 	tok = getToken();
+	pid = getCurProject();
 
 	$.ajax({
 		type: 'POST',
-		url: '/plm/rest/projectmanage/p/1/users',
+		url: '/plm/rest/projectmanage/p/'+pid+'/users',
 		contentType: 'application/json; charset=UTF-8',
 		accepts: {
 			text: 'application/json'
