@@ -71,7 +71,7 @@ Feature: None
              },
              waitSeconds: 15
          });
- 
+
          // Load the phase tasks module
          require(["../app/grid"], function () {
              alert('hi');
@@ -112,6 +112,7 @@ Feature: None
                 <div id="horizontal" style="height: 100%; width: 100%;">
                     <div id="left-pane">
                         <div class="pane-content">
+							<div><span>Project </span><span id="cur-project"></span></div>
                             <div id="panelbar-images"></div>
                         </div>
                     </div>
@@ -146,7 +147,7 @@ Feature: None
                                     <td><b>User :</b></td>
                                     <td>
                                         <input id="newUsersddl" />
-                                        
+
                                     </td>
                                     <td><b>Role :</b></td>
                                     <td>
