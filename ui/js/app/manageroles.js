@@ -5,6 +5,150 @@
 		Purpose: client functionality associated with manageroles page
 **************************************************************************/
 
+var selectedUid, selectedRid;
+
+/************************************************************
+Function name: setRole
+Author: Christian Heckendorf
+Created date: 10/14/2013
+Purpose: Sets the role for a user
+************************************************************/
+function setRole(){
+	var tok,uid,rid;
+
+	uid = selectedUid;
+	rid = selectedRid;
+
+	if(uid==null || rid==null)
+		return;
+
+	tok = getToken();
+
+	$.ajax({
+		type: 'POST',
+		url: '/plm/rest/rolemanage/p/1/u/'+uid+'/r/'+rid,
+		contentType: 'application/json; charset=UTF-8',
+		accepts: {
+			text: 'application/json'
+		},
+		dataType: 'json',
+		data: JSON.stringify({
+			token: tok
+		}),
+		success: function(data){
+			$("#rolestatus").html(data.userName+" set as "+data.roleName);
+		},
+		error: function(data){
+			alert("error");
+		}
+	});
+}
+
+/************************************************************
+Function name: getRoles
+Author: Christian Heckendorf
+Created date: 10/14/2013
+Purpose: Gets the role for a user
+************************************************************/
+function getRoles(){
+	var tok;
+
+	tok = getToken();
+
+	$.ajax({
+		type: 'POST',
+		url: '/plm/rest/rolemanage',
+		contentType: 'application/json; charset=UTF-8',
+		accepts: {
+			text: 'application/json'
+		},
+		dataType: 'json',
+		data: JSON.stringify({
+			token: tok
+		}),
+		success: function(data){
+			var role1 = $("#rolesddl").data("kendoComboBox");
+
+			for(x in data.roles){
+				role1.dataSource.add(data.roles[x]);
+			}
+		},
+		error: function(data){
+			alert("error");
+		}
+	});
+}
+
+/************************************************************
+Function name: getRole
+Author: Christian Heckendorf
+Created date: 10/14/2013
+Purpose: Gets all roles in the system
+************************************************************/
+function getRole(){
+	var tok;
+	var uid = selectedUid;
+
+	if(uid==null)
+		return;
+
+	tok = getToken();
+
+	$.ajax({
+		type: 'POST',
+		url: '/plm/rest/rolemanage/p/1/u/'+uid,
+		contentType: 'application/json; charset=UTF-8',
+		accepts: {
+			text: 'application/json'
+		},
+		dataType: 'json',
+		data: JSON.stringify({
+			token: tok
+		}),
+		success: function(data){
+			$("#rolestatus").html(data.userName+" is a "+data.roleName);
+		},
+		error: function(data){
+			alert("error");
+		}
+	});
+}
+
+/************************************************************
+Function name: getUsersInProject
+Author: Christian Heckendorf
+Created date: 10/14/2013
+Purpose: Gets all users in the project
+************************************************************/
+function getUsersInProject(){
+	var tok;
+
+	tok = getToken();
+
+	$.ajax({
+		type: 'POST',
+		url: '/plm/rest/projectmanage/p/1/users',
+		contentType: 'application/json; charset=UTF-8',
+		accepts: {
+			text: 'application/json'
+		},
+		dataType: 'json',
+		data: JSON.stringify({
+			token: tok
+		}),
+		success: function(data){
+			var users = $("#usersac").data("kendoComboBox");
+
+			for(x in data.users){
+				users.dataSource.add(data.users[x]);
+			}
+		},
+		error: function(data){
+			alert("error");
+		}
+	});
+}
+
 /************************************************************
 		Function name: onready
 		Author: Alan
@@ -12,6 +156,38 @@
 		Purpose: ready function invoked when page is rendered
 **************************************************************/
 
+$(document).ready(function () {
+    $("#rolesddl").kendoComboBox({
+        dataSource: [],
+        dataTextField: "name",
+        dataValueField: "id",
+        select: function(e){
+            if (e.item == null) return;
+            var DataItem = this.dataItem(e.item.index());
+            selectedRid = DataItem.id;
+        }
+    });
+
+    $("#usersac").kendoComboBox({
+        dataSource: [],
+        dataTextField: "name",
+        dataValueField: "id",
+        select: function(e){
+            if (e.item == null) return;
+            var DataItem = this.dataItem(e.item.index());
+            selectedUid = DataItem.id;
+        }
+    });
+
+    getRoles();
+    getUsersInProject();
+
+    $("#getBtn").click(function(){ getRole(); });
+    $("#setBtn").click(function(){ setRole(); });
+    $("#clearBtn").click(function(){ /*resetFields();*/ });
+});
+
+/* TODO: Implement the more complex view
 $(document).ready(function () {
 
     var projects = ["Select", "Employee Portal", "HR Portal", "SAP Integration"];
@@ -107,3 +283,4 @@ $(document).ready(function () {
         grid.refresh();
     });
 });
+*/
