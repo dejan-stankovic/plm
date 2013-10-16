@@ -36,7 +36,7 @@ Purpose: Page to set an user's role for a given project
                     success: function(data){
 			// A list of users is returned
 			for(x in data.users){ //syntax is wrong here
-                                $('userList').append('<option value="'+data.users[x].id+ '">'+data.users[x].name+'</option>';
+                                $('userList').append('<option value="'+data.users[x].id+ '">'+data.users[x].name+'</option>');
 				$("div#projList").append("<h1>"+data.users[x].id+", "+data.users[x].name+"</h1>");
                         }
                     },
@@ -66,7 +66,7 @@ Purpose: Page to set an user's role for a given project
                     }),
                     success: function(data){
                     // Information about the user's new role is returned
-                        $("div#updateMessage").html("<h1>" + info.uid.value + " is now a " + data.roleName + "</h1>") // variable names are wrong??
+                        $("div#updateMessage").html("<h1>" + data.userName + " is now a " + data.roleName + "</h1>");
                     },
                     error: function(data){
                         alert("error");
@@ -94,7 +94,7 @@ Purpose: Page to set an user's role for a given project
                     }),
                     success: function(data){
                         for(x in data.roles){
-                            $('roleList').append('<option value="'+data.roles[x].id+ '">'+data.roles[x].name+'</option>';
+                            $('roleList').append('<option value="'+data.roles[x].id+ '">'+data.roles[x].name+'</option>');
                         }
                     },
                     error: function(data){
@@ -124,7 +124,7 @@ Purpose: Page to set an user's role for a given project
                     }),
                     success: function(data){
                         tok = data.message;
-                        if(data.code==0){
+                        if(data.code===0){
                             getUsersInProject();
                             popRoleList();
                         }

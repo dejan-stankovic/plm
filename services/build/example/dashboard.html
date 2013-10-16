@@ -1,0 +1,177 @@
+<!--
+Filename: dashboard.html
+Author: Christian Heckendorf
+Created date: 10/08/2013
+Purpose: Example dashboard interface
+Feature: None
+-->
+<html>
+<head>
+	<title>Hello!</title>
+	<meta charset="utf-8">
+	<script src="jquery-1.10.2.min.js"></script>
+	<script>
+		var tok;
+
+		/************************************************************
+		Function name: getReleases
+		Author: Christian Heckendorf
+		Created date: 10/08/2013
+		Purpose: Returns a list of releases in a project
+		************************************************************/
+		function getReleases(){
+			$.ajax({
+				type: 'POST',
+				url: '/plm/rest/projectmanage/releases/p/1',
+				contentType: 'application/json; charset=UTF-8',
+				accepts: {
+					text: 'application/json'
+				},
+				dataType: 'json',
+				data: JSON.stringify({
+					token: tok
+				}),
+				success: function(data){
+					for(x in data.releases){
+						$("div#fourth").append("<h1>"+data.releases[x].id+", "+data.releases[x].version+"</h1>");
+					}
+				},
+				error: function(data){
+					alert("error");
+				}
+			});
+		}
+
+		/************************************************************
+		Function name: getProjects
+		Author: Christian Heckendorf
+		Created date: 10/08/2013
+		Purpose: Returns a list of projects a user in involved in
+		************************************************************/
+		function getProjects(){
+			$.ajax({
+				type: 'POST',
+				url: '/plm/rest/dashboard/projects',
+				contentType: 'application/json; charset=UTF-8',
+				accepts: {
+					text: 'application/json'
+				},
+				dataType: 'json',
+				data: JSON.stringify({
+					token: tok
+				}),
+				success: function(data){
+					for(x in data.projects){
+						$("div#first").append("<h1>"+data.projects[x].id+", "+data.projects[x].name+"</h1>");
+					}
+				},
+				error: function(data){
+					alert("error");
+				}
+			});
+		}
+
+		/************************************************************
+		Function name: getTasks
+		Author: Christian Heckendorf
+		Created date: 10/08/2013
+		Purpose: Returns a user's tasks
+		************************************************************/
+		function getTasks(){
+			$.ajax({
+				type: 'POST',
+				url: '/plm/rest/dashboard/tasks',
+				contentType: 'application/json; charset=UTF-8',
+				accepts: {
+					text: 'application/json'
+				},
+				dataType: 'json',
+				data: JSON.stringify({
+					token: tok
+				}),
+				success: function(data){
+					for(x in data.tasks){
+						$("div#second").append("<h1>"+data.tasks[x].id+", "+data.tasks[x].name+"</h1>");
+					}
+				},
+				error: function(data){
+					alert("error");
+				}
+			});
+		}
+
+		/************************************************************
+		Function name: getTasksInRelease
+		Author: Christian Heckendorf
+		Created date: 10/08/2013
+		Purpose: Returns the list of tasks in a given release for a user
+		************************************************************/
+		function getTasksInRelease(){
+			$.ajax({
+				type: 'POST',
+				url: '/plm/rest/dashboard/tasks/release/1',
+				contentType: 'application/json; charset=UTF-8',
+				accepts: {
+					text: 'application/json'
+				},
+				dataType: 'json',
+				data: JSON.stringify({
+					token: tok
+				}),
+				success: function(data){
+					for(x in data.tasks){
+						$("div#third").append("<h1>"+data.tasks[x].id+", "+data.tasks[x].name+"</h1>");
+					}
+				},
+				error: function(data){
+					alert("error");
+				}
+			});
+		}
+
+		/************************************************************
+		Function name: loginUser
+		Author: Christian Heckendorf
+		Created date: 09/30/2013
+		Purpose: Logs in a user
+		************************************************************/
+		function loginUser(){
+			$.ajax({
+				type: 'POST',
+				url: '/plm/rest/login',
+				contentType: 'application/json; charset=UTF-8',
+				accepts: {
+					text: 'application/json'
+				},
+				dataType: 'json',
+				data: JSON.stringify({
+					name: 'auser',
+					password: 'apassword'
+				}),
+				success: function(data){
+					tok = data.message;
+					if(data.code==0){
+						getTasksInRelease();
+						getTasks();
+						getProjects();
+						getReleases();
+					}
+				},
+				error: function(data){
+					alert("error");
+				}
+			});
+		}
+	</script>
+</head>
+<body onload="loginUser()">
+	Projects:
+	<div id="first"></div>
+	All Tasks:
+	<div id="second"></div>
+	Tasks in release:
+	<div id="third"></div>
+	Releases in project:
+	<div id="fourth"></div>
+</body>
+</html>
