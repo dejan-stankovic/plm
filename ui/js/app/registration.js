@@ -64,6 +64,9 @@ Purpose: Cancels the registration form
 function resetHandler() {
 	$("input#uname").val("");
 	$("input#pwd").val("");
+	$("input#fname").val("");
+	$("input#lname").val("");
+	$("input#email").val("");
 	$("#errormsg").html("");
 }
 /************************************************************
