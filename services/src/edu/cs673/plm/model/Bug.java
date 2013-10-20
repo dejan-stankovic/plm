@@ -28,8 +28,8 @@ public class Bug{
 	private String description;
 
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="userStoryId")
-	private UserStory userStory;
+	@JoinColumn(name="projectId")
+	private Project project;
 
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="createdId")
@@ -100,23 +100,23 @@ public class Bug{
 	}
 
 	/************************************************************
-	Function name: getUserStory()
+	Function name: getProject()
 	Author: Christian Heckendorf
 	Created date: 10/01/2013
-	Purpose: Returns the user story
+	Purpose: Returns the project
 	************************************************************/
-	public UserStory getUserStory(){
-		return userStory;
+	public Project getProject(){
+		return project;
 	}
 
 	/************************************************************
-	Function name: setUserStory()
+	Function name: setProject()
 	Author: Christian Heckendorf
 	Created date: 10/01/2013
-	Purpose: Sets the user story
+	Purpose: Sets the project
 	************************************************************/
-	public void setUserStory(UserStory userStory){
-		this.userStory=userStory;
+	public void setProject(Project project){
+		this.project=project;
 	}
 
 	/************************************************************

@@ -122,18 +122,18 @@ public class Dashboard {
 	Function name: getBugList()
 	Author: Christian Heckendorf
 	Created date: 10/08/2013
-	Purpose: Returns bugs assigned to a user under a release
+	Purpose: Returns bugs assigned to a user under a project
 	************************************************************/
-	@Path( "/bugs/release/{rid}" )
+	@Path( "/bugs/project/{pid}" )
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public BugList getBugList(@PathParam("rid") long rid, TokenMessage token) {
+	public BugList getBugList(@PathParam("pid") long pid, TokenMessage token) {
 		SessionToken st = new SessionToken(token.getToken());
 		BugList bl = null;
 		Dba dba = new Dba(true);
 		try{
-			bl = UserDao.getBugList(dba,st.getUid(),rid);
+			bl = UserDao.getBugList(dba,st.getUid(),pid);
 		} finally{
 			dba.closeEm();
 		}
