@@ -19,6 +19,6 @@ insert into `Release`(id,version,projectId) values(1,"1.0",1);
 
 insert into `UserStory`(id,name,description,releaseId) values(1,"New story","Some description here",1);
 
-insert into `Bug`(id,name,description,userStoryId,createdId,assignedId) values(1,"New bug","Bad problem...",1,1,1);
+insert into `Bug`(id,name,description,projectId,createdId,assignedId) values(1,"New bug","Bad problem...",1,1,1);
 
 insert into `Task`(id,name,description,userStoryId,assignedId) values(1,"New task","Task description here",1,1);
