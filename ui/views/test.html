@@ -1,0 +1,459 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="http://cdn.kendostatic.com/2013.1.514/js/kendo.all.min.js"></script>
+    <!--<script type="text/javascript" src="http://twitter.github.io/bootstrap/assets/js/bootstrap.js"></script>-->
+    <link rel="stylesheet" href="http://cdn.kendostatic.com/2013.2.716/styles/kendo.common.min.css" />
+    <link rel="stylesheet" href="http://cdn.kendostatic.com/2013.2.716/styles/kendo.default.min.css" />
+    
+    <!--<link rel="stylesheet" href="http://cdn.kendostatic.com/2013.1.514/styles/kendo.bootstrap.min.css" />-->
+</head>
+<body>
+    <script type="text/javascript" id="data">
+        var milestoneData = { Plans: [
+                        { Plan: "BMP", Psd0: { value: "7/2/2013", enabled: false }, Psd1: { value: "7/2/2013", enabled: false }, Tapeout: { value: "7/2/2013", enabled: false }, FirstSilicon: { value: "7/2/2013", enabled: false }, FirstSample: { value: "7/2/2013", enabled: false }, FinalSilicon: { value: "7/2/2013", enabled: false }, RTS: { value: "7/2/2013", enabled: false }, Psd4: { value: "7/2/2013", enabled: false} },
+                        { Plan: "Working", Psd0: { value: "7/2/2013", enabled: false }, Psd1: { value: "7/2/2013", enabled: false }, Tapeout: { value: "7/2/2013", enabled: false }, FirstSilicon: { value: "7/2/2013", enabled: false }, FirstSample: { value: "7/2/2013", enabled: false }, FinalSilicon: { value: "7/2/2013", enabled: false }, RTS: { value: "7/2/2013", enabled: false }, Psd4: { value: "7/2/2013", enabled: false} },
+                        { Plan: "PSD1", Psd0: { value: "7/2/2013", enabled: false }, Psd1: { value: "7/2/2013", enabled: false }, Tapeout: { value: "7/2/2013", enabled: false }, FirstSilicon: { value: "7/2/2013", enabled: false }, FirstSample: { value: "7/2/2013", enabled: false }, FinalSilicon: { value: "7/2/2013", enabled: false }, RTS: { value: "7/2/2013", enabled: false }, Psd4: { value: "7/2/2013", enabled: false} },
+                        { Plan: "Current Commit", Psd0: { value: "7/2/2013", enabled: false }, Psd1: { value: "7/2/2013", enabled: false }, Tapeout: { value: "7/2/2013", enabled: false }, FirstSilicon: { value: "7/2/2013", enabled: false }, FirstSample: { value: "7/2/2013", enabled: false }, FinalSilicon: { value: "7/2/2013", enabled: false }, RTS: { value: "7/2/2013", enabled: false }, Psd4: { value: "7/2/2013", enabled: false} },
+                        ],
+            Complete: { Psd0: true, Psd1: true, Tapeout: true, FirstSilicon: true, FirstSample: true, FinalSilicon: true, RTS: true, Psd4: true },
+            Notes: { Note: "NoteName", Desc: "dsas" },
+            Comments: "Comment 1\nComment 2",
+            changeComplete: function (sender) {
+                var enabled = !sender.target.checked;
+
+                $.each(this.Plans, function (i, plan) {
+                    plan[sender.target.id].set("enabled", enabled);
+                });
+            }
+        };
+    </script>
+    <script type="text/javascript" id="onready">
+        var milestonesyModel;
+        $(document).ready(function () {
+            milestonesModel = new kendo.data.ObservableObject({
+                data: milestoneData,
+
+                
+
+            });
+            kendo.bind($("#container"), milestonesModel.data);
+             $("#tablecont").kendoGrid();
+        });
+    </script>
+    <div id="container" class="k-grid k-widget k-secondary" style="width: 80%">
+        <table id="tablecont" cellspacing="0" cellpadding="0" width="100%" class="k-content" role="grid">
+            <thead>
+                <tr>
+                    <th class="k-header" role="columnheader">
+                        Plan
+                    </th>
+                    <th class="k-header">
+                        PSD0
+                    </th>
+                    <th class="k-header">
+                        PSD1
+                    </th>
+                    <th class="k-header">
+                        Tapeout
+                    </th>
+                    <th class="k-header">
+                        First Silicon
+                    </th>
+                    <th class="k-header">
+                        First Sample
+                    </th>
+                    <th class="k-header">
+                        Fina Sample
+                    </th>
+                    <th class="k-header">
+                        RTS
+                    </th>
+                    <th class="k-header">
+                        PSD4
+                    </th>
+                </tr>
+            </thead>
+            <tbody data-template="row-template" data-bind="source:Plans">
+            </tbody>
+            <tfoot data-template="footer-template" data-bind="source :this">
+            </tfoot>
+        </table>
+        <div>
+        </div>
+    </div>
+    <div class="k-grouping-header" data-role="droptarget">
+        Drag a column header and drop it here to group by that column</div>
+    <div style="padding-right: 17px;" class="k-grid-header">
+        <div class="k-grid-header-wrap">
+            <table role="grid">
+                <colgroup>
+                    <col style="width: 90px;">
+                    <col style="width: 90px;">
+                    <col style="width: 100px;">
+                    <col>
+                    <col>
+                    <col style="width: 50px;">
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th class="k-header" role="columnheader" data-role="sortable" data-title="First Name"
+                            data-field="FirstName">
+                            <a class="k-link" href="#">First Name</a>
+                        </th>
+                        <th class="k-header" role="columnheader" data-role="sortable" data-title="Last Name"
+                            data-field="LastName">
+                            <a class="k-link" href="#">Last Name</a>
+                        </th>
+                        <th class="k-header" role="columnheader" data-role="sortable" data-field="City">
+                            <a class="k-link" href="#">City</a>
+                        </th>
+                        <th class="k-header" role="columnheader" data-role="sortable" data-field="Title">
+                            <a class="k-link" href="#">Title</a>
+                        </th>
+                        <th class="k-header" role="columnheader" data-role="sortable" data-title="Birth Date"
+                            data-field="BirthDate">
+                            <a class="k-link" href="#">Birth Date</a>
+                        </th>
+                        <th class="k-header" role="columnheader" data-role="sortable" data-field="Age">
+                            <a class="k-link" href="#">Age</a>
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+    <div style="height: 286px;" class="k-grid-content">
+        <table role="grid">
+            <colgroup>
+                <col style="width: 90px;">
+                <col style="width: 90px;">
+                <col style="width: 100px;">
+                <col>
+                <col>
+                <col style="width: 50px;">
+            </colgroup>
+            <tbody>
+                <tr role="row" data-uid="f5de7a60-340d-4fc2-8c46-cc8952996d71">
+                    <td role="gridcell">
+                        Andrew
+                    </td>
+                    <td role="gridcell">
+                        Dodsworth
+                    </td>
+                    <td role="gridcell">
+                        Seattle
+                    </td>
+                    <td role="gridcell">
+                        Software Developer
+                    </td>
+                    <td role="gridcell">
+                        27 January 1966
+                    </td>
+                    <td role="gridcell">
+                        47
+                    </td>
+                </tr>
+                <tr class="k-alt" role="row" data-uid="ce9f1dee-1c4c-421c-9181-b3c8f3c0b486">
+                    <td role="gridcell">
+                        Anne
+                    </td>
+                    <td role="gridcell">
+                        Dodsworth
+                    </td>
+                    <td role="gridcell">
+                        Seattle
+                    </td>
+                   <td role="gridcell">
+                        Inside Sales Coordinator
+                    </td>
+                    <td role="gridcell">
+                        29 May 1960
+                    </td>
+                    <td role="gridcell">
+                        53
+                    </td>
+                </tr>
+                <tr role="row" data-uid="0f2d5a1d-9ec1-4253-9677-cf5b23426486">
+                    <td role="gridcell">
+                        Andrew
+                    </td>
+                    <td role="gridcell">
+                        Callahan
+                    </td>
+                    <td role="gridcell">
+                        New York
+                    </td>
+                    <td role="gridcell">
+                        Web Designer
+                    </td>
+                    <td role="gridcell">
+                        29 May 1960
+                    </td>
+                    <td role="gridcell">
+                        53
+                    </td>
+                </tr>
+                <tr class="k-alt" role="row" data-uid="2a5916ba-ce3c-406e-b56f-b842739d0e1f">
+                    <td role="gridcell">
+                        Anne
+                    </td>
+                    <td role="gridcell">
+                        Leverling
+                    </td>
+                    <td role="gridcell">
+                        Philadelphia
+                    </td>
+                    <td role="gridcell">
+                        Sales Manager
+                    </td>
+                    <td role="gridcell">
+                        02 July 1963
+                    </td>
+                    <td role="gridcell">
+                        50
+                    </td>
+                </tr>
+                <tr role="row" data-uid="e51978ec-c6cb-43a5-8ab3-f4797319354d">
+                    <td role="gridcell">
+                        Andrew
+                    </td>
+                    <td role="gridcell">
+                        Peacock
+                    </td>
+                    <td role="gridcell">
+                        Kirkland
+                    </td>
+                    <td role="gridcell">
+                        Web Designer
+                    </td>
+                    <td role="gridcell">
+                        19 September 1937
+                    </td>
+                    <td role="gridcell">
+                        76
+                    </td>
+                </tr>
+                <tr class="k-alt" role="row" data-uid="a26b5d1b-cae4-4d00-8195-832d5db0b068">
+                    <td role="gridcell">
+                        Laura
+                    </td>
+                    <td role="gridcell">
+                        Peacock
+                    </td>
+                    <td role="gridcell">
+                        New York
+                    </td>
+                    <td role="gridcell">
+                        Technical Support
+                    </td>
+                    <td role="gridcell">
+                        19 February 1952
+                    </td>
+                    <td role="gridcell">
+                        61
+                    </td>
+                </tr>
+                <tr role="row" data-uid="2bf0237e-2517-4ea9-ac08-640de013d73d">
+                    <td role="gridcell">
+                        Laura
+                    </td>
+                    <td role="gridcell">
+                        Davolio
+                    </td>
+                    <td role="gridcell">
+                        Kirkland
+                    </td>
+                    <td role="gridcell">
+                        Accountant
+                    </td>
+                    <td role="gridcell">
+                        19 February 1952
+                    </td>
+                    <td role="gridcell">
+                        61
+                    </td>
+                </tr>
+                <tr class="k-alt" role="row" data-uid="4f20e459-4af2-4c2a-adae-e58c47731119">
+                    <td role="gridcell">
+                        Margaret
+                    </td>
+                    <td role="gridcell">
+                        Peacock
+                    </td>
+                    <td role="gridcell">
+                        Seattle
+                    </td>
+                    <td role="gridcell">
+                        Chief Execute Officer
+                    </td>
+                    <td role="gridcell">
+                        02 July 1963
+                    </td>
+                    <td role="gridcell">
+                        50
+                    </td>
+                </tr>
+                <tr role="row" data-uid="7772c032-bac9-47e7-b298-d1f6c8a7e666">
+                    <td role="gridcell">
+                        Michael
+                    </td>
+                    <td role="gridcell">
+                        Davolio
+                    </td>
+                    <td role="gridcell">
+                        Kirkland
+                    </td>
+                    <td role="gridcell">
+                        Inside Sales Coordinator
+                    </td>
+                    <td role="gridcell">
+                        19 September 1937
+                    </td>
+                    <td role="gridcell">
+                        76
+                    </td>
+                </tr>
+                <tr class="k-alt" role="row" data-uid="cbf9688a-84e1-45cd-84cc-2a89f63ce650">
+                    <td role="gridcell">
+                        Michael
+                    </td>
+                    <td role="gridcell">
+                        Suyama
+                    </td>
+                    <td role="gridcell">
+                        Redmond
+                    </td>
+                    <td role="gridcell">
+                        Chief Techical Officer
+                    </td>
+                    <td role="gridcell">
+                        29 May 1960
+                    </td>
+                    <td role="gridcell">
+                        53
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="k-pager-wrap k-grid-pager k-widget" data-role="pager">
+        <a class="k-link k-state-disabled" title="Go to the first page" tabindex="-1" href="#"
+            data-page="1"><span class="k-icon k-i-seek-w">Go to the first page</span></a><a class="k-link k-state-disabled"
+                title="Go to the previous page" tabindex="-1" href="#" data-page="1"><span class="k-icon k-i-arrow-w">Go
+                    to the previous page</span></a><ul class="k-pager-numbers k-reset">
+                        <li><span class="k-state-selected">1</span></li><li><a class="k-link" tabindex="-1"
+                            href="#" data-page="2">2</a></li><li><a class="k-link" tabindex="-1" href="#" data-page="3">
+                                3</a></li><li><a class="k-link" tabindex="-1" href="#" data-page="4">4</a></li><li><a
+                                    class="k-link" tabindex="-1" href="#" data-page="5">5</a></li></ul>
+        <a class="k-link" title="Go to the next page" tabindex="-1" href="#" data-page="2"><span
+            class="k-icon k-i-arrow-e">Go to the next page</span></a><a class="k-link" title="Go to the last page"
+                tabindex="-1" href="#" data-page="5"><span class="k-icon k-i-seek-e">Go to the last
+                    page</span></a><span class="k-pager-sizes k-label"><span aria-haspopup="true" aria-disabled="false"
+                        aria-expanded="false" aria-busy="false" aria-readonly="false" class="k-widget k-dropdown k-header"
+                        role="listbox" tabindex="0" aria-owns="" unselectable="on"><span class="k-dropdown-wrap k-state-default"
+                            unselectable="on"><span class="k-input" unselectable="on">10</span><span class="k-select"
+                                unselectable="on"><span class="k-icon k-i-arrow-s" unselectable="on">select</span></span></span><select
+                                    style="display: none;" data-role="dropdownlist"><option value="5">5</option>
+                                    <option selected="selected" value="10">10</option>
+                                    <option value="20">20</option>
+                                </select></span>items per page</span><a class="k-pager-refresh k-link" title="Refresh"
+                                    href="#"><span class="k-icon k-i-refresh">Refresh</span></a><span class="k-pager-info k-label">1
+                                        - 10 of 50 items</span></div>
+    <script id="row-template" type="text/x-kendo-template"> 
+    <tr> 
+        <td style="padding: 2px;font-weight:normal">
+            <span data-bind="text: Plan"></span>
+        </td> 
+        <td>
+            <input data-role="datepicker" data-bind="value:Psd0.value, enabled: Psd0.enabled"  style="width:150px;" />
+        </td> 
+        <td>         
+            <input data-role="datepicker" data-bind="value:Psd1.value, enabled: Psd1.enabled"  style="width:150px;" />
+        </td> 
+        <td>         
+            <input data-role="datepicker" data-bind="value:Tapeout.value, enabled: Tapeout.enabled" type="date"  style="width:150px;" />
+        </td> 
+        <td>         
+            <input data-role="datepicker" data-bind="value:FirstSilicon.value, enabled: FirstSilicon.enabled" date="date"  style="width:150px;" />
+        </td> 
+        <td>         
+            <input data-role="datepicker" data-bind="value:FirstSample.value, enabled: FirstSample.enabled" date="date"  style="width:150px;" />
+        </td> 
+        <td>         
+            <input data-role="datepicker" data-bind="value:FinalSilicon.value, enabled: FinalSilicon.enabled" type="date" style="width:150px;" />
+        </td> 
+        <td>         
+            <input data-role="datepicker" data-bind="value:RTS.value, enabled: RTS.enabled" type="date"  style="width:150px;" />
+        </td> 
+        <td>         
+            <input data-role="datepicker" data-bind="value:Psd4.value, enabled: Psd4.enabled" type="date" style="width:150px;" />
+        </td> 
+    </tr>
+    </script>
+    <script id="footer-template" type="text/x-kendo-template"> 
+    <tr>
+        <td colspan="9" style="padding: 2px;font-weight:normal">
+           <table cellpadding="0" cellspacing="0" style="width:100%">
+                <tr>
+                    <td style="padding: 2px;font-weight:normal">
+                        <span>Complete</span>
+                   </td> 
+                    <td>
+                        <input type="checkbox" id="Psd0"  data-bind="checked:Complete.Psd0 , events:{change: changeComplete}"  style="width:150px;"    />
+                    </td> 
+                    <td>         
+                        <input type="checkbox" id="Psd1"  data-bind="checked: Complete.Psd1 , events:{change: changeComplete}"  style="width:150px;"    />
+                    </td> 
+                    <td>         
+                        <input type="checkbox" id="Tapeout"  data-bind="checked: Complete.Tapeout , events:{change: changeComplete}"  style="width:150px;"    />
+                    </td> 
+                    <td>         
+                        <input type="checkbox" id="FirstSilicon"  data-bind="checked: Complete.FirstSilicon , events:{change: changeComplete}"  style="width:150px;"    />
+                    </td> 
+                    <td>         
+                        <input type="checkbox" id="FirstSample"  data-bind="checked: Complete.FirstSample , events:{change: changeComplete}"  style="width:150px;"    />
+                    </td> 
+                    <td>         
+                        <input type="checkbox" id="FinalSilicon"  data-bind="checked: Complete.FinalSilicon , events:{change: changepsd0}"  style="width:150px;"    />
+                    </td> 
+                    <td>         
+                        <input type="checkbox" id="RTS"  data-bind="checked: Complete.RTS , events:{change: changeComplete}"  style="width:150px;"    />
+                    </td> 
+                    <td>         
+                        <input type="checkbox" id="Psd4"  data-bind="checked: Complete.Psd4 , events:{change: changeComplete}"  style="width:150px;"    />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Notes
+                    </td>
+                    <td colspan="8">
+                        <textarea rows="4" data-bind="value: Notes.Desc" style="width:100%"></textarea>
+                    </td>
+                </tr>
+                 <tr>
+                    <td>
+                        Curr Comment History
+                    </td>
+                    <td colspan="8">
+                        <textarea rows="4" data-bind="value: Comments" style="width:100%"></textarea>
+                    </td>
+                </tr>
+           </table>
+         </td>
+    </tr>
+    <tr>
+        <td colspan="9" style="padding: 2px;font-weight:normal">
+            <textarea rows="4" style="width:100%">#= Comments #</textarea>
+            
+            
+        </td>
+    </tr>
+    </script>
+</body>
+</html>
+
+

@@ -1,0 +1,113 @@
+<!doctype html>
+<!--
+Filename: register.html
+Author: Yuvaraj Gunasekaran
+Created date: 10/06/2013
+Purpose: Registration page for PLM
+Feature: None
+-->
+<html lang="en">
+<head>
+	<title>Register for PLM</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+	<link rel="stylesheet" href="/resources/demos/style.css" />
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+	<script>
+
+		function regUser(){
+			$.ajax({
+				type: 'POST',
+				url: '/plm/rest/register',
+				contentType: 'application/json; charset=UTF-8',
+				accepts: {
+					text: 'application/json'
+				},
+				dataType: 'json',
+				data: JSON.stringify({
+					name: form.userid.value,
+					password: form.pswrd.value
+				}),
+				success: function(data){
+
+					/*the following code checkes whether the entered userid is valid */
+					 if(data.code==0)
+					  {
+					  $("h1").html("Registration Successful!! Welcome to PLM");
+					  window.location="login.html"; /*Redirect to the login page after succesful registration*/
+					  }
+					 else
+					 {
+					   alert("Invalid Username or username already exists") /*displays error message*/
+  }
+				},
+				error: function(data){
+					alert("error");
+				}
+			});
+		}
+        /*Tooltip for password and DOB*/
+		$(function() {
+		$( document ).tooltip();
+		});
+        /*Button type with an hover sylt*/
+		$(function() {
+    		$( "input[type=submit], button" )
+     		.button()
+      		.click(function( event ) {
+      		event.preventDefault();
+     		});
+		});
+        /*Open an interactive calendar in a small overlay*/
+  		$(function() {
+    		$( "#datepicker" ).datepicker();
+  		});
+  	</script>
+
+</head>
+<body onload="regUser()">
+	<h1></h1>
+	<h1>Register here to create an account with PLMs</h1>
+<form>
+
+
+First name * <br>
+<input type="text" maxlength="20" name="fname" placeholder="  example: Yuvaraj  "/><br>
+Last name * <br>
+<input type="text" maxlength="20" name="lname" placeholder="  example: Gunasekaran " /><br>
+E-mail * <br>
+<input type="text" maxlength="20" name="email" placeholder="example: username@domain.com  "/><br>
+username * <br>
+<input type="text" maxlength="20" name="uname" /><br>
+Password * <br>
+<input type="password" maxlength="8" name="pwd" title="Maximum of 8 characters"/><br>
+<br>
+
+Gender
+<select gender="sex" name="mfo">
+	<option value="----">----</option>
+	<option value="male">male</option>
+	<option value="female">female</option>
+	<option value="other">other</option>
+</select>
+
+<p>Date of birth <br><input type="text" id="datepicker" name="date" title="Age must be greater than 18"/></p>
+<p> The following are the terms and conditions </p>
+
+<input type="checkbox" name="terms" value="I agree to the terms and conditions"/>You must agree to the terms and conditions *<br>
+<br>
+<button> Submit </button>
+<button> Reset </button>
+</form>
+<!--footer from Manav's doc.https://github.com/heckendorfc/plm/tree/development-ui/ui/views-->
+<footer style="text-align: center; width: 100%; color: #514e4e">
+        <div>
+            <div>
+                <p><b>&copy; 2013 - METCS673F13P4</b></p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,9 +1,22 @@
+<!--
+Filename: hello.html
+Author: Christian Heckendorf
+Created date: 09/21/2013
+Purpose: Example hello world
+Feature: None
+-->
 <html>
 <head>
 	<title>Hello!</title>
 	<meta charset="utf-8">
 	<script src="jquery-1.10.2.min.js"></script>
 	<script>
+		/************************************************************
+		Function name: getHello
+		Author: Christian Heckendorf
+		Created date: 09/30/2013
+		Purpose: Sets the hello world message
+		************************************************************/
 		function getHello(){
 			$.ajax({
 				url: '/plm/rest/hello',

@@ -1,0 +1,233 @@
+\documentclass{article}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{setspace}
+% \usepackage{kpfonts}
+\usepackage{textcomp}
+\usepackage{url}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+%\usepackage{mdframed}  % not availble on ubuntu
+
+% -- font styles
+% \usepackage{tgtermes}
+% \usepackage[lf]{venturis}
+% \usepackage{times}
+% \usepackage[sc]{mathpazo} % Palatino (very readable)
+% \usepackage[adobe-utopia]{mathdesign}
+% \usepackage[T1]{fontenc}
+% \usepackage{gfsdidot}
+% \usepackage[scaled]{beraserif}
+% \usepackage[bitstream-charter]{mathdesign}
+% \usepackage{mathptmx}
+
+
+% special math formatting
+\usepackage{amsmath}
+
+\floatstyle{ruled}
+
+% -- structural elements
+\newfloat{program}{thp}{lop}
+\floatname{program}{Program}
+
+%\newfloat{figure}{thp}{lop}
+%\floatname{figure}{Figure}
+
+% -- syntax highlighting
+\usepackage{listings}
+\usepackage{color}
+
+\usepackage{caption}
+% -- configure captions for figures
+\DeclareCaptionFormat{listing}{\par\hrule #1#2#3}
+\captionsetup[figure]{%
+  format=listing, 
+  singlelinecheck=false, 
+  margin=00pt, 
+  font={it,footnotesize,centering}
+}
+
+\parskip 12pt
+
+% page margins
+\setlength{\textheight}{22cm}
+\setlength{\oddsidemargin}{0.25in}
+\setlength{\textwidth}{6in}
+
+% I don't know what this does
+\def\printcitestart{\unskip $^\bgroup}
+\def\printbetweencitations{,}
+\def\printcitefinish{\egroup$}
+\def\printcitenote#1{\hbox{\sevenrm\space (#1)}}
+
+
+% TODO: mdframed doesn't work well with ubuntu
+% \newenvironment{aside}
+%   {\begin{mdframed}[style=0,%
+%       leftline=false,rightline=false,leftmargin=2em,rightmargin=2em,%
+%           innerleftmargin=0pt,innerrightmargin=0pt,linewidth=0.75pt,%
+%       skipabove=25pt,skipbelow=25pt]\small}
+%   {\end{mdframed}}
+
+
+\lstset{
+  %framesep=5pt,
+  upquote=true,
+  breaklines=false,
+  %postbreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookrightarrow}},
+  breakatwhitespace=true,
+  %numbers=left,
+  language=sh,
+  basicstyle=\footnotesize\ttfamily,
+  numberstyle=\footnotesize\ttfamily,
+  %numbersep=10pt,
+  tabsize=2,
+  extendedchars=true,
+  showtabs=false,
+  showspaces=false,
+  showstringspaces=false,
+  xleftmargin=20pt,
+  aboveskip=10pt,
+  % colors
+  stringstyle=\color{Maroon},
+  commentstyle=\color{Gray},
+  rulecolor=\color{Gray},
+  keywordstyle=\color{Blue},
+  backgroundcolor=\color{LightGray!.50}
+}
+\lstloadlanguages{
+  sh
+}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+
+% Hyphenation rules ------------
+%% \hyphenation{Fire-Detection-System}
+%% \hyphenation{Emergency-Communication-System}
+
+\begin{document}
+	\begin{titlepage}
+		\begin{center}
+			\textsc{\LARGE METCS673}\\[1.5cm]
+			\textsc{\Large PLM - Project Lifecycle Management}\\[0.5cm]
+			\HRule \\[0.4cm]
+			{ \huge \bfseries Software Confiugration Management Plan \\[0.4cm] }
+			\HRule \\[1.5cm]
+
+			\begin{minipage}{0.4\textwidth}
+			\begin{flushleft} \large
+			\emph{Author:}\\
+			Christian \textsc{Heckendorf}
+			\end{flushleft}
+			\end{minipage}
+			%\begin{minipage}{0.4\textwidth}
+			%\begin{flushright} \large
+			%\emph{Supervisor:} \\
+			%Dr.~Mark \textsc{Brown}
+			%\end{flushright}
+			%\end{minipage}
+
+			\vfill
+
+			% Bottom of the page
+			{\large \today}
+		\end{center}
+	\end{titlepage}
+
+	\section{Proposed Configuration Management Plan}
+
+	\subsection{Configuration Items and Tools}
+
+	All configuration items will be stored in a git repository hosted on GitHub. The following configuration items are required:
+
+	\begin{itemize}
+		\item{Documentation directory
+			\begin{itemize}
+				\item{Planning documents}
+				\item{Code documentation}
+				\item{User level documentation}
+			\end{itemize}
+		}
+		\item{Front-end code directory
+			\begin{itemize}
+				\item{User interface code}
+			\end{itemize}
+		}
+		\item{Back-end code directory
+			\begin{itemize}
+				\item{Services code}
+			\end{itemize}
+		}
+		\item{Database code directory
+			\begin{itemize}
+				\item{Database create scripts}
+				\item{Sample insert scripts}
+			\end{itemize}
+		}
+	\end{itemize}
+
+	Only essential files required for QA, deployment, or understanding (documentation) should be added to the repository. In general, binaries and temporary files should not be added. Binary documentation is allowed in the repository but the plain text source documents should accompany them.
+
+	\subsection{Change Management and Branch Management}
+
+	The general outline is as follows:
+	\begin{itemize}
+		\item{The master branch should be at demo quality at all times.}
+		\item{Unstable code can be merged into a development branch.}
+		\item{New features should go in their own branches, which will at some point be merged into the development branch.}
+		\item{Approximately every three weeks, the development branch will be merged back to the master branch to prepare for the presentation.}
+	\end{itemize}
+
+	This system should allow the team to always have a state available for a demo while continuing to add features in feature branches and fixing bugs in the development branch. To begin, one person should commit the basic layout of the project to the master bracnch and create a development branch. From there, each member can begin working on feature branches based on the new development branch. Each feature should have its own branch and each branch should be given a short yet descriptive name representing the feature. At some point, a feature will be complete and can be merged back to the development branch. QA may want to review the code before merging to minimize bugs creeping into the development branch. At the end of a development iteration, the development branch will be merged back to the master branch to prepare for the presentation.
+
+	\subsection {Code Commit Guidelines}
+
+	Each commit should contain as few independent changes as possible and should have a descriptive commit message. Code that produces validation or build errors should not be pushed to GitHub. Broken code may be committed to local repositories but the additional commits required to produce buildable code must also be present in the repository before it is pushed to GitHub.
+
+	\section{Reference}
+
+	\subsection{Git Basics}
+
+	Since I don't know what git client you'll be using, I'll summarize the basic command line utility commands.
+
+	When you first start working on the project, you'll want to make a local copy of the repository to keep track of your changes:
+
+	\begin{minipage}{0.95\textwidth}\begin{lstlisting}
+	    git clone https://github.com/heckendorfc/plm.git
+	\end{lstlisting}\end{minipage}
+
+	Before you begin working, you should create a feature branch based on the development branch:
+
+	\begin{minipage}{0.95\textwidth}\begin{lstlisting}
+	    git checkout -b somefeature origin/development
+	\end{lstlisting}\end{minipage}
+
+	At any point, you can check the status of your local repository. This will tell you what files have been changed, what branch you are using, and other things:
+
+	\begin{minipage}{0.95\textwidth}\begin{lstlisting}
+	    git status
+	\end{lstlisting}\end{minipage}
+
+	Once you have some code written and want to save your work to the repo, tell git which files you would like to commit to the repo and commit them:
+	
+	\begin{minipage}{0.95\textwidth}\begin{lstlisting}
+	    git add file1 file2 ...
+	    git commit -m "commit message here"
+	\end{lstlisting}\end{minipage}
+
+	To get the latest code that other team members have shared on the github repo:
+
+	\begin{minipage}{0.95\textwidth}\begin{lstlisting}
+	    git fetch origin
+	    git pull
+	\end{lstlisting}\end{minipage}
+
+	After you have one or more commits in your local repo, you'll want to share them with the rest of the team:
+
+	\begin{minipage}{0.95\textwidth}\begin{lstlisting}
+	    git push -u origin somebranch
+	\end{lstlisting}\end{minipage}
+
+	Further reading: http://git-scm.com/book
+
+\end{document}

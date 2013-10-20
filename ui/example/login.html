@@ -1,0 +1,63 @@
+<html>
+<head>
+<title>
+Login page
+</title>
+	<script src="jquery-1.10.2.min.js"></script>
+	<script>
+		var tok;
+
+		/************************************************************
+		Function name: loginUser
+		Author: Rachit Gupta and Vipul Kumar
+		Created date: 09/30/2013
+		Purpose: Logs in a user
+		************************************************************/
+		function loginUser(form){
+			$.ajax({
+				type: 'POST',
+				url: '/plm/rest/login',
+				contentType: 'application/json; charset=UTF-8',
+				accepts: {
+					text: 'application/json'
+				},
+				dataType: 'json',
+				data: JSON.stringify({
+					name: form.userid.value,
+					password: form.pswrd.value
+				}),
+				success: function(data){
+					// Note: You might want to encrypt this and store as a cookie
+					tok = data.message;
+ /*the following code checkes whether the entered userid and password are matching*/
+ if(data.code==0)
+  {
+    window.open('target.html')/*opens the target page while Id & password matches*/
+  }
+ else
+ {
+   alert("Invalid Username or Password")/*displays error message*/
+  }
+				},
+				error: function(data){
+					alert("error");
+				}
+			});
+		}
+	</script>
+</head>
+<body>
+<form name="Sign IN">
+Username<input type="text" name="userid"/>
+Password<input type="password" name="pswrd"/>
+<input type="button" onclick="check(this.form)" value="Log In"/>
+<input type="reset" value="Cancel"/>
+</form>
+<script language="javascript">
+function check(form)/*function to check userid & password*/
+{
+  loginUser(form);
+}
+</script>
+</body>
+</html>

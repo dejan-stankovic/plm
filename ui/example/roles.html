@@ -1,0 +1,178 @@
+<!--
+Filename: roles.html
+Author: Christian Heckendorf
+Created date: 10/02/2013
+Purpose: Example role management interface
+Feature: None
+-->
+<html>
+<head>
+	<title>Hello!</title>
+	<meta charset="utf-8">
+	<script src="jquery-1.10.2.min.js"></script>
+	<script>
+		var tok;
+
+		/************************************************************
+		Function name: getUsersInProject
+		Author: Christian Heckendorf
+		Created date: 10/05/2013
+		Purpose: Gets a list of users associated with a project
+		************************************************************/
+		function getUsersInProject(){
+			$.ajax({
+				type: 'POST',
+				url: '/plm/rest/projectmanage/p/1/users',
+				contentType: 'application/json; charset=UTF-8',
+				accepts: {
+					text: 'application/json'
+				},
+				dataType: 'json',
+				data: JSON.stringify({
+					token: tok
+				}),
+				success: function(data){
+					// A list of users is returned
+					for(x in data.users){
+						$("div#fifth").append("<h1>"+data.users[x].id+", "+data.users[x].name+"</h1>");
+					}
+				},
+				error: function(data){
+					alert("error");
+				}
+			});
+		}
+
+		/************************************************************
+		Function name: setRole
+		Author: Christian Heckendorf
+		Created date: 10/04/2013
+		Purpose: Sets user 1 in project 1 to role 1 (for example)
+		************************************************************/
+		function setRole(){
+			$.ajax({
+				type: 'POST',
+				url: '/plm/rest/rolemanage/p/1/u/1/r/1',
+				contentType: 'application/json; charset=UTF-8',
+				accepts: {
+					text: 'application/json'
+				},
+				dataType: 'json',
+				data: JSON.stringify({
+					token: tok
+				}),
+				success: function(data){
+					// Information about the user's new role is returned
+					$("h1#fourth").html(data.roleId+", "+data.roleName);
+				},
+				error: function(data){
+					alert("error");
+				}
+			});
+		}
+		/************************************************************
+		Function name: getRoles
+		Author: Christian Heckendorf
+		Created date: 10/04/2013
+		Purpose: Lists available roles on the system
+		************************************************************/
+		function getRoles(){
+			$.ajax({
+				type: 'POST',
+				url: '/plm/rest/rolemanage',
+				contentType: 'application/json; charset=UTF-8',
+				accepts: {
+					text: 'application/json'
+				},
+				dataType: 'json',
+				data: JSON.stringify({
+					token: tok
+				}),
+				success: function(data){
+					for(x in data.roles){
+						$("div#third").append("<h1>"+data.roles[x].id+", "+data.roles[x].name+"</h1>");
+					}
+				},
+				error: function(data){
+					alert("error");
+				}
+			});
+		}
+
+		/************************************************************
+		Function name: getRole
+		Author: Christian Heckendorf
+		Created date: 10/02/2013
+		Purpose: Finds the user's role in a project
+		************************************************************/
+		function getRole(){
+			$.ajax({
+				type: 'POST',
+				url: '/plm/rest/rolemanage/p/1/u/1',
+				contentType: 'application/json; charset=UTF-8',
+				accepts: {
+					text: 'application/json'
+				},
+				dataType: 'json',
+				data: JSON.stringify({
+					token: tok
+				}),
+				success: function(data){
+					$("h1#first").html(data.userId+", "+data.userName);
+					$("h1#second").html(data.roleId+", "+data.roleName);
+					// We'll also update the user's role after 3 seconds as an example
+					setTimeout(function(){setRole();},3000);
+				},
+				error: function(data){
+					alert("error");
+				}
+			});
+		}
+
+		/************************************************************
+		Function name: loginUser
+		Author: Christian Heckendorf
+		Created date: 09/30/2013
+		Purpose: Logs in a user
+		************************************************************/
+		function loginUser(){
+			$.ajax({
+				type: 'POST',
+				url: '/plm/rest/login',
+				contentType: 'application/json; charset=UTF-8',
+				accepts: {
+					text: 'application/json'
+				},
+				dataType: 'json',
+				data: JSON.stringify({
+					name: 'auser',
+					password: 'apassword'
+				}),
+				success: function(data){
+					tok = data.message;
+					if(data.code==0){
+						getRole();
+						getRoles();
+						getUsersInProject();
+					}
+				},
+				error: function(data){
+					alert("error");
+				}
+			});
+		}
+	</script>
+</head>
+<body onload="loginUser()">
+	User:
+	<h1 id="first"></h1>
+	Role:
+	<h1 id="second"></h1>
+	Role List:
+	<div id="third"></div>
+	Updated User Role:
+	<h1 id="fourth"></h1>
+	Users In Project:
+	<div id="fifth"></div>
+</body>
+</html>

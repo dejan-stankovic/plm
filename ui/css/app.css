@@ -1,0 +1,366 @@
+.content-wrapper
+{
+    margin: 0 auto;
+    max-width: 1450px;
+}
+
+#body
+{
+    clear: both;
+    padding-bottom: 35px;
+}
+
+.featured + .main-content
+{
+    background: url("../Images/heroAccent.png") no-repeat;
+}
+
+header .content-wrapper
+{
+    padding-top: 20px;
+}
+
+footer
+{
+    clear: both;
+    background-color: #e2e2e2;
+    font-size: .8em;
+    height: 100px;
+}
+
+
+/* site title
+----------------------------------------------------------*/
+.site-title
+{
+    color: #808080;
+    font-family: Rockwell, Consolas, "Courier New", Courier, monospace;
+    font-size: 2.7em;
+    margin: 0;
+}
+
+    .site-title a, .site-title a:hover, .site-title a:active
+    {
+        background: none;
+        color: #808080;
+        outline: none;
+        text-decoration: none;
+    }
+
+.icon_16
+{
+    width: 16px;
+    height: 16px;
+    min-width: 16px;
+    min-height: 16px;
+    display: inline-block;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.icon_24
+{
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
+    min-height: 24px;
+    display: inline-block;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.add-task-enable
+{
+    background: url('Images/addtask_enable.png') no-repeat;
+}
+
+.add-task-disable
+{
+    background: url('Images/addtask_disable.png') no-repeat;
+}
+
+.bug
+{
+    background: url('Images/bug1.jpg') no-repeat;
+}
+
+.initial
+{
+    background: url('Images/inactive_16.png') no-repeat;
+}
+
+.warning
+{
+    background: url('Images/warning_16.png') no-repeat;
+}
+
+.inprogress
+{
+    background: url('Images/gear_16.png') no-repeat;
+}
+
+.complete
+{
+    background: url('Images/checkmark_16.png') no-repeat;
+}
+
+.delete-enable
+{
+    background: url('Images/delete_enable.png') no-repeat;
+}
+
+.delete-disable
+{
+    background: url('Images/delete_disable.png') no-repeat;
+}
+
+.download-enable
+{
+    background: url('Images/download_enable.png') no-repeat;
+}
+
+.download-disable
+{
+    background: url('Images/download_disable.png') no-repeat;
+}
+
+.edit-enable
+{
+    background: url('Images/edit_enable.png') no-repeat;
+}
+
+.edit-disable
+{
+    background: url('Images/edit_disable.png') no-repeat;
+}
+
+.moveup-enable
+{
+    background: url('Images/moveup_enable.png') no-repeat;
+}
+
+.moveup-disable
+{
+    background: url('Images/moveup_disable.png') no-repeat;
+}
+
+.movedown-enable
+{
+    background: url('Images/movedown_enable.png') no-repeat;
+}
+
+.movedown-disable
+{
+    background: url('Images/movedown_disable.png') no-repeat;
+}
+
+.refresh-enable
+{
+    background: url('Images/refresh_enable.png') no-repeat;
+}
+
+.refresh-disable
+{
+    background: url('Images/refresh_disable.png') no-repeat;
+}
+
+.tapeout-enable
+{
+    background: url('Images/tapeout_enable.png') no-repeat;
+}
+
+.tapeout-disable
+{
+    background: url('Images/tapeout_disable.png') no-repeat;
+}
+
+.edit
+{
+    background: url('Images/edit_16.png') no-repeat;
+}
+
+.attachment
+{
+    background: url('Images/paperclip_16.png') no-repeat;
+}
+
+.inprocess
+{
+    background: url('Images/gear_16.png') no-repeat;
+}
+
+.signedoff
+{
+    background: url('Images/checkmark_16.png') no-repeat;
+}
+
+.plmlogo
+{
+    background: url('Images/plm_logo11.png') no-repeat;
+}
+
+.na
+{
+    background: url('Images/red_checkmark_16.png') no-repeat;
+}
+
+.users
+{
+    background: url('Images/users_16.png') no-repeat;
+}
+
+.refresh
+{
+    background: url('Images/undo_16.png') no-repeat;
+}
+
+.move
+{
+    background: url('Images/move_16.png') no-repeat;
+}
+
+.add
+{
+    background: url('Images/add_16.png') no-repeat;
+}
+
+.br
+{
+    background: url('Images/addtask_enable.png') no-repeat;
+}
+
+.task
+{
+    background: url('Images/edit_enable.png') no-repeat;
+}
+
+.delete
+{
+    background: url('Images/close_16.png') no-repeat;
+}
+
+.warning
+{
+    background: url('Images/warning_16.png') no-repeat;
+}
+
+.lock
+{
+    background: url('Images/lock_16.png') no-repeat;
+}
+
+.up
+{
+    background: url('Images/up_16.png') no-repeat;
+}
+
+.down
+{
+    background: url('Images/down_16.png') no-repeat;
+}
+
+.pending
+{
+    background: url('Images/blue_event_16.png') no-repeat;
+}
+
+.crop
+{
+    background: url('Images/Crop_16.png') no-repeat;
+}
+
+.inactive
+{
+    background: url('Images/inactive_16.png') no-repeat;
+}
+
+.text
+{
+    background: url('Images/text_16.png') no-repeat;
+}
+
+.reset
+{
+    background: url('Images/reload_16.png') no-repeat;
+}
+
+.attachment
+{
+    background: url('Images/paperclip_16.png') no-repeat;
+}
+
+.user
+{
+    background: url('Images/user_16.png') no-repeat;
+}
+
+.private
+{
+    background: url('Images/delete_16.png') no-repeat;
+}
+
+.mail
+{
+    background: url('Images/email_16.png') no-repeat;
+}
+
+.info
+{
+    background: url('Images/info.png') no-repeat;
+}
+
+#listView
+{
+    min-height: 550px;
+    width: 660px;
+    margin: 10px auto;
+}
+
+.product
+{
+    float: left;
+    position: relative;
+    width: 110px;
+    height: 110px;
+    padding: 0;
+    margin: 5px 5px 25px 5px;
+    border: 2px dotted orangered;
+}
+
+.product-description
+{
+    position: absolute;
+    top: 0;
+    width: 110px;
+    height: 0;
+    overflow: hidden;
+    background-color: rgba(0,0,0,0.8);
+}
+
+.product img
+{
+    width: 110px;
+    height: 110px;
+}
+
+.product h3
+{
+    margin: 0;
+    padding: 10px 10px 0 10px;
+    line-height: 1.1em;
+    font-size: .8em;
+    font-weight: normal;
+    color: #ffffff;
+    word-wrap: break-word;
+}
+
+.product p
+{
+    color: #ffffff;
+    font-weight: bold;
+    padding: 0 10px;
+}

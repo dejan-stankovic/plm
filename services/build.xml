@@ -14,6 +14,9 @@
 		<property name="web.home"      value="${basedir}/web"/>
 		<property name="web.ui.home"      value="${basedir}/../ui"/>
 		<property name="dist.dir"      value="${basedir}/dist"/>
+		<property name="src.tests"      value="${basedir}/test"/>
+		<property name="build.tests" value="${basedir}/testbuild"/>
+		<property name="reports.tests" value="${basedir}/testreport"/>
 	</target>
 
 	<path id="compile.classpath">
@@ -82,6 +85,47 @@
 	<target name="clean" depends="init">
 		<delete dir="${build.home}"/>
 		<delete dir="${dist.dir}"/>
+		<delete dir="${build.tests}"/>
+		<delete dir="${reports.tests}"/>
+	</target>
+
+	<target name="test" depends="init">
+		<mkdir  dir="${reports.tests}"/>
+		<mkdir  dir="${build.tests}"/>
+
+		<copy todir="${build.tests}/META-INF">
+			<fileset dir="${src.tests}/META-INF"/>
+		</copy>
+
+		<path id="classpath.test">
+			<pathelement location="${build.tests}"/>
+			<pathelement path="${java.class.path}"/>
+			<path refid="compile.classpath"/>
+			<!-- <fileset dir="/usr/share/ant/lib">
+				<include name="*.jar"/>
+			</fileset> -->
+		</path>
+
+		<javac 
+			destdir="${build.tests}"
+			debug="${compile.debug}"
+			deprecation="${compile.deprecation}"
+			optimize="${compile.optimize}">
+				<src path="${src.tests}"/>
+				<src path="${src.home}"/>
+				<classpath refid="classpath.test"/>
+		</javac>
+		<junit printsummary="yes" haltonfailure="yes">
+			<classpath refid="classpath.test"/>
+
+			<formatter type="plain"/>
+
+			<batchtest fork="yes" todir="${reports.tests}">
+				<fileset dir="${build.tests}">
+					<include name="**/*Test.class"/>
+				</fileset>
+			</batchtest>
+		</junit>
 	</target>
 
 </project>

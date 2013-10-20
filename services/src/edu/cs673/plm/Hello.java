@@ -1,3 +1,10 @@
+/***************************************************************
+Filename: Hello.java
+Author: Christian Heckendorf
+Created Date: 9/21/13
+Purpose: Example service
+Features: None
+***************************************************************/
 package edu.cs673.plm;
 
 import javax.ws.rs.GET;
@@ -10,6 +17,12 @@ import edu.cs673.plm.model.HelloMessage;
 @Path( "/hello" )
 public class Hello
 {
+	/***************************************************************
+	Function name: getHelloMessage
+	Author: Christian Heckendorf
+	Created Date: 9/21/13
+	Purpose: Returns the hello message
+	***************************************************************/
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON })
 	public HelloMessage getHelloMessage()

@@ -1,0 +1,187 @@
+\documentclass{article}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{setspace}
+% \usepackage{kpfonts}
+\usepackage{textcomp}
+\usepackage{url}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+%\usepackage{mdframed}  % not availble on ubuntu
+
+% -- font styles
+% \usepackage{tgtermes}
+% \usepackage[lf]{venturis}
+% \usepackage{times}
+% \usepackage[sc]{mathpazo} % Palatino (very readable)
+% \usepackage[adobe-utopia]{mathdesign}
+% \usepackage[T1]{fontenc}
+% \usepackage{gfsdidot}
+% \usepackage[scaled]{beraserif}
+% \usepackage[bitstream-charter]{mathdesign}
+% \usepackage{mathptmx}
+
+
+% special math formatting
+\usepackage{amsmath}
+
+\floatstyle{ruled}
+
+% -- structural elements
+\newfloat{program}{thp}{lop}
+\floatname{program}{Program}
+
+%\newfloat{figure}{thp}{lop}
+%\floatname{figure}{Figure}
+
+% -- syntax highlighting
+\usepackage{listings}
+\usepackage{color}
+
+\usepackage{caption}
+% -- configure captions for figures
+\DeclareCaptionFormat{listing}{\par\hrule #1#2#3}
+\captionsetup[figure]{%
+  format=listing, 
+  singlelinecheck=false, 
+  margin=00pt, 
+  font={it,footnotesize,centering}
+}
+
+\parskip 12pt
+
+% page margins
+\setlength{\textheight}{22cm}
+\setlength{\oddsidemargin}{0.25in}
+\setlength{\textwidth}{6in}
+
+% I don't know what this does
+\def\printcitestart{\unskip $^\bgroup}
+\def\printbetweencitations{,}
+\def\printcitefinish{\egroup$}
+\def\printcitenote#1{\hbox{\sevenrm\space (#1)}}
+
+
+% TODO: mdframed doesn't work well with ubuntu
+% \newenvironment{aside}
+%   {\begin{mdframed}[style=0,%
+%       leftline=false,rightline=false,leftmargin=2em,rightmargin=2em,%
+%           innerleftmargin=0pt,innerrightmargin=0pt,linewidth=0.75pt,%
+%       skipabove=25pt,skipbelow=25pt]\small}
+%   {\end{mdframed}}
+
+\lstset{
+  %framesep=5pt,
+  upquote=true,
+  breaklines=false,
+  %postbreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookrightarrow}},
+  breakatwhitespace=true,
+  %numbers=left,
+  language=sh,
+  basicstyle=\footnotesize\ttfamily,
+  numberstyle=\footnotesize\ttfamily,
+  %numbersep=10pt,
+  tabsize=2,
+  extendedchars=true,
+  showtabs=false,
+  showspaces=false,
+  showstringspaces=false,
+  xleftmargin=20pt,
+  aboveskip=10pt,
+  % colors
+  stringstyle=\color{Maroon},
+  commentstyle=\color{Gray},
+  rulecolor=\color{Gray},
+  keywordstyle=\color{Blue},
+  backgroundcolor=\color{LightGray!.50}
+}
+\lstloadlanguages{
+  sh
+}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+
+% Hyphenation rules ------------
+%% \hyphenation{Fire-Detection-System}
+%% \hyphenation{Emergency-Communication-System}
+
+\begin{document}
+	\begin{titlepage}
+		\begin{center}
+			\textsc{\LARGE METCS673}\\[1.5cm]
+			\textsc{\Large PLM - Project Lifecycle Management}\\[0.5cm]
+			\HRule \\[0.4cm]
+			{ \huge \bfseries Usage Guide \\[0.4cm] }
+			\HRule \\[1.5cm]
+
+			\begin{minipage}{0.4\textwidth}
+			\begin{flushleft} \large
+			\emph{Author:}\\
+			Christian \textsc{Heckendorf}
+			\end{flushleft}
+			\end{minipage}
+			%\begin{minipage}{0.4\textwidth}
+			%\begin{flushright} \large
+			%\emph{Supervisor:} \\
+			%Dr.~Mark \textsc{Brown}
+			%\end{flushright}
+			%\end{minipage}
+
+			\vfill
+
+			% Bottom of the page
+			{\large \today}
+		\end{center}
+	\end{titlepage}
+
+	\section{Installation}
+
+	\subsection{Requirements}
+
+	The following software packages are used for building and deploying:
+	\begin{itemize}
+		\item{Java 6}
+		\item{Apache Tomcat 7}
+		\item{MySQL 5}
+		\item{MySQL JDBC connector}
+		\item{Apache Ant}
+	\end{itemize}
+
+	The MySQL JDBC connector may need to be installed to the tomcat lib directory rather than the java directory. All other packages may be installed normally.
+
+	If your installation procedure does not set the following environment variables, you may need to set them manually:
+	\begin{itemize}
+		\item{CATALINA\_HOME}
+		\item{CATALINA\_BASE}
+	\end{itemize}
+
+	For running test cases you will need to install the following jars for JUnit4 into your ANT\_HOME directory:
+	\begin{itemize}
+		\item{junit.jar}
+		\item{hamcrest-core.jar}
+	\end{itemize}
+
+	For more information, see: https://github.com/junit-team/junit/wiki/Download-and-Install
+
+	\subsection{Building and Deploying}
+
+	To build and deploy, run the following commands from the root of the project:
+
+	\begin{minipage}{0.95\textwidth}\begin{lstlisting}
+	    cd services
+	    ant
+	    cp dist/plm.war ${CATALINA_BASE}/webapps/plm.war
+	    ant clean
+	\end{lstlisting}\end{minipage}
+
+	You may also need to delete the plm directory under webapps and restart the tomcat server for the changes to be loaded.
+
+	\subsection{Testing}
+
+	To run the test cases for the service code, run the following commands from the root of the project:
+
+	\begin{minipage}{0.95\textwidth}\begin{lstlisting}
+	    cd services
+	    ant test
+	\end{lstlisting}\end{minipage}
+
+\end{document}
