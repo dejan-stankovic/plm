@@ -54,4 +54,15 @@ public class ProjectDao {
 			return null;
 		}
 	}
+
+	public static long getProjectIdFromRelease(Dba dba, long rid){
+		EntityManager em = dba.getActiveEm();
+		Query q = em.createQuery("Select r.project.id from Release r where r.id = :rid")
+					.setParameter("rid",rid);
+		try{
+			return ((Long)q.getSingleResult()).longValue();
+		} catch(Exception e){
+			return 0;
+		}
+	}
 }
