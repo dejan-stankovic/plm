@@ -32,6 +32,9 @@ public class Project{
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="project")
 	private List<Release> releases;
 
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="project")
+	private List<Bug> bugs;
+
 	/***************************************************************
 	Function name: getId
 	Author: Christian Heckendorf
@@ -110,5 +113,25 @@ public class Project{
 	************************************************************/
 	public void setReleases(List<Release> releases){
 		this.releases=releases;
+	}
+
+	/************************************************************
+	Function name: getBugs()
+	Author: Christian Heckendorf
+	Created date: 10/01/2013
+	Purpose: Returns the bugs
+	************************************************************/
+	public List<Bug> getBugs(){
+		return bugs;
+	}
+
+	/************************************************************
+	Function name: setBugs()
+	Author: Christian Heckendorf
+	Created date: 10/01/2013
+	Purpose: Sets bugs
+	************************************************************/
+	public void setBugs(List<Bug> bugs){
+		this.bugs=bugs;
 	}
 }

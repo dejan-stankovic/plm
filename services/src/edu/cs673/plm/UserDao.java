@@ -26,14 +26,13 @@ public class UserDao {
 	Created date: 10/13/2013
 	Purpose: Returns a list of tasks for a release for a user
 	************************************************************/
-	public static BugList getBugList(Dba dba, long uid, long rid){
+	public static BugList getBugList(Dba dba, long uid, long pid){
 		EntityManager em = dba.getActiveEm();
-		Query q = em.createQuery("select b from Bug b, UserStory userStory "+
-								"where b.userStory.id = userStory.id "+
-								"and b.userAssigned.id = :uid "+
-								"and userStory.release.id = :rid")
+		Query q = em.createQuery("select b from Bug b where "+
+								"b.userAssigned.id = :uid "+
+								"and b.project.id = :pid")
 					.setParameter("uid",uid)
-					.setParameter("rid",rid);
+					.setParameter("pid",pid);
 		try{
 			BugList bl = new BugList();
 			bl.addBugs((List<Bug>)q.getResultList());

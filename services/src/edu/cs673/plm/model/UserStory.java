@@ -34,9 +34,6 @@ public class UserStory{
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="userStory")
 	private List<Task> tasks;
 
-	@OneToMany(fetch=FetchType.LAZY, mappedBy="userStory")
-	private List<Bug> bugs;
-
 	/***************************************************************
 	Function name: getId
 	Author: Christian Heckendorf
@@ -135,25 +132,5 @@ public class UserStory{
 	************************************************************/
 	public void setTasks(List<Task> tasks){
 		this.tasks=tasks;
-	}
-
-	/************************************************************
-	Function name: getBugs()
-	Author: Christian Heckendorf
-	Created date: 10/01/2013
-	Purpose: Returns the bugs
-	************************************************************/
-	public List<Bug> getBugs(){
-		return bugs;
-	}
-
-	/************************************************************
-	Function name: setBugs()
-	Author: Christian Heckendorf
-	Created date: 10/01/2013
-	Purpose: Sets bugs
-	************************************************************/
-	public void setBugs(List<Bug> bugs){
-		this.bugs=bugs;
 	}
 }

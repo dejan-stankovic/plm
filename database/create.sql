@@ -45,10 +45,10 @@ create table `Bug`(
 	id int auto_increment primary key,
 	name varchar(50) not null,
 	description varchar(200),
-	userStoryId int,
+	projectId int,
 	createdId int,
 	assignedId int,
-	foreign key (userStoryId) references `UserStory`(id),
+	foreign key (projectId) references `Project`(id),
 	foreign key (createdId) references `User`(id),
 	foreign key (assignedId) references `User`(id)
 );
