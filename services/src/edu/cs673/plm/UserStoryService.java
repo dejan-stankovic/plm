@@ -16,8 +16,10 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.core.MediaType;
 
 import edu.cs673.plm.model.TokenMessage;
+import edu.cs673.plm.model.StatusMessage;
 import edu.cs673.plm.model.User;
 import edu.cs673.plm.model.JSONUserStory;
+import edu.cs673.plm.model.JSONStoryRequest;
 import edu.cs673.plm.model.UserStoryList;
 
 @Path( "/userstory" )
@@ -45,5 +47,33 @@ public class UserStoryService {
 		}
 
 		return usl;
+	}
+
+	/************************************************************
+	Function name: createUserStory()
+	Author: Christian Heckendorf
+	Created date: 10/22/2013
+	Purpose: Returns a list of user stories under a release
+	************************************************************/
+	@Path( "/create/r/{rid}" )
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public StatusMessage createUserStory(@PathParam("rid") long rid, JSONStoryRequest userStoryReq) {
+		StatusMessage sm = new StatusMessage(-1,"Internal Error");
+		Dba dba = new Dba(false);
+		try{
+			long pid = ProjectDao.getProjectIdFromRelease(dba,rid);
+			if(Permission.canAccess(dba,
+						new SessionToken(userStoryReq.getToken().getToken()),
+						pid,
+						Permission.CREATE_USER_STORY)){
+				sm = UserStoryDao.createUserStory(dba,rid,userStoryReq.getUserStory().toUserStory());
+			}
+		} finally{
+			dba.closeEm();
+		}
+
+		return sm;
 	}
 }

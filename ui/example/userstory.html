@@ -13,7 +13,37 @@ Feature: None
 	<script>
 		var tok;
 
-		function getPermissions(){
+		function createUserStory(){
+			var randomname = "Random "+Math.random();
+			$.ajax({
+				type: 'POST',
+				url: '/plm/rest/userstory/create/r/1',
+				contentType: 'application/json; charset=UTF-8',
+				accepts: {
+					text: 'application/json'
+				},
+				dataType: 'json',
+				data: JSON.stringify({
+					token: {
+						token: tok
+					},
+					userStory: {
+						name: randomname,
+						description: "Some description"
+					}
+				}),
+				success: function(data){
+					alert(data.code+" "+data.message);
+					getUserStories();
+				},
+				error: function(data){
+					alert("error");
+				}
+			});
+		}
+
+		function getUserStories(){
+			$("div#first").html("");
 			$.ajax({
 				type: 'POST',
 				url: '/plm/rest/userstory/r/1',
@@ -59,7 +89,7 @@ Feature: None
 				success: function(data){
 					tok = data.message;
 					if(data.code==0){
-						getPermissions();
+						createUserStory();
 					}
 				},
 				error: function(data){

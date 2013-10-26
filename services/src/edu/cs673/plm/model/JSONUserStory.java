@@ -21,6 +21,13 @@ public class JSONUserStory{
 	public JSONUserStory(){
 	}
 
+	public UserStory toUserStory(){
+		UserStory ret = new UserStory();
+		ret.setName(name);
+		ret.setDescription(description);
+		return ret;
+	}
+
 	/************************************************************
 	Function name: JSONUserStory()
 	Author: Christian Heckendorf

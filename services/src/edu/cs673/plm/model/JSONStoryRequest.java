@@ -37,7 +37,7 @@ public class JSONStoryRequest{
 	Created date: 10/22/2013
 	Purpose: Returns a user story
 	************************************************************/
-	public JSONUserStory getJSONUserStory(){
+	public JSONUserStory getUserStory(){
 		return userStory;
 	}
 
@@ -47,7 +47,7 @@ public class JSONStoryRequest{
 	Created date: 10/22/2013
 	Purpose: Sets a user story
 	************************************************************/
-	public void setJSONUserStory(JSONUserStory userStory){
+	public void setUserStory(JSONUserStory userStory){
 		this.userStory = userStory;
 	}
 }

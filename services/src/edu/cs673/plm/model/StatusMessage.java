@@ -23,6 +23,16 @@ public class StatusMessage{
 	}
 
 	/************************************************************
+	Function name: StatusMessage()
+	Author: Christian Heckendorf
+	Created date: 10/23/2013
+	Purpose: Constructs a message
+	************************************************************/
+	public StatusMessage(long code, String message){
+		this((int)code,message);
+	}
+
+	/************************************************************
 	Function name: getCode
 	Author: Christian Heckendorf
 	Created date: 09/29/2013
