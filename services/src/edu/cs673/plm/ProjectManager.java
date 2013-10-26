@@ -21,6 +21,7 @@ import edu.cs673.plm.model.UserList;
 import edu.cs673.plm.model.ReleaseList;
 import edu.cs673.plm.model.JSONUser;
 import edu.cs673.plm.model.UserProject;
+import edu.cs673.plm.model.JSONReleaseRequest;
 
 @Path( "/projectmanage" )
 public class ProjectManager {
@@ -63,7 +64,7 @@ public class ProjectManager {
 		ReleaseList rl = null;
 		Dba dba = new Dba(true);
 		try{
-			if(Permission.canAccess(dba,new SessionToken(token.getToken()),pid,Permission.VIEW_PROJECT)){
+			if(Permission.canAccess(dba,st,pid,Permission.VIEW_PROJECT)){
 				rl = ProjectDao.getReleaseList(dba,pid);
 			}
 		} finally{
@@ -71,5 +72,31 @@ public class ProjectManager {
 		}
 
 		return rl;
+	}
+
+	/************************************************************
+	Function name: createRelease()
+	Author: Christian Heckendorf
+	Created date: 10/26/2013
+	Purpose: Creates a release under a project
+	************************************************************/
+	@Path( "/release/p/{pid}" )
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public StatusMessage createRelease(@PathParam("pid") long pid, ReleaseRequest req) {
+		StatusMessage sm = new StatusMessage(-1,"Internal Error");
+		SessionToken st = new SessionToken(req.getToken().getToken());
+		Dba dba = new Dba(false);
+		try{
+			if(Permission.canAccess(dba,st,pid,Permission.CREATE_RELEASE)){
+				Release rel = req.getRelease();
+				sm = ProjectDao.createRelease(dba,pid,rel);
+			}
+		} finally{
+			dba.closeEm();
+		}
+
+		return sm;
 	}
 }
