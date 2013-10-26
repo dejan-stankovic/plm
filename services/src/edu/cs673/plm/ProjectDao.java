@@ -15,8 +15,49 @@ import javax.persistence.Query;
 import edu.cs673.plm.model.Project;
 import edu.cs673.plm.model.Release;
 import edu.cs673.plm.model.ReleaseList;
+import edu.cs673.plm.model.StatusMessage;
 
 public class ProjectDao {
+	/************************************************************
+	Function name: createRelease()
+	Author: Christian Heckendorf
+	Created date: 10/26/2013
+	Purpose: Creates a release under a project
+	************************************************************/
+	public static StatusMessage createRelease(Dba dba, long pid, Release release){
+		Project project;
+		EntityManager em = dba.getActiveEm();
+		release.setProject(ProjectDao.getProjectById(dba,pid));
+		try{
+			em.persist(release);
+			em.flush()
+		} catch(Exception e){
+			return new StatusMessage(-1,"Internal Error");
+		}
+
+		return new StatusMessage(release.getId(),"Success");
+	}
+
+	/************************************************************
+	Function name: getProjectById()
+	Author: Christian Heckendorf
+	Created date: 10/26/2013
+	Purpose: Gets a project by ID
+	************************************************************/
+	public static Project getProjectById(Dba dba, long pid){
+		Project project;
+		EntityManager em = dba.getActiveEm();
+		Query q = em.createQuery("select p from Project p where p.id = :pid")
+						.setParameter("pid",pid);
+		try{
+			project = (Project)q.getSingleResult();
+		} catch(Exception e){
+			return null;
+		}
+
+		return project;
+	}
+
 	/***************************************************************
 	Function name: getMemberCount
 	Author: Christian Heckendorf
