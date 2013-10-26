@@ -33,6 +33,15 @@ public class StatusMessage{
 	}
 
 	/************************************************************
+	Function name: StatusMessage()
+	Author: Christian Heckendorf
+	Created date: 10/26/2013
+	Purpose: Default constructor
+	************************************************************/
+	public StatusMessage(){
+	}
+
+	/************************************************************
 	Function name: getCode
 	Author: Christian Heckendorf
 	Created date: 09/29/2013
