@@ -34,6 +34,17 @@ public class UserStory{
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="userStory")
 	private List<Task> tasks;
 
+	/************************************************************
+	Function name: overlay()
+	Author: Christian Heckendorf
+	Created date: 10/26/2013
+	Purpose: Overlays the attributes from another user story
+	************************************************************/
+	public void overlay(UserStory userStory){
+		name = userStory.getName();
+		description = userStory.getDescription();
+	}
+
 	/***************************************************************
 	Function name: getId
 	Author: Christian Heckendorf
