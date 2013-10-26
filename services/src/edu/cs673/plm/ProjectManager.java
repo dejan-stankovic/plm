@@ -90,8 +90,30 @@ public class ProjectManager {
 		Dba dba = new Dba(false);
 		try{
 			if(Permission.canAccess(dba,st,pid,Permission.CREATE_RELEASE)){
-				Release rel = req.getRelease();
+				Release rel = new Release();
+				rel.overlay(req.getRelease());
 				sm = ProjectDao.createRelease(dba,pid,rel);
+			}
+		} finally{
+			dba.closeEm();
+		}
+
+		return sm;
+	}
+
+	@Path( "/release/r/{rid}" )
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public StatusMessage updateRelease(@PathParam("rid") long rid, ReleaseRequest req) {
+		StatusMessage sm = new StatusMessage(-1,"Internal Error");
+		SessionToken st = new SessionToken(req.getToken().getToken());
+		Dba dba = new Dba(false);
+		try{
+			if(Permission.canAccess(dba,st,pid,Permission.CREATE_RELEASE)){
+				Release rel = new Release();
+				rel.overlay(req.getRelease());
+				sm = ProjectDao.updateRelease(dba,rel);
 			}
 		} finally{
 			dba.closeEm();
