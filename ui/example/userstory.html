@@ -13,6 +13,49 @@ Feature: None
 	<script>
 		var tok;
 
+		/************************************************************
+		Function name: updatesUserStory
+		Author: Christian Heckendorf
+		Created date: 10/26/2013
+		Purpose: Updates a user story
+		************************************************************/
+		function updateUserStory(){
+			var randomname = "NewRandom "+Math.random();
+			$.ajax({
+				type: 'POST',
+				url: '/plm/rest/userstory/update/u/1',
+				contentType: 'application/json; charset=UTF-8',
+				accepts: {
+					text: 'application/json'
+				},
+				dataType: 'json',
+				data: JSON.stringify({
+					token: {
+						token: tok
+					},
+					userStory: {
+						name: randomname,
+						description: "Some description"
+					}
+				}),
+				success: function(data){
+					/* code: id or -1, message: success/error message */
+					/* {"code":4,"message":"Success"} */
+					alert(data.code+" "+data.message);
+					getUserStories();
+				},
+				error: function(data){
+					alert("error");
+				}
+			});
+		}
+
+		/************************************************************
+		Function name: createUserStory
+		Author: Christian Heckendorf
+		Created date: 10/26/2013
+		Purpose: Creates a new user story
+		************************************************************/
 		function createUserStory(){
 			var randomname = "Random "+Math.random();
 			$.ajax({
@@ -33,8 +76,9 @@ Feature: None
 					}
 				}),
 				success: function(data){
-					alert(data.code+" "+data.message);
-					getUserStories();
+					/* code: new id or -1, message: success/error message */
+					/* {"code":4,"message":"Success"} */
+					updateUserStory();
 				},
 				error: function(data){
 					alert("error");
@@ -42,6 +86,12 @@ Feature: None
 			});
 		}
 
+		/************************************************************
+		Function name: getUserStories
+		Author: Christian Heckendorf
+		Created date: 10/26/2013
+		Purpose: Displays a list of user stories under a release
+		************************************************************/
 		function getUserStories(){
 			$("div#first").html("");
 			$.ajax({

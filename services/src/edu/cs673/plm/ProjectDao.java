@@ -55,10 +55,33 @@ public class ProjectDao {
 		}
 	}
 
+	/************************************************************
+	Function name: getProjectIdFromRelease()
+	Author: Christian Heckendorf
+	Created date: 10/26/2013
+	Purpose: Gets a project id given a release id
+	************************************************************/
 	public static long getProjectIdFromRelease(Dba dba, long rid){
 		EntityManager em = dba.getActiveEm();
 		Query q = em.createQuery("Select r.project.id from Release r where r.id = :rid")
 					.setParameter("rid",rid);
+		try{
+			return ((Long)q.getSingleResult()).longValue();
+		} catch(Exception e){
+			return 0;
+		}
+	}
+
+	/************************************************************
+	Function name: getProjectIdFromUserStory()
+	Author: Christian Heckendorf
+	Created date: 10/26/2013
+	Purpose: Gets a project id given a user story id
+	************************************************************/
+	public static long getProjectIdFromUserStory(Dba dba, long uid){
+		EntityManager em = dba.getActiveEm();
+		Query q = em.createQuery("Select u.release.project.id from UserStory u where u.id = :uid")
+					.setParameter("uid",uid);
 		try{
 			return ((Long)q.getSingleResult()).longValue();
 		} catch(Exception e){
