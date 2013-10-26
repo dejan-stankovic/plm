@@ -21,6 +21,12 @@ public class JSONUserStory{
 	public JSONUserStory(){
 	}
 
+	/************************************************************
+	Function name: toUserStory()
+	Author: Christian Heckendorf
+	Created date: 10/26/2013
+	Purpose: Converts to UserStory object
+	************************************************************/
 	public UserStory toUserStory(){
 		UserStory ret = new UserStory();
 		ret.setName(name);
