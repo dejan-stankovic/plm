@@ -137,4 +137,21 @@ public class ProjectDao {
 			return 0;
 		}
 	}
+
+	/************************************************************
+	Function name: getProjectIdFromTask()
+	Author: Christian Heckendorf
+	Created date: 10/27/2013
+	Purpose: Gets a project id given a task id
+	************************************************************/
+	public static long getProjectIdFromTask(Dba dba, long tid){
+		EntityManager em = dba.getActiveEm();
+		Query q = em.createQuery("Select t.userStory.release.project.id from Task t where t.id = :tid")
+					.setParameter("tid",tid);
+		try{
+			return ((Long)q.getSingleResult()).longValue();
+		} catch(Exception e){
+			return 0;
+		}
+	}
 }

@@ -31,6 +31,12 @@ public class UserStoryDao {
 		return new StatusMessage(userStory.getId(),"Success");
 	}
 
+	/************************************************************
+	Function name: updateUserStory()
+	Author: Christian Heckendorf
+	Created date: 10/27/2013
+	Purpose: Updates a user story
+	************************************************************/
 	public static StatusMessage updateUserStory(Dba dba, UserStory userStory){
 		EntityManager em = dba.getActiveEm();
 		Query q = em.createQuery("select u from UserStory u where u.id = :uid")
@@ -43,5 +49,22 @@ public class UserStoryDao {
 			return new StatusMessage(-1,"Internal Error");
 		}
 		return new StatusMessage(userStory.getId(),"Success");
+	}
+
+	/************************************************************
+	Function name: getUserStoryById()
+	Author: Christian Heckendorf
+	Created date: 10/27/2013
+	Purpose: Returns a user story by id
+	************************************************************/
+	public static UserStory getUserStoryById(Dba dba, long usid){
+		EntityManager em = dba.getActiveEm();
+		Query q = em.createQuery("select u from UserStory u where u.id = :usid")
+					.setParameter("usid",usid);
+		try{
+			return (UserStory)q.getSingleResult();
+		} catch(Exception e){
+			return null;
+		}
 	}
 }
