@@ -19,26 +19,6 @@ import edu.cs673.plm.model.StatusMessage;
 
 public class ProjectDao {
 	/************************************************************
-	Function name: createRelease()
-	Author: Christian Heckendorf
-	Created date: 10/26/2013
-	Purpose: Creates a release under a project
-	************************************************************/
-	public static StatusMessage createRelease(Dba dba, long pid, Release release){
-		Project project;
-		EntityManager em = dba.getActiveEm();
-		release.setProject(ProjectDao.getProjectById(dba,pid));
-		try{
-			em.persist(release);
-			em.flush()
-		} catch(Exception e){
-			return new StatusMessage(-1,"Internal Error");
-		}
-
-		return new StatusMessage(release.getId(),"Success");
-	}
-
-	/************************************************************
 	Function name: getProjectById()
 	Author: Christian Heckendorf
 	Created date: 10/26/2013

@@ -19,9 +19,11 @@ import edu.cs673.plm.model.TokenMessage;
 import edu.cs673.plm.model.User;
 import edu.cs673.plm.model.UserList;
 import edu.cs673.plm.model.ReleaseList;
+import edu.cs673.plm.model.JSONReleaseRequest;
+import edu.cs673.plm.model.Release;
 import edu.cs673.plm.model.JSONUser;
 import edu.cs673.plm.model.UserProject;
-import edu.cs673.plm.model.JSONReleaseRequest;
+import edu.cs673.plm.model.StatusMessage;
 
 @Path( "/projectmanage" )
 public class ProjectManager {
@@ -84,7 +86,7 @@ public class ProjectManager {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public StatusMessage createRelease(@PathParam("pid") long pid, ReleaseRequest req) {
+	public StatusMessage createRelease(@PathParam("pid") long pid, JSONReleaseRequest req) {
 		StatusMessage sm = new StatusMessage(-1,"Internal Error");
 		SessionToken st = new SessionToken(req.getToken().getToken());
 		Dba dba = new Dba(false);
@@ -92,7 +94,7 @@ public class ProjectManager {
 			if(Permission.canAccess(dba,st,pid,Permission.CREATE_RELEASE)){
 				Release rel = new Release();
 				rel.overlay(req.getRelease());
-				sm = ProjectDao.createRelease(dba,pid,rel);
+				sm = ReleaseDao.createRelease(dba,pid,rel);
 			}
 		} finally{
 			dba.closeEm();
@@ -101,19 +103,25 @@ public class ProjectManager {
 		return sm;
 	}
 
+	/************************************************************
+	Function name: updateRelease()
+	Author: Christian Heckendorf
+	Created date: 10/26/2013
+	Purpose: Updates a release
+	************************************************************/
 	@Path( "/release/r/{rid}" )
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public StatusMessage updateRelease(@PathParam("rid") long rid, ReleaseRequest req) {
+	public StatusMessage updateRelease(@PathParam("rid") long rid, JSONReleaseRequest req) {
 		StatusMessage sm = new StatusMessage(-1,"Internal Error");
 		SessionToken st = new SessionToken(req.getToken().getToken());
 		Dba dba = new Dba(false);
 		try{
-			if(Permission.canAccess(dba,st,pid,Permission.CREATE_RELEASE)){
-				Release rel = new Release();
+			Release rel = ReleaseDao.getReleaseById(dba,rid);
+			if(Permission.canAccess(dba,st,rel.getProject().getId(),Permission.CREATE_RELEASE)){
 				rel.overlay(req.getRelease());
-				sm = ProjectDao.updateRelease(dba,rel);
+				sm = ReleaseDao.updateRelease(dba,rel);
 			}
 		} finally{
 			dba.closeEm();
