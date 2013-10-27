@@ -20,7 +20,9 @@ import edu.cs673.plm.model.User;
 import edu.cs673.plm.model.UserList;
 import edu.cs673.plm.model.ReleaseList;
 import edu.cs673.plm.model.JSONReleaseRequest;
+import edu.cs673.plm.model.JSONProjectRequest;
 import edu.cs673.plm.model.Release;
+import edu.cs673.plm.model.Project;
 import edu.cs673.plm.model.JSONUser;
 import edu.cs673.plm.model.UserProject;
 import edu.cs673.plm.model.StatusMessage;
@@ -123,6 +125,25 @@ public class ProjectManager {
 				rel.overlay(req.getRelease());
 				sm = ReleaseDao.updateRelease(dba,rel);
 			}
+		} finally{
+			dba.closeEm();
+		}
+
+		return sm;
+	}
+
+	@Path( "/create" )
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public StatusMessage createProject(@PathParam("pid") long pid, JSONProjectRequest req) {
+		StatusMessage sm = new StatusMessage(-1,"Internal Error");
+		SessionToken st = new SessionToken(req.getToken().getToken());
+		Dba dba = new Dba(false);
+		try{
+			Project proj = new Project();
+			proj.overlay(req.getProject());
+			sm = ProjectDao.createProject(dba,proj,st.getUid());
 		} finally{
 			dba.closeEm();
 		}

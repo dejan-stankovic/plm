@@ -15,9 +15,37 @@ import javax.persistence.Query;
 import edu.cs673.plm.model.Project;
 import edu.cs673.plm.model.Release;
 import edu.cs673.plm.model.ReleaseList;
+import edu.cs673.plm.model.Role;
+import edu.cs673.plm.model.User;
+import edu.cs673.plm.model.UserProject;
 import edu.cs673.plm.model.StatusMessage;
 
 public class ProjectDao {
+	/************************************************************
+	Function name: createProject()
+	Author: Christian Heckendorf
+	Created date: 10/26/2013
+	Purpose: Creates a project and sets the project leader
+	************************************************************/
+	public static StatusMessage createProject(Dba dba, Project project, long uid){
+		EntityManager em = dba.getActiveEm();
+
+		try{
+			User user = UserDao.getUserById(dba,uid);
+			Role role = RoleDao.findRoleById(dba,RoleDao.ROLE_PROJECT_LEADER);
+
+			em.persist(project);
+			em.flush();
+
+			UserProjectDao.createUserProject(dba,user,project,role);
+		} catch(Exception e){
+			e.printStackTrace();
+			return new StatusMessage(-1,"Internal Error");
+		}
+
+		return new StatusMessage(project.getId(),"Success");
+	}
+
 	/************************************************************
 	Function name: getProjectById()
 	Author: Christian Heckendorf

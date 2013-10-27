@@ -109,4 +109,25 @@ public class UserProjectDao {
 		} catch(Exception e){
 		}
 	}
+
+	/************************************************************
+	Function name: createUserProject()
+	Author: Christian Heckendorf
+	Created date: 10/26/2013
+	Purpose: Assigns a user to a project as a role
+	************************************************************/
+	public static void createUserProject(Dba dba, User user, Project project, Role role){
+		EntityManager em = dba.getActiveEm();
+		UserProject up;
+
+		try{
+			up = new UserProject();
+			up.setUser(user);
+			up.setProject(project);
+			up.setRole(role);
+
+			em.persist(up);
+		} catch (Exception e){
+		}
+	}
 }

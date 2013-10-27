@@ -15,9 +15,13 @@ import javax.ws.rs.client.Entity;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
 
+import edu.cs673.plm.model.UserList;
+import edu.cs673.plm.model.ProjectList;
 import edu.cs673.plm.model.ReleaseList;
 import edu.cs673.plm.model.JSONReleaseRequest;
 import edu.cs673.plm.model.JSONRelease;
+import edu.cs673.plm.model.JSONProjectRequest;
+import edu.cs673.plm.model.JSONProject;
 import edu.cs673.plm.model.TokenMessage;
 import edu.cs673.plm.model.StatusMessage;
 
@@ -84,5 +88,38 @@ public class ProjectManagerTest extends JerseyTest{
 			.post(Entity.entity(req,MediaType.APPLICATION_JSON_TYPE),StatusMessage.class);
 
 		assertTrue(res.getMessage().equals("Success"));
+	}
+
+	@Ignore
+	private long countUsers(TokenMessage tm, long pid){
+		UserList res = target("projectmanage").path("p").path(String.valueOf(pid)).path("users")
+			.request(MediaType.APPLICATION_JSON_TYPE)
+			.post(Entity.entity(tm,MediaType.APPLICATION_JSON_TYPE),UserList.class);
+
+		return res.getUsers().size();
+	}
+
+	@Test
+	public void createProject() {
+		long count;
+		JSONProjectRequest req = new JSONProjectRequest();
+		TokenMessage tm = new TokenMessage();
+		JSONProject jp = new JSONProject();
+		UserList ul;
+
+		jp.setName("TestProject");
+
+		tm.setToken(tok);
+
+		req.setToken(tm);
+		req.setProject(jp);
+
+		StatusMessage res =  target("projectmanage").path("create")
+			.request(MediaType.APPLICATION_JSON_TYPE)
+			.post(Entity.entity(req,MediaType.APPLICATION_JSON_TYPE),StatusMessage.class);
+
+		assertTrue(res.getMessage().equals("Success"));
+
+		assertEquals(1,countUsers(tm,res.getCode()));
 	}
 }

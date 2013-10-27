@@ -1,15 +1,15 @@
 /************************************************************
-Filename: JSONReleaseRequest.java
+Filename: JSONProjectRequest.java
 Author: Christian Heckendorf
 Created date: 10/26/2013
-Purpose: Holds a token and release for requests
+Purpose: Holds a token and project for requests
 Feature: Project manage
 ************************************************************/
 package edu.cs673.plm.model;
 
-public class JSONReleaseRequest{
+public class JSONProjectRequest{
 	private TokenMessage token;
-	private JSONRelease release;
+	private JSONProject project;
 
 	/************************************************************
 	Function name: getToken()
@@ -32,22 +32,22 @@ public class JSONReleaseRequest{
 	}
 
 	/************************************************************
-	Function name: getRelease()
+	Function name: getProject()
 	Author: Christian Heckendorf
 	Created date: 10/26/2013
-	Purpose: Returns a release
+	Purpose: Returns a project
 	************************************************************/
-	public JSONRelease getRelease(){
-		return release;
+	public JSONProject getProject(){
+		return project;
 	}
 
 	/************************************************************
-	Function name: setRelease()
+	Function name: setProject()
 	Author: Christian Heckendorf
 	Created date: 10/26/2013
-	Purpose: Sets a release
+	Purpose: Sets a project
 	************************************************************/
-	public void setRelease(JSONRelease release){
-		this.release = release;
+	public void setProject(JSONProject project){
+		this.project = project;
 	}
 }
