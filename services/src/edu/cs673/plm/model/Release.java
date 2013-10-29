@@ -35,6 +35,16 @@ public class Release{
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="release")
 	private List<UserStory> userStories;
 
+	/************************************************************
+	Function name: overlay()
+	Author: Christian Heckendorf
+	Created date: 10/26/2013
+	Purpose: Overlays a JSONRelease onto this object
+	************************************************************/
+	public void overlay(JSONRelease jsonRelease){
+		version = jsonRelease.getVersion();
+	}
+
 	/***************************************************************
 	Function name: getId
 	Author: Christian Heckendorf

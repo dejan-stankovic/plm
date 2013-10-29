@@ -35,6 +35,16 @@ public class Project{
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="project")
 	private List<Bug> bugs;
 
+	/************************************************************
+	Function name: overlay()
+	Author: Christian Heckendorf
+	Created date: 10/26/2013
+	Purpose: Overlays a JSONProject over this object
+	************************************************************/
+	public void overlay(JSONProject jproject){
+		this.name = jproject.getName();
+	}
+
 	/***************************************************************
 	Function name: getId
 	Author: Christian Heckendorf

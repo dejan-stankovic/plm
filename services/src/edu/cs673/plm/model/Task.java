@@ -35,6 +35,17 @@ public class Task{
 	@JoinColumn(name="assignedId")
 	private User userAssigned;
 
+	/************************************************************
+	Function name: overlay()
+	Author: Christian Heckendorf
+	Created date: 10/27/2013
+	Purpose: Overlays a JSONTask onto this object
+	************************************************************/
+	public void overlay(JSONTask jtask){
+		name = jtask.getName();
+		description = jtask.getDescription();
+	}
+
 	/***************************************************************
 	Function name: getId
 	Author: Christian Heckendorf

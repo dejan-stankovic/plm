@@ -10,10 +10,12 @@ package edu.cs673.plm.model;
 public class JSONTask{
 	long id;
 	String name;
+	String description;
 	String category;
 	String priority;
 	String risk;
 	String status;
+	JSONUser assigned;
 
 	/************************************************************
 	Function name: JSONTask()
@@ -79,6 +81,26 @@ public class JSONTask{
 	************************************************************/
 	public void setName(String name){
 		this.name = name;
+	}
+
+	/************************************************************
+	Function name: getDescription()
+	Author: Christian Heckendorf
+	Created date: 10/27/2013
+	Purpose: Returns the description
+	************************************************************/
+	public String getDescription(){
+		return description;
+	}
+
+	/************************************************************
+	Function name: setDescription()
+	Author: Christian Heckendorf
+	Created date: 10/27/2013
+	Purpose: Sets the description
+	************************************************************/
+	public void setDescription(String description){
+		this.description=description;
 	}
 
 	/************************************************************
@@ -160,4 +182,25 @@ public class JSONTask{
 	public void setStatus(String status){
 		this.status = status;
 	}
+
+	/************************************************************
+	Function name: getAssigned
+	Author: Christian Heckendorf
+	Created date: 10/27/2013
+	Purpose: Returns the user assigned
+	************************************************************/
+	public JSONUser getAssigned(){
+		return assigned;
+	}
+
+	/************************************************************
+	Function name: setAssigned
+	Author: Christian Heckendorf
+	Created date: 10/27/2013
+	Purpose: Sets the user assigned
+	************************************************************/
+	public void setAssigned(JSONUser assigned){
+		this.assigned = assigned;
+	}
+
 }

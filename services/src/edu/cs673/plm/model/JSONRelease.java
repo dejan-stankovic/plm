@@ -52,22 +52,22 @@ public class JSONRelease{
 	}
 
 	/************************************************************
-	Function version: getversion
+	Function version: getVersion
 	Author: Christian Heckendorf
 	Created date: 10/5/2013
 	Purpose: Returns the version
 	************************************************************/
-	public String getversion(){
+	public String getVersion(){
 		return version;
 	}
 
 	/************************************************************
-	Function version: setversion
+	Function version: setVersion
 	Author: Christian Heckendorf
 	Created date: 10/5/2013
 	Purpose: Sets the version
 	************************************************************/
-	public void setversion(String version){
+	public void setVersion(String version){
 		this.version = version;
 	}
 }
