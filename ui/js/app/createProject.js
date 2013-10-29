@@ -5,45 +5,6 @@
 		Purpose: create a new project
 **************************************************************************/
 
-var selectedUid, selectedRid;
-
-/************************************************************
-Function name: getRoles
-Author: Christian Heckendorf
-Created date: 10/14/2013
-Purpose: Gets the role for a user
-************************************************************/
-function getRoles(){
-	var tok;
-
-	tok = getToken();
-
-	$.ajax({
-		type: 'POST',
-		url: '/plm/dashboard/projects',
-		contentType: 'application/json; charset=UTF-8',
-		accepts: {
-			text: 'application/json'
-		},
-		dataType: 'json',
-		data: JSON.stringify({
-			token: tok
-		}),
-		success: function(data){
-			//var role1 = $("#projectddl").data("kendoComboBox");
-			// return userId role in the project
-
-			/*for(x in data.roles){
-				role1.dataSource.add(data.roles[x]);
-			}*/
-		},
-		error: function(data){
-			alert("error");
-		}
-	});
-}
-
-
 /************************************************************
 Function name: createProject
 Author: Tandhy
@@ -58,40 +19,43 @@ function createProject()
 {
 	var projectName, projectDescription;
 
-	$("#errormsg").html("");
+	$("#projectStatus").html("");
+	tok = getToken();
 
-	createdId = selectedUid;
 	projectName = $("input#txtProjectName").val();
-	projectDescription = $("input#txtProjectDescription").val();
-
+	
+	//alert(tok);
+	//alert(projectName);
+	
 	$.ajax({
 		type: 'POST',
-		url: '/plm/rest/projectmanage',
+		url: '/plm/rest/projectmanage/create',
 		contentType: 'application/json; charset=UTF-8',
 		accepts: {
 			text: 'application/json'
 		},
 		dataType: 'json',
 		data: JSON.stringify({
-			// name, description
-			name : projectName,
-			description : projectDescription,
+			token: {
+				token:tok
+			},
+			project:{
+				name: projectName 
+			},
 		}),
 		success: function(data){
 
-			/*the following code checkes whether the entered userid is valid */
-			 if(data.code==0)
+			// message":"Success
+			 if(data.message=="Success")
 			  {
-			  $("h1").html("New Project created.");
-			  // redirect to dashboard
-			  window.location="dashboard.html"; /*Redirect to the login page after succesful registration*/
+			  $("#projectStatus").html("New Project has been created.");
+			  document.getElementById("txtProjectName").value="";
+			  // redirect to project list
+			  //window.location="viewProjects.html"; /*Redirect to the login page after succesful registration*/
 			  }
-			 else if(data.code==1)
-			 {
-			   $("#errormsg").html("Please try again."); /*displays error message*/
-			 }
-			   else { /* Usually internal error or other */
-			   $("#errormsg").html(data.message);
+			 else
+			 { /* Usually internal error or other */
+			 	$("#projectStatus").html(data.message);
 			 }
 		},
 		error: function(data){
@@ -108,16 +72,10 @@ function createProject()
 **************************************************************/
 
 $(document).ready(function () {
-		
-	// initialize textarea
-	$(document).ready(function(){
-		$("#txtProjectDescription").kendoEditor();
-	});	
-		
 
     $("#createProjectBtn").click(function(){ 
 		// this function will execute if the button is being hit
-		saveNewProject();
+		createProject();
 	});
 	
     $("#clearBtn").click(function(){ /*resetFields();*/ });

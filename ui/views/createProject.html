@@ -100,24 +100,21 @@ Feature:
                   <div id="center-pane">
                         <div class="jumbotron" style="margin-left: 120px auto; margin-top: 5px">
                             <table style="border: 0px dotted orangered; width: 75%; margin: 5px">
+                        
                                 <tr>
                                   <td align="left"><h2>Create New Project</h2></td>
                                 </tr>
                                 <tr>
-                                  <td><input id="txtProjectName" placeholder="Type a Project Name" size="255"/></td>
+                                  <td align="left"><div id="projectStatus" style="text-align: left;color:#F00;font-weight:bold"></div></td>
                                 </tr>
                                 <tr>
-                                  <td><textarea id="txtProjectDescription" rows="10" cols="40" placeholder="Write a project description"></textarea></td>
+                                  <td><input id="txtProjectName" placeholder="Type a Project Name" size="250"/>&nbsp;<button id="createProjectBtn" class="btn btn-primary" value="Create Project">Create Project</button></td>
                                 </tr>
                                 <tr>
                                   <td>&nbsp;</td>
                                 </tr>
-                                <tr>
-                                  <td><button id="createProjectBtn" class="btn btn-primary" value="Create Project">Create Project</button></td>
-                                </tr>
                             </table>
                       </div>
-                        <div id="projectStatus" style="text-align: center"></div>
                     </div>
                     <!-- content end -->
 
