@@ -131,6 +131,31 @@ Feature: None
 			});
 		}
 
+		function getStatuses(){
+			$("div#second").html("");
+			$.ajax({
+				type: 'POST',
+				url: '/plm/rest/status',
+				contentType: 'application/json; charset=UTF-8',
+				accepts: {
+					text: 'application/json'
+				},
+				dataType: 'json',
+				data: JSON.stringify({
+					token: tok
+				}),
+				success: function(data){
+					/* {"statuses":[{"id":1,"name":"Initial"},{"id":2,"name":"Pending"},{"id":3,"name":"InProgress"},{"id":4,"name":"Complete"}]} */
+					for(x in data.statuses){
+						$("div#second").append("<h1>"+data.statuses[x].id+", "+data.statuses[x].name+"</h1>");
+					}
+				},
+				error: function(data){
+					alert("error");
+				}
+			});
+		}
+
 		/************************************************************
 		Function name: loginUser
 		Author: Christian Heckendorf
@@ -154,6 +179,7 @@ Feature: None
 					tok = data.message;
 					if(data.code==0){
 						createUserStory();
+						getStatuses();
 					}
 				},
 				error: function(data){
@@ -166,5 +192,7 @@ Feature: None
 <body onload="loginUser()">
 	User stories for release 1
 	<div id="first"></div>
+	Statuses in the system:
+	<div id="second"></div>
 </body>
 </html>
