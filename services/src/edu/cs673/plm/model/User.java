@@ -33,6 +33,9 @@ public class User{
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="userAssigned")
 	private List<Task> tasksAssigned;
 
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="owner")
+	private List<UserStory> userStoriesOwned;
+
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="userCreated")
 	private List<Bug> bugsCreated;
 
@@ -177,6 +180,26 @@ public class User{
 	************************************************************/
 	public void setBugsAssigned(List<Bug> bugsAssigned){
 		this.bugsAssigned=bugsAssigned;
+	}
+
+	/************************************************************
+	Function name: getUserStoriesOwned()
+	Author: Christian Heckendorf
+	Created date: 11/02/2013
+	Purpose: Gets the owned user stories
+	************************************************************/
+	public List<UserStory> getUserStoriesOwned(){
+		return userStoriesOwned;
+	}
+
+	/************************************************************
+	Function name: setUserStoriesOwned()
+	Author: Christian Heckendorf
+	Created date: 11/02/2013
+	Purpose: Sets the owned user stories
+	************************************************************/
+	public void setUserStoriesOwned(List<UserStory> userStoriesOwned){
+		this.userStoriesOwned = userStoriesOwned;
 	}
 
 }

@@ -26,6 +26,7 @@ public class UserStory{
 	private long id;
 	private String name;
 	private String description;
+	private int points;
 
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="releaseId")
@@ -33,6 +34,14 @@ public class UserStory{
 
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="userStory")
 	private List<Task> tasks;
+
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="statusId")
+	private Status status;
+
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="ownerId")
+	private User owner;
 
 	/************************************************************
 	Function name: overlay()
@@ -143,5 +152,45 @@ public class UserStory{
 	************************************************************/
 	public void setTasks(List<Task> tasks){
 		this.tasks=tasks;
+	}
+
+	/************************************************************
+	Function name: getStatus()
+	Author: Christian Heckendorf
+	Created date: 11/01/2013
+	Purpose: Returns a status
+	************************************************************/
+	public Status getStatus(){
+		return status;
+	}
+
+	/************************************************************
+	Function name: setStatus()
+	Author: Christian Heckendorf
+	Created date: 11/01/2013
+	Purpose: Sets a status
+	************************************************************/
+	public void setStatus(Status status){
+		this.status = status;
+	}
+
+	/************************************************************
+	Function name: getOwner()
+	Author: Christian Heckendorf
+	Created date: 11/01/2013
+	Purpose: Returns a owner
+	************************************************************/
+	public User getOwner(){
+		return owner;
+	}
+
+	/************************************************************
+	Function name: setOwner()
+	Author: Christian Heckendorf
+	Created date: 11/01/2013
+	Purpose: Sets a owner
+	************************************************************/
+	public void setOwner(User owner){
+		this.owner = owner;
 	}
 }
