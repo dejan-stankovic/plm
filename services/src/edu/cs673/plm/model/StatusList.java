@@ -1,8 +1,8 @@
 /************************************************************
-Filename: UserStoryList.java
+Filename: StatusList.java
 Author: Christian Heckendorf
-Created date: 10/22/2013
-Purpose: Holds a list of JSONUserStories
+Created date: 11/02/2013
+Purpose: Holds a list of JSONStatuses
 Feature: Dashboard
 ************************************************************/
 package edu.cs673.plm.model;
@@ -10,58 +10,58 @@ package edu.cs673.plm.model;
 import java.util.List;
 import java.util.ArrayList;
 
-public class UserStoryList{
-	private List<JSONUserStory> userStories;
+public class StatusList{
+	private List<JSONStatus> statuses;
 
 	/************************************************************
-	Function name: UserStoryList()
+	Function name: StatusList()
 	Author: Christian Heckendorf
 	Created date: 10/13/2013
 	Purpose: Default constructor
 	************************************************************/
-	public UserStoryList(){
-		userStories = new ArrayList<JSONUserStory>();
+	public StatusList(){
+		statuses = new ArrayList<JSONStatus>();
 	}
 
 	/************************************************************
-	Function name: addUserStory()
+	Function name: addStatus()
 	Author: Christian Heckendorf
-	Created date: 10/22/2013
-	Purpose: Adds a release to the list
+	Created date: 11/02/2013
+	Purpose: Adds a status to the list
 	************************************************************/
-	public void addUserStory(UserStory userStory){
-		userStories.add(new JSONUserStory(userStory));
+	public void addStatus(Status status){
+		statuses.add(new JSONStatus(status));
 	}
 
 	/************************************************************
-	Function name: addUserStories()
+	Function name: addStatuses()
 	Author: Christian Heckendorf
 	Created date: 10/13/2013
-	Purpose: Adds a list of userStories
+	Purpose: Adds a list of statuses
 	************************************************************/
-	public void addUserStories(List<UserStory> userStories){
-		for(UserStory r : userStories){
-			this.addUserStory(r);
+	public void addStatuses(List<Status> statuses){
+		for(Status r : statuses){
+			this.addStatus(r);
 		}
 	}
 
 	/************************************************************
-	Function name: getUserStories()
+	Function name: getStatuses()
 	Author: Christian Heckendorf
-	Created date: 10/22/2013
-	Purpose: Returns the list of userStories
+	Created date: 11/02/2013
+	Purpose: Returns the list of statuses
 	************************************************************/
-	public List<JSONUserStory> getUserStories(){
-		return userStories;
+	public List<JSONStatus> getStatuses(){
+		return statuses;
 	}
 
 	/************************************************************
-	Function name: setUserStories()
+	Function name: setStatuses()
 	Author: Christian Heckendorf
-	Created date: 10/22/2013
-	Purpose: Sets the list of userStories
+	Created date: 11/02/2013
+	Purpose: Sets the list of statuses
 	************************************************************/
-	public void setUserStories(List<JSONUserStory> userStories){
-		this.userStories=userStories;
+	public void setStatuses(List<JSONStatus> statuses){
+		this.statuses=statuses;
 	}
 }

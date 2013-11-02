@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import edu.cs673.plm.model.JSONUserStory;
 import edu.cs673.plm.model.UserStory;
 import edu.cs673.plm.model.UserStoryList;
 import edu.cs673.plm.model.StatusMessage;
@@ -39,16 +40,45 @@ public class UserStoryDao {
 	************************************************************/
 	public static StatusMessage updateUserStory(Dba dba, UserStory userStory){
 		EntityManager em = dba.getActiveEm();
-		Query q = em.createQuery("select u from UserStory u where u.id = :uid")
-					.setParameter("uid",userStory.getId());
+
 		try{
-			UserStory us = (UserStory)q.getSingleResult();
-			us.overlay(userStory);
-			em.persist(us);
+			em.persist(userStory);
 		} catch(Exception e){
 			return new StatusMessage(-1,"Internal Error");
 		}
+
 		return new StatusMessage(userStory.getId(),"Success");
+	}
+
+	/************************************************************
+	Function name: convert()
+	Author: Christian Heckendorf
+	Created date: 11/02/2013
+	Purpose: Converts a JSONUserStory to a UserStory
+	************************************************************/
+	public static UserStory convert(Dba dba, JSONUserStory juserStory){
+		EntityManager em = dba.getActiveEm();
+
+		try{
+			UserStory us;
+			
+			if(juserStory.getId()>0)
+				us = UserStoryDao.getUserStoryById(dba,juserStory.getId());
+			else
+				us = new UserStory();
+
+			us.overlay(juserStory);
+
+			if(juserStory.getStatus()!=null)
+				us.setStatus(StatusDao.getStatusById(dba,juserStory.getStatus().getId()));
+
+			if(juserStory.getOwner()!=null)
+				us.setOwner(UserDao.getUserById(dba,juserStory.getOwner().getId()));
+
+			return us;
+		} catch(Exception e){
+			return null;
+		}
 	}
 
 	/************************************************************

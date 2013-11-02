@@ -69,7 +69,9 @@ public class UserStoryService {
 						new SessionToken(userStoryReq.getToken().getToken()),
 						pid,
 						Permission.CREATE_USER_STORY)){
-				sm = UserStoryDao.createUserStory(dba,rid,userStoryReq.getUserStory().toUserStory());
+				JSONUserStory jus = userStoryReq.getUserStory();
+				UserStory us = UserStoryDao.convert(dba,jus);
+				sm = UserStoryDao.createUserStory(dba,rid,us);
 			}
 		} finally{
 			dba.closeEm();
@@ -97,8 +99,9 @@ public class UserStoryService {
 						new SessionToken(userStoryReq.getToken().getToken()),
 						pid,
 						Permission.CREATE_USER_STORY)){
-				UserStory us = userStoryReq.getUserStory().toUserStory();
-				us.setId(uid);
+				JSONUserStory jus = userStoryReq.getUserStory();
+				jus.setId(uid); // Just in case
+				UserStory us = UserStoryDao.convert(dba,jus);
 				sm = UserStoryDao.updateUserStory(dba,us);
 			}
 		} finally{

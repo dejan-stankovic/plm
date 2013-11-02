@@ -35,6 +35,10 @@ public class Task{
 	@JoinColumn(name="assignedId")
 	private User userAssigned;
 
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="statusId")
+	private Status status;
+
 	/************************************************************
 	Function name: overlay()
 	Author: Christian Heckendorf
@@ -146,4 +150,23 @@ public class Task{
 		this.userAssigned=userAssigned;
 	}
 
+	/************************************************************
+	Function name: getStatus()
+	Author: Christian Heckendorf
+	Created date: 11/01/2013
+	Purpose: Returns a status
+	************************************************************/
+	public Status getStatus(){
+		return status;
+	}
+
+	/************************************************************
+	Function name: setStatus()
+	Author: Christian Heckendorf
+	Created date: 11/01/2013
+	Purpose: Sets a status
+	************************************************************/
+	public void setStatus(Status status){
+		this.status = status;
+	}
 }

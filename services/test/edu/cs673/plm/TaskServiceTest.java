@@ -18,6 +18,7 @@ import org.glassfish.jersey.test.JerseyTest;
 import edu.cs673.plm.model.TaskList;
 import edu.cs673.plm.model.JSONTask;
 import edu.cs673.plm.model.JSONUser;
+import edu.cs673.plm.model.JSONStatus;
 import edu.cs673.plm.model.JSONTaskRequest;
 import edu.cs673.plm.model.TokenMessage;
 import edu.cs673.plm.model.StatusMessage;
@@ -48,12 +49,16 @@ public class TaskServiceTest extends JerseyTest{
 		TokenMessage tm = new TokenMessage();
 		JSONTask jt = new JSONTask();
 		JSONUser ju = new JSONUser();
+		JSONStatus js = new JSONStatus();
 
 		ju.setId(2);
+
+		js.setId(1);
 
 		jt.setName("newTaskName");
 		jt.setDescription("newTaskDescription");
 		jt.setAssigned(ju);
+		jt.setStatus(js);
 
 		tm.setToken(tok);
 
@@ -78,12 +83,16 @@ public class TaskServiceTest extends JerseyTest{
 		TokenMessage tm = new TokenMessage();
 		JSONTask jt = new JSONTask();
 		JSONUser ju = new JSONUser();
+		JSONStatus js = new JSONStatus();
 
 		ju.setId(1);
+
+		js.setId(4);
 
 		jt.setName("updatedTaskName");
 		jt.setDescription("updatedTaskDescription");
 		jt.setAssigned(ju);
+		jt.setStatus(js);
 
 		tm.setToken(tok);
 

@@ -7,9 +7,19 @@ Feature: None
 ************************************************************/
 package edu.cs673.plm.model;
 
+import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class JSONRelease{
 	long id;
 	String version;
+
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", timezone="EST")
+	Date startDate;
+
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", timezone="EST")
+	Date endDate;
 
 	/************************************************************
 	Function version: JSONRelease()
@@ -29,6 +39,8 @@ public class JSONRelease{
 	public JSONRelease(Release release){
 		id = release.getId();
 		version = release.getVersion();
+		startDate = release.getStartDate();
+		endDate = release.getEndDate();
 	}
 
 	/************************************************************
@@ -69,5 +81,45 @@ public class JSONRelease{
 	************************************************************/
 	public void setVersion(String version){
 		this.version = version;
+	}
+
+	/************************************************************
+	Function name: getStartDate()
+	Author: Christian Heckendorf
+	Created date: 11/02/2013
+	Purpose: Returns a startDate
+	************************************************************/
+	public Date getStartDate(){
+		return startDate;
+	}
+
+	/************************************************************
+	Function name: setStartDate()
+	Author: Christian Heckendorf
+	Created date: 11/02/2013
+	Purpose: Sets a startDate
+	************************************************************/
+	public void setStartDate(Date startDate){
+		this.startDate = startDate;
+	}
+
+	/************************************************************
+	Function name: getEndDate()
+	Author: Christian Heckendorf
+	Created date: 11/02/2013
+	Purpose: Returns a endDate
+	************************************************************/
+	public Date getEndDate(){
+		return endDate;
+	}
+
+	/************************************************************
+	Function name: setEndDate()
+	Author: Christian Heckendorf
+	Created date: 11/02/2013
+	Purpose: Sets a endDate
+	************************************************************/
+	public void setEndDate(Date endDate){
+		this.endDate = endDate;
 	}
 }

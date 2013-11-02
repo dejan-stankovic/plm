@@ -17,12 +17,8 @@ import edu.cs673.plm.model.RoleList;
 import edu.cs673.plm.model.Role;
 
 public class RoleDao {
-	public static final long ROLE_STAKEHOLDER = 1;
-	public static final long ROLE_PROJECT_LEADER = 2;
-	public static final long ROLE_BUSINESS_ANALYST = 3;
-	public static final long ROLE_QUALITY_ASSURANCE = 4;
-	public static final long ROLE_DEVELOPER= 5;
-	public static final long ROLE_RELEASE_MANAGER = 6;
+	public static final long ROLE_PROJECT_LEADER = 1;
+	public static final long ROLE_DEVELOPER= 2;
 
 	/************************************************************
 	Function name: getRoleList()

@@ -11,6 +11,9 @@ public class JSONUserStory{
 	long id;
 	String name;
 	String description;
+	int points;
+	JSONUser owner;
+	JSONStatus status;
 
 	/************************************************************
 	Function name: JSONUserStory()
@@ -44,6 +47,9 @@ public class JSONUserStory{
 		id = userStory.getId();
 		name = userStory.getName();
 		description = userStory.getDescription();
+		points = userStory.getPoints();
+		owner = new JSONUser(userStory.getOwner());
+		status = new JSONStatus(userStory.getStatus());
 	}
 
 	/************************************************************
@@ -104,5 +110,65 @@ public class JSONUserStory{
 	************************************************************/
 	public void setDescription(String description){
 		this.description = description;
+	}
+
+	/************************************************************
+	Function name: getOwner()
+	Author: Christian Heckendorf
+	Created date: 11/02/2013
+	Purpose: Returns a owner
+	************************************************************/
+	public JSONUser getOwner(){
+		return owner;
+	}
+
+	/************************************************************
+	Function name: setOwner()
+	Author: Christian Heckendorf
+	Created date: 11/02/2013
+	Purpose: Sets a owner
+	************************************************************/
+	public void setOwner(JSONUser owner){
+		this.owner = owner;
+	}
+
+	/************************************************************
+	Function name: getStatus()
+	Author: Christian Heckendorf
+	Created date: 11/02/2013
+	Purpose: Returns a status
+	************************************************************/
+	public JSONStatus getStatus(){
+		return status;
+	}
+
+	/************************************************************
+	Function name: setStatus()
+	Author: Christian Heckendorf
+	Created date: 11/02/2013
+	Purpose: Sets a status
+	************************************************************/
+	public void setStatus(JSONStatus status){
+		this.status = status;
+	}
+
+	/************************************************************
+	Function name: getPoints()
+	Author: Christian Heckendorf
+	Created date: 11/02/2013
+	Purpose: Returns a points
+	************************************************************/
+	public int getPoints(){
+		return points;
+	}
+
+	/************************************************************
+	Function name: setPoints()
+	Author: Christian Heckendorf
+	Created date: 11/02/2013
+	Purpose: Sets a points
+	************************************************************/
+	public void setPoints(int points){
+		this.points = points;
 	}
 }

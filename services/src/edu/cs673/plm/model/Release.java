@@ -8,6 +8,7 @@ Feature: None
 package edu.cs673.plm.model;
 
 import java.util.List;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
@@ -17,6 +18,8 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
@@ -27,6 +30,12 @@ public class Release{
 	@GenericGenerator(name="increment", strategy = "increment")
 	private long id;
 	private String version;
+
+	@Temporal(TemporalType.DATE)
+	private Date startDate;
+
+	@Temporal(TemporalType.DATE)
+	private Date endDate;
 
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="projectId")
@@ -43,6 +52,8 @@ public class Release{
 	************************************************************/
 	public void overlay(JSONRelease jsonRelease){
 		version = jsonRelease.getVersion();
+		startDate = jsonRelease.getStartDate();
+		endDate = jsonRelease.getEndDate();
 	}
 
 	/***************************************************************
@@ -125,4 +136,43 @@ public class Release{
 		this.userStories=userStories;
 	}
 
+	/************************************************************
+	Function name: getEndDate()
+	Author: Christian Heckendorf
+	Created date: 11/02/2013
+	Purpose: Returns a endDate
+	************************************************************/
+	public Date getEndDate(){
+		return endDate;
+	}
+
+	/************************************************************
+	Function name: setEndDate()
+	Author: Christian Heckendorf
+	Created date: 11/02/2013
+	Purpose: Sets a endDate
+	************************************************************/
+	public void setEndDate(Date endDate){
+		this.endDate = endDate;
+	}
+
+	/************************************************************
+	Function name: getStartDate()
+	Author: Christian Heckendorf
+	Created date: 11/02/2013
+	Purpose: Returns a startDate
+	************************************************************/
+	public Date getStartDate(){
+		return startDate;
+	}
+
+	/************************************************************
+	Function name: setStartDate()
+	Author: Christian Heckendorf
+	Created date: 11/02/2013
+	Purpose: Sets a startDate
+	************************************************************/
+	public void setStartDate(Date startDate){
+		this.startDate = startDate;
+	}
 }
