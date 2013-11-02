@@ -33,6 +33,8 @@ public class JSONRelease{
 	public JSONRelease(Release release){
 		id = release.getId();
 		version = release.getVersion();
+		startDate = release.getStartDate();
+		endDate = release.getEndDate();
 	}
 
 	/************************************************************

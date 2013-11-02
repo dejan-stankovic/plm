@@ -37,6 +37,7 @@ public class JSONTask{
 		name = task.getName();
 
 		status = new JSONStatus(task.getStatus());
+		assigned = new JSONUser(task.getUserAssigned());
 
 		/* TODO: When the database is filled in, link these up */
 		category = new String("Development");

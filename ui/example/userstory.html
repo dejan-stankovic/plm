@@ -35,7 +35,14 @@ Feature: None
 					},
 					userStory: {
 						name: randomname,
-						description: "Some description"
+						description: "Some description",
+						points: 1,
+						status: {
+							id: 2
+						},
+						owner: {
+							id: 2
+						}
 					}
 				}),
 				success: function(data){
@@ -72,7 +79,14 @@ Feature: None
 					},
 					userStory: {
 						name: randomname,
-						description: "Some description"
+						description: "Some description",
+						points: 1,
+						status: {
+							id: 1
+						},
+						owner: {
+							id: 1
+						}
 					}
 				}),
 				success: function(data){
@@ -106,7 +120,7 @@ Feature: None
 					token: tok
 				}),
 				success: function(data){
-					/* {"userStories":[{"id":1,"name":"New story","description":"Some description here"}]} */
+					/* {"userStories":[{"id":1,"name":"NewRandom 0.028741610702127218","description":"Some description","points":1,"owner":{"id":2,"name":"anotheruser"},"status":{"id":2,"name":"Pending"}},{"id":2,"name":"Random 0.5523067144677043","description":"Some description","points":1,"owner":{"id":1,"name":"auser"},"status":{"id":1,"name":"Initial"}}]} */
 					for(x in data.userStories){
 						$("div#first").append("<h1>"+data.userStories[x].id+", "+data.userStories[x].name+", "+data.userStories[x].description+"</h1>");
 					}

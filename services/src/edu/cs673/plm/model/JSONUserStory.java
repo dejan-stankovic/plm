@@ -47,6 +47,9 @@ public class JSONUserStory{
 		id = userStory.getId();
 		name = userStory.getName();
 		description = userStory.getDescription();
+		points = userStory.getPoints();
+		owner = new JSONUser(userStory.getOwner());
+		status = new JSONStatus(userStory.getStatus());
 	}
 
 	/************************************************************

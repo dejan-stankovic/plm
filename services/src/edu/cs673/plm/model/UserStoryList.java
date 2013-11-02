@@ -29,8 +29,8 @@ public class UserStoryList{
 	Created date: 10/22/2013
 	Purpose: Adds a release to the list
 	************************************************************/
-	public void addUserStory(UserStory release){
-		userStories.add(new JSONUserStory(release));
+	public void addUserStory(UserStory userStory){
+		userStories.add(new JSONUserStory(userStory));
 	}
 
 	/************************************************************
