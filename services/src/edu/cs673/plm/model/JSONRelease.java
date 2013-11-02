@@ -9,10 +9,16 @@ package edu.cs673.plm.model;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class JSONRelease{
 	long id;
 	String version;
+
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", timezone="EST")
 	Date startDate;
+
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", timezone="EST")
 	Date endDate;
 
 	/************************************************************
