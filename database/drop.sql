@@ -2,7 +2,7 @@ use plm;
 
 drop table if exists `Task`;
 drop table if exists `Bug`;
-drop table if exists `UserStory Comments`;
+drop table if exists `UserStoryComment`;
 drop table if exists `UserStory`;
 drop table if exists `Release`;
 drop table if exists `UserProject`;

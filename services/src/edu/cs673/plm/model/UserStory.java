@@ -35,6 +35,9 @@ public class UserStory{
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="userStory")
 	private List<Task> tasks;
 
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="userStory")
+	private List<UserStoryComment> comments;
+
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="statusId")
 	private Status status;
@@ -49,9 +52,10 @@ public class UserStory{
 	Created date: 10/26/2013
 	Purpose: Overlays the attributes from another user story
 	************************************************************/
-	public void overlay(UserStory userStory){
+	public void overlay(JSONUserStory userStory){
 		name = userStory.getName();
 		description = userStory.getDescription();
+		points = userStory.getPoints();
 	}
 
 	/***************************************************************
@@ -192,5 +196,45 @@ public class UserStory{
 	************************************************************/
 	public void setOwner(User owner){
 		this.owner = owner;
+	}
+
+	/************************************************************
+	Function name: getPoints()
+	Author: Christian Heckendorf
+	Created date: 11/02/2013
+	Purpose: Returns the points
+	************************************************************/
+	public int getPoints(){
+		return points;
+	}
+
+	/************************************************************
+	Function name: setPoints()
+	Author: Christian Heckendorf
+	Created date: 11/02/2013
+	Purpose: Sets the points
+	************************************************************/
+	public void setPoints(int points){
+		this.points = points;
+	}
+
+	/************************************************************
+	Function name: getComments()
+	Author: Christian Heckendorf
+	Created date: 11/02/2013
+	Purpose: Returns the comments
+	************************************************************/
+	public List<UserStoryComment> getComments(){
+		return comments;
+	}
+
+	/************************************************************
+	Function name: setComments()
+	Author: Christian Heckendorf
+	Created date: 11/02/2013
+	Purpose: Sets the comments
+	************************************************************/
+	public void setComments(List<UserStoryComment> comments){
+		this.comments = comments;
 	}
 }

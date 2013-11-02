@@ -25,10 +25,10 @@ public class Status{
 	private long id;
 	private String name;
 
-	@OneToMany(fetch=FetchType.LAZY, mappedBy="statusId")
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="status")
 	private List<UserStory> userStories;
 
-	@OneToMany(fetch=FetchType.LAZY, mappedBy="statusId")
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="status")
 	private List<Task> tasks;
 
 	/***************************************************************

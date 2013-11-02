@@ -7,9 +7,13 @@ Feature: None
 ************************************************************/
 package edu.cs673.plm.model;
 
+import java.util.Date;
+
 public class JSONRelease{
 	long id;
 	String version;
+	Date startDate;
+	Date endDate;
 
 	/************************************************************
 	Function version: JSONRelease()
@@ -69,5 +73,45 @@ public class JSONRelease{
 	************************************************************/
 	public void setVersion(String version){
 		this.version = version;
+	}
+
+	/************************************************************
+	Function name: getStartDate()
+	Author: Christian Heckendorf
+	Created date: 11/02/2013
+	Purpose: Returns a startDate
+	************************************************************/
+	public Date getStartDate(){
+		return startDate;
+	}
+
+	/************************************************************
+	Function name: setStartDate()
+	Author: Christian Heckendorf
+	Created date: 11/02/2013
+	Purpose: Sets a startDate
+	************************************************************/
+	public void setStartDate(Date startDate){
+		this.startDate = startDate;
+	}
+
+	/************************************************************
+	Function name: getEndDate()
+	Author: Christian Heckendorf
+	Created date: 11/02/2013
+	Purpose: Returns a endDate
+	************************************************************/
+	public Date getEndDate(){
+		return endDate;
+	}
+
+	/************************************************************
+	Function name: setEndDate()
+	Author: Christian Heckendorf
+	Created date: 11/02/2013
+	Purpose: Sets a endDate
+	************************************************************/
+	public void setEndDate(Date endDate){
+		this.endDate = endDate;
 	}
 }

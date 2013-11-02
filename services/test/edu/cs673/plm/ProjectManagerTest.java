@@ -8,6 +8,8 @@ import org.junit.Ignore;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
+import java.util.Date;
+
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.client.WebTarget;
@@ -52,6 +54,8 @@ public class ProjectManagerTest extends JerseyTest{
 		JSONRelease jr = new JSONRelease();
 
 		jr.setVersion("1.0.0");
+		jr.setStartDate(new Date(System.currentTimeMillis())); // Now
+		jr.setEndDate(new Date(System.currentTimeMillis()+86400000)); // Tomorrow
 
 		tm.setToken(tok);
 
@@ -77,6 +81,8 @@ public class ProjectManagerTest extends JerseyTest{
 		JSONRelease jr = new JSONRelease();
 
 		jr.setVersion("2.0.0");
+		jr.setStartDate(new Date(System.currentTimeMillis())); // Now
+		jr.setEndDate(new Date(System.currentTimeMillis()+86400000)); // Tomorrow
 
 		tm.setToken(tok);
 

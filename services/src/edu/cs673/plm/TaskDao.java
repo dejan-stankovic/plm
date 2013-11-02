@@ -90,7 +90,9 @@ public class TaskDao {
 		if(jtask.getAssigned()!=null)
 			ret.setUserAssigned(UserDao.getUserById(dba,jtask.getAssigned().getId()));
 
-		/* TODO: status */
+		if(jtask.getStatus()!=null){
+			ret.setStatus(StatusDao.getStatusById(dba,jtask.getStatus().getId()));
+		}
 
 		return ret;
 	}

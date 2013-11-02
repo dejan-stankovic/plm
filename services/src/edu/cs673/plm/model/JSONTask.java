@@ -14,7 +14,7 @@ public class JSONTask{
 	String category;
 	String priority;
 	String risk;
-	String status;
+	JSONStatus status;
 	JSONUser assigned;
 
 	/************************************************************
@@ -36,11 +36,12 @@ public class JSONTask{
 		id = task.getId();
 		name = task.getName();
 
+		status = new JSONStatus(task.getStatus());
+
 		/* TODO: When the database is filled in, link these up */
 		category = new String("Development");
 		priority = new String("High");
 		risk = new String("Medium");
-		status = new String("Pending");
 	}
 
 	/************************************************************
@@ -164,26 +165,6 @@ public class JSONTask{
 	}
 
 	/************************************************************
-	Function name: getStatus()
-	Author: Christian Heckendorf
-	Created date: 10/13/2013
-	Purpose: Returns the status
-	************************************************************/
-	public String getStatus(){
-		return status;
-	}
-
-	/************************************************************
-	Function name: setStatus()
-	Author: Christian Heckendorf
-	Created date: 10/13/2013
-	Purpose: Sets the status
-	************************************************************/
-	public void setStatus(String status){
-		this.status = status;
-	}
-
-	/************************************************************
 	Function name: getAssigned
 	Author: Christian Heckendorf
 	Created date: 10/27/2013
@@ -201,6 +182,26 @@ public class JSONTask{
 	************************************************************/
 	public void setAssigned(JSONUser assigned){
 		this.assigned = assigned;
+	}
+
+	/************************************************************
+	Function name: getStatus()
+	Author: Christian Heckendorf
+	Created date: 11/02/2013
+	Purpose: Returns the status
+	************************************************************/
+	public JSONStatus getStatus(){
+		return status;
+	}
+
+	/************************************************************
+	Function name: setStatus()
+	Author: Christian Heckendorf
+	Created date: 11/02/2013
+	Purpose: Sets the status
+	************************************************************/
+	public void setStatus(JSONStatus status){
+		this.status = status;
 	}
 
 }

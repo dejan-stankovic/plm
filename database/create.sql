@@ -35,8 +35,8 @@ create table `Release`(
 	id int auto_increment primary key,
 	version varchar(50) not null,
 	projectId int,
-	startdate DATE,
-	enddate DATE, 
+	startDate DATE,
+	endDate DATE, 
 	foreign key (projectId) references `Project`(id)
 );
 
@@ -53,9 +53,9 @@ create table `UserStory`(
 	foreign key (releaseId) references `Release`(id)
 );
 
-create table `UserStoryComments`(
+create table `UserStoryComment`(
 	id int auto_increment primary key,
-	comments varchar(50) not null,
+	comments varchar(200) not null,
 	authorId int,
 	createdOn  DATE,
 	userStoryId int,

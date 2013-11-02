@@ -18,6 +18,8 @@ import org.glassfish.jersey.test.JerseyTest;
 import edu.cs673.plm.model.UserStoryList;
 import edu.cs673.plm.model.JSONStoryRequest;
 import edu.cs673.plm.model.JSONUserStory;
+import edu.cs673.plm.model.JSONStatus;
+import edu.cs673.plm.model.JSONUser;
 import edu.cs673.plm.model.TokenMessage;
 import edu.cs673.plm.model.StatusMessage;
 
@@ -46,9 +48,17 @@ public class UserStoryServiceTest extends JerseyTest{
 		JSONStoryRequest req = new JSONStoryRequest();
 		TokenMessage tm = new TokenMessage();
 		JSONUserStory jus = new JSONUserStory();
+		JSONUser ju = new JSONUser();
+		JSONStatus js = new JSONStatus();
+
+		ju.setId(2);
+
+		js.setId(1);
 
 		jus.setName("name");
 		jus.setDescription("desc");
+		jus.setOwner(ju);
+		jus.setStatus(js);
 
 		tm.setToken(tok);
 
@@ -71,9 +81,17 @@ public class UserStoryServiceTest extends JerseyTest{
 		JSONStoryRequest req = new JSONStoryRequest();
 		TokenMessage tm = new TokenMessage();
 		JSONUserStory jus = new JSONUserStory();
+		JSONUser ju = new JSONUser();
+		JSONStatus js = new JSONStatus();
+
+		ju.setId(1);
+
+		js.setId(3);
 
 		jus.setName("name");
 		jus.setDescription("desc");
+		jus.setOwner(ju);
+		jus.setStatus(js);
 
 		tm.setToken(tok);
 
