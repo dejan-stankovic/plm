@@ -67,24 +67,38 @@ Created date: 11/2/2013
 Purpose:load dummy data
 ************************************************************/
 function loadDummyData() {
-    statusData = [{ "id": 1, "name": "Initial" }, { "id": 2, "name": "Pending" }, { "id": 3, "name": "InProgress" }, { "id": 4, "name": "Complete" }];
+    statusData = [{ "id": 1, "name": "Initial" }, { "id": 2, "name": "Pending" }, { "id": 3, "name": "InProgress" }, { "id": 4, 
+
+"name": "Complete" }];
     usersData = ["Alan", "Christian", "Manav", "Rachit", "Tandy", "Yuvraj"];
     userStoryData = [
-           { "Id": 1, "Title": "Able to login", "Description": "test", "StoryPoint": "5", "Owner": "Manav", "Status": "Initial", "Priority": "High" },
-           { "Id": 2, "Title": "Able to enter time", "Description": "test", "StoryPoint": "4", "Owner": "Rachit", "Status": "Approved", "Priority": "Medium" },
-           { "Id": 3, "Title": "Able to view employee details", "Description": "", "StoryPoint": "2", "Owner": "Christian", "Status": "PendingApproval", "Priority": "Low" },
-           { "Id": 4, "Title": "Able to save employee information", "Description": "", "StoryPoint": "2", "Owner": "Yuvraj", "Status": "InProgress", "Priority": "Low" },
-           { "Id": 5, "Title": "Able to generate employee report", "Description": "", "StoryPoint": "1", "Owner": "Yuvraj", "Status": "Complete", "Priority": "Medium" },
+           { "Id": 1, "Title": "Able to login", "Description": "test", "StoryPoint": "5", "Owner": "Manav", "Status": "Initial", 
+
+"Priority": "High" },
+           { "Id": 2, "Title": "Able to enter time", "Description": "test", "StoryPoint": "4", "Owner": "Rachit", "Status": 
+
+"Approved", "Priority": "Medium" },
+           { "Id": 3, "Title": "Able to view employee details", "Description": "", "StoryPoint": "2", "Owner": "Christian", "Status": 
+
+"PendingApproval", "Priority": "Low" },
+           { "Id": 4, "Title": "Able to save employee information", "Description": "", "StoryPoint": "2", "Owner": "Yuvraj", 
+
+"Status": "InProgress", "Priority": "Low" },
+           { "Id": 5, "Title": "Able to generate employee report", "Description": "", "StoryPoint": "1", "Owner": "Yuvraj", "Status": 
+
+"Complete", "Priority": "Medium" },
     ];
     commentsData = [
         { UserStoryId : 1, "Id": 1, "Comments": "shall we use third party tool for login", "Creator": "Manav" },
         { UserStoryId: 1, "Id": 2, "Comments": "yes, but the validation should happen on services", "Creator": "Christian" },
-        { UserStoryId: 1, "Id": 3, "Comments": "attaching schema for the login table<br/>http://www.google.com", "Creator": "Vipul" },
+        { UserStoryId: 1, "Id": 3, "Comments": "attaching schema for the login table<br/>http://www.google.com", "Creator": "Vipul" 
+
+},
     ];
 }
 /************************************************************
 Function name: loadDataFromServices
-Author: Yuvaraj & Rachit
+Author: Yuvaraj
 Created date: 11/3/2013
 Purpose: invokes services to load the data
 ************************************************************/
@@ -120,7 +134,7 @@ function kendofy() {
 }
 /************************************************************
 Function name: loadUserStoryGrid
-Author: Yuvaraj & Rachit
+Author: Yuvaraj
 Created date: 11/3/2013
 Purpose: load user story grid
 ************************************************************/
@@ -135,7 +149,7 @@ function loadUserStoryGrid() {
             Title: "Title",
             template: "<a href=\\#>#=Title#</a>",
             width: "60%",
-        }, {
+        },{
             field: "StoryPoint",
             Title: "StoryPoint",
             width: "10%",
@@ -191,7 +205,7 @@ function loadUserStoryGrid() {
 }
 /************************************************************
 Function name: loadCommentsGrid 
-Author: Yuvaraj & Rachit
+Author: Rachit
 Created date: 11/3/2013
 Purpose: load comments grid
 ************************************************************/
@@ -205,7 +219,9 @@ function loadCommentsGrid() {
             field: "Delete",
             Title: "Delete",
             width: "3%",
-            template: "<span class='icon_16 delete' onclick='deleteComment(#=Id#);' style='text-align:right' title='Delete Comment'></span>",
+            template: "<span class='icon_16 delete' onclick='deleteComment(#=Id#);' style='text-align:right' title='Delete 
+
+Comment'></span>",
             headerAttributes: {
                 style: "display:none"
             }
@@ -234,14 +250,15 @@ function loadCommentsGrid() {
 
 /************************************************************
 Function name: registerEvents 
-Author: Yuvaraj & Rachit
+Author: Yuvaraj
 Created date: 11/3/2013
 Purpose: register all control events
 ************************************************************/
 function registerEvents() {
     $("#btnFilter").click(function () {
         var release = $("#releaseddl").data("kendoComboBox").text();
-        var status = $("#statusddl").data("kendoComboBox").text();
+	var userstory = $("#userstoryddl").data("kendoComboBox").text();
+        /*var status = $("#statusddl").data("kendoComboBox").text();*/
         var filter = [];
         filter.push({ field: "Status", operator: "eq", value: status });
         $("#grid").data("kendoGrid").dataSource.filter(filter);
@@ -299,14 +316,16 @@ function registerEvents() {
     });
     $("#btnAddComment").click(function () {
         var dataSource = $("#commentsGrid").data("kendoGrid").dataSource.data();
-        var item = { UserStoryId : selectedUserStoryId, Id: getNewId(dataSource), Comments: $("#txtNewComment").val(), Creator: "currentuser" };
+        var item = { UserStoryId : selectedUserStoryId, Id: getNewId(dataSource), Comments: $("#txtNewComment").val(), Creator: 
+
+"currentuser" };
         dataSource.push(item);
         $("#commentsGrid").data("kendoGrid").refresh();
     });
 }
 /************************************************************
 Function name: deleteComment 
-Author: Yuvaraj & Rachit
+Author: Manav
 Created date: 11/3/2013
 Purpose: delete comment event handler
 ************************************************************/
@@ -323,7 +342,7 @@ function deleteComment(id) {
 /*private methods*/
 /************************************************************
 Function name: isNull 
-Author: Yuvaraj & Rachit
+Author: Manav
 Created date: 11/3/2013
 Purpose: helper method to check if value is null or not
 ************************************************************/
@@ -332,7 +351,7 @@ function isNull(value) {
 }
 /************************************************************
 Function name: reqdQueryString 
-Author: Yuvaraj & Rachit
+Author: Manav
 Created date: 11/3/2013
 Purpose: read query string and fetch the value for the key passed
 ************************************************************/
@@ -348,7 +367,7 @@ function readQueryString(param) {
 }
 /************************************************************
 Function name: validate 
-Author: Yuvaraj & Rachit
+Author: Manav
 Created date: 11/3/2013
 Purpose: validate the ui before save
 ************************************************************/
@@ -369,7 +388,7 @@ function validate() {
 }
 /************************************************************
 Function name: update 
-Author: Yuvaraj & Rachit
+Author: Manav
 Created date: 11/3/2013
 Purpose: update the model before save
 ************************************************************/
@@ -405,7 +424,7 @@ function update() {
 }
 /************************************************************
 Function name: getNewId 
-Author: Yuvaraj & Rachit
+Author: Manav
 Created date: 11/3/2013
 Purpose: get the new User Storyid/ comment id
 ************************************************************/
@@ -420,7 +439,7 @@ function getNewId(dataSource) {
 }
 /************************************************************
 Function name: loadStatusDropDown 
-Author: Yuvaraj & Rachit
+Author: Manav
 Created date: 11/3/2013
 Purpose: load status drop down
 ************************************************************/
@@ -434,7 +453,7 @@ function loadStatusDropDown(id, dataSource) {
 }
 /************************************************************
 Function name: loaduserStories 
-Author: Yuvaraj & Rachit
+Author: Manav
 Created date: 11/3/2013
 Purpose: load status drop down
 ************************************************************/
@@ -458,7 +477,7 @@ function loadUserStories(userStories) {
 }
 /************************************************************
 Function name: loadComments 
-Author: Yuvaraj & Rachit
+Author: Manav
 Created date: 11/3/2013
 Purpose: load comments grid
 ************************************************************/
@@ -467,7 +486,7 @@ function loadComments(comments) {
 }
 /************************************************************
 Function name: loadReleases
-Author: Yuvaraj & Rachit
+Author: Manav
 Created date: 11/3/2013
 Purpose: load releases drop down
 ************************************************************/
