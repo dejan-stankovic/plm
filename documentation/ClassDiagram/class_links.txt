@@ -42,3 +42,12 @@
 \umluniassoc[geometry=--]{SessionToken}{UnixTime}
 \umluniassoc[geometry=--]{SessionToken}{SecKey}
 
+\umluniassoc[geometry=--]{StatusService}{StatusDao}
+\umluniassoc[geometry=--]{TaskService}{TaskDao}
+\umluniassoc[geometry=|-|,anchors=-90 and 50]{UserStoryService}{UserStoryDao}
+\umluniassoc[geometry=|-|]{UserStoryService}{ReleaseDao}
+\umluniassoc[geometry=--]{StatusService}{SessionToken}
+\umluniassoc[geometry=--]{TaskService}{SessionToken}
+\umluniassoc[geometry=|-,anchors=90 and -30]{UserStoryService}{SessionToken}
+\umluniassoc[geometry=--]{SessionToken}{UnixTime}
+\umluniassoc[geometry=--]{SessionToken}{SecKey}
