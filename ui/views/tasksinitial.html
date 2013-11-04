@@ -1,8 +1,8 @@
 <!--
 Filename: tasks.html
 Author: Yuvaraj & Rachit
-Created date: 09/30/2013
-Purpose: create tasks
+Created date: 10/3/2013
+Purpose: view to handle task functionality
 Feature: None
 -->
 <!DOCTYPE html>
@@ -13,7 +13,7 @@ Feature: None
     <script src="../js/lib/kendo.all.min.js"></script>
     <script src="../js/lib/bootstrap.min.js"></script>
     <script src="../js/app/common.js"></script>
-    <script src="../js/app/userstory.js"></script>
+    <script src="../js/app/tasks.js"></script>
     <link rel="stylesheet" href="http://cdn.kendostatic.com/2013.2.918/styles/kendo.common.min.css" />
     <link rel="stylesheet" href="http://cdn.kendostatic.com/2013.2.918/styles/kendo.bootstrap.min.css" />
 
@@ -71,7 +71,7 @@ Feature: None
              },
              waitSeconds: 15
          });
-
+ 
          // Load the phase tasks module
          require(["../app/grid"], function () {
              alert('hi');
@@ -120,22 +120,16 @@ Feature: None
                             <table style="border: 0px dotted orangered; width: 75%; text-align: center; margin: 5px">
                                 <tr>
                                     <td>
-                                        <b>Project :</b></td>
-                                    <td>
-									    <select id="projectdd1">
-									    </select>
+                                        <b>Project :</b>
                                     </td>
-
+                                    <td>
+                                        <label id="projectLbl"></label>
+                                    </td>
                                     <td><b>Release :</b></td>
                                     <td>
                                         <select id="releaseddl">
-
+                                            
                                         </select>
-                                    </td>
-                                    <td><b>User story :</b></td>
-									<td>
-									    <select id="userstoryddl">
-									    </select>
                                     </td>
                                     <td><b>Status :</b></td>
                                     <td>
@@ -164,14 +158,16 @@ Feature: None
                                         <input id="titleTxt" type="text" style="width: 99%" /></td>
                                 </tr>
                                 <tr>
-
+                                    <td>Story Point : </td>
+                                    <td>
+                                        <input id="storyPointTxt" type="text" /></td>
                                     <td>Owner : </td>
                                     <td>
                                         <input id="ownerTxt" type="text" /></td>
                                     <td>Status : </td>
                                     <td>
                                         <select id="editStatusDdl">
-
+                                           
                                         </select>
 
                                     </td>
@@ -211,14 +207,14 @@ Feature: None
                                     </td>
                                     <td colspan="5"></td>
                                     <td align="right" style="text-align:right">
-                                        <button id="btnCreateUserStory" class="btn btn-inverse">Create Task</button>
+                                        <button id="btnCreateUserStory" class="btn btn-inverse">Create Tasks</button>
                                     </td>
                                 </tr>
                             </table>
                         </div>
                         <div>
                             <table style="border: 2px solid gray; width: 99%; text-align: center; margin: 5px">
-
+                                
                             </table>
                         </div>
                     </div>
