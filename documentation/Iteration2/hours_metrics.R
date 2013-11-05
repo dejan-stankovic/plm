@@ -14,7 +14,10 @@ ylab("Hours of Work")
 #g
 
 h <- g + facet_wrap(~ variable, ncol=2)
-h
+#h
 
-#bars <- qplot(week, value, data=df, fill=factor(variable), geom="bar", stat="identity")
-#bars
+bars <- qplot(week, value, data=df, fill=factor(variable), geom="bar", stat="identity") +
+labs(title="Project Contributions") +
+xlab("Week") +
+ylab("Hours of Work")
+bars
