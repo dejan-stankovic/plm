@@ -55,8 +55,10 @@ Created date: 11/2/2013
 Purpose: load fetches the data from services and loads page
 ************************************************************/
 function loadData() {
-    projectId = isNull(readQueryString("pid")) ? 1 : readQueryString("pid");
-    projectName = isNull(readQueryString("pname")) ? 'Employee Portal' : readQueryString("pname");
+    token = getToken();
+    projectId = getCurProject();
+    //projectId = isNull(readQueryString("pid")) ? 1 : readQueryString("pid");
+    //projectName = isNull(readQueryString("pname")) ? 'Employee Portal' : readQueryString("pname");
     //loadDummyData();
     loadDataFromServices();
 }
@@ -89,7 +91,8 @@ Created date: 11/2/2013
 Purpose: invokes services to load the data
 ************************************************************/
 function loadDataFromServices() {
-    loginUser();
+    getReleases(projectId);
+    getStatuses();
 }
 /************************************************************
 Function name: kendofy 
@@ -240,10 +243,10 @@ Purpose: register all control events
 ************************************************************/
 function registerEvents() {
     $("#btnFilter").click(function () {
-        var release = $("#releaseddl").data("kendoComboBox").text();
-        var status = $("#statusddl").data("kendoComboBox").text();
+        var releaset = $("#releaseddl").data("kendoComboBox").text();
+        var statust = $("#statusddl").data("kendoComboBox").text();
         var filter = [];
-        filter.push({ field: "Status", operator: "eq", value: status });
+        filter.push({ field: "Status", operator: "eq", value: statust });
         $("#grid").data("kendoGrid").dataSource.filter(filter);
         $("#grid").data("kendoGrid").refresh();
     });
@@ -585,10 +588,13 @@ Author: Christian Heckendorf
 Created date: 10/26/2013
 Purpose: Displays a list of user stories under a release
 ************************************************************/
-function getUserStories() {
+function getUserStories(rid) {
+    //var cb = $("#releaseddl").data("kendoComboBox");
+    //var rid = cb.dataItem().id;
+
     $.ajax({
-        type: 'GET', //'GET',
-        url: '../js/data/serviceResponse.js', //'/plm/rest/userstory/r/1', //
+        type: 'POST',
+        url: '/plm/rest/userstory/r/'+rid,
         contentType: 'application/json; charset=UTF-8',
         accepts: {
             text: 'application/json'
@@ -599,6 +605,7 @@ function getUserStories() {
         }),
         success: function (data) {
             loadUserStories(data.userStories);
+            getComments(); // TODO: make this related to the service call
         },
         error: function (data) {
             alert("error");
@@ -607,8 +614,8 @@ function getUserStories() {
 }
 function getStatuses() {
     $.ajax({
-        type: 'GET',
-        url: '../js/data/serviceResponse.js', //'/plm/rest/status', //, //,
+        type: 'POST',
+        url: '/plm/rest/status',
         contentType: 'application/json; charset=UTF-8',
         accepts: {
             text: 'application/json'
@@ -628,7 +635,7 @@ function getStatuses() {
 }
 function getComments() {
     $.ajax({
-        type: 'GET',
+        type: 'POST',
         url: '../js/data/serviceResponse.js',
         contentType: 'application/json; charset=UTF-8',
         accepts: {
@@ -647,39 +654,6 @@ function getComments() {
     });
 }
 /************************************************************
-Function name: loginUser
-Author: Christian Heckendorf
-Created date: 09/30/2013
-Purpose: Logs in a user
-************************************************************/
-function loginUser() {
-    $.ajax({
-        type: 'GET',
-        url: '../js/data/serviceResponse.js', //'/plm/rest/login', //
-        contentType: 'application/json; charset=UTF-8',
-        accepts: {
-            text: 'application/json'
-        },
-        dataType: 'json',
-        data: JSON.stringify({
-            name: 'auser',
-            password: 'apassword'
-        }),
-        success: function (data) {
-            token = data.message;
-            if (data.code == 0) {
-                getReleases();
-                getStatuses();
-                getUserStories();
-                getComments();
-            }
-        },
-        error: function (data) {
-            alert("error");
-        }
-    });
-}
-/************************************************************
 Function name: getReleases
 Author: Christian Heckendorf
 Created date: 10/13/2013
@@ -687,8 +661,8 @@ Purpose: Updates a list of releases in a project
 ************************************************************/
 function getReleases(pid) {
     $.ajax({
-        type: 'GET',
-        url: '../js/data/serviceResponse.js', //'/plm/rest/projectmanage/releases/p/' + projectId, // 
+        type: 'POST',
+        url: '/plm/rest/projectmanage/releases/p/' + pid,
         contentType: 'application/json; charset=UTF-8',
         accepts: {
             text: 'application/json'
@@ -699,14 +673,10 @@ function getReleases(pid) {
         }),
         success: function (data) {
             loadReleases(data.releases);
+            getUserStories(data.releases[0].id);
         },
         error: function (data) {
             alert("error");
         }
     });
 }
-
-
-
-
-
