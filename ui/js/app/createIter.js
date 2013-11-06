@@ -32,9 +32,10 @@ $(function() {
 
 function createIter(info){
     /*Formats the dates selected by user + current project's ID*/
-    var formatStart = $.datepicker.formatDate("yy-mm-dd", startDate);
-    var formatEnd = $.datepicket.formatDate("yy-mm-dd", endDate);
+    var formatStart = $.datepicker.formatDate("yy-mm-dd", new Date(info.elements.startDate.value));
+    var formatEnd = $.datepicket.formatDate("yy-mm-dd", new Date(info.elements.endDate.value));
     var projectID = getCurProject();
+    var version = info.elements.version.value;
     tok = getToken();
                 
     $.ajax({
