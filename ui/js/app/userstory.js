@@ -20,6 +20,7 @@ var commentsData = [];
 var token = null;
 //project id extracted from query string
 var projectId = 1;
+var releaseId = 1;
 //project name extracted from query string
 var projectName = 'Employee Portal';
 
@@ -93,6 +94,7 @@ Purpose: invokes services to load the data
 function loadDataFromServices() {
     getReleases(projectId);
     getStatuses();
+	getUsersInProject();
 }
 /************************************************************
 Function name: kendofy 
@@ -108,6 +110,8 @@ function kendofy() {
     $("#editPriorityDdl").kendoComboBox();
     $("#ownerTxt").kendoAutoComplete({
         dataSource: usersData,
+		dataTextName: "name",
+		dataTextValue: "id",
         filter: "startswith",
         placeholder: "select user...",
         separator: ", "
@@ -270,7 +274,7 @@ function registerEvents() {
             createUserStory(item);
         }
         else {
-            updateUserStory(item);
+            updateUserStory(item,selectedUserStoryId);
         }
         selectedUserStoryId = 0;
     });
@@ -435,6 +439,14 @@ function loadStatusDropDown(id, dataSource) {
         dataSource: dataSource
     });
 }
+function loadUsersData(id, dataSource) {
+    usersData = dataSource;
+    $("#" + id).kendoComboBox({
+        dataTextField: "name",
+        dataValueField: "id",
+        dataSource: dataSource
+    });
+}
 /************************************************************
 Function name: loaduserStories 
 Author: Manav
@@ -445,6 +457,7 @@ function loadUserStories(userStories) {
     /* {"userStories":[{"id":1,"name":"NewRandom 0.028741610702127218","description":"Some description",
             "points":1,"owner":{"id":2,"name":"anotheruser"},"status":{"id":2,"name":"Pending"}},
              */
+	userStoryData=[];
     $.each(userStories, function (index, userStory) {
         userStoryData.push({
             Id: userStory.id,
@@ -476,20 +489,63 @@ Purpose: load releases drop down
 ************************************************************/
 function loadReleases(releases) {
     $("#releaseddl").kendoComboBox({
-        dataSource: releases
+        dataSource: releases,
+        dataTextField: "version",
+        dataTextValue: "id",
+		select: function(e){
+			releaseId=this.dataItem(e.item.index()).id;
+			getUserStories(releaseId);
+		}
     });
 }
 // service calls
+/************************************************************
+Function name: getUsersInProject
+Author: Christian Heckendorf
+Created date: 10/14/2013
+Purpose: Gets all users in the project
+************************************************************/
+function getUsersInProject(){
+	var pid,tok;
+
+	tok = getToken();
+
+	$.ajax({
+		type: 'POST',
+		url: '/plm/rest/projectmanage/p/'+projectId+'/users',
+		contentType: 'application/json; charset=UTF-8',
+		accepts: {
+			text: 'application/json'
+		},
+		dataType: 'json',
+		data: JSON.stringify({
+			token: tok
+		}),
+		success: function(data){
+            loadUsersData("ownerTxt", data.users);
+		},
+		error: function(data){
+			alert("error");
+		}
+	});
+}
+
 /************************************************************
 Function name: updatesUserStory
 Author: Christian Heckendorf
 Created date: 10/26/2013
 Purpose: Updates a user story
 ************************************************************/
-function updateUserStory(item) {
+function updateUserStory(item,uid) {
+	var cb = $("#editStatusDdl").data("kendoComboBox");
+	var sid = cb.dataItem().id;
+
+	cb = $("#ownerTxt").data("kendoAutoComplete");
+	var uid = cb.value();
+
     $.ajax({
         type: 'POST',
-        url: '/plm/rest/userstory/update/u/1',
+        url: '/plm/rest/userstory/update/u/'+selectedUserStoryId,
         contentType: 'application/json; charset=UTF-8',
         accepts: {
             text: 'application/json'
@@ -504,18 +560,11 @@ function updateUserStory(item) {
                 description: item.Description,
                 points: item.StoryPoint,
                 status: {
-                    id: function(){
-                        $.each(statusData, function (index, status) {
-                            if (status.name == item.Status) {
-                                return (status.id);
-                            }
-                        });
-                        return (1);
-                    }
+                    id: sid
                 },
                 owner: {
                     // TODO : Should be getting the list of users along with id, name
-                    id: 2
+                    id: uid
                 }
             }
         }),
@@ -538,9 +587,15 @@ Created date: 10/26/2013
 Purpose: Creates a new user story
 ************************************************************/
 function createUserStory(item) {
+	var cb = $("#editStatusDdl").data("kendoComboBox");
+	var sid = cb.dataItem().id;
+
+	cb = $("#ownerTxt").data("kendoAutoComplete");
+	var uid = cb.value();
+
     $.ajax({
         type: 'POST',
-        url: '/plm/rest/userstory/create/r/1',
+        url: '/plm/rest/userstory/create/r/'+releaseId,
         contentType: 'application/json; charset=UTF-8',
         accepts: {
             text: 'application/json'
@@ -555,18 +610,11 @@ function createUserStory(item) {
                 description: item.Description,
                 points: item.StoryPoint,
                 status: {
-                    id: function () {
-                        $.each(statusData, function (index, status) {
-                            if (status.name == item.Status) {
-                                return (status.id);
-                            }
-                        });
-                        return (1);
-                    }
+                    id: sid
                 },
                 owner: {
                     // TODO : Should be getting the list of users along with id, name
-                    id: 2
+                    id: uid
                 }
             }
         }),
@@ -673,7 +721,6 @@ function getReleases(pid) {
         }),
         success: function (data) {
             loadReleases(data.releases);
-            getUserStories(data.releases[0].id);
         },
         error: function (data) {
             alert("error");
