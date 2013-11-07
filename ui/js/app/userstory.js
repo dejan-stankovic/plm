@@ -140,7 +140,7 @@ function loadUserStoryGrid() {
         columns: [{
             field: "Title",
             Title: "Title",
-            template: "<a href='Task.html?uid=#=Id#&uname=#=Title#'>#=Title#</a>",
+            template: "<a href='task.html?uid=#=Id#&uname=#=Title#'>#=Title#</a>",
             width: "60%",
         }, {
             field: "StoryPoint",

@@ -160,6 +160,9 @@ function updateMenuOptions(perm){
 	if(perm.indexOf("EditProject")>=0){
 		items.push({ text: "Manage Projects", imageUrl: "http://demos.kendoui.com/content/shared/icons/16/photo.png" });
 	}
+	if(perm.indexOf("CreateUserStory")>=0){
+		items.push({ text: "Manage User Stories", imageUrl: "http://demos.kendoui.com/content/shared/icons/16/photo.png" });
+	}
 	if(perm.indexOf("InviteUser")>=0){
 		items.push({ text: "Manage Users", imageUrl: "http://demos.kendoui.com/content/shared/icons/16/video.png" });
 	}
@@ -276,6 +279,15 @@ $(document).ready(function () {
                 break;
             case ('Manage Roles'):
                 window.location = "manageroles.html";
+                break;
+            case ('Manage User Stories'):
+                window.location = "userstory.html";
+                break;
+            case ('Release Management'):
+                window.location = "createIter.html";
+                break;
+            case ('Manage Projects'):
+                window.location = "createProject.html";
                 break;
         }
     }
