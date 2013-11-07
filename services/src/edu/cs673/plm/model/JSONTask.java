@@ -35,6 +35,7 @@ public class JSONTask{
 	public JSONTask(Task task){
 		id = task.getId();
 		name = task.getName();
+		description = task.getDescription();
 
 		status = new JSONStatus(task.getStatus());
 		assigned = new JSONUser(task.getUserAssigned());
