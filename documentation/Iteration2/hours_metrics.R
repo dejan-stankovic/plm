@@ -4,7 +4,7 @@ library(ggplot2)
 library(reshape2)
 
 df <- data.frame(week=1:8,
-		Manav=c(7,8,14,11,13,10,17,10), # 8 guess
+		Manav=c(7,8,14,11,13,10,17,8),
 		Vipul=c(6,10,11,13,14,10,10,8),
 		Yuvaraj=c(5,13,17,15,27,6,6,6),
 		Rachit=c(5,8,15,13,14,9,14,8),
