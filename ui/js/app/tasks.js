@@ -20,6 +20,8 @@ var token = null;
 var projectId = 1;
 //project name extracted from query string
 var projectName = 'Employee Portal';
+var userStoryId = 0;
+var userStoryName = "";
 
 /************************************************************
 Function name: onready
@@ -54,8 +56,8 @@ Purpose: load fetches the data from services and loads page
 function loadData() {
 	token=getToken();
 	projectId = getCurProject();
-    //userStoryId = isNull(readQueryString("uid")) ? 1 : readQueryString("uid");
-    //usrStoryName = isNull(readQueryString("uname")) ? '' : readQueryString("uname");
+    userStoryId = isNull(readQueryString("uid")) ? 0 : readQueryString("uid");
+    userStoryName = isNull(readQueryString("uname")) ? '' : readQueryString("uname");
     //loadDummyData();
     loadDataFromServices();
 }
@@ -85,6 +87,7 @@ Purpose: invokes services to load the data
 function loadDataFromServices() {
     getStatuses();
     getUsersInProject();
+    getTasks(userStoryId);
 }
 /************************************************************
 Function name: kendofy 
@@ -93,7 +96,7 @@ Created date: 11/3/2013
 Purpose: kendofy all the controls on the page
 ************************************************************/
 function kendofy() {
-    $("#userStoryLbl").text(projectName);
+    $("#userStoryLbl").text(userStoryName);
     $("#statusddl").kendoComboBox({ placeholder: "Select..." });
     $("#editStatusDdl").kendoComboBox({ placeholder: "Select..." });
     $("#assignddl").kendoAutoComplete({
@@ -164,7 +167,7 @@ function loadTaskGrid() {
     });
     function rowSelected(e) {
         var item = this.dataItem(this.select()[0]);
-        selectedTaskId = item.Id;
+        selectedTaskId = item.id;
         $("#titleTxt").val(item.name);
         $("#assignddl").val(item.assigned);
         $("#editStatusDdl").val(item.status);
@@ -297,7 +300,7 @@ function update() {
     }
     else {
         $.each(dataSource, function (index, ds1) {
-            if (ds1.Id == selectedTaskId) {
+            if (ds1.id == selectedTaskId) {
                 item = ds1;
                 item.name = $("#titleTxt").val(),
                 item.assigned = $("#assignddl").val(),
@@ -336,6 +339,14 @@ function loadStatusDropDown(id, dataSource) {
         dataSource: dataSource
     });
 }
+function loadUsersData(id, dataSource) {
+    usersData = dataSource;
+    $("#" + id).kendoComboBox({
+        dataTextField: "name",
+        dataValueField: "id",
+        dataSource: dataSource
+    });
+}
 /************************************************************
 Function name: loadTasks 
 Author: Yuvaraj, Manav, Rachit
@@ -362,16 +373,48 @@ function loadTasks(tasks) {
 
 // service calls
 /************************************************************
+Function name: getUsersInProject
+Author: Christian Heckendorf
+Created date: 10/14/2013
+Purpose: Gets all users in the project
+************************************************************/
+function getUsersInProject(){
+	var pid,tok;
+
+	tok = token;
+	pid = projectId;
+
+	$.ajax({
+		type: 'POST',
+		url: '/plm/rest/projectmanage/p/'+pid+'/users',
+		contentType: 'application/json; charset=UTF-8',
+		accepts: {
+			text: 'application/json'
+		},
+		dataType: 'json',
+		data: JSON.stringify({
+			token: tok
+		}),
+		success: function(data){
+			loadUsersData("assignddl", data.users);
+		},
+		error: function(data){
+			alert("error");
+		}
+	});
+}
+
+/************************************************************
 Function name: updatesUserStory
 Author: Christian Heckendorf
 Created date: 10/26/2013
 Purpose: Updates a user story
 ************************************************************/
-function updateTask(item,uid) {
+function updateTask(item,tid) {
 	var cb = $("#editStatusDdl").data("kendoComboBox");
 	var sid = cb.dataItem().id;
 
-	cb = $("#ownerTxt").data("kendoAutoComplete");
+	cb = $("#assignddl").data("kendoAutoComplete");
     var uid = cb.value();
 
     $.ajax({
@@ -390,8 +433,7 @@ function updateTask(item,uid) {
                 name: item.name,
                 description: item.description,
                 status: {
-                	id=sid
-
+                	id: sid
                     /*id: function(){
                         $.each(statusData, function (index, status) {
                             if (status.name == item.Status) {
@@ -401,7 +443,7 @@ function updateTask(item,uid) {
                         return (1);
                     }*/
                 },
-                owner: {
+                assigned: {
                     // TODO : Should be getting the list of users along with id, name
                     id: uid
                 }
@@ -429,7 +471,7 @@ function createTask(item) {
 	var cb = $("#editStatusDdl").data("kendoComboBox");
 	var sid = cb.dataItem().id;
 
-	cb = $("#ownerTxt").data("kendoAutoComplete");
+	cb = $("#assignddl").data("kendoAutoComplete");
     var uid = cb.value();
 
     $.ajax({
@@ -446,9 +488,9 @@ function createTask(item) {
             },
             task: {
                 name: item.name,
-                description: item.Description,
+                description: item.description,
                 status: {
-                	id=sid;
+                	id: sid
                     /*id: function () {
                         $.each(statusData, function (index, status) {
                             if (status.name == item.Status) {
@@ -458,7 +500,7 @@ function createTask(item) {
                         return (1);
                     }*/
                 },
-                owner: {
+                assigned: {
                     // TODO : Should be getting the list of users along with id, name
                     id: uid
                 }
@@ -467,7 +509,8 @@ function createTask(item) {
         success: function (data) {
             /* code: new id or -1, message: success/error message */
             /* {"code":4,"message":"Success"} */
-            updateTask();
+            //updateTask();
+            alert(data.code + " " + data.message);
         },
         error: function (data) {
             alert("error");
@@ -482,10 +525,10 @@ Author: Christian Heckendorf
 Created date: 10/26/2013
 Purpose: Displays a list of user stories under a release
 ************************************************************/
-function getTasks(rid) {
+function getTasks(usid) {
    
     $.ajax({
-        type: 'GET', //'GET',
+        type: 'POST', //'GET',
         url:  '/plm/rest/task/us/'+userStoryId,          
         contentType: 'application/json; charset=UTF-8',
         accepts: {
