@@ -1,12 +1,12 @@
 /*************************************************************************
 		File name: tasks.js
-		Author: Yuvaraj & Rachit
+		Author: Yuvaraj, Manav, Rachit & Christian
 		Created date: 11/3/2013
 		Purpose: client functionality associated with task page
 **************************************************************************/
 /*global variables */
 
-// variable to persist the selected user story id
+// variable to persist the selected task id
 var selectedTaskId = 0;
 // data source instance to persist the list of statuses returned from service
 var statusData = [];
@@ -23,7 +23,7 @@ var projectName = 'Employee Portal';
 
 /************************************************************
 Function name: onready
-Author: Rachit
+Author: Yuvaraj, Manav, Rachit
 Created date: 11/3/2013
 Purpose: document on ready function to load the page
 ************************************************************/
@@ -35,7 +35,7 @@ $(document).ready(function () {
 
 /************************************************************
 Function name: load 
-Author: Rachit
+Author: Yuvaraj, Manav, Rachit
 Created date: 11/2/2013
 Purpose: global on load to load all the contents
 ************************************************************/
@@ -47,19 +47,21 @@ function load() {
 }
 /************************************************************
 Function name: loadData
-Author: Rachit
+Author: Yuvaraj, Manav, Rachit
 Created date: 11/3/2013
 Purpose: load fetches the data from services and loads page
 ************************************************************/
 function loadData() {
-    userStoryId = isNull(readQueryString("uid")) ? 1 : readQueryString("uid");
-    usrStoryName = isNull(readQueryString("uname")) ? '' : readQueryString("uname");
+	token=getToken();
+	projectId = getCurProject();
+    //userStoryId = isNull(readQueryString("uid")) ? 1 : readQueryString("uid");
+    //usrStoryName = isNull(readQueryString("uname")) ? '' : readQueryString("uname");
     //loadDummyData();
     loadDataFromServices();
 }
 /************************************************************
 Function name: loadDummyData
-Author: Yuvaraj & Rachit
+Author: Yuvaraj, Manav, Rachit
 Created date: 11/2/2013
 Purpose:load dummy data
 ************************************************************/
@@ -76,16 +78,17 @@ function loadDummyData() {
 }
 /************************************************************
 Function name: loadDataFromServices
-Author: Yuvaraj
+Author: Yuvaraj, Manav, Rachit
 Created date: 11/3/2013
 Purpose: invokes services to load the data
 ************************************************************/
 function loadDataFromServices() {
-    loginUser();
+    getStatuses();
+    getUsersInProject();
 }
 /************************************************************
 Function name: kendofy 
-Author: Manav
+Author: Yuvaraj, Manav, Rachit
 Created date: 11/3/2013
 Purpose: kendofy all the controls on the page
 ************************************************************/
@@ -95,6 +98,8 @@ function kendofy() {
     $("#editStatusDdl").kendoComboBox({ placeholder: "Select..." });
     $("#assignddl").kendoAutoComplete({
         dataSource: usersData,
+        		dataTextName: "name",
+                dataTextValue: "id",
         filter: "startswith",
         placeholder: "select user...",
         separator: ", "
@@ -106,7 +111,7 @@ function kendofy() {
 }
 /************************************************************
 Function name: loadTaskGrid
-Author: Yuvaraj
+Author: Yuvaraj, Manav, Rachit
 Created date: 11/3/2013
 Purpose: load user story grid
 ************************************************************/
@@ -169,13 +174,14 @@ function loadTaskGrid() {
 
 /************************************************************
 Function name: registerEvents 
-Author: Yuvaraj
+Author: Yuvaraj, Manav, Rachit
 Created date: 11/3/2013
 Purpose: register all control events
 ************************************************************/
 function registerEvents() {
     $("#btnFilter").click(function () {
         var userstory = $("#userstoryddl").data("kendoComboBox").text();
+        var status = $("#statusddl").data("kendoComboBox").text();
         var filter = [];
         filter.push({ field: "Status", operator: "eq", value: status });
         $("#grid").data("kendoGrid").dataSource.filter(filter);
@@ -201,7 +207,7 @@ function registerEvents() {
             createTask(item);
         }
         else {
-            updateTask(item);
+            updateTask(item,selectedTaskId);
         }
         selectedTaskId = 0;
     });
@@ -217,9 +223,7 @@ function registerEvents() {
         $("#titleTxt").val("");
         $("#assignddl").val("");
         $("#editStatusDdl").val("Initial");
-        $("#editPriorityDdl").val("");
         $("#descriptionTxt").val("");
-        $("#txtNewComment").val("");
 
         $("#errorInfo").hide();
         $("#progressInfo").hide();
@@ -334,7 +338,7 @@ function loadStatusDropDown(id, dataSource) {
 }
 /************************************************************
 Function name: loadTasks 
-Author: Manav
+Author: Yuvaraj, Manav, Rachit
 Created date: 11/3/2013
 Purpose: load status drop down
 ************************************************************/
@@ -342,6 +346,7 @@ function loadTasks(tasks) {
     /* {"userStories":[{"id":1,"name":"NewRandom 0.028741610702127218","description":"Some description",
             "points":1,"owner":{"id":2,"name":"anotheruser"},"status":{"id":2,"name":"Pending"}},
              */
+             taskData=[];
     $.each(tasks, function (index, task) {
         taskData.push({
             id: task.id,
@@ -362,7 +367,13 @@ Author: Christian Heckendorf
 Created date: 10/26/2013
 Purpose: Updates a user story
 ************************************************************/
-function updateTask(item) {
+function updateTask(item,uid) {
+	var cb = $("#editStatusDdl").data("kendoComboBox");
+	var sid = cb.dataItem().id;
+
+	cb = $("#ownerTxt").data("kendoAutoComplete");
+    var uid = cb.value();
+
     $.ajax({
         type: 'POST',
         url: '/plm/rest/task/update/t/'+ selectedTaskId,
@@ -379,18 +390,20 @@ function updateTask(item) {
                 name: item.name,
                 description: item.description,
                 status: {
-                    id: function(){
+                	id=sid
+
+                    /*id: function(){
                         $.each(statusData, function (index, status) {
                             if (status.name == item.Status) {
                                 return (status.id);
                             }
                         });
                         return (1);
-                    }
+                    }*/
                 },
                 owner: {
                     // TODO : Should be getting the list of users along with id, name
-                    id: 2
+                    id: uid
                 }
             }
         }),
@@ -413,6 +426,12 @@ Created date: 10/26/2013
 Purpose: Creates a new task
 ************************************************************/
 function createTask(item) {
+	var cb = $("#editStatusDdl").data("kendoComboBox");
+	var sid = cb.dataItem().id;
+
+	cb = $("#ownerTxt").data("kendoAutoComplete");
+    var uid = cb.value();
+
     $.ajax({
         type: 'POST',
         url: '/plm/rest/task/create/us/'+ userStoryId,
@@ -429,18 +448,19 @@ function createTask(item) {
                 name: item.name,
                 description: item.Description,
                 status: {
-                    id: function () {
+                	id=sid;
+                    /*id: function () {
                         $.each(statusData, function (index, status) {
                             if (status.name == item.Status) {
                                 return (status.id);
                             }
                         });
                         return (1);
-                    }
+                    }*/
                 },
                 owner: {
                     // TODO : Should be getting the list of users along with id, name
-                    id: 2
+                    id: uid
                 }
             }
         }),
@@ -462,10 +482,11 @@ Author: Christian Heckendorf
 Created date: 10/26/2013
 Purpose: Displays a list of user stories under a release
 ************************************************************/
-function getTasks() {
+function getTasks(rid) {
+   
     $.ajax({
         type: 'GET', //'GET',
-        url:  '../js/data/serviceResponse.js', // '/plm/rest/task/us/'+userStoryId,
+        url:  '/plm/rest/task/us/'+userStoryId,          
         contentType: 'application/json; charset=UTF-8',
         accepts: {
             text: 'application/json'
@@ -482,10 +503,11 @@ function getTasks() {
         }
     });
 }
+
 function getStatuses() {
     $.ajax({
-        type: 'GET',
-        url: '../js/data/serviceResponse.js', // '/plm/rest/status', //,
+        type: 'POST',
+        url: '/plm/rest/status', // '/plm/rest/status', //,
         contentType: 'application/json; charset=UTF-8',
         accepts: {
             text: 'application/json'
@@ -497,37 +519,6 @@ function getStatuses() {
         success: function (data) {
             loadStatusDropDown("statusddl", data.statuses);
             loadStatusDropDown("editStatusDdl", data.statuses);
-        },
-        error: function (data) {
-            alert("error");
-        }
-    });
-}
-/************************************************************
-Function name: loginUser
-Author: Christian Heckendorf
-Created date: 09/30/2013
-Purpose: Logs in a user
-************************************************************/
-function loginUser() {
-    $.ajax({
-        type: 'GET',
-        url: '../js/data/serviceResponse.js', //'/plm/rest/login', //
-        contentType: 'application/json; charset=UTF-8',
-        accepts: {
-            text: 'application/json'
-        },
-        dataType: 'json',
-        data: JSON.stringify({
-            name: 'auser',
-            password: 'apassword'
-        }),
-        success: function (data) {
-            token = data.message;
-            if (data.code == 0) {
-                getStatuses();
-                getTasks();
-            }
         },
         error: function (data) {
             alert("error");
