@@ -1,0 +1,47 @@
+Filename : ProjectList.java
+Total Function : 5
+Total Line of Code : 23
+-------------------------------
+/************************************************************
+Filename: ProjectList.java
+Author: Christian Heckendorf
+Created date: 10/07/2013
+Purpose: Holds a list of JSONProjects
+Feature: Dashboard
+************************************************************/
+
+/************************************************************
+Function name: ProjectList()
+Author: Christian Heckendorf
+Created date: 10/13/2013
+Purpose: Default constructor
+************************************************************/
+
+/************************************************************
+Function name: addProject()
+Author: Christian Heckendorf
+Created date: 10/07/2013
+Purpose: Adds a project to the list
+************************************************************/
+
+/************************************************************
+Function name: addProjects()
+Author: Christian Heckendorf
+Created date: 10/13/2013
+Purpose: Adds a list of projects
+************************************************************/
+
+/************************************************************
+Function name: getProjects()
+Author: Christian Heckendorf
+Created date: 10/07/2013
+Purpose: Returns the list of projects
+************************************************************/
+
+/************************************************************
+Function name: setProjects()
+Author: Christian Heckendorf
+Created date: 10/07/2013
+Purpose: Sets the list of projects
+************************************************************/
+

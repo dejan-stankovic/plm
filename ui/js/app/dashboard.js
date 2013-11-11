@@ -61,9 +61,9 @@ Author: Christian Heckendorf
 Created date: 10/13/2013
 Purpose: Wrapper to fetch tasks with optional service filter
 ************************************************************/
-function genericTaskFetch(tok, tail){
-	dashboardTaskAjax(tok,"bugs",tail,"Bug");
-	dashboardTaskAjax(tok,"tasks",tail,"Task");
+function genericTaskFetch(tok, bugtail, tasktail){
+	dashboardTaskAjax(tok,"bugs",bugtail,"Bug");
+	dashboardTaskAjax(tok,"tasks",tasktail,"Task");
 }
 
 /************************************************************
@@ -73,11 +73,14 @@ Created date: 10/13/2013
 Purpose: Sets the list of tasks based on the filter
 ************************************************************/
 function filterTasks(){
-	var g, tok, rid, cb;
+	var g, tok, pid, rid, cb;
 
 	tok = getToken();
 
 	clearTasks();
+
+	cb = $("select#projectddl").data("kendoComboBox");
+	pid = cb.dataItem().id;
 
 	cb = $("select#releaseddl").data("kendoComboBox");
 	rid = cb.dataItem().id;
@@ -98,7 +101,7 @@ function filterTasks(){
 		filters: statusFilter
 	});
 
-	genericTaskFetch(tok,"/release/"+rid);
+	genericTaskFetch(tok,"/project/"+pid,"/release/"+rid);
 }
 
 /************************************************************
@@ -114,7 +117,7 @@ function getTasks(){
 
 	clearTasks();
 
-	genericTaskFetch(tok,"");
+	genericTaskFetch(tok,"","");
 }
 
 /************************************************************

@@ -1,0 +1,68 @@
+Filename : UserDao.java
+Total Function : 8
+Total Line of Code : 105
+-------------------------------
+/***************************************************************
+Filename: UserDao.java
+Author: Christian Heckendorf
+Created Date: 9/21/13
+Purpose: Helper methods to access the User database table
+Features: Probably all features
+***************************************************************/
+
+/************************************************************
+Function name: getBugList()
+Author: Christian Heckendorf
+Created date: 10/13/2013
+Purpose: Returns a list of tasks for a release for a user
+************************************************************/
+
+/************************************************************
+Function name: getBugList()
+Author: Christian Heckendorf
+Created date: 10/13/2013
+Purpose: Returns a list of bugs assigned to a user
+************************************************************/
+
+/************************************************************
+Function name: getTaskList()
+Author: Christian Heckendorf
+Created date: 10/08/2013
+Purpose: Returns a list of tasks for a release for a user
+************************************************************/
+
+/************************************************************
+Function name: getTaskList()
+Author: Christian Heckendorf
+Created date: 10/07/2013
+Purpose: Returns a list of tasks assigned to a user
+************************************************************/
+
+/************************************************************
+Function name: getUserById()
+Author: Christian Heckendorf
+Created date: 10/01/2013
+Purpose: Fills in a user object by ID
+************************************************************/
+
+/***************************************************************
+Function name: nameValid
+Author: Christian Heckendorf
+Created Date: 9/21/13
+Purpose: Checks if the name has been used or not
+***************************************************************/
+
+/***************************************************************
+Function name: createUser
+Author: Christian Heckendorf
+Created Date: 9/21/13
+Purpose: Creates an entry in the User table
+***************************************************************/
+
+/***************************************************************
+Function name: getUserId
+Author: Christian Heckendorf
+Created Date: 9/28/13
+Purpose: Finds the User ID for the requested user
+***************************************************************/
+

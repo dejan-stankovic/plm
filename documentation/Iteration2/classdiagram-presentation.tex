@@ -1,0 +1,29 @@
+\documentclass[tikz]{standalone}
+%\usepackage{tikzscale}
+%\pgfdeclarelayer{background,foreground}
+%\pgfsetlayers{background,main,foreground}
+\usepackage{tikz-uml}
+
+\begin{document}
+\begin{tikzpicture}
+\umlclass[x=-7,y=0]{StatusService}{}{getStatuses(TokenMessage token) }
+\umlclass[x=-7,y=7]{StatusDao}{STATUS\_INITIAL \\ STATUS\_PENDING \\ STATUS\_COMPLETE \\ STATUS\_INPROGRESS }{getStatusList(Dba dba) \\ getStatusById(Dba dba, long sid) }
+\umlclass[x=10,y=0]{TaskService}{}{getTaskList(long usid, TokenMessage token) \\ updateTask(long tid, JSONTaskRequest taskReq) \\ createTask(long usid, JSONTaskRequest taskReq) }
+\umlclass[x=10,y=7]{TaskDao}{}{getTaskById(Dba dba, long tid) \\ convert(Dba dba, JSONTask jtask) \\ getTaskList(Dba dba, long usid) \\ updateTask(Dba dba, Task task) \\ createTask(Dba dba, long usid, Task task) }
+\umlclass[x=7,y=-5]{UserStoryService}{}{createUserStory(long rid, JSONStoryRequest userStoryReq) \\ getUserStoryList(long rid, TokenMessage token) \\ updateUserStory(long uid, JSONStoryRequest userStoryReq) }
+\umlclass[x=0,y=-10]{UserStoryDao}{}{getUserStoryById(Dba dba, long usid) \\ convert(Dba dba, JSONUserStory juserStory) \\ createUserStory(Dba dba, long rid, UserStory userStory) \\ updateUserStory(Dba dba, UserStory userStory) }
+\umlclass[x=10,y=-10]{ReleaseDao}{}{updateRelease(Dba dba, Release release) \\ getReleaseById(Dba dba, long rid) \\ getUserStoryList(Dba dba, long rid) \\ createRelease(Dba dba, long pid, Release release) }
+\umlclass[x=0,y=0]{SessionToken}{exp \\ uid }{generateToken() \\ getDataBytes() \\ getExp() \\ hexStringToByteArray(String data) \\ generateHash(byte[] data) \\ SessionToken(long uid) \\ byteArrayToHex(byte[] data) \\ getUid() \\ parseToken(String token) }
+\umlclass[x=0,y=-6]{SecKey}{outer \\ initialized \\ lock \\ kg }{getKey() \\ initialize() \\ SecKey() }
+\umlclass[x=0,y=5]{UnixTime}{MINUTE \\ HOUR \\ DAY }{currentTime() }
+\umluniassoc[geometry=--]{StatusService}{StatusDao}
+\umluniassoc[geometry=--]{TaskService}{TaskDao}
+\umluniassoc[geometry=|-|,anchors=-90 and 50]{UserStoryService}{UserStoryDao}
+\umluniassoc[geometry=|-|]{UserStoryService}{ReleaseDao}
+\umluniassoc[geometry=--]{StatusService}{SessionToken}
+\umluniassoc[geometry=--]{TaskService}{SessionToken}
+\umluniassoc[geometry=|-,anchors=90 and -30]{UserStoryService}{SessionToken}
+\umluniassoc[geometry=--]{SessionToken}{UnixTime}
+\umluniassoc[geometry=--]{SessionToken}{SecKey}
+\end{tikzpicture}
+\end{document}

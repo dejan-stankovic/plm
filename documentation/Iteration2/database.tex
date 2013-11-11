@@ -1,0 +1,222 @@
+\documentclass[tikz]{standalone}
+\usepackage{tikz}
+\usetikzlibrary{arrows,shapes,shapes.multipart,matrix,positioning,shadows,calc}
+
+\makeatletter
+\pgfarrowsdeclare{crow's foot}{crow's foot}
+{
+	\pgfarrowsleftextend{+-.5\pgflinewidth}%
+		\pgfarrowsrightextend{+.5\pgflinewidth}%
+}
+{
+	\pgfutil@tempdima=0.6pt%
+		%\advance\pgfutil@tempdima by.25\pgflinewidth%
+		\pgfsetdash{}{+0pt}%
+		\pgfsetmiterjoin%
+		\pgfpathmoveto{\pgfqpoint{0pt}{-9\pgfutil@tempdima}}%
+		\pgfpathlineto{\pgfqpoint{-13\pgfutil@tempdima}{0pt}}%
+		\pgfpathlineto{\pgfqpoint{0pt}{9\pgfutil@tempdima}}%
+		\pgfpathmoveto{\pgfqpoint{0\pgfutil@tempdima}{0\pgfutil@tempdima}}%
+		\pgfpathmoveto{\pgfqpoint{-8pt}{-6pt}}% 
+		\pgfpathlineto{\pgfqpoint{-8pt}{-6pt}}%  
+		\pgfpathlineto{\pgfqpoint{-8pt}{6pt}}% 
+		\pgfusepathqstroke%
+}
+
+\pgfarrowsdeclare{omany}{omany}
+{
+	\pgfarrowsleftextend{+-.5\pgflinewidth}%
+		\pgfarrowsrightextend{+.5\pgflinewidth}%
+}
+{
+	\pgfutil@tempdima=0.6pt%
+		%\advance\pgfutil@tempdima by.25\pgflinewidth%
+		\pgfsetdash{}{+0pt}%
+		\pgfsetmiterjoin%
+		\pgfpathmoveto{\pgfqpoint{0pt}{-9\pgfutil@tempdima}}%
+		\pgfpathlineto{\pgfqpoint{-13\pgfutil@tempdima}{0pt}}%
+		\pgfpathlineto{\pgfqpoint{0pt}{9\pgfutil@tempdima}}%
+		\pgfpathmoveto{\pgfqpoint{0\pgfutil@tempdima}{0\pgfutil@tempdima}}%  
+		\pgfpathmoveto{\pgfqpoint{0\pgfutil@tempdima}{0\pgfutil@tempdima}}%
+		\pgfpathmoveto{\pgfqpoint{-6pt}{-6pt}}% 
+		\pgfpathcircle{\pgfpoint{-11.5pt}{0}} {3.5pt}
+	\pgfusepathqstroke%
+}
+
+\pgfarrowsdeclare{one}{one}
+{
+	\pgfarrowsleftextend{+-.5\pgflinewidth}%
+		\pgfarrowsrightextend{+.5\pgflinewidth}%
+}
+{
+	\pgfutil@tempdima=0.6pt%
+		%\advance\pgfutil@tempdima by.25\pgflinewidth%
+		\pgfsetdash{}{+0pt}%
+		\pgfsetmiterjoin%
+		\pgfpathmoveto{\pgfqpoint{0\pgfutil@tempdima}{0\pgfutil@tempdima}}%
+		\pgfpathmoveto{\pgfqpoint{-6pt}{-6pt}}% 
+		\pgfpathlineto{\pgfqpoint{-6pt}{-6pt}}%  
+		\pgfpathlineto{\pgfqpoint{-6pt}{6pt}}% 
+		\pgfpathmoveto{\pgfqpoint{0\pgfutil@tempdima}{0\pgfutil@tempdima}}%
+		\pgfpathmoveto{\pgfqpoint{-8pt}{-6pt}}% 
+		\pgfpathlineto{\pgfqpoint{-8pt}{-6pt}}%  
+		\pgfpathlineto{\pgfqpoint{-8pt}{6pt}}%    
+		\pgfusepathqstroke%
+}
+
+\tikzset{
+	entity/.code={
+		\tikzset{
+			label=above:#1,
+			name=#1,
+			inner sep=0pt,
+			every entity/.try,
+			fill=white  
+		}%
+		\def\entityname{#1}%
+	},
+		entity anchor/.style={matrix anchor=#1.center},
+		every entity/.style={
+			draw,
+		},
+		every property/.style={
+			inner xsep=0.25cm, inner ysep=0.15cm, anchor=west, text width=1in
+		},
+		zig zag to/.style={
+			to path={(\tikztostart) -| ($(\tikztostart)!#1!(\tikztotarget)$) |- (\tikztotarget) \tikztonodes}
+		},
+		zig zag to/.default=0.5,
+		one to one/.style={
+			one-one, zig zag to
+		},    
+		one to many/.style={
+			one-crow's foot, zig zag to,
+		},
+		one to omany/.style={
+			one-omany, zig zag to
+		},      
+		many to one/.style={
+			crow's foot-one, zig zag to
+		},
+		many to many/.style={
+			crow's foot-crow's foot, zig zag to
+		}  
+}
+
+\def\pk#1{\node[name=\entityname-#1, every property/.try]{#1};\node[name=\entityname-#1, every property/.try, red, text width=1in, align=right]{(PK)};\\}
+\def\fk#1{\node[name=\entityname-#1, every property/.try]{#1};\node[name=\entityname-#1, every property/.try, red, text width=1in, align=right]{(FK)};\\}
+\def\property#1{\node[name=\entityname-#1, every property/.try]{#1};}
+\def\properties{\begingroup\catcode`\_=11\relax\processproperties}
+\def\processproperties#1{\endgroup%
+	\def\propertycode{}%
+		\foreach \p in {#1}{%
+			\expandafter\expandafter\expandafter\gdef\expandafter\expandafter\expandafter\propertycode%
+				\expandafter\expandafter\expandafter{\expandafter\propertycode\expandafter\property\expandafter{\p}\\}%
+		}%
+	\propertycode%
+}
+
+\begin{document}
+	\begin{tikzpicture}[node distance=3cm]
+		\matrix [entity=User] {
+			\pk{id}
+			\properties{
+				name,
+				password
+			}
+		};
+
+		\matrix [entity=UserProject, below right=of User-id, entity anchor=UserProject-uid]  {
+			\pk{id}
+			\fk{uid}
+			\fk{pid}
+			\fk{rid}
+		};
+
+		\matrix [entity=Project, right=of UserProject-pid, entity anchor=Project-id] {
+			\pk{id}
+			\properties{
+				name
+			}
+		};
+
+		\matrix [entity=Role, below=of Project-id, entity anchor=Role-id] {
+			\pk{id}
+			\properties{
+				name
+			}
+		};
+
+		%\matrix [entity=Bug, above right=of Project-id, entity anchor=Bug-id] {
+			%\pk{id}
+			%\fk{projectId}
+			%\properties{
+				%name
+			%}
+		%};
+
+		\matrix [entity=Release, right=of Project-id, entity anchor=Release-projectId] {
+			\pk{id}
+			\fk{projectId}
+			\properties{
+				version,
+				startDate,
+				endDate
+			}
+		};
+
+		\matrix [entity=UserStory, above left=of Release-id, entity anchor=UserStory-releaseId] {
+			\pk{id}
+			\fk{statusId}
+			\fk{ownerId}
+			\fk{releaseId}
+			\properties{
+				name,
+				description,
+				points
+			}
+		};
+
+		\matrix [entity=Task, right=of UserStory-id, entity anchor=Task-name] {
+			\pk{id}
+			\fk{statusId}
+			\fk{assignedId}
+			\fk{userStoryId}
+			\properties{
+				name,
+				description
+			}
+		};
+
+		\matrix [entity=Status, above left=of UserStory-id, entity anchor=Status-id] {
+			\pk{id}
+			\properties{
+				name
+			}
+		};
+
+		\matrix [entity=UserStoryComment, below right=of Task-id, entity anchor=UserStoryComment-id] {
+			\pk{id}
+			\fk{authorId}
+			\fk{userStoryId}
+			\properties{
+				comments,
+				createdOn
+			}
+		};
+
+
+		\draw [one to omany] (User-id) to node[above]{} (UserProject-uid);
+		\draw [one to omany] (Role-id) to node[above]{} (UserProject-rid);
+		\draw [one to omany] (Project-id) to node[above]{} (UserProject-pid);
+		%\draw [one to omany] (Project-id) to node[above]{} (Bug-projectId);
+		\draw [one to omany] (Project-id) to node[above]{} (Release-projectId);
+		\draw [one to omany] (Release-id) to node[above]{} (UserStory-releaseId);
+		\draw [one to omany] (UserStory-id) to node[above]{} (Task-userStoryId);
+		\draw [one to many] (Status-id) to node[above]{} (Task-statusId);
+		\draw [one to many] (Status-id) to node[above]{} (UserStory-statusId);
+		\draw [many to one] (UserStory-ownerId) to node[above]{} (User-id);
+		%\draw [many to one] (Task-assignedId) to node[above]{} (User-id);
+		\draw [one to omany] (UserStory) to node[above]{} (UserStoryComment-userStoryId);
+	\end{tikzpicture}
+\end{document}

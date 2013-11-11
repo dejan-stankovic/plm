@@ -10,10 +10,12 @@ package edu.cs673.plm.model;
 public class JSONTask{
 	long id;
 	String name;
+	String description;
 	String category;
 	String priority;
 	String risk;
-	String status;
+	JSONStatus status;
+	JSONUser assigned;
 
 	/************************************************************
 	Function name: JSONTask()
@@ -33,12 +35,15 @@ public class JSONTask{
 	public JSONTask(Task task){
 		id = task.getId();
 		name = task.getName();
+		description = task.getDescription();
+
+		status = new JSONStatus(task.getStatus());
+		assigned = new JSONUser(task.getUserAssigned());
 
 		/* TODO: When the database is filled in, link these up */
 		category = new String("Development");
 		priority = new String("High");
 		risk = new String("Medium");
-		status = new String("Pending");
 	}
 
 	/************************************************************
@@ -79,6 +84,26 @@ public class JSONTask{
 	************************************************************/
 	public void setName(String name){
 		this.name = name;
+	}
+
+	/************************************************************
+	Function name: getDescription()
+	Author: Christian Heckendorf
+	Created date: 10/27/2013
+	Purpose: Returns the description
+	************************************************************/
+	public String getDescription(){
+		return description;
+	}
+
+	/************************************************************
+	Function name: setDescription()
+	Author: Christian Heckendorf
+	Created date: 10/27/2013
+	Purpose: Sets the description
+	************************************************************/
+	public void setDescription(String description){
+		this.description=description;
 	}
 
 	/************************************************************
@@ -142,22 +167,43 @@ public class JSONTask{
 	}
 
 	/************************************************************
+	Function name: getAssigned
+	Author: Christian Heckendorf
+	Created date: 10/27/2013
+	Purpose: Returns the user assigned
+	************************************************************/
+	public JSONUser getAssigned(){
+		return assigned;
+	}
+
+	/************************************************************
+	Function name: setAssigned
+	Author: Christian Heckendorf
+	Created date: 10/27/2013
+	Purpose: Sets the user assigned
+	************************************************************/
+	public void setAssigned(JSONUser assigned){
+		this.assigned = assigned;
+	}
+
+	/************************************************************
 	Function name: getStatus()
 	Author: Christian Heckendorf
-	Created date: 10/13/2013
+	Created date: 11/02/2013
 	Purpose: Returns the status
 	************************************************************/
-	public String getStatus(){
+	public JSONStatus getStatus(){
 		return status;
 	}
 
 	/************************************************************
 	Function name: setStatus()
 	Author: Christian Heckendorf
-	Created date: 10/13/2013
+	Created date: 11/02/2013
 	Purpose: Sets the status
 	************************************************************/
-	public void setStatus(String status){
+	public void setStatus(JSONStatus status){
 		this.status = status;
 	}
+
 }

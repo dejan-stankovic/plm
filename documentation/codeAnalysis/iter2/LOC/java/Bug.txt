@@ -1,0 +1,96 @@
+Filename : Bug.java
+Total Function : 12
+Total Line of Code : 65
+-------------------------------
+/************************************************************
+Filename: Bug.java
+Author: Christian Heckendorf
+Created date: 10/01/2013
+Purpose: Holds a bug
+Feature: None
+************************************************************/
+
+/***************************************************************
+Function name: getId
+Author: Christian Heckendorf
+Created Date: 10/01/13
+Purpose: Gets an id
+***************************************************************/
+
+/***************************************************************
+Function name: setId
+Author: Christian Heckendorf
+Created Date: 10/01/13
+Purpose: Sets an id
+***************************************************************/
+
+/***************************************************************
+Function name: getName
+Author: Christian Heckendorf
+Created Date: 10/01/13
+Purpose: Gets a name
+***************************************************************/
+
+/***************************************************************
+Function name: setName
+Author: Christian Heckendorf
+Created Date: 10/01/13
+Purpose: Sets a name
+***************************************************************/
+
+/************************************************************
+Function name: getDescription()
+Author: Christian Heckendorf
+Created date: 10/01/2013
+Purpose: Returns the description
+************************************************************/
+
+/************************************************************
+Function name: setDescription()
+Author: Christian Heckendorf
+Created date: 10/01/2013
+Purpose: Sets the description
+************************************************************/
+
+/************************************************************
+Function name: getProject()
+Author: Christian Heckendorf
+Created date: 10/01/2013
+Purpose: Returns the project
+************************************************************/
+
+/************************************************************
+Function name: setProject()
+Author: Christian Heckendorf
+Created date: 10/01/2013
+Purpose: Sets the project
+************************************************************/
+
+/************************************************************
+Function name: getUserAssigned()
+Author: Christian Heckendorf
+Created date: 10/01/2013
+Purpose: Returns the assigned user
+************************************************************/
+
+/************************************************************
+Function name: setUserAssigned()
+Author: Christian Heckendorf
+Created date: 10/01/2013
+Purpose: Sets the assigned user
+************************************************************/
+
+/************************************************************
+Function name: getUserCreated()
+Author: Christian Heckendorf
+Created date: 10/01/2013
+Purpose: Returns the user that created this
+************************************************************/
+
+/************************************************************
+Function name: setUserCreated()
+Author: Christian Heckendorf
+Created date: 10/01/2013
+Purpose: Sets the user that created this
+************************************************************/
+

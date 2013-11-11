@@ -1,0 +1,10 @@
+Filename : bootstrap.min.js
+Total Function : 0
+Total Line of Code : 1
+-------------------------------
+/**
+* bootstrap.js v3.0.0 by @fat and @mdo
+* Copyright 2013 Twitter Inc.
+* http://www.apache.org/licenses/LICENSE-2.0
+*/
+

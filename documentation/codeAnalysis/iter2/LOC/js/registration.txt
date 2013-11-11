@@ -1,0 +1,40 @@
+Filename : registration.js
+Total Function : 3
+Total Line of Code : 49
+-------------------------------
+/*************************************************************************
+File name: registration.js
+Author: Yuvaraj
+Created date: 10/13/2013
+Purpose: client functionality associated with registration page
+**************************************************************************/
+
+/************************************************************
+Function name: regUser
+Author: Yuvaraj
+Created date: 10/13/2013
+Purpose: Processes the registration form
+**************************************************************/
+
+/*the following code checkes whether the entered userid is valid */
+
+window.location="login.html"; /*Redirect to the login page after succesful registration*/
+
+$("#errormsg").html("Invalid Username or Password"); /*displays error message*/
+
+else { /* Usually internal error or other */
+
+/************************************************************
+Function name: resetHandler
+Author: Yuvaraj
+Created date: 10/13/2013
+Purpose: Cancels the registration form
+************************************************************/
+
+/************************************************************
+Function name: onready
+Author: Yuvaraj
+Created date: 10/13/2013
+Purpose: ready function invoked when page is rendered
+**************************************************************/
+

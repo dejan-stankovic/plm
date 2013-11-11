@@ -42,12 +42,8 @@ public class Permission {
 
 	private static final int[][] rolePermissions = {
 		{}, // Empty -- Roles are 1-indexed
-		{VIEW_PROJECT}, // Stakeholder
-		{VIEW_PROJECT,CREATE_RELEASE,CREATE_TASK,INVITE_USER,SET_ROLE,EDIT_PROJECT}, // Project Leader
-		{VIEW_PROJECT,CREATE_USER_STORY}, // Business Analyst
-		{VIEW_PROJECT,CREATE_BUG}, // Quality Assurance
+		{VIEW_PROJECT,CREATE_RELEASE,CREATE_USER_STORY,CREATE_TASK,INVITE_USER,SET_ROLE,EDIT_PROJECT,EDIT_RELEASE}, // Project Leader
 		{VIEW_PROJECT,EDIT_BUG,EDIT_TASK}, // Developer
-		{VIEW_PROJECT,EDIT_RELEASE}, // Release Manager
 	};
 
 	/************************************************************

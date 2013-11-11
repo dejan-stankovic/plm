@@ -1,0 +1,103 @@
+Filename : Task.java
+Total Function : 13
+Total Line of Code : 69
+-------------------------------
+/************************************************************
+Filename: Task.java
+Author: Christian Heckendorf
+Created date: 10/01/2013
+Purpose: Holds a task
+Feature: None
+************************************************************/
+
+/************************************************************
+Function name: overlay()
+Author: Christian Heckendorf
+Created date: 10/27/2013
+Purpose: Overlays a JSONTask onto this object
+************************************************************/
+
+/***************************************************************
+Function name: getId
+Author: Christian Heckendorf
+Created Date: 10/01/13
+Purpose: Gets an id
+***************************************************************/
+
+/***************************************************************
+Function name: setId
+Author: Christian Heckendorf
+Created Date: 10/01/13
+Purpose: Sets an id
+***************************************************************/
+
+/***************************************************************
+Function name: getName
+Author: Christian Heckendorf
+Created Date: 10/01/13
+Purpose: Gets a name
+***************************************************************/
+
+/***************************************************************
+Function name: setName
+Author: Christian Heckendorf
+Created Date: 10/01/13
+Purpose: Sets a name
+***************************************************************/
+
+/************************************************************
+Function name: getDescription()
+Author: Christian Heckendorf
+Created date: 10/01/2013
+Purpose: Returns the description
+************************************************************/
+
+/************************************************************
+Function name: setDescription()
+Author: Christian Heckendorf
+Created date: 10/01/2013
+Purpose: Sets the description
+************************************************************/
+
+/************************************************************
+Function name: getUserStory()
+Author: Christian Heckendorf
+Created date: 10/01/2013
+Purpose: Returns the user story
+************************************************************/
+
+/************************************************************
+Function name: setUserStory()
+Author: Christian Heckendorf
+Created date: 10/01/2013
+Purpose: Sets the user story
+************************************************************/
+
+/************************************************************
+Function name: getUserAssigned()
+Author: Christian Heckendorf
+Created date: 10/01/2013
+Purpose: Returns the assigned user
+************************************************************/
+
+/************************************************************
+Function name: setUserAssigned()
+Author: Christian Heckendorf
+Created date: 10/01/2013
+Purpose: Sets the assigned user
+************************************************************/
+
+/************************************************************
+Function name: getStatus()
+Author: Christian Heckendorf
+Created date: 11/01/2013
+Purpose: Returns a status
+************************************************************/
+
+/************************************************************
+Function name: setStatus()
+Author: Christian Heckendorf
+Created date: 11/01/2013
+Purpose: Sets a status
+************************************************************/
+

@@ -1,0 +1,198 @@
+<!--
+Filename: permissions.html
+Author: Christian Heckendorf
+Created date: 10/05/2013
+Purpose: Example permission checking interface
+Feature: None
+-->
+<html>
+<head>
+	<title>Hello!</title>
+	<meta charset="utf-8">
+	<script src="../js/lib/jquery.min.js"></script>
+	<script>
+		var tok;
+
+		/************************************************************
+		Function name: updatesUserStory
+		Author: Christian Heckendorf
+		Created date: 10/26/2013
+		Purpose: Updates a user story
+		************************************************************/
+		function updateUserStory(){
+			var randomname = "NewRandom "+Math.random();
+			$.ajax({
+				type: 'POST',
+				url: '/plm/rest/userstory/update/u/1',
+				contentType: 'application/json; charset=UTF-8',
+				accepts: {
+					text: 'application/json'
+				},
+				dataType: 'json',
+				data: JSON.stringify({
+					token: {
+						token: tok
+					},
+					userStory: {
+						name: randomname,
+						description: "Some description",
+						points: 1,
+						status: {
+							id: 2
+						},
+						owner: {
+							id: 2
+						}
+					}
+				}),
+				success: function(data){
+					/* code: id or -1, message: success/error message */
+					/* {"code":4,"message":"Success"} */
+					alert(data.code+" "+data.message);
+					getUserStories();
+				},
+				error: function(data){
+					alert("error");
+				}
+			});
+		}
+
+		/************************************************************
+		Function name: createUserStory
+		Author: Christian Heckendorf
+		Created date: 10/26/2013
+		Purpose: Creates a new user story
+		************************************************************/
+		function createUserStory(){
+			var randomname = "Random "+Math.random();
+			$.ajax({
+				type: 'POST',
+				url: '/plm/rest/userstory/create/r/1',
+				contentType: 'application/json; charset=UTF-8',
+				accepts: {
+					text: 'application/json'
+				},
+				dataType: 'json',
+				data: JSON.stringify({
+					token: {
+						token: tok
+					},
+					userStory: {
+						name: randomname,
+						description: "Some description",
+						points: 1,
+						status: {
+							id: 1
+						},
+						owner: {
+							id: 1
+						}
+					}
+				}),
+				success: function(data){
+					/* code: new id or -1, message: success/error message */
+					/* {"code":4,"message":"Success"} */
+					updateUserStory();
+				},
+				error: function(data){
+					alert("error");
+				}
+			});
+		}
+
+		/************************************************************
+		Function name: getUserStories
+		Author: Christian Heckendorf
+		Created date: 10/26/2013
+		Purpose: Displays a list of user stories under a release
+		************************************************************/
+		function getUserStories(){
+			$("div#first").html("");
+			$.ajax({
+				type: 'POST',
+				url: '/plm/rest/userstory/r/1',
+				contentType: 'application/json; charset=UTF-8',
+				accepts: {
+					text: 'application/json'
+				},
+				dataType: 'json',
+				data: JSON.stringify({
+					token: tok
+				}),
+				success: function(data){
+					/* {"userStories":[{"id":1,"name":"NewRandom 0.028741610702127218","description":"Some description","points":1,"owner":{"id":2,"name":"anotheruser"},"status":{"id":2,"name":"Pending"}},{"id":2,"name":"Random 0.5523067144677043","description":"Some description","points":1,"owner":{"id":1,"name":"auser"},"status":{"id":1,"name":"Initial"}}]} */
+					for(x in data.userStories){
+						$("div#first").append("<h1>"+data.userStories[x].id+", "+data.userStories[x].name+", "+data.userStories[x].description+"</h1>");
+					}
+				},
+				error: function(data){
+					alert("error");
+				}
+			});
+		}
+
+		function getStatuses(){
+			$("div#second").html("");
+			$.ajax({
+				type: 'POST',
+				url: '/plm/rest/status',
+				contentType: 'application/json; charset=UTF-8',
+				accepts: {
+					text: 'application/json'
+				},
+				dataType: 'json',
+				data: JSON.stringify({
+					token: tok
+				}),
+				success: function(data){
+					/* {"statuses":[{"id":1,"name":"Initial"},{"id":2,"name":"Pending"},{"id":3,"name":"InProgress"},{"id":4,"name":"Complete"}]} */
+					for(x in data.statuses){
+						$("div#second").append("<h1>"+data.statuses[x].id+", "+data.statuses[x].name+"</h1>");
+					}
+				},
+				error: function(data){
+					alert("error");
+				}
+			});
+		}
+
+		/************************************************************
+		Function name: loginUser
+		Author: Christian Heckendorf
+		Created date: 09/30/2013
+		Purpose: Logs in a user
+		************************************************************/
+		function loginUser(){
+			$.ajax({
+				type: 'POST',
+				url: '/plm/rest/login',
+				contentType: 'application/json; charset=UTF-8',
+				accepts: {
+					text: 'application/json'
+				},
+				dataType: 'json',
+				data: JSON.stringify({
+					name: 'auser',
+					password: 'apassword'
+				}),
+				success: function(data){
+					tok = data.message;
+					if(data.code==0){
+						createUserStory();
+						getStatuses();
+					}
+				},
+				error: function(data){
+					alert("error");
+				}
+			});
+		}
+	</script>
+</head>
+<body onload="loginUser()">
+	User stories for release 1
+	<div id="first"></div>
+	Statuses in the system:
+	<div id="second"></div>
+</body>
+</html>

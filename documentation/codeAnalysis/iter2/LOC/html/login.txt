@@ -1,0 +1,12 @@
+Filename : login.html
+Total Function : 0
+Total Line of Code : 137
+-------------------------------
+Ôªø<!--
+Filename: login.html
+Author: Rachit
+Created date: 09/30/2013
+Purpose: view to handle login functionality
+Feature: None
+-->
+

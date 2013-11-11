@@ -1,0 +1,47 @@
+Filename : JSONRole.java
+Total Function : 5
+Total Line of Code : 23
+-------------------------------
+/***************************************************************
+Filename: JSONRole.java
+Author: Christian Heckendorf
+Created Date: 10/04/13
+Purpose: Holds the public attributes of a role
+Features: None
+***************************************************************/
+
+/************************************************************
+Function name: JSONRole()
+Author: Christian Heckendorf
+Created date: 10/04/2013
+Purpose: Initializes a JSONRole from a Role
+************************************************************/
+
+/***************************************************************
+Function name: getId
+Author: Christian Heckendorf
+Created Date: 10/04/13
+Purpose: Gets an id
+***************************************************************/
+
+/***************************************************************
+Function name: setId
+Author: Christian Heckendorf
+Created Date: 10/04/13
+Purpose: Sets an id
+***************************************************************/
+
+/***************************************************************
+Function name: getName
+Author: Christian Heckendorf
+Created Date: 10/04/13
+Purpose: Gets a name
+***************************************************************/
+
+/***************************************************************
+Function name: setName
+Author: Christian Heckendorf
+Created Date: 10/04/13
+Purpose: Sets a name
+***************************************************************/
+

@@ -1,0 +1,124 @@
+Filename : User.java
+Total Function : 16
+Total Line of Code : 78
+-------------------------------
+/***************************************************************
+Filename: User.java
+Author: Christian Heckendorf
+Created Date: 9/29/13
+Purpose: Holds a user
+Features: None
+***************************************************************/
+
+/***************************************************************
+Function name: getId
+Author: Christian Heckendorf
+Created Date: 9/21/13
+Purpose: Gets an id
+***************************************************************/
+
+/***************************************************************
+Function name: setId
+Author: Christian Heckendorf
+Created Date: 9/21/13
+Purpose: Sets an id
+***************************************************************/
+
+/***************************************************************
+Function name: getName
+Author: Christian Heckendorf
+Created Date: 9/21/13
+Purpose: Gets a name
+***************************************************************/
+
+/***************************************************************
+Function name: setName
+Author: Christian Heckendorf
+Created Date: 9/21/13
+Purpose: Sets a name
+***************************************************************/
+
+/***************************************************************
+Function name: setPassword
+Author: Christian Heckendorf
+Created Date: 9/21/13
+Purpose: Sets a password
+***************************************************************/
+
+/***************************************************************
+Function name: setPassword
+Author: Christian Heckendorf
+Created Date: 9/21/13
+Purpose: Sets a password
+***************************************************************/
+
+/***************************************************************
+Function name: getUserProjects
+Author: Christian Heckendorf
+Created Date: 9/29/13
+Purpose: Gets a list of UserProjects
+***************************************************************/
+
+/***************************************************************
+Function name: setUserProjects
+Author: Christian Heckendorf
+Created Date: 9/29/13
+Purpose: Sets a list of UserProjects
+***************************************************************/
+
+/************************************************************
+Function name: getTasksAssigned()
+Author: Christian Heckendorf
+Created date: 10/01/2013
+Purpose: Returns the tasks assigned
+************************************************************/
+
+/************************************************************
+Function name: setTasksAssigned()
+Author: Christian Heckendorf
+Created date: 10/01/2013
+Purpose: Sets the tasks assigned
+************************************************************/
+
+/************************************************************
+Function name: getBugsCreated()
+Author: Christian Heckendorf
+Created date: 10/01/2013
+Purpose: Returns the bugs created
+************************************************************/
+
+/************************************************************
+Function name: setBugsCreated()
+Author: Christian Heckendorf
+Created date: 10/01/2013
+Purpose: Sets the bugs created
+************************************************************/
+
+/************************************************************
+Function name: getBugsAssigned()
+Author: Christian Heckendorf
+Created date: 10/01/2013
+Purpose: Returns the assigned bugs
+************************************************************/
+
+/************************************************************
+Function name: setBugsAssigned()
+Author: Christian Heckendorf
+Created date: 10/01/2013
+Purpose: Sets the assigned bugs
+************************************************************/
+
+/************************************************************
+Function name: getUserStoriesOwned()
+Author: Christian Heckendorf
+Created date: 11/02/2013
+Purpose: Gets the owned user stories
+************************************************************/
+
+/************************************************************
+Function name: setUserStoriesOwned()
+Author: Christian Heckendorf
+Created date: 11/02/2013
+Purpose: Sets the owned user stories
+************************************************************/
+

@@ -1,0 +1,54 @@
+Filename : Role.java
+Total Function : 6
+Total Line of Code : 39
+-------------------------------
+/***************************************************************
+Filename: Role.java
+Author: Christian Heckendorf
+Created Date: 9/29/13
+Purpose: Holds a role
+Features: None
+***************************************************************/
+
+/***************************************************************
+Function name: getId
+Author: Christian Heckendorf
+Created Date: 9/29/13
+Purpose: Gets an id
+***************************************************************/
+
+/***************************************************************
+Function name: setId
+Author: Christian Heckendorf
+Created Date: 9/29/13
+Purpose: Sets an id
+***************************************************************/
+
+/***************************************************************
+Function name: getName
+Author: Christian Heckendorf
+Created Date: 9/29/13
+Purpose: Gets a name
+***************************************************************/
+
+/***************************************************************
+Function name: setName
+Author: Christian Heckendorf
+Created Date: 9/29/13
+Purpose: Sets a name
+***************************************************************/
+
+/***************************************************************
+Function name: getUserProjects
+Author: Christian Heckendorf
+Created Date: 9/29/13
+Purpose: Gets a list of UserProjects
+***************************************************************/
+
+/***************************************************************
+Function name: setUserProjects
+Author: Christian Heckendorf
+Created Date: 9/29/13
+Purpose: Sets a list of UserProjects
+***************************************************************/
+

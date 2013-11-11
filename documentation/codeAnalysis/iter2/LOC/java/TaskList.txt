@@ -1,0 +1,47 @@
+Filename : TaskList.java
+Total Function : 5
+Total Line of Code : 23
+-------------------------------
+/************************************************************
+Filename: TaskList.java
+Author: Christian Heckendorf
+Created date: 10/07/2013
+Purpose: Holds a list of JSONTasks
+Feature: Dashboard
+************************************************************/
+
+/************************************************************
+Function name: TaskList
+Author: Christian Heckendorf
+Created date: 10/13/2013
+Purpose: Default constructor
+************************************************************/
+
+/************************************************************
+Function name: addTask()
+Author: Christian Heckendorf
+Created date: 10/07/2013
+Purpose: Adds a task to the list
+************************************************************/
+
+/************************************************************
+Function name: addTasks()
+Author: Christian Heckendorf
+Created date: 10/13/2013
+Purpose: Adds a list of tasks
+************************************************************/
+
+/************************************************************
+Function name: getTasks()
+Author: Christian Heckendorf
+Created date: 10/07/2013
+Purpose: Returns the list of tasks
+************************************************************/
+
+/************************************************************
+Function name: setTasks()
+Author: Christian Heckendorf
+Created date: 10/07/2013
+Purpose: Sets the list of tasks
+************************************************************/
+

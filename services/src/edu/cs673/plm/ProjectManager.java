@@ -19,8 +19,13 @@ import edu.cs673.plm.model.TokenMessage;
 import edu.cs673.plm.model.User;
 import edu.cs673.plm.model.UserList;
 import edu.cs673.plm.model.ReleaseList;
+import edu.cs673.plm.model.JSONReleaseRequest;
+import edu.cs673.plm.model.JSONProjectRequest;
+import edu.cs673.plm.model.Release;
+import edu.cs673.plm.model.Project;
 import edu.cs673.plm.model.JSONUser;
 import edu.cs673.plm.model.UserProject;
+import edu.cs673.plm.model.StatusMessage;
 
 @Path( "/projectmanage" )
 public class ProjectManager {
@@ -63,7 +68,7 @@ public class ProjectManager {
 		ReleaseList rl = null;
 		Dba dba = new Dba(true);
 		try{
-			if(Permission.canAccess(dba,new SessionToken(token.getToken()),pid,Permission.VIEW_PROJECT)){
+			if(Permission.canAccess(dba,st,pid,Permission.VIEW_PROJECT)){
 				rl = ProjectDao.getReleaseList(dba,pid);
 			}
 		} finally{
@@ -71,5 +76,78 @@ public class ProjectManager {
 		}
 
 		return rl;
+	}
+
+	/************************************************************
+	Function name: createRelease()
+	Author: Christian Heckendorf
+	Created date: 10/26/2013
+	Purpose: Creates a release under a project
+	************************************************************/
+	@Path( "/release/p/{pid}" )
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public StatusMessage createRelease(@PathParam("pid") long pid, JSONReleaseRequest req) {
+		StatusMessage sm = new StatusMessage(-1,"Internal Error");
+		SessionToken st = new SessionToken(req.getToken().getToken());
+		Dba dba = new Dba(false);
+		try{
+			if(Permission.canAccess(dba,st,pid,Permission.CREATE_RELEASE)){
+				Release rel = new Release();
+				rel.overlay(req.getRelease());
+				sm = ReleaseDao.createRelease(dba,pid,rel);
+			}
+		} finally{
+			dba.closeEm();
+		}
+
+		return sm;
+	}
+
+	/************************************************************
+	Function name: updateRelease()
+	Author: Christian Heckendorf
+	Created date: 10/26/2013
+	Purpose: Updates a release
+	************************************************************/
+	@Path( "/release/r/{rid}" )
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public StatusMessage updateRelease(@PathParam("rid") long rid, JSONReleaseRequest req) {
+		StatusMessage sm = new StatusMessage(-1,"Internal Error");
+		SessionToken st = new SessionToken(req.getToken().getToken());
+		Dba dba = new Dba(false);
+		try{
+			Release rel = ReleaseDao.getReleaseById(dba,rid);
+			if(Permission.canAccess(dba,st,rel.getProject().getId(),Permission.CREATE_RELEASE)){
+				rel.overlay(req.getRelease());
+				sm = ReleaseDao.updateRelease(dba,rel);
+			}
+		} finally{
+			dba.closeEm();
+		}
+
+		return sm;
+	}
+
+	@Path( "/create" )
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public StatusMessage createProject(@PathParam("pid") long pid, JSONProjectRequest req) {
+		StatusMessage sm = new StatusMessage(-1,"Internal Error");
+		SessionToken st = new SessionToken(req.getToken().getToken());
+		Dba dba = new Dba(false);
+		try{
+			Project proj = new Project();
+			proj.overlay(req.getProject());
+			sm = ProjectDao.createProject(dba,proj,st.getUid());
+		} finally{
+			dba.closeEm();
+		}
+
+		return sm;
 	}
 }

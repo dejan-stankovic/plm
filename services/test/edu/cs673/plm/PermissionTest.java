@@ -24,8 +24,8 @@ public class PermissionTest {
 	Purpose: Tests some basic access levels
 	************************************************************/
 	public void canAccess() {
-		assertEquals(true,Permission.canAccess(RoleDao.ROLE_STAKEHOLDER,Permission.VIEW_PROJECT));
-		assertEquals(false,Permission.canAccess(RoleDao.ROLE_STAKEHOLDER,Permission.CREATE_RELEASE));
+		assertEquals(true,Permission.canAccess(RoleDao.ROLE_DEVELOPER,Permission.VIEW_PROJECT));
+		assertEquals(false,Permission.canAccess(RoleDao.ROLE_DEVELOPER,Permission.CREATE_RELEASE));
 
 		assertEquals(true,Permission.canAccess(RoleDao.ROLE_PROJECT_LEADER,Permission.SET_ROLE));
 		assertEquals(true,Permission.canAccess(RoleDao.ROLE_PROJECT_LEADER,Permission.CREATE_RELEASE));

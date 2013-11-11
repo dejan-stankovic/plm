@@ -1,0 +1,33 @@
+Filename : SecKey.java
+Total Function : 3
+Total Line of Code : 36
+-------------------------------
+/***************************************************************
+Filename: SecKey.java
+Author: Christian Heckendorf
+Created Date: 9/28/13
+Purpose: Generate a key for symmetric encryption
+Features: All session protected features
+***************************************************************/
+
+/***************************************************************
+Function name: SecKey
+Author: Christian Heckendorf
+Created Date: 9/28/13
+Purpose: Initializes the object
+***************************************************************/
+
+/***************************************************************
+Function name: getKey
+Author: Christian Heckendorf
+Created Date: 9/28/13
+Purpose: Produces the generated key
+***************************************************************/
+
+/***************************************************************
+Function name: initialize
+Author: Christian Heckendorf
+Created Date: 9/28/13
+Purpose: Creates the key in a thread safe way
+***************************************************************/
+

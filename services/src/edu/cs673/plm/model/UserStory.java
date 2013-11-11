@@ -26,6 +26,7 @@ public class UserStory{
 	private long id;
 	private String name;
 	private String description;
+	private int points;
 
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="releaseId")
@@ -35,7 +36,27 @@ public class UserStory{
 	private List<Task> tasks;
 
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="userStory")
-	private List<Bug> bugs;
+	private List<UserStoryComment> comments;
+
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="statusId")
+	private Status status;
+
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="ownerId")
+	private User owner;
+
+	/************************************************************
+	Function name: overlay()
+	Author: Christian Heckendorf
+	Created date: 10/26/2013
+	Purpose: Overlays the attributes from another user story
+	************************************************************/
+	public void overlay(JSONUserStory userStory){
+		name = userStory.getName();
+		description = userStory.getDescription();
+		points = userStory.getPoints();
+	}
 
 	/***************************************************************
 	Function name: getId
@@ -138,22 +159,82 @@ public class UserStory{
 	}
 
 	/************************************************************
-	Function name: getBugs()
+	Function name: getStatus()
 	Author: Christian Heckendorf
-	Created date: 10/01/2013
-	Purpose: Returns the bugs
+	Created date: 11/01/2013
+	Purpose: Returns a status
 	************************************************************/
-	public List<Bug> getBugs(){
-		return bugs;
+	public Status getStatus(){
+		return status;
 	}
 
 	/************************************************************
-	Function name: setBugs()
+	Function name: setStatus()
 	Author: Christian Heckendorf
-	Created date: 10/01/2013
-	Purpose: Sets bugs
+	Created date: 11/01/2013
+	Purpose: Sets a status
 	************************************************************/
-	public void setBugs(List<Bug> bugs){
-		this.bugs=bugs;
+	public void setStatus(Status status){
+		this.status = status;
+	}
+
+	/************************************************************
+	Function name: getOwner()
+	Author: Christian Heckendorf
+	Created date: 11/01/2013
+	Purpose: Returns a owner
+	************************************************************/
+	public User getOwner(){
+		return owner;
+	}
+
+	/************************************************************
+	Function name: setOwner()
+	Author: Christian Heckendorf
+	Created date: 11/01/2013
+	Purpose: Sets a owner
+	************************************************************/
+	public void setOwner(User owner){
+		this.owner = owner;
+	}
+
+	/************************************************************
+	Function name: getPoints()
+	Author: Christian Heckendorf
+	Created date: 11/02/2013
+	Purpose: Returns the points
+	************************************************************/
+	public int getPoints(){
+		return points;
+	}
+
+	/************************************************************
+	Function name: setPoints()
+	Author: Christian Heckendorf
+	Created date: 11/02/2013
+	Purpose: Sets the points
+	************************************************************/
+	public void setPoints(int points){
+		this.points = points;
+	}
+
+	/************************************************************
+	Function name: getComments()
+	Author: Christian Heckendorf
+	Created date: 11/02/2013
+	Purpose: Returns the comments
+	************************************************************/
+	public List<UserStoryComment> getComments(){
+		return comments;
+	}
+
+	/************************************************************
+	Function name: setComments()
+	Author: Christian Heckendorf
+	Created date: 11/02/2013
+	Purpose: Sets the comments
+	************************************************************/
+	public void setComments(List<UserStoryComment> comments){
+		this.comments = comments;
 	}
 }

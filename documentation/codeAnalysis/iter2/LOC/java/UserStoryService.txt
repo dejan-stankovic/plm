@@ -1,0 +1,33 @@
+Filename : UserStoryService.java
+Total Function : 3
+Total Line of Code : 80
+-------------------------------
+/************************************************************
+Filename: UserStoryService.java
+Author: Christian Heckendorf
+Created date: 10/22/2013
+Purpose: User story related services
+Feature: User Story
+************************************************************/
+
+/************************************************************
+Function name: getUserStoryList()
+Author: Christian Heckendorf
+Created date: 10/22/2013
+Purpose: Returns a list of user stories under a release
+************************************************************/
+
+/************************************************************
+Function name: createUserStory()
+Author: Christian Heckendorf
+Created date: 10/22/2013
+Purpose: Creates a user story
+************************************************************/
+
+/************************************************************
+Function name: updateUserStory()
+Author: Christian Heckendorf
+Created date: 10/26/2013
+Purpose: Updates a user story
+************************************************************/
+

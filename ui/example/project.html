@@ -1,0 +1,117 @@
+<!--
+Filename: project.html
+Author: Christian Heckendorf
+Created date: 11/02/2013
+Purpose: Example project service interface
+Feature: Project management
+-->
+<html>
+<head>
+	<title>Hello!</title>
+	<meta charset="utf-8">
+	<script src="../js/lib/jquery.min.js"></script>
+	<script>
+		var tok;
+
+		/************************************************************
+		Function name: createRelease
+		Author: Christian Heckendorf
+		Created date: 11/02/2013
+		Purpose: Creates a release
+		************************************************************/
+		function createRelease(){
+			$("div#first").html("");
+			$.ajax({
+				type: 'POST',
+				url: '/plm/rest/projectmanage/release/p/1',
+				contentType: 'application/json; charset=UTF-8',
+				accepts: {
+					text: 'application/json'
+				},
+				dataType: 'json',
+				data: JSON.stringify({
+					token: {
+						token: tok
+					},
+					release: {
+						version: "7.1",
+						startDate: "2013-12-17",
+						endDate: "2013-12-20"
+					}
+				}),
+				success: function(data){
+					getReleases();
+				},
+				error: function(data){
+					alert("error");
+				}
+			});
+		}
+
+		/************************************************************
+		Function name: getReleases
+		Author: Christian Heckendorf
+		Created date: 11/02/2013
+		Purpose: Gets a list of releases
+		************************************************************/
+		function getReleases(){
+			$.ajax({
+				type: 'POST',
+				url: '/plm/rest/projectmanage/releases/p/1',
+				contentType: 'application/json; charset=UTF-8',
+				accepts: {
+					text: 'application/json'
+				},
+				dataType: 'json',
+				data: JSON.stringify({
+					token: tok
+				}),
+				success: function(data){
+					/* {"releases":[{"id":1,"version":"1.0","startDate":"2013-11-02","endDate":"2013-11-02"},{"id":2,"version":"7.1","startDate":"2013-12-17","endDate":"2013-12-20"}]} */
+					for(x in data.releases){
+						$("div#first").append("<h1>"+data.releases[x].id+", "+data.releases[x].version+"</h1>");
+					}
+				},
+				error: function(data){
+					alert("error");
+				}
+			});
+		}
+
+		/************************************************************
+		Function name: loginUser
+		Author: Christian Heckendorf
+		Created date: 09/30/2013
+		Purpose: Logs in a user
+		************************************************************/
+		function loginUser(){
+			$.ajax({
+				type: 'POST',
+				url: '/plm/rest/login',
+				contentType: 'application/json; charset=UTF-8',
+				accepts: {
+					text: 'application/json'
+				},
+				dataType: 'json',
+				data: JSON.stringify({
+					name: 'auser',
+					password: 'apassword'
+				}),
+				success: function(data){
+					tok = data.message;
+					if(data.code==0){
+						createRelease();
+					}
+				},
+				error: function(data){
+					alert("error");
+				}
+			});
+		}
+	</script>
+</head>
+<body onload="loginUser()">
+	Releases under project 1:
+	<div id="first"></div>
+</body>
+</html>
