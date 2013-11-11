@@ -1,0 +1,26 @@
+Filename : PermissionList.java
+Total Function : 2
+Total Line of Code : 11
+-------------------------------
+/************************************************************
+Filename: PermissionList.java
+Author: Christian Heckendorf
+Created date: 10/05/2013
+Purpose: Holds a list of permissions
+Feature: Permission management
+************************************************************/
+
+/************************************************************
+Function name: setPermissions()
+Author: Christian Heckendorf
+Created date: 10/05/2013
+Purpose: Returns the permissions
+************************************************************/
+
+/************************************************************
+Function name: setPermissions()
+Author: Christian Heckendorf
+Created date: 10/05/2013
+Purpose: Sets the permissions
+************************************************************/
+

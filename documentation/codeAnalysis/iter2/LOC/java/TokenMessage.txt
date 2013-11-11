@@ -1,0 +1,26 @@
+Filename : TokenMessage.java
+Total Function : 2
+Total Line of Code : 10
+-------------------------------
+/************************************************************
+Filename: TokenMessage.java
+Author: Christian Heckendorf
+Created date: 09/29/2013
+Purpose: Holds a token message
+Feature: Renew token
+************************************************************/
+
+/************************************************************
+Function name: getToken
+Author: Christian Heckendorf
+Created date: 09/29/2013
+Purpose: Returns the token
+************************************************************/
+
+/************************************************************
+Function name: setToken
+Author: Christian Heckendorf
+Created date: 09/29/2013
+Purpose: Sets a token
+************************************************************/
+

@@ -1,0 +1,47 @@
+Filename : ReleaseList.java
+Total Function : 5
+Total Line of Code : 23
+-------------------------------
+/************************************************************
+Filename: ReleaseList.java
+Author: Christian Heckendorf
+Created date: 10/07/2013
+Purpose: Holds a list of JSONReleases
+Feature: Dashboard
+************************************************************/
+
+/************************************************************
+Function name: ReleaseList()
+Author: Christian Heckendorf
+Created date: 10/13/2013
+Purpose: Default constructor
+************************************************************/
+
+/************************************************************
+Function name: addRelease()
+Author: Christian Heckendorf
+Created date: 10/07/2013
+Purpose: Adds a release to the list
+************************************************************/
+
+/************************************************************
+Function name: addReleases()
+Author: Christian Heckendorf
+Created date: 10/13/2013
+Purpose: Adds a list of releases
+************************************************************/
+
+/************************************************************
+Function name: getReleases()
+Author: Christian Heckendorf
+Created date: 10/07/2013
+Purpose: Returns the list of releases
+************************************************************/
+
+/************************************************************
+Function name: setReleases()
+Author: Christian Heckendorf
+Created date: 10/07/2013
+Purpose: Sets the list of releases
+************************************************************/
+

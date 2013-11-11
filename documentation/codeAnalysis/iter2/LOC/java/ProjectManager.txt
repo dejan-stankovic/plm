@@ -1,0 +1,40 @@
+Filename : ProjectManager.java
+Total Function : 4
+Total Line of Code : 110
+-------------------------------
+/************************************************************
+Filename: ProjectManager.java
+Author: Christian Heckendorf
+Created date: 10/05/2013
+Purpose: Services for project management
+Feature: None
+************************************************************/
+
+/************************************************************
+Function name: getUserList()
+Author: Christian Heckendorf
+Created date: 10/05/2013
+Purpose: Returns a list of users associated with a project
+************************************************************/
+
+/************************************************************
+Function name: getReleaseList()
+Author: Christian Heckendorf
+Created date: 10/08/2013
+Purpose: Gets a list of releases under a project
+************************************************************/
+
+/************************************************************
+Function name: createRelease()
+Author: Christian Heckendorf
+Created date: 10/26/2013
+Purpose: Creates a release under a project
+************************************************************/
+
+/************************************************************
+Function name: updateRelease()
+Author: Christian Heckendorf
+Created date: 10/26/2013
+Purpose: Updates a release
+************************************************************/
+

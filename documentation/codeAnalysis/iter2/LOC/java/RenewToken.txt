@@ -1,0 +1,19 @@
+Filename : RenewToken.java
+Total Function : 1
+Total Line of Code : 36
+-------------------------------
+/***************************************************************
+Filename: RenewToken.java
+Author: Christian Heckendorf
+Created Date: 9/29/13
+Purpose: Renews a session token
+Features: None yet
+***************************************************************/
+
+/***************************************************************
+Function name: getRenewMessage
+Author: Christian Heckendorf
+Created Date: 9/29/13
+Purpose: Returns the new session token
+***************************************************************/
+

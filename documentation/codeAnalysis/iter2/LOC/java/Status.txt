@@ -1,0 +1,68 @@
+Filename : Status.java
+Total Function : 8
+Total Line of Code : 46
+-------------------------------
+/************************************************************
+Filename: Status.java
+Author: Christian Heckendorf
+Created date: 11/01/2013
+Purpose: Status entity object
+Feature: None
+************************************************************/
+
+/***************************************************************
+Function name: getId
+Author: Christian Heckendorf
+Created Date: 11/01/13
+Purpose: Gets an id
+***************************************************************/
+
+/***************************************************************
+Function name: setId
+Author: Christian Heckendorf
+Created Date: 11/01/13
+Purpose: Sets an id
+***************************************************************/
+
+/***************************************************************
+Function name: getName
+Author: Christian Heckendorf
+Created Date: 11/01/13
+Purpose: Gets a name
+***************************************************************/
+
+/***************************************************************
+Function name: setName
+Author: Christian Heckendorf
+Created Date: 11/01/13
+Purpose: Sets a name
+***************************************************************/
+
+/************************************************************
+Function name: getUserStories()
+Author: Christian Heckendorf
+Created date: 11/01/2013
+Purpose: Returns the user stories
+************************************************************/
+
+/************************************************************
+Function name: setUserStories()
+Author: Christian Heckendorf
+Created date: 11/01/2013
+Purpose: Sets the user stories
+************************************************************/
+
+/************************************************************
+Function name: getTasks()
+Author: Christian Heckendorf
+Created date: 11/01/2013
+Purpose: Returns the tasks
+************************************************************/
+
+/************************************************************
+Function name: setTasks()
+Author: Christian Heckendorf
+Created date: 11/01/2013
+Purpose: Sets the tasks
+************************************************************/
+

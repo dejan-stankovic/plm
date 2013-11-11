@@ -1,0 +1,64 @@
+Filename : common.js
+Total Function : 7
+Total Line of Code : 215
+-------------------------------
+Ôªø/*************************************************************************
+File name: common.js
+Author: Manav
+Created date: 09/30/2013
+Purpose: common routines
+**************************************************************************/
+
+/************************************************************
+Function name: setToken
+Author: Christian Heckendorf
+Created date: 10/13/2013
+Purpose: Stores the sesssion token
+************************************************************/
+
+/************************************************************
+Function name: setCurProject
+Author: Christian Heckendorf
+Created date: 10/14/2013
+Purpose: Sets the current project
+************************************************************/
+
+/************************************************************
+Function name: getCookieValue
+Author: Christian Heckendorf
+Created date: 10/14/2013
+Purpose: Returns the value of a cookie
+************************************************************/
+
+/************************************************************
+Function name: getToken
+Author: Christian Heckendorf
+Created date: 10/13/2013
+Purpose: Returns the stored session token
+************************************************************/
+
+/************************************************************
+Function name: getCurProject
+Author: Christian Heckendorf
+Created date: 10/14/2013
+Purpose: Returns the active project id
+************************************************************/
+
+/* TODO: Get/Set from the url? */
+
+/************************************************************
+Function name: getCurProjects
+Author: Christian Heckendorf
+Created date: 10/14/2013
+Purpose: Ajax to set the list of projects for a user
+************************************************************/
+
+/* Some default permissions */
+
+/************************************************************
+Function name: onready
+Author: Manav
+Created date: 09/30/2013
+Purpose: ready function invoked when any page is rendered
+**************************************************************/
+

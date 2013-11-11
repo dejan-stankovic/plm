@@ -1,0 +1,89 @@
+Filename : Project.java
+Total Function : 11
+Total Line of Code : 58
+-------------------------------
+/***************************************************************
+Filename: Project.java
+Author: Christian Heckendorf
+Created Date: 9/29/13
+Purpose: Holds a project
+Features: None
+***************************************************************/
+
+/************************************************************
+Function name: overlay()
+Author: Christian Heckendorf
+Created date: 10/26/2013
+Purpose: Overlays a JSONProject over this object
+************************************************************/
+
+/***************************************************************
+Function name: getId
+Author: Christian Heckendorf
+Created Date: 9/29/13
+Purpose: Gets an id
+***************************************************************/
+
+/***************************************************************
+Function name: setId
+Author: Christian Heckendorf
+Created Date: 9/29/13
+Purpose: Sets an id
+***************************************************************/
+
+/***************************************************************
+Function name: getName
+Author: Christian Heckendorf
+Created Date: 9/29/13
+Purpose: Gets a name
+***************************************************************/
+
+/***************************************************************
+Function name: setName
+Author: Christian Heckendorf
+Created Date: 9/29/13
+Purpose: Sets a name
+***************************************************************/
+
+/***************************************************************
+Function name: getUserProjects
+Author: Christian Heckendorf
+Created Date: 9/29/13
+Purpose: Gets a list of UserProjects
+***************************************************************/
+
+/***************************************************************
+Function name: setUserProjects
+Author: Christian Heckendorf
+Created Date: 9/29/13
+Purpose: Sets a list of UserProjects
+***************************************************************/
+
+/************************************************************
+Function name: getReleases()
+Author: Christian Heckendorf
+Created date: 10/01/2013
+Purpose: Returns releases
+************************************************************/
+
+/************************************************************
+Function name: setReleases()
+Author: Christian Heckendorf
+Created date: 10/01/2013
+Purpose: Sets releases
+************************************************************/
+
+/************************************************************
+Function name: getBugs()
+Author: Christian Heckendorf
+Created date: 10/01/2013
+Purpose: Returns the bugs
+************************************************************/
+
+/************************************************************
+Function name: setBugs()
+Author: Christian Heckendorf
+Created date: 10/01/2013
+Purpose: Sets bugs
+************************************************************/
+

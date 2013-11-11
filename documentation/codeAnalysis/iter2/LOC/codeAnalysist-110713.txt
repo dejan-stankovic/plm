@@ -1,0 +1,39 @@
+
+Java File
+    Metric              Value
+    ------------------------------- --------
+    Total Files                   59
+    Total Lines                 5854
+    Avg Line Length               28
+    Code Lines                  2693
+    Comment Lines               2574
+    Whitespace Lines                 592
+    Code/(Comment+Whitespace) Ratio     0.85
+    Code/Comment Ratio              1.05
+    Code/Whitespace Ratio           4.55
+    Code/Total Lines Ratio          0.46
+    Code Lines Per File               45
+    Comment Lines Per File            43
+    Whitespace Lines Per File             10
+
+
+HTML File
+    Metric              Value
+    ------------------------------- --------
+    Total Files                   12
+    Total Lines                 2579
+    Avg Line Length               43
+    Code Lines                  2323
+    Comment Lines                116
+    Whitespace Lines                 145
+    Code/(Comment+Whitespace) Ratio     8.90
+    Code/Comment Ratio             20.03
+    Code/Whitespace Ratio          16.02
+    Code/Total Lines Ratio          0.90
+    Code Lines Per File              193
+    Comment Lines Per File             9
+    Whitespace Lines Per File             12
+
+JS File : 2996
+
+Total Line of Code : 2693 + 2323 + 2996 = 8,012. 

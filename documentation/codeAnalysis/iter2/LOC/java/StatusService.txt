@@ -1,0 +1,19 @@
+Filename : StatusService.java
+Total Function : 1
+Total Line of Code : 26
+-------------------------------
+/************************************************************
+Filename: StatusService.java
+Author: Christian Heckendorf
+Created date: 11/02/2013
+Purpose: Status services
+Feature: UserStory, Task
+************************************************************/
+
+/************************************************************
+Function name: getStatuses()
+Author: Christian Heckendorf
+Created date: 11/02/2013
+Purpose: Returns a list of statuses in the system
+************************************************************/
+

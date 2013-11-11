@@ -1,0 +1,68 @@
+Filename : Dba.java
+Total Function : 8
+Total Line of Code : 74
+-------------------------------
+/***************************************************************
+Filename: Dba.java
+Author: Christian Heckendorf
+Created Date: 9/21/13
+Purpose: Helper class to get an EntityManager object
+Features: Probably all features
+***************************************************************/
+
+/***************************************************************
+Function name: Dba
+Author: Christian Heckendorf
+Created Date: 9/21/13
+Purpose: Prepares the class
+***************************************************************/
+
+/***************************************************************
+Function name: Dba
+Author: Christian Heckendorf
+Created Date: 9/21/13
+Purpose: Prepares the class
+***************************************************************/
+
+/***************************************************************
+Function name: openEm
+Author: Christian Heckendorf
+Created Date: 9/21/13
+Purpose: Opens an EntityManager
+***************************************************************/
+
+/***************************************************************
+Function name: getActiveEm
+Author: Christian Heckendorf
+Created Date: 9/21/13
+Purpose: Returns the active EntityManager
+***************************************************************/
+
+/***************************************************************
+Function name: closeEm
+Author: Christian Heckendorf
+Created Date: 9/21/13
+Purpose: Closes the EntityManager
+***************************************************************/
+
+/***************************************************************
+Function name: markRollback
+Author: Christian Heckendorf
+Created Date: 9/21/13
+Purpose: Marks the transaction as a rollback
+***************************************************************/
+
+/***************************************************************
+Function name: isRollbackOnly
+Author: Christian Heckendorf
+Created Date: 9/21/13
+Purpose: Determines whether the transaction is a rollback
+***************************************************************/
+
+/***************************************************************
+Function name: initialize
+Author: Christian Heckendorf
+Created Date: 9/21/13
+Purpose: Initializes the EntityManagerFactory
+***************************************************************/
+

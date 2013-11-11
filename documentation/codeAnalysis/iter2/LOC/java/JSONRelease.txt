@@ -1,0 +1,82 @@
+Filename : JSONRelease.java
+Total Function : 4
+Total Line of Code : 43
+-------------------------------
+/************************************************************
+Fileversion: JSONRelease.java
+Author: Christian Heckendorf
+Created date: 10/07/2013
+Purpose: Holds the public fields of a Release
+Feature: None
+************************************************************/
+
+/************************************************************
+Function version: JSONRelease()
+Author: Christian Heckendorf
+Created date: 10/07/2013
+Purpose: Default constructor
+************************************************************/
+
+/************************************************************
+Function version: JSONRelease()
+Author: Christian Heckendorf
+Created date: 10/07/2013
+Purpose: Constructs a JSONRelease from a Release
+************************************************************/
+
+/************************************************************
+Function version: getId
+Author: Christian Heckendorf
+Created date: 10/5/2013
+Purpose: Returns the release ID
+************************************************************/
+
+/************************************************************
+Function version: setId
+Author: Christian Heckendorf
+Created date: 10/5/2013
+Purpose: Sets the release ID
+************************************************************/
+
+/************************************************************
+Function version: getVersion
+Author: Christian Heckendorf
+Created date: 10/5/2013
+Purpose: Returns the version
+************************************************************/
+
+/************************************************************
+Function version: setVersion
+Author: Christian Heckendorf
+Created date: 10/5/2013
+Purpose: Sets the version
+************************************************************/
+
+/************************************************************
+Function name: getStartDate()
+Author: Christian Heckendorf
+Created date: 11/02/2013
+Purpose: Returns a startDate
+************************************************************/
+
+/************************************************************
+Function name: setStartDate()
+Author: Christian Heckendorf
+Created date: 11/02/2013
+Purpose: Sets a startDate
+************************************************************/
+
+/************************************************************
+Function name: getEndDate()
+Author: Christian Heckendorf
+Created date: 11/02/2013
+Purpose: Returns a endDate
+************************************************************/
+
+/************************************************************
+Function name: setEndDate()
+Author: Christian Heckendorf
+Created date: 11/02/2013
+Purpose: Sets a endDate
+************************************************************/
+

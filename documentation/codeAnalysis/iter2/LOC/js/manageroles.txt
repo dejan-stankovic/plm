@@ -1,0 +1,50 @@
+Filename : manageroles.js
+Total Function : 5
+Total Line of Code : 225
+-------------------------------
+/*************************************************************************
+File name: manageroles.js
+Author: Alan
+Created date: 09/30/2013
+Purpose: client functionality associated with manageroles page
+**************************************************************************/
+
+/************************************************************
+Function name: setRole
+Author: Christian Heckendorf
+Created date: 10/14/2013
+Purpose: Sets the role for a user
+************************************************************/
+
+/************************************************************
+Function name: getRoles
+Author: Christian Heckendorf
+Created date: 10/14/2013
+Purpose: Gets the role for a user
+************************************************************/
+
+/************************************************************
+Function name: getRole
+Author: Christian Heckendorf
+Created date: 10/14/2013
+Purpose: Gets all roles in the system
+************************************************************/
+
+/************************************************************
+Function name: getUsersInProject
+Author: Christian Heckendorf
+Created date: 10/14/2013
+Purpose: Gets all users in the project
+************************************************************/
+
+/************************************************************
+Function name: onready
+Author: Alan
+Created date: 09/30/2013
+Purpose: ready function invoked when page is rendered
+**************************************************************/
+
+$("#clearBtn").click(function(){ /*resetFields();*/ });
+
+*/
+

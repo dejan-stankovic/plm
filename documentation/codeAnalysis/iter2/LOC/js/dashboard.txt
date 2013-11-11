@@ -1,0 +1,67 @@
+Filename : dashboard.js
+Total Function : 8
+Total Line of Code : 241
+-------------------------------
+/*************************************************************************
+File name: dashboard.js
+Author: Manav, Christian
+Created date: 09/30/2013
+Purpose: client functionality associated with dashboard page
+**************************************************************************/
+
+/************************************************************
+Function name: clearTasks
+Author: Christian Heckendorf
+Created date: 10/13/2013
+Purpose: Removes all tasks from the grid
+************************************************************/
+
+/************************************************************
+Function name: dashboardTaskAjax
+Author: Christian Heckendorf
+Created date: 10/13/2013
+Purpose: Runs the dashboard ajax for some task service
+************************************************************/
+
+/************************************************************
+Function name: genericTaskFetch
+Author: Christian Heckendorf
+Created date: 10/13/2013
+Purpose: Wrapper to fetch tasks with optional service filter
+************************************************************/
+
+/************************************************************
+Function name: filterTasks
+Author: Christian Heckendorf
+Created date: 10/13/2013
+Purpose: Sets the list of tasks based on the filter
+************************************************************/
+
+/************************************************************
+Function name: getTasks
+Author: Christian Heckendorf
+Created date: 10/13/2013
+Purpose: Updates the grid with a user's tasks
+************************************************************/
+
+/************************************************************
+Function name: getReleases
+Author: Christian Heckendorf
+Created date: 10/13/2013
+Purpose: Updates a list of releases in a project
+************************************************************/
+
+/************************************************************
+Function name: getProjects
+Author: Christian Heckendorf
+Created date: 10/13/2013
+Purpose: Updates the list of projects a user in involved in
+************************************************************/
+
+/************************************************************
+Function name: onready
+Author: Manav, Christian
+Created date: 09/30/2013
+Purpose: ready function invoked when page is rendered
+**************************************************************/
+

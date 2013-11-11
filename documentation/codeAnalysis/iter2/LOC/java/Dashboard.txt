@@ -1,0 +1,47 @@
+Filename : Dashboard.java
+Total Function : 5
+Total Line of Code : 94
+-------------------------------
+/************************************************************
+Filename: Dashboard.java
+Author: Christian Heckendorf
+Created date: 10/08/2013
+Purpose: Provides services for the dashboard
+Feature: Dashboard
+************************************************************/
+
+/************************************************************
+Function name: getProjectList()
+Author: Christian Heckendorf
+Created date: 10/08/2013
+Purpose: Returns a list of projects for a user
+************************************************************/
+
+/************************************************************
+Function name: getTaskList()
+Author: Christian Heckendorf
+Created date: 10/08/2013
+Purpose: Returns a list of tasks assigned to a user
+************************************************************/
+
+/************************************************************
+Function name: getTaskList()
+Author: Christian Heckendorf
+Created date: 10/08/2013
+Purpose: Returns tasks assigned to a user under a release
+************************************************************/
+
+/************************************************************
+Function name: getBugList()
+Author: Christian Heckendorf
+Created date: 10/13/2013
+Purpose: Returns a list of bugs assigned to a user
+************************************************************/
+
+/************************************************************
+Function name: getBugList()
+Author: Christian Heckendorf
+Created date: 10/08/2013
+Purpose: Returns bugs assigned to a user under a project
+************************************************************/
+
