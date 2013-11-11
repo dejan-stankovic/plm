@@ -1,0 +1,47 @@
+Filename : BugList.java
+Total Function : 5
+Total Line of Code : 23
+-------------------------------
+/************************************************************
+Filename: BugList.java
+Author: Christian Heckendorf
+Created date: 10/13/2013
+Purpose: Holds a list of JSONBugs
+Feature: Dashboard
+************************************************************/
+
+/************************************************************
+Function name: BugList()
+Author: Christian Heckendorf
+Created date: 10/13/2013
+Purpose: Default constructor
+************************************************************/
+
+/************************************************************
+Function name: addBug()
+Author: Christian Heckendorf
+Created date: 10/13/2013
+Purpose: Adds a bug to the list
+************************************************************/
+
+/************************************************************
+Function name: addBugs()
+Author: Christian Heckendorf
+Created date: 10/13/2013
+Purpose: Adds a list of bugs
+************************************************************/
+
+/************************************************************
+Function name: getBugs()
+Author: Christian Heckendorf
+Created date: 10/13/2013
+Purpose: Returns the list of bugs
+************************************************************/
+
+/************************************************************
+Function name: setBugs()
+Author: Christian Heckendorf
+Created date: 10/13/2013
+Purpose: Sets the list of bugs
+************************************************************/
+

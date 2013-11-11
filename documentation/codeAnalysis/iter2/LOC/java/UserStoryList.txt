@@ -1,0 +1,47 @@
+Filename : UserStoryList.java
+Total Function : 5
+Total Line of Code : 23
+-------------------------------
+/************************************************************
+Filename: UserStoryList.java
+Author: Christian Heckendorf
+Created date: 10/22/2013
+Purpose: Holds a list of JSONUserStories
+Feature: Dashboard
+************************************************************/
+
+/************************************************************
+Function name: UserStoryList()
+Author: Christian Heckendorf
+Created date: 10/13/2013
+Purpose: Default constructor
+************************************************************/
+
+/************************************************************
+Function name: addUserStory()
+Author: Christian Heckendorf
+Created date: 10/22/2013
+Purpose: Adds a release to the list
+************************************************************/
+
+/************************************************************
+Function name: addUserStories()
+Author: Christian Heckendorf
+Created date: 10/13/2013
+Purpose: Adds a list of userStories
+************************************************************/
+
+/************************************************************
+Function name: getUserStories()
+Author: Christian Heckendorf
+Created date: 10/22/2013
+Purpose: Returns the list of userStories
+************************************************************/
+
+/************************************************************
+Function name: setUserStories()
+Author: Christian Heckendorf
+Created date: 10/22/2013
+Purpose: Sets the list of userStories
+************************************************************/
+

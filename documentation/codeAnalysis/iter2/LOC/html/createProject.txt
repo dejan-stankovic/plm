@@ -1,0 +1,15 @@
+Filename : createProject.html
+Total Function : 0
+Total Line of Code : 113
+-------------------------------
+<!--
+Filename: createProject.html
+Author: Tandhy
+Created date: 10/24/2013
+Purpose: report Bug found on tasks
+Feature:
+1. select a release
+2. create a project : file name and description
+
+-->
+

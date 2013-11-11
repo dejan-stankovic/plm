@@ -1,0 +1,54 @@
+Filename : UserProjectDao.java
+Total Function : 6
+Total Line of Code : 79
+-------------------------------
+/************************************************************
+Filename: UserProjectDao.java
+Author: Christian Heckendorf
+Created date: 10/03/2013
+Purpose: Helper methods to acces the UserProject table
+Feature: None
+************************************************************/
+
+/************************************************************
+Function name: getProjectList()
+Author: Christian Heckendorf
+Created date: 10/07/2013
+Purpose: Returns a list of projects a user is a member of
+************************************************************/
+
+/************************************************************
+Function name: getMemberList()
+Author: Christian Heckendorf
+Created date: 10/05/2013
+Purpose: Returns a list of users associated with a project
+************************************************************/
+
+/************************************************************
+Function name: findUserProjectByPid()
+Author: Christian Heckendorf
+Created date: 10/03/2013
+Purpose: Finds a UserProject in a list
+************************************************************/
+
+/************************************************************
+Function name: getRole()
+Author: Christian Heckendorf
+Created date: 10/06/2013
+Purpose: Returns the role for a user in a project
+************************************************************/
+
+/************************************************************
+Function name: setRole()
+Author: Christian Heckendorf
+Created date: 10/04/2013
+Purpose: Sets the role for a user on a project
+************************************************************/
+
+/************************************************************
+Function name: createUserProject()
+Author: Christian Heckendorf
+Created date: 10/26/2013
+Purpose: Assigns a user to a project as a role
+************************************************************/
+

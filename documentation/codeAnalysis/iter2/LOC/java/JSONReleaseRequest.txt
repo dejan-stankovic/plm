@@ -1,0 +1,40 @@
+Filename : JSONReleaseRequest.java
+Total Function : 4
+Total Line of Code : 17
+-------------------------------
+/************************************************************
+Filename: JSONReleaseRequest.java
+Author: Christian Heckendorf
+Created date: 10/26/2013
+Purpose: Holds a token and release for requests
+Feature: Project manage
+************************************************************/
+
+/************************************************************
+Function name: getToken()
+Author: Christian Heckendorf
+Created date: 10/26/2013
+Purpose: Returns a token
+************************************************************/
+
+/************************************************************
+Function name: setToken()
+Author: Christian Heckendorf
+Created date: 10/26/2013
+Purpose: Sets a token
+************************************************************/
+
+/************************************************************
+Function name: getRelease()
+Author: Christian Heckendorf
+Created date: 10/26/2013
+Purpose: Returns a release
+************************************************************/
+
+/************************************************************
+Function name: setRelease()
+Author: Christian Heckendorf
+Created date: 10/26/2013
+Purpose: Sets a release
+************************************************************/
+

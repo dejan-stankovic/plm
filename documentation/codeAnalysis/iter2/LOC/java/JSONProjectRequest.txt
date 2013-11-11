@@ -1,0 +1,40 @@
+Filename : JSONProjectRequest.java
+Total Function : 4
+Total Line of Code : 17
+-------------------------------
+/************************************************************
+Filename: JSONProjectRequest.java
+Author: Christian Heckendorf
+Created date: 10/26/2013
+Purpose: Holds a token and project for requests
+Feature: Project manage
+************************************************************/
+
+/************************************************************
+Function name: getToken()
+Author: Christian Heckendorf
+Created date: 10/26/2013
+Purpose: Returns a token
+************************************************************/
+
+/************************************************************
+Function name: setToken()
+Author: Christian Heckendorf
+Created date: 10/26/2013
+Purpose: Sets a token
+************************************************************/
+
+/************************************************************
+Function name: getProject()
+Author: Christian Heckendorf
+Created date: 10/26/2013
+Purpose: Returns a project
+************************************************************/
+
+/************************************************************
+Function name: setProject()
+Author: Christian Heckendorf
+Created date: 10/26/2013
+Purpose: Sets a project
+************************************************************/
+

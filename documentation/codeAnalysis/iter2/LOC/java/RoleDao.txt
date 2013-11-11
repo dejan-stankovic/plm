@@ -1,0 +1,26 @@
+Filename : RoleDao.java
+Total Function : 2
+Total Line of Code : 35
+-------------------------------
+/***************************************************************
+Filename: RoleDao.java
+Author: Christian Heckendorf
+Created Date: 9/29/13
+Purpose: Accesses the Role entity
+Features: Role management
+***************************************************************/
+
+/************************************************************
+Function name: getRoleList()
+Author: Christian Heckendorf
+Created date: 10/04/2013
+Purpose: Returns a list of available roles
+************************************************************/
+
+/************************************************************
+Function name: findRoleById()
+Author: Christian Heckendorf
+Created date: 10/04/2013
+Purpose: Returns a role based on the ID
+************************************************************/
+

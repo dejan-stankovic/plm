@@ -1,0 +1,54 @@
+Filename : JSONProject.java
+Total Function : 6
+Total Line of Code : 23
+-------------------------------
+/************************************************************
+Filename: JSONProject.java
+Author: Christian Heckendorf
+Created date: 10/07/2013
+Purpose: Holds the public fields of a Project
+Feature: None
+************************************************************/
+
+/************************************************************
+Function name: JSONProject()
+Author: Christian Heckendorf
+Created date: 10/07/2013
+Purpose: Default constructor
+************************************************************/
+
+/************************************************************
+Function name: JSONProject()
+Author: Christian Heckendorf
+Created date: 10/07/2013
+Purpose: Constructs a JSONProject from a Project
+************************************************************/
+
+/************************************************************
+Function name: getId
+Author: Christian Heckendorf
+Created date: 10/5/2013
+Purpose: Returns the project ID
+************************************************************/
+
+/************************************************************
+Function name: setId
+Author: Christian Heckendorf
+Created date: 10/5/2013
+Purpose: Sets the project ID
+************************************************************/
+
+/************************************************************
+Function name: getName
+Author: Christian Heckendorf
+Created date: 10/5/2013
+Purpose: Returns the name
+************************************************************/
+
+/************************************************************
+Function name: setName
+Author: Christian Heckendorf
+Created date: 10/5/2013
+Purpose: Sets the name
+************************************************************/
+

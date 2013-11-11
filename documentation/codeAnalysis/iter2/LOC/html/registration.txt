@@ -1,0 +1,12 @@
+Filename : registration.html
+Total Function : 0
+Total Line of Code : 136
+-------------------------------
+<!--
+Filename: registration.html
+Author: Yuvraj
+Created date: 09/30/2013
+Purpose: view to handle registration functionality
+Feature: None
+-->
+

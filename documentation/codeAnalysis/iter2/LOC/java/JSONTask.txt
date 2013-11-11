@@ -1,0 +1,140 @@
+Filename : JSONTask.java
+Total Function : 18
+Total Line of Code : 71
+-------------------------------
+/************************************************************
+Filename: JSONTask.java
+Author: Christian Heckendorf
+Created date: 10/07/2013
+Purpose: Holds the public fields of a Task
+Feature: None
+************************************************************/
+
+/************************************************************
+Function name: JSONTask()
+Author: Christian Heckendorf
+Created date: 10/07/2013
+Purpose: Default constructor
+************************************************************/
+
+/************************************************************
+Function name: JSONTask()
+Author: Christian Heckendorf
+Created date: 10/07/2013
+Purpose: Constructs a JSONTask from a Task
+************************************************************/
+
+/* TODO: When the database is filled in, link these up */
+
+/************************************************************
+Function name: getId
+Author: Christian Heckendorf
+Created date: 10/5/2013
+Purpose: Returns the task ID
+************************************************************/
+
+/************************************************************
+Function name: setId
+Author: Christian Heckendorf
+Created date: 10/5/2013
+Purpose: Sets the task ID
+************************************************************/
+
+/************************************************************
+Function name: getName
+Author: Christian Heckendorf
+Created date: 10/5/2013
+Purpose: Returns the name
+************************************************************/
+
+/************************************************************
+Function name: setName
+Author: Christian Heckendorf
+Created date: 10/5/2013
+Purpose: Sets the name
+************************************************************/
+
+/************************************************************
+Function name: getDescription()
+Author: Christian Heckendorf
+Created date: 10/27/2013
+Purpose: Returns the description
+************************************************************/
+
+/************************************************************
+Function name: setDescription()
+Author: Christian Heckendorf
+Created date: 10/27/2013
+Purpose: Sets the description
+************************************************************/
+
+/************************************************************
+Function name: getCategory()
+Author: Christian Heckendorf
+Created date: 10/13/2013
+Purpose: Returns the category
+************************************************************/
+
+/************************************************************
+Function name: setCategory()
+Author: Christian Heckendorf
+Created date: 10/13/2013
+Purpose: Sets the category
+************************************************************/
+
+/************************************************************
+Function name: getPriority()
+Author: Christian Heckendorf
+Created date: 10/13/2013
+Purpose: Returns the priority
+************************************************************/
+
+/************************************************************
+Function name: setPriority()
+Author: Christian Heckendorf
+Created date: 10/13/2013
+Purpose: Sets the priority
+************************************************************/
+
+/************************************************************
+Function name: getRisk()
+Author: Christian Heckendorf
+Created date: 10/13/2013
+Purpose: Returns the risk
+************************************************************/
+
+/************************************************************
+Function name: setRisk()
+Author: Christian Heckendorf
+Created date: 10/13/2013
+Purpose: Sets the risk
+************************************************************/
+
+/************************************************************
+Function name: getAssigned
+Author: Christian Heckendorf
+Created date: 10/27/2013
+Purpose: Returns the user assigned
+************************************************************/
+
+/************************************************************
+Function name: setAssigned
+Author: Christian Heckendorf
+Created date: 10/27/2013
+Purpose: Sets the user assigned
+************************************************************/
+
+/************************************************************
+Function name: getStatus()
+Author: Christian Heckendorf
+Created date: 11/02/2013
+Purpose: Returns the status
+************************************************************/
+
+/************************************************************
+Function name: setStatus()
+Author: Christian Heckendorf
+Created date: 11/02/2013
+Purpose: Sets the status
+************************************************************/
+
