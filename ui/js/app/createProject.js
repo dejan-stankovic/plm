@@ -75,7 +75,10 @@ $(document).ready(function () {
 
     $("#createProjectBtn").click(function(){ 
 		// this function will execute if the button is being hit
-		createProject();
+		if($("input#txtProjectName").val()=="")
+			$("#projectStatus").html("Project name can not leave empty.");
+		else
+			createProject();
 	});
 	
     $("#clearBtn").click(function(){ /*resetFields();*/ });

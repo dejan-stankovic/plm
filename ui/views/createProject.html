@@ -2,10 +2,9 @@
 Filename: createProject.html
 Author: Tandhy
 Created date: 10/24/2013
-Purpose: report Bug found on tasks
+Purpose: create project
 Feature:
-	1. select a release
-    2. create a project : file name and description
+	1. Create a project : file name and description
 
 -->
 <!DOCTYPE html>
@@ -58,6 +57,36 @@ Feature:
     </style>
     <script id="requireInit" type="text/javascript">
     </script>
+<!-- check before onLoad -->
+<script type="text/javascript">
+function init() {
+	// quit if this function has already been called
+	if (arguments.callee.done) return;
+	
+	// flag this function so we don't do the same thing twice
+	arguments.callee.done = true;
+	
+	// create the "page loaded" message
+	var userToken = getToken();
+	if(!userToken)
+		window.location="login.html";
+};
+
+/* for Mozilla */
+if (document.addEventListener) {
+document.addEventListener("DOMContentLoaded", init, false);
+}
+
+/* for Internet Explorer */
+/*@cc_on @*/
+/*@if (@_win32)
+document.write("<script defer src=ie_onload.js><"+"/script>");
+/*@end @*/
+
+/* for other browsers */
+window.onload = init;
+</script>
+
 </head>
 <body style="background-image: url('../css/Images/background.png'); opacity: 0.9">
 
