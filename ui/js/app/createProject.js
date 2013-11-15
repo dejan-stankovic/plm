@@ -44,19 +44,20 @@ function createProject()
 			},
 		}),
 		success: function(data){
-
 			// message":"Success
-			 if(data.message=="Success")
-			  {
-			  $("#projectStatus").html("New Project has been created.");
-			  document.getElementById("txtProjectName").value="";
-			  // redirect to project list
-			  //window.location="viewProjects.html"; /*Redirect to the login page after succesful registration*/
-			  }
-			 else
-			 { /* Usually internal error or other */
-			 	$("#projectStatus").html(data.message);
-			 }
+			if(data.message=="Success")
+			{
+				$("#projectStatus").html("New Project has been created.");
+				document.getElementById("txtProjectName").value="";
+				// refresh the project dropdown list
+				// set combobox to be empty before assigning with project data
+				emptyComboBox($("#cur-project").data("kendoComboBox"));
+				getCurProjects();
+			}
+			else
+			{ /* Usually internal error or other */
+				$("#projectStatus").html(data.message);
+			}
 		},
 		error: function(data){
 			alert("error");
@@ -77,8 +78,14 @@ $(document).ready(function () {
 		// this function will execute if the button is being hit
 		if($("input#txtProjectName").val()=="")
 			$("#projectStatus").html("Project name can not leave empty.");
-		else
+		else	
 			createProject();
+
+	});
+	
+	$('#userSignout').click( function() { 
+		// call user signout in common.js
+		userSignOut();
 	});
 	
     $("#clearBtn").click(function(){ /*resetFields();*/ });

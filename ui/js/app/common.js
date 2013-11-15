@@ -104,7 +104,11 @@ function getCurProjects(){
 		success: function(data){
 			var pid;
 			var combobox;
+			
 			combobox = $("#cur-project").data("kendoComboBox");
+
+			emptyComboBox(combobox);
+
 			for(x in data.projects){
 				combobox.dataSource.add(data.projects[x]);
 			}
@@ -121,6 +125,15 @@ function getCurProjects(){
 			alert("error");
 		}
 	});
+}
+
+function emptyComboBox(comboBox)
+{
+	var totalData = comboBox.dataSource.total();
+	for(i=0;i<totalData;i++)
+	{
+		comboBox.dataSource.remove(comboBox.dataSource.at(0));
+	}
 }
 
 function updateMenuOptions(perm){
@@ -159,6 +172,9 @@ function updateMenuOptions(perm){
 	items = [];
 	if(perm.indexOf("EditProject")>=0){
 		items.push({ text: "Manage Projects", imageUrl: "http://demos.kendoui.com/content/shared/icons/16/photo.png" });
+	}
+	if(perm.indexOf("CreateUserStory")>=0){
+		items.push({ text: "Manage User Stories", imageUrl: "http://demos.kendoui.com/content/shared/icons/16/photo.png" });
 	}
 	if(perm.indexOf("InviteUser")>=0){
 		items.push({ text: "Manage Users", imageUrl: "http://demos.kendoui.com/content/shared/icons/16/video.png" });
@@ -209,6 +225,17 @@ function getPermissions(pid){
 			alert("error");
 		}
 	});
+}
+
+/**
+ * to remove token after user hit signout link
+ * author : tandhy
+ * date : 11.14.13
+ */
+function userSignOut()
+{
+	setToken("");
+	window.location = "login.html";
 }
 
 /************************************************************
@@ -274,9 +301,19 @@ $(document).ready(function () {
             case ('Notifications'):
                 window.location = "notifications.html";
                 break;
-            case ('Manage Roles'):
+            case ('Manage Users'):
                 window.location = "manageroles.html";
+                break;
+            case ('Manage User Stories'):
+                window.location = "userstory.html";
+                break;
+            case ('Manage Release'):
+                window.location = "createIter.html";
+                break;
+            case ('Manage Projects'):
+                window.location = "createProject.html";
                 break;
         }
     }
+	
 });
