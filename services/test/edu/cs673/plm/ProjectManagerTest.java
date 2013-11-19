@@ -128,4 +128,24 @@ public class ProjectManagerTest extends JerseyTest{
 
 		assertEquals(1,countUsers(tm,res.getCode()));
 	}
+
+	@Test
+	public void otherUserList(){
+		TokenMessage tm = new TokenMessage();
+		UserList ul;
+
+		tm.setToken(tok);
+
+		ul =  target("projectmanage").path("p/1/otherusers")
+			.request(MediaType.APPLICATION_JSON_TYPE)
+			.post(Entity.entity(tm,MediaType.APPLICATION_JSON_TYPE),UserList.class);
+
+		assertEquals(0,ul.getUsers().size());
+
+		ul =  target("projectmanage").path("p/2/otherusers")
+			.request(MediaType.APPLICATION_JSON_TYPE)
+			.post(Entity.entity(tm,MediaType.APPLICATION_JSON_TYPE),UserList.class);
+
+		assertTrue(ul.getUsers().size()>0);
+	}
 }
