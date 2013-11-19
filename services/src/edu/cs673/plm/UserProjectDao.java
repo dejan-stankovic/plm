@@ -150,4 +150,19 @@ public class UserProjectDao {
 		} catch (Exception e){
 		}
 	}
+
+	/************************************************************
+	Function name: removeUserProject()
+	Author: Christian Heckendorf
+	Created date: 11/19/2013
+	Purpose: Removes a user from a project
+	************************************************************/
+	public static void removeUserProject(Dba dba, UserProject userProject){
+		EntityManager em = dba.getActiveEm();
+
+		try{
+			em.remove(userProject);
+		} catch(Exception e){
+		}
+	}
 }

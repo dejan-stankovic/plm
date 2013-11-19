@@ -186,11 +186,58 @@ public class ProjectManager {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public StatusMessage addUser(@PathParam("pid") long pid, @PathParam("uid") long uid, TokenMessage token) {
-		StatusMessage sm = new StatusMessage(-1,"Internal Error");
+		StatusMessage sm = new StatusMessage(1,"Internal Error");
 		SessionToken st = new SessionToken(token.getToken());
 		Dba dba = new Dba(false);
 		try{
 			if(Permission.canAccess(dba,st,pid,Permission.INVITE_USER)){
+				User u;
+				Project p;
+
+				if(UserProjectDao.findUserProjectByPid(dba,uid,pid)!=null)
+					sm = new StatusMessage(3,"User already in project");
+				else{
+					p = ProjectDao.getProjectById(dba,pid);
+					u = UserDao.getUserById(dba,uid);
+					if(u==null || p==null)
+						sm = new StatusMessage(2,"Invalid user or project");
+					else{
+						UserProjectDao.createUserProject(dba,u,p,RoleDao.findRoleById(dba,RoleDao.ROLE_DEVELOPER));
+						sm = new StatusMessage(0,"Success");
+					}
+				}
+			}
+		} finally{
+			dba.closeEm();
+		}
+
+		return sm;
+	}
+
+	/************************************************************
+	Function name: removeUser()
+	Author: Christian Heckendorf
+	Created date: 11/19/2013
+	Purpose: Removes a user from a project
+	************************************************************/
+	@Path( "/p/{pid}/removeuser/u/{uid}" )
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public StatusMessage removeUser(@PathParam("pid") long pid, @PathParam("uid") long uid, TokenMessage token) {
+		StatusMessage sm = new StatusMessage(1,"Internal Error");
+		SessionToken st = new SessionToken(token.getToken());
+		Dba dba = new Dba(false);
+		try{
+			if(Permission.canAccess(dba,st,pid,Permission.INVITE_USER)){
+				UserProject up = UserProjectDao.findUserProjectByPid(dba,uid,pid);
+
+				if(up==null)
+					sm = new StatusMessage(2,"User not in project");
+				else{
+					UserProjectDao.removeUserProject(dba,up);
+					sm = new StatusMessage(0,"Success");
+				}
 			}
 		} finally{
 			dba.closeEm();

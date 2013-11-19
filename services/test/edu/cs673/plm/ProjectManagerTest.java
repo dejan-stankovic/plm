@@ -148,4 +148,37 @@ public class ProjectManagerTest extends JerseyTest{
 
 		assertTrue(ul.getUsers().size()>0);
 	}
+
+	@Test
+	public void addRemoveUserProject(){
+		TokenMessage tm = new TokenMessage();
+		StatusMessage sm;
+
+		tm.setToken(tok);
+
+		sm =  target("projectmanage").path("p/1/removeuser/u/2")
+			.request(MediaType.APPLICATION_JSON_TYPE)
+			.post(Entity.entity(tm,MediaType.APPLICATION_JSON_TYPE),StatusMessage.class);
+
+		assertEquals(0,sm.getCode());
+
+		sm =  target("projectmanage").path("p/1/removeuser/u/2")
+			.request(MediaType.APPLICATION_JSON_TYPE)
+			.post(Entity.entity(tm,MediaType.APPLICATION_JSON_TYPE),StatusMessage.class);
+
+		assertEquals(2,sm.getCode());
+
+		sm =  target("projectmanage").path("p/1/adduser/u/2")
+			.request(MediaType.APPLICATION_JSON_TYPE)
+			.post(Entity.entity(tm,MediaType.APPLICATION_JSON_TYPE),StatusMessage.class);
+
+		assertEquals(0,sm.getCode());
+
+		sm =  target("projectmanage").path("p/1/adduser/u/2")
+			.request(MediaType.APPLICATION_JSON_TYPE)
+			.post(Entity.entity(tm,MediaType.APPLICATION_JSON_TYPE),StatusMessage.class);
+
+		assertEquals(3,sm.getCode());
+
+	}
 }
