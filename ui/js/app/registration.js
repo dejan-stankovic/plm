@@ -1,88 +1,85 @@
-/*************************************************************************
-		File name: registration.js
-		Author: Yuvaraj
-		Created date: 10/13/2013
-		Purpose: client functionality associated with registration page
-**************************************************************************/
+function regUser()
+{
+	var user;
 
-/************************************************************
-		Function name: regUser
-		Author: Yuvaraj
-		Created date: 10/13/2013
-		Purpose: Processes the registration form
-**************************************************************/
+                $("#errormsg").html("");
 
-function regUser(){
-		var user;
+                var uid = document.registration.userid;
+				var passid = document.registration.passid;
+				var firstname = document.registration.firstname;
+				var lastname = document.registration.lastname;
+				var uemail = document.registration.email;
 
-		$("#errormsg").html("");
+                                $.ajax({
+                                        type: 'POST',
+                                        url: '/plm/rest/register',
+                                        contentType: 'application/json; charset=UTF-8',
+                                        accepts: {
+                                                text: 'application/json'
+                                        },
+                                        dataType: 'json',
+                                        data: JSON.stringify({
+                                                name: uid,
+                                                password: passid
+                                        }),
+                                        success: function(data){
 
-		user = $("input#uname").val();
-		pass = $("input#pwd").val();
-
-
-				$.ajax({
-					type: 'POST',
-					url: '/plm/rest/register',
-					contentType: 'application/json; charset=UTF-8',
-					accepts: {
-						text: 'application/json'
-					},
-					dataType: 'json',
-					data: JSON.stringify({
-						name: user,
-						password: pass
-					}),
-					success: function(data){
-
-						/*the following code checkes whether the entered userid is valid */
-						 if(data.code==0)
-						  {
-						  $("h1").html("Registration Successful!! Welcome to PLM");
-						  window.location="login.html"; /*Redirect to the login page after succesful registration*/
-						  }
-						 else if(data.code==1)
-						 {
-						   $("#errormsg").html("Invalid Username or Password"); /*displays error message*/
-			             }
-			               else { /* Usually internal error or other */
-				           $("#errormsg").html(data.message);
-			             }
-					},
-					error: function(data){
-						alert("error");
-					}
-				});
-		}
-
-/************************************************************
-Function name: resetHandler
-Author: Yuvaraj
-Created date: 10/13/2013
-Purpose: Cancels the registration form
-************************************************************/
-function resetHandler() {
-	$("input#uname").val("");
-	$("input#pwd").val("");
-	$("input#fname").val("");
-	$("input#lname").val("");
-	$("input#email").val("");
-	$("#errormsg").html("");
+                                                /*the following code checkes whether the entered userid is valid */
+                                                 if(data.code==0)
+                                                  {
+                                                  $("h1").html("Registration Successful!! Welcome to PLM");
+                                                  window.location="login.html"; /*Redirect to the login page after succesful registration*/
+                                                  }
+                                                 else if(data.code==1)
+                                                 {
+                                                   $("#errormsg").html("Invalid Username or Password"); /*displays error message*/
+                                     }
+                                       else { /* Usually internal error or other */
+                                           $("#errormsg").html(data.message);
+                                     }
+                                        },
+                                        error: function(data){
+                                                alert("error");
+                                        }
+                                });
+if(nameCheck(firstname))
+{
+if(nameCheck(lastname))
+{
+if(ValidateEmail(uemail))
+{
 }
-/************************************************************
-		Function name: onready
-		Author: Yuvaraj
-		Created date: 10/13/2013
-		Purpose: ready function invoked when page is rendered
-**************************************************************/
-$(document).ready(function () {
+}
+}
+return false;
+} 
 
-$("a#submitbtn").click(function(){
-		regUser();
-	})
+function nameCheck(firstname)
+{ 
+var letters = /^[A-Za-z]+$/;
+if(uname.value.match(letters))
+{
+return true;
+}
+else
+{
+alert('Name must have alphabet characters only');
+uname.focus();
+return false;
+}
+}
 
-$("a#resetbtn").click(function(){
-		resetHandler();
-	})
-
-});
+function ValidateEmail(uemail)
+{
+var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+if(uemail.value.match(mailformat))
+{
+return true;
+}
+else
+{
+alert("You have entered an invalid email address!");
+uemail.focus();
+return false;
+}
+}
