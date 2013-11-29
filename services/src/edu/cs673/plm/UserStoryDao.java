@@ -16,6 +16,7 @@ import edu.cs673.plm.model.JSONUserStory;
 import edu.cs673.plm.model.UserStory;
 import edu.cs673.plm.model.UserStoryList;
 import edu.cs673.plm.model.StatusMessage;
+import edu.cs673.plm.model.Release;
 
 public class UserStoryDao {
 	/************************************************************
@@ -48,6 +49,30 @@ public class UserStoryDao {
 		}
 
 		return new StatusMessage(userStory.getId(),"Success");
+	}
+
+	/************************************************************
+	Function name: migrateUserStory()
+	Author: Christian Heckendorf
+	Created date: 11/29/2013
+	Purpose: Migrates a user story to a new release
+	************************************************************/
+	public static StatusMessage migrateUserStory(Dba dba, long uid, long rid){
+		EntityManager em = dba.getActiveEm();
+
+		try{
+			Release release = ReleaseDao.getReleaseById(dba,rid);
+			if(release==null)
+				return new StatusMessage(-1,"Internal Error");
+			Query q = em.createQuery("update UserStory us set us.release = :release where us.id = :id")
+					.setParameter("release",release)
+					.setParameter("id",uid);
+			q.executeUpdate();
+		} catch(Exception e){
+			return new StatusMessage(-1,"Internal Error");
+		}
+
+		return new StatusMessage(0,"Success");
 	}
 
 	/************************************************************
