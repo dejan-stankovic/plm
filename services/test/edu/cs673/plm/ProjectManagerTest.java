@@ -136,8 +136,6 @@ public class ProjectManagerTest extends JerseyTest{
 			.request(MediaType.APPLICATION_JSON_TYPE)
 			.post(Entity.entity(req,MediaType.APPLICATION_JSON_TYPE),StatusMessage.class);
 
-		System.err.println(String.valueOf(res.getCode()));
-		System.err.println(res.getMessage());
 		assertTrue(res.getMessage().equals("Success"));
 	}
 
