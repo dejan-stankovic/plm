@@ -31,6 +31,7 @@ import edu.cs673.plm.model.StatusMessage;
 public class ProjectManagerTest extends JerseyTest{
 	private SessionToken st = new SessionToken(1);
 	private String tok = st.generateToken();
+	private final long miliday=86400000;
 
 	@Override
 	protected Application configure() {
@@ -54,8 +55,8 @@ public class ProjectManagerTest extends JerseyTest{
 		JSONRelease jr = new JSONRelease();
 
 		jr.setVersion("1.0.0");
-		jr.setStartDate(new Date(System.currentTimeMillis())); // Now
-		jr.setEndDate(new Date(System.currentTimeMillis()+86400000)); // Tomorrow
+		jr.setStartDate(new Date(System.currentTimeMillis()+7*miliday)); // Next week
+		jr.setEndDate(new Date(System.currentTimeMillis()+9*miliday)); // plus two days
 
 		tm.setToken(tok);
 
@@ -70,7 +71,49 @@ public class ProjectManagerTest extends JerseyTest{
 
 		assertTrue(res.getMessage().equals("Success"));
 
-		assertEquals(count+1,countReleases(tm));
+		count+=1;
+		assertEquals(count,countReleases(tm));
+
+		// Fail tests
+
+		jr.setVersion("start.overlap.iter");
+		jr.setStartDate(new Date(System.currentTimeMillis()+8*miliday));
+		jr.setEndDate(new Date(System.currentTimeMillis()+10*miliday));
+
+		req.setRelease(jr);
+
+		res =  target("projectmanage").path("release/p/1")
+			.request(MediaType.APPLICATION_JSON_TYPE)
+			.post(Entity.entity(req,MediaType.APPLICATION_JSON_TYPE),StatusMessage.class);
+
+		assertTrue(res.getMessage().equals("Invalid Dates"));
+		assertEquals(count,countReleases(tm)); // Old count
+
+		jr.setVersion("end.overlap.iter");
+		jr.setStartDate(new Date(System.currentTimeMillis()+6*miliday));
+		jr.setEndDate(new Date(System.currentTimeMillis()+8*miliday));
+
+		req.setRelease(jr);
+
+		res =  target("projectmanage").path("release/p/1")
+			.request(MediaType.APPLICATION_JSON_TYPE)
+			.post(Entity.entity(req,MediaType.APPLICATION_JSON_TYPE),StatusMessage.class);
+
+		assertTrue(res.getMessage().equals("Invalid Dates"));
+		assertEquals(count,countReleases(tm)); // Old count
+
+		jr.setVersion("double.overlap.iter");
+		jr.setStartDate(new Date(System.currentTimeMillis()+6*miliday));
+		jr.setEndDate(new Date(System.currentTimeMillis()+10*miliday));
+
+		req.setRelease(jr);
+
+		res =  target("projectmanage").path("release/p/1")
+			.request(MediaType.APPLICATION_JSON_TYPE)
+			.post(Entity.entity(req,MediaType.APPLICATION_JSON_TYPE),StatusMessage.class);
+
+		assertTrue(res.getMessage().equals("Invalid Dates"));
+		assertEquals(count,countReleases(tm)); // Old count
 	}
 
 	@Test
@@ -81,8 +124,8 @@ public class ProjectManagerTest extends JerseyTest{
 		JSONRelease jr = new JSONRelease();
 
 		jr.setVersion("2.0.0");
-		jr.setStartDate(new Date(System.currentTimeMillis())); // Now
-		jr.setEndDate(new Date(System.currentTimeMillis()+86400000)); // Tomorrow
+		jr.setStartDate(new Date(System.currentTimeMillis()+18*miliday));
+		jr.setEndDate(new Date(System.currentTimeMillis()+20*miliday));
 
 		tm.setToken(tok);
 
@@ -93,6 +136,8 @@ public class ProjectManagerTest extends JerseyTest{
 			.request(MediaType.APPLICATION_JSON_TYPE)
 			.post(Entity.entity(req,MediaType.APPLICATION_JSON_TYPE),StatusMessage.class);
 
+		System.err.println(String.valueOf(res.getCode()));
+		System.err.println(res.getMessage());
 		assertTrue(res.getMessage().equals("Success"));
 	}
 

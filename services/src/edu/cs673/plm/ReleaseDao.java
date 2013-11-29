@@ -20,6 +20,38 @@ import edu.cs673.plm.model.Project;
 
 public class ReleaseDao {
 	/************************************************************
+	Function name: validReleaseDates()
+	Author: Christian Heckendorf
+	Created date: 11/29/2013
+	Purpose: Checks if the release dates are valid
+	************************************************************/
+	private static boolean validReleaseDates(EntityManager em, Release release){
+		// Check if start >= end
+		if(release.getStartDate().compareTo(release.getEndDate())>=0)
+			return false;
+
+		// Check for overlap with other starts
+		Query qs = em.createQuery("select r from Release r where r.id!=:rid and r.startDate<=:start and r.endDate>=:start")
+					.setParameter("rid",release.getId()).setParameter("start",release.getStartDate());
+
+		// Check for overlap with other ends
+		Query qe = em.createQuery("select r from Release r where r.id!=:rid and r.startDate<=:end and r.endDate>=:end")
+					.setParameter("rid",release.getId()).setParameter("end",release.getEndDate());
+
+		Query qo = em.createQuery("select r from Release r where r.id!=:rid and r.startDate>=:start and r.endDate<=:end")
+					.setParameter("rid",release.getId()).setParameter("start",release.getStartDate()).setParameter("end",release.getEndDate());
+
+		try{
+			if(qs.getResultList().size()>0 || qe.getResultList().size()>0 || qo.getResultList().size()>0)
+				return false;
+		} catch(Exception e){
+			return false;
+		}
+
+		return true;
+	}
+
+	/************************************************************
 	Function name: createRelease()
 	Author: Christian Heckendorf
 	Created date: 10/26/2013
@@ -29,6 +61,9 @@ public class ReleaseDao {
 		Project project;
 		EntityManager em = dba.getActiveEm();
 		release.setProject(ProjectDao.getProjectById(dba,pid));
+		if(!validReleaseDates(em,release)){
+			return new StatusMessage(-2,"Invalid Dates");
+		}
 		try{
 			em.persist(release);
 			em.flush();
@@ -47,6 +82,9 @@ public class ReleaseDao {
 	************************************************************/
 	public static StatusMessage updateRelease(Dba dba, Release release){
 		EntityManager em = dba.getActiveEm();
+		if(!validReleaseDates(em,release)){
+			return new StatusMessage(-2,"Invalid Dates");
+		}
 		try{
 			em.persist(release);
 		} catch(Exception e){
