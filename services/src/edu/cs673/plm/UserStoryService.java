@@ -110,4 +110,32 @@ public class UserStoryService {
 
 		return sm;
 	}
+
+	/************************************************************
+	Function name: migrateUserStory()
+	Author: Christian Heckendorf
+	Created date: 11/29/2013
+	Purpose: Migrates a user story to a new release
+	************************************************************/
+	@Path( "/migrate/u/{uid}/r/{rid}" )
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public StatusMessage migrateUserStory(@PathParam("uid") long uid, @PathParam("rid") long rid, TokenMessage token){
+		StatusMessage sm = new StatusMessage(-1,"Internal Error");
+		Dba dba = new Dba(false);
+		try{
+			long pid = ProjectDao.getProjectIdFromUserStory(dba,uid);
+			if(Permission.canAccess(dba,
+						new SessionToken(token.getToken()),
+						pid,
+						Permission.CREATE_USER_STORY)){
+				sm = UserStoryDao.migrateUserStory(dba,uid,rid);
+			}
+		} finally{
+			dba.closeEm();
+		}
+
+		return sm;
+	}
 }
