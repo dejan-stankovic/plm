@@ -99,14 +99,14 @@ function kendofy() {
     $("#userStoryLbl").text(userStoryName);
     $("#statusddl").kendoComboBox({ placeholder: "Select..." });
     $("#editStatusDdl").kendoComboBox({ placeholder: "Select..." });
-    $("#assignddl").kendoAutoComplete({
+    /*$("#assignddl").kendoAutoComplete({
         dataSource: usersData,
         		dataTextName: "name",
                 dataTextValue: "id",
         filter: "startswith",
         placeholder: "select user...",
         separator: ", "
-    });
+    });*/
     
     $("#createInfo").hide();
     $("#errorInfo").hide();
