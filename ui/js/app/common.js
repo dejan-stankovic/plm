@@ -104,7 +104,11 @@ function getCurProjects(){
 		success: function(data){
 			var pid;
 			var combobox;
+			
 			combobox = $("#cur-project").data("kendoComboBox");
+
+			emptyComboBox(combobox);
+
 			for(x in data.projects){
 				combobox.dataSource.add(data.projects[x]);
 			}
@@ -123,6 +127,15 @@ function getCurProjects(){
 	});
 }
 
+function emptyComboBox(comboBox)
+{
+	var totalData = comboBox.dataSource.total();
+	for(i=0;i<totalData;i++)
+	{
+		comboBox.dataSource.remove(comboBox.dataSource.at(0));
+	}
+}
+
 function updateMenuOptions(perm){
 	var menu;
 	var items;
@@ -139,19 +152,13 @@ function updateMenuOptions(perm){
 				{ text: "Pipeline", imageUrl: "http://demos.kendoui.com/content/shared/icons/16/video.png" },
 			]
 		},
-		{
-			text: "Search", imageUrl: "../css/Images/addtask_enable.png",
-			items: [
-				{ text: "Search By Type", imageUrl: "http://demos.kendoui.com/content/shared/icons/16/photo.png" },
-			]
-		},
 	];
 
 	if(perm.indexOf("EditRelease")>=0){
 		menuitems.push({
-			text: "Release Management", imageUrl: "../css/Images/download_enable.png",
+			text: "Iteration Management", imageUrl: "../css/Images/download_enable.png",
 			items: [
-				{ text: "Manage Release", imageUrl: "http://demos.kendoui.com/content/shared/icons/16/star.png" },
+				{ text: "Manage Iteration", imageUrl: "http://demos.kendoui.com/content/shared/icons/16/star.png" },
 			]
 		});
 	}
@@ -176,13 +183,6 @@ function updateMenuOptions(perm){
 			items: items
 		});
 	}
-
-	menuitems.push({
-			text: "Reporting", imageUrl: "../css/Images/inactive_16.png",
-			items: [
-				{ text: "Resource Allocation", imageUrl: "http://demos.kendoui.com/content/shared/icons/16/star.png" },
-			]
-		});
 
 	menu.append(menuitems);
 }
@@ -214,6 +214,17 @@ function getPermissions(pid){
 	});
 }
 
+/**
+ * to remove token after user hit signout link
+ * author : tandhy
+ * date : 11.14.13
+ */
+function userSignOut()
+{
+	setToken("");
+	window.location = "login.html";
+}
+
 /************************************************************
 		Function name: onready
 		Author: Manav
@@ -234,9 +245,9 @@ $(document).ready(function () {
 
     $("#horizontal").kendoSplitter({
         panes: [
-            { collapsible: true, size: "320px" },
+            { collapsible: true, size: "230px" },
             { collapsible: false },
-            { collapsible: true, size: "320px" }
+            { collapsible: true, size: "230px" }
         ]
     });
 
@@ -277,13 +288,16 @@ $(document).ready(function () {
             case ('Notifications'):
                 window.location = "notifications.html";
                 break;
+            case ('Manage Users'):
+                window.location = "manageUsers.html";
+                break;
             case ('Manage Roles'):
                 window.location = "manageroles.html";
                 break;
             case ('Manage User Stories'):
                 window.location = "userstory.html";
                 break;
-            case ('Release Management'):
+            case ('Manage Iteration'):
                 window.location = "createIter.html";
                 break;
             case ('Manage Projects'):
@@ -291,4 +305,5 @@ $(document).ready(function () {
                 break;
         }
     }
+	
 });
