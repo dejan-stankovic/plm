@@ -103,12 +103,14 @@ Purpose: Add a new release/iteration for a current project
                     <div>
                                 <h2>Add New Iteration</h2>
                                 <form onSubmit="return false;">
-                                    Version Name: <input type="text" name="version" maxlength="50"/>
-                                    Start Date: <input type="text" name = "startDate" id="start" />
-                                    End Date: <input type="text" name = "endDate" id="end" />
-                                    <button class="btn btn-primary" onclick="createIter(this.form);" value="Create Iteration">Create Iteration</button>
+                                    <table>
+                                        <tr><td style="width:200px">Version Name: <input type="text" name="version" maxlength="50"/><td></tr>
+                                        <tr><td style="width:200px">Start Date: <input type="text" name = "startDate" id="start" /><td></tr>
+                                        <tr><td style="width:200px">End Date: <input type="text" name = "endDate" id="end" /><td></tr>
+                                        <tr><td style="width:200px"><button class="btn btn-primary" onclick="createIter(this.form);" value="Create Iteration">Create Iteration</button><td></tr>
+                                    </table>
                                 </form>
-                        <div id="updateMessage"></div>
+                        <div id="updateMessage" style="width:250px"></div>
                     </div>
                     
                     <!-- content end -->

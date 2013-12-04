@@ -7,7 +7,8 @@ Purpose: Add a new release/iteration for a current project
 
 //Global variable of current iterations in a project
 
-var IterList = new Array();
+var iterDates = new Array();
+var iterList = new Array();
 
 /************************************************************
 Function name: displayList
@@ -42,8 +43,18 @@ function displayList(){
 			for(x in data.releases){
 				combobox.dataSource.add(data.releases[x]);
                                 $('curIters').append("<h1>"+data.releases[x]+"</h1>");
-                                IterList.push(data.releases[x]);
+                                iterDates.push(data.releases[x]);
 			}
+                        
+                        for(var i=0;i<iterDates.length;i+=2)
+                        {
+                            var pointer = iterDates[i];
+                            while(pointer<iterDates[i+1])
+                            {
+                                iterList.push(pointer);
+                                pointer++;
+                            }
+                        }
 		},
 		error: function(data){
 			alert("error");
@@ -60,7 +71,7 @@ function displayList(){
 ***************************************************************************************/
 $(function() {
     $("#start").datepicker({beforeShowDay: function(date){
-        var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
+        var string = $.datepicker.formatDate('yy-mm-dd', date);
         return [ iterList.indexOf(string) === -1 ];
     },
     minDate: 0});
@@ -68,7 +79,7 @@ $(function() {
             
 $(function() {
     $("#end").datepicker({beforeShowDay: function(date){
-        var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
+        var string = $.datepicker.formatDate('yy-mm-dd', date);
         return [ iterList.indexOf(string) === -1 ];
     },
     minDate: 1, maxDate: "+6m"});
@@ -112,7 +123,9 @@ function createIter(info){
     }),
     success: function(data){
     // Returns success message
+        iterList = new Array();
         $("div#updateMessage").html("New iteration: " + version + " created for project " + projectID);
+        displayList();
     },
     error: function(data){
         alert("error");
