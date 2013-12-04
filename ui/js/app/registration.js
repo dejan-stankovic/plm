@@ -1,50 +1,17 @@
-function regUser()
+function formValidation()
 {
-	var user;
+document.getElementById('errormsg').innerHTML = "";
+document.getElementById('errorMsg').innerHTML = "";
 
-                $("#errormsg").html("");
+var uid = document.registration.userid;
+var passid = document.registration.passid;
+var uname = document.registration.firstname;
+var lastname = document.registration.lastname;
+var uemail = document.registration.email;
 
-                var uid = document.registration.userid;
-				var passid = document.registration.passid;
-				var firstname = document.registration.firstname;
-				var lastname = document.registration.lastname;
-				var uemail = document.registration.email;
-
-                                $.ajax({
-                                        type: 'POST',
-                                        url: '/plm/rest/register',
-                                        contentType: 'application/json; charset=UTF-8',
-                                        accepts: {
-                                                text: 'application/json'
-                                        },
-                                        dataType: 'json',
-                                        data: JSON.stringify({
-                                                name: uid,
-                                                password: passid
-                                        }),
-                                        success: function(data){
-
-                                                /*the following code checkes whether the entered userid is valid */
-                                                 if(data.code==0)
-                                                  {
-                                                  $("h1").html("Registration Successful!! Welcome to PLM");
-                                                  window.location="login.html"; /*Redirect to the login page after succesful registration*/
-                                                  }
-                                                 else if(data.code==1)
-                                                 {
-                                                   $("#errormsg").html("Invalid Username or Password"); /*displays error message*/
-                                     }
-                                       else { /* Usually internal error or other */
-                                           $("#errormsg").html(data.message);
-                                     }
-                                        },
-                                        error: function(data){
-                                                alert("error");
-                                        }
-                                });
-if(nameCheck(firstname))
+if(allLetter(uname))
 {
-if(nameCheck(lastname))
+if(allLetter(lastname))
 {
 if(ValidateEmail(uemail))
 {
@@ -54,7 +21,7 @@ if(ValidateEmail(uemail))
 return false;
 } 
 
-function nameCheck(firstname)
+function allLetter(uname)
 { 
 var letters = /^[A-Za-z]+$/;
 if(uname.value.match(letters))
@@ -63,7 +30,7 @@ return true;
 }
 else
 {
-alert('Name must have alphabet characters only');
+document.getElementById('errorMsg').innerHTML = "Name cannot be empty and should have only alphabets!";
 uname.focus();
 return false;
 }
@@ -78,7 +45,7 @@ return true;
 }
 else
 {
-alert("You have entered an invalid email address!");
+document.getElementById('errorMsg').innerHTML = "You have entered an invalid email address!";
 uemail.focus();
 return false;
 }

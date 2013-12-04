@@ -6,7 +6,7 @@
 <script src="../js/lib/jquery.min.js"></script>
 <script src="../js/lib/kendo.all.min.js"></script>
 <script src="../js/lib/bootstrap.min.js"></script>
-<script src="reg.js"></script>
+<script src="../js/app/registration.js"></script>
 
 <link rel="stylesheet" href="app.css" />
 <link rel="stylesheet" href="http://cdn.kendostatic.com/2013.2.918/styles/kendo.common.min.css" />
@@ -35,23 +35,8 @@
 
 </head>
 
-<body style="background-image: url('../css/Images/bg.png'); opacity: 0.8;" onload="document.registration.userid.focus();">
-    <div id="body">
-        <header>
-            <div class="navbar navbar-inverse bs-docs-nav" style="border-bottom: 6px solid cornflowerblue;" data-app-model="navbar" id="search">
-                <div class="navbar-inner" style="border-bottom: 5px solid gray; border-top: 3px solid gray">
-                    <span class="content-wrapper" style="display: inline; margin-top: 5px">
-                        <span class="float-left">
-                            <a class="plmlogo brand site-title" style="width: 70px; height: 32px; display: inline-block;" href="#" />&nbsp;&nbsp;
-                        <a class="brand site-title" runat="server" href="#">Project Life Cycle Management 1.0</a>
-                            <ul class="nav">
-                            </ul>
-                        </span>
-                    </span>
-                </div>
-            </div>
-        </header>
-
+<body style="background-image: url('../css/Images/bg.png'); opacity: 0.8;" onload="document.registration.firstname.focus();">
+    
 <h1>Registration Form</h1>
 <form name='registration' onSubmit="return formValidation();">
 <table class="table table-condensed" style="width:70%;font-weight:700;margin-left:10%;">
@@ -104,6 +89,5 @@
                 </div>
             </div>
         </footer>
-    </div>
 </body>
 </html>
