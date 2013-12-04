@@ -99,6 +99,7 @@ Purpose: Add a new release/iteration for a current project
                         </div>
                     </div>
                     <!-- content start -->
+                    <div id="curIters" onload="displayList()"></div>
                     <div>
                                 <h2>Add New Iteration</h2>
                                 <form onSubmit="return false;">
@@ -107,8 +108,9 @@ Purpose: Add a new release/iteration for a current project
                                     End Date: <input type="text" name = "endDate" id="end" />
                                     <button class="btn btn-primary" onclick="createIter(this.form);" value="Create Iteration">Create Iteration</button>
                                 </form>
+                        <div id="updateMessage"></div>
                     </div>
-                    <div id="updateMessage"></div>
+                    
                     <!-- content end -->
 
                 </div>
@@ -126,4 +128,4 @@ Purpose: Add a new release/iteration for a current project
        
        
 </body>
-</html>        
+</html>       

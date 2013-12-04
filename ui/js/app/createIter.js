@@ -5,6 +5,52 @@ Date last updated: 11/5/2013
 Purpose: Add a new release/iteration for a current project
 ************************************************************/
 
+//Global variable of current iterations in a project
+
+var IterList = new Array();
+
+/************************************************************
+Function name: displayList
+Author: Christian Heckendorf
+Created date: 10/13/2013
+Purpose: Displays a list of releases in a project
+************************************************************/
+function displayList(){
+	var cb, tok;
+
+	tok = getToken();
+        pid = getCurProject();
+
+	cb = $("select#releaseddl").data("kendoComboBox");
+	cb.setDataSource(new kendo.data.DataSource({ data: [] })); // Empty it first
+
+	$.ajax({
+		type: 'POST',
+		url: '/plm/rest/projectmanage/releases/p/'+pid,
+		contentType: 'application/json; charset=UTF-8',
+		accepts: {
+			text: 'application/json'
+		},
+		dataType: 'json',
+		data: JSON.stringify({
+			token: tok
+		}),
+		success: function(data){
+			var combobox, results;
+			combobox = $("select#releaseddl").data("kendoComboBox");
+
+			for(x in data.releases){
+				combobox.dataSource.add(data.releases[x]);
+                                $('curIters').append("<h1>"+data.releases[x]+"</h1>");
+                                IterList.push(data.releases[x]);
+			}
+		},
+		error: function(data){
+			alert("error");
+		}
+	});
+}
+
 
 /***************************************************************************************
                 Function name: getDates
@@ -13,13 +59,21 @@ Purpose: Add a new release/iteration for a current project
                 Purpose: Retrieve unformatted start and end date of iteration from user
 ***************************************************************************************/
 $(function() {
-    $("#start").datepicker({minDate: 0});
+    $("#start").datepicker({beforeShowDay: function(date){
+        var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
+        return [ iterList.indexOf(string) === -1 ];
+    },
+    minDate: 0});
 });
             
 $(function() {
-    $("#end").datepicker({minDate: 0});
+    $("#end").datepicker({beforeShowDay: function(date){
+        var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
+        return [ iterList.indexOf(string) === -1 ];
+    },
+    minDate: 1, maxDate: "+6m"});
 });
-            
+           
 /***************************************************************************************
                 Function name: createIter
                 Author: Alan Tang
