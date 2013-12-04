@@ -12,11 +12,14 @@ insert into `User`(id,name,password) values (1,"auser","apassword");
 insert into `User`(id,name,password) values (2,"anotheruser","apassword");
 
 insert into `Project`(id,name) values(1,"My First Project");
+insert into `Project`(id,name) values(2,"Another Project");
 
 insert into `UserProject`(id,userId,roleId,projectId) values(1,1,1,1);
 insert into `UserProject`(id,userId,roleId,projectId) values(2,2,2,1);
+insert into `UserProject`(id,userId,roleId,projectId) values(3,1,1,2);
 
-insert into `Release`(id,version,projectId,startDate,endDate) values(1,"1.0",1,CURDATE(),CURDATE());
+insert into `Release`(id,version,projectId,startDate,endDate) values(1,"1.0",1,CURDATE(),ADDDATE(CURDATE(),5));
+insert into `Release`(id,version,projectId,startDate,endDate) values(2,"9.0",1,ADDDATE(CURDATE(),100),ADDDATE(CURDATE(),105));
 
 insert into `UserStory`(id,name,description,releaseId,ownerId,statusId,points) values(1,"New story","Some description here",1,2,3,3);
 

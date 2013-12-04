@@ -1,17 +1,11 @@
 function formValidation()
 {
-document.getElementById('errormsg').innerHTML = "";
-document.getElementById('errorMsg').innerHTML = "";
-
-var uid = document.registration.userid;
-var passid = document.registration.passid;
-var uname = document.registration.firstname;
-var lastname = document.registration.lastname;
-var uemail = document.registration.email;
-
-$("input#reset").click(function(){
-                resetHandler();
-     })
+  
+var uid = $("input#userid").val();
+var passid = $("input#passid").val();
+var uname = $("input#firstname").val();
+var lastname = $("input#lastname").val();
+var uemail = $("input#email").val();
 
 if(allLetter(uname))
 {
@@ -19,7 +13,7 @@ if(allLetter(lastname))
 {
 if(ValidateEmail(uemail))
 {
-	regUser();
+  regUser();
 }
 }
 }
@@ -57,7 +51,8 @@ return false;
 }
 function regUser(){
  
-                $("#errormsg").html("");
+              var  user = $("input#userid").val();
+              var pass = $("input#passid").val();
 
                                 $.ajax({
                                         type: 'POST',
@@ -68,20 +63,20 @@ function regUser(){
                                         },
                                         dataType: 'json',
                                         data: JSON.stringify({
-                                                name: uid,
-                                                password: passid
+                                                name: user,
+                                                password: pass
                                         }),
                                         success: function(data){
 
-                                                /*the following code checkes whether the entered userid is valid */
+                                                /*the following code checks whether the entered userid is valid */
                                                  if(data.code==0)
                                                   {
-                                                  	document.getElementById('errorMsg').innerHTML = "Registration Successful!! Welcome to PLM";
+                                                    document.getElementById('errorMsg').innerHTML = "Registration Successful!! Welcome to PLM";
                                                     window.location="login.html"; /*Redirect to the login page after succesful registration*/
                                                   }
                                                  else if(data.code==1)
                                                  {
-                                                 	document.getElementById('errorMsg').innerHTML = "Invalid Username or Password";/*displays error message*/
+                                                  document.getElementById('errorMsg').innerHTML = "Invalid Username or Password";/*displays error message*/
                                      }
                                        else { /* Usually internal error or other */
                                            $("#errormsg").html(data.message);
@@ -92,12 +87,13 @@ function regUser(){
                                         }
                                 });
                 }
+
 function resetHandler() {
-	document.getElementById('firstname').innerHTML = "";
-	document.getElementById('lastname').innerHTML = "";
-	document.getElementById('email').innerHTML = "";
-	document.getElementById('userid').innerHTML = "";
-	document.getElementById('passid').innerHTML = "";
-	document.getElementById('errormsg').innerHTML = "";
-	document.getElementById('errorMsg').innerHTML = "";
+        $("input#userid").val("");
+        $("input#passid").val("");
+        $("input#firstname").val("");
+        $("input#lastname").val("");
+        $("input#email").val("");
+        $("#errormsg").html("");
+        $("#errorMsg").html("");
 }

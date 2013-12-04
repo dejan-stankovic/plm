@@ -59,6 +59,26 @@ public class UserProjectDao {
 	}
 
 	/************************************************************
+	Function name: getOtherMemberList()
+	Author: Christian Heckendorf
+	Created date: 11/18/2013
+	Purpose: Returns a list of users not in a project
+	************************************************************/
+	public static UserList getOtherMemberList(Dba dba, long pid){
+		EntityManager em = dba.getActiveEm();
+		Query q = em.createQuery( "select u from User u where u.id not in "+
+				"(select up.user.id from UserProject up where up.project.id = :pid)")
+					.setParameter("pid",pid);
+		try{
+			UserList ul = new UserList();
+			ul.addUsers((List<User>)q.getResultList());
+			return ul;
+		} catch(Exception e){
+			return null;
+		}
+	}
+
+	/************************************************************
 	Function name: findUserProjectByPid()
 	Author: Christian Heckendorf
 	Created date: 10/03/2013
@@ -128,6 +148,21 @@ public class UserProjectDao {
 
 			em.persist(up);
 		} catch (Exception e){
+		}
+	}
+
+	/************************************************************
+	Function name: removeUserProject()
+	Author: Christian Heckendorf
+	Created date: 11/19/2013
+	Purpose: Removes a user from a project
+	************************************************************/
+	public static void removeUserProject(Dba dba, UserProject userProject){
+		EntityManager em = dba.getActiveEm();
+
+		try{
+			em.remove(userProject);
+		} catch(Exception e){
 		}
 	}
 }
