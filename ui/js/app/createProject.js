@@ -4,6 +4,15 @@
 		Created date: 10.24.2013
 		Purpose: create a new project
 **************************************************************************/
+function trim(stringToTrim) {
+	return stringToTrim.replace(/^\s+|\s+$/g,"");
+}
+function ltrim(stringToTrim) {
+	return stringToTrim.replace(/^\s+/,"");
+}
+function rtrim(stringToTrim) {
+	return stringToTrim.replace(/\s+$/,"");
+}
 
 /************************************************************
 Function name: createProject
@@ -77,9 +86,21 @@ $(document).ready(function () {
     $("#createProjectBtn").click(function(){ 
 		// this function will execute if the button is being hit
 		if($("input#txtProjectName").val()=="")
+		{
 			$("#projectStatus").html("Project name can not leave empty.");
-		else	
-			createProject();
+		}
+		else
+		{	
+			var inputText = trim($("input#txtProjectName").val());
+			if(inputText.match(/^[A-Za-z0-9 ]+$/) != null )
+			{
+				createProject();
+			}
+			else
+			{
+				$("#projectStatus").html("Please input a valid character : A-Z, a-z, 0-9 and space between words.");
+			}
+		}
 
 	});
 	

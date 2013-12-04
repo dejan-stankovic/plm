@@ -162,9 +162,9 @@ function updateMenuOptions(perm){
 
 	if(perm.indexOf("EditRelease")>=0){
 		menuitems.push({
-			text: "Release Management", imageUrl: "../css/Images/download_enable.png",
+			text: "Iteration Management", imageUrl: "../css/Images/download_enable.png",
 			items: [
-				{ text: "Manage Release", imageUrl: "http://demos.kendoui.com/content/shared/icons/16/star.png" },
+				{ text: "Manage Iteration", imageUrl: "http://demos.kendoui.com/content/shared/icons/16/star.png" },
 			]
 		});
 	}
@@ -302,12 +302,15 @@ $(document).ready(function () {
                 window.location = "notifications.html";
                 break;
             case ('Manage Users'):
+                window.location = "manageUsers.html";
+                break;
+            case ('Manage Roles'):
                 window.location = "manageroles.html";
                 break;
             case ('Manage User Stories'):
                 window.location = "userstory.html";
                 break;
-            case ('Manage Release'):
+            case ('Manage Iteration'):
                 window.location = "createIter.html";
                 break;
             case ('Manage Projects'):
