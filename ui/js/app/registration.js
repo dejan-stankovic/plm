@@ -15,6 +15,7 @@ if(allLetter(lastname))
 {
 if(ValidateEmail(uemail))
 {
+	regUser();
 }
 }
 }
@@ -50,3 +51,40 @@ uemail.focus();
 return false;
 }
 }
+function regUser(){
+ 
+                $("#errormsg").html("");
+
+                                $.ajax({
+                                        type: 'POST',
+                                        url: '/plm/rest/register',
+                                        contentType: 'application/json; charset=UTF-8',
+                                        accepts: {
+                                                text: 'application/json'
+                                        },
+                                        dataType: 'json',
+                                        data: JSON.stringify({
+                                                name: uid,
+                                                password: passid
+                                        }),
+                                        success: function(data){
+
+                                                /*the following code checkes whether the entered userid is valid */
+                                                 if(data.code==0)
+                                                  {
+                                                  	document.getElementById('errorMsg').innerHTML = "Registration Successful!! Welcome to PLM";
+                                                    window.location="login.html"; /*Redirect to the login page after succesful registration*/
+                                                  }
+                                                 else if(data.code==1)
+                                                 {
+                                                 	document.getElementById('errorMsg').innerHTML = "Invalid Username or Password";/*displays error message*/
+                                     }
+                                       else { /* Usually internal error or other */
+                                           $("#errormsg").html(data.message);
+                                     }
+                                        },
+                                        error: function(data){
+                                                alert("error");
+                                        }
+                                });
+                }
