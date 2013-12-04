@@ -9,6 +9,10 @@ var uname = document.registration.firstname;
 var lastname = document.registration.lastname;
 var uemail = document.registration.email;
 
+$("input#reset").click(function(){
+                resetHandler();
+     })
+
 if(allLetter(uname))
 {
 if(allLetter(lastname))
@@ -88,3 +92,12 @@ function regUser(){
                                         }
                                 });
                 }
+function resetHandler() {
+	document.getElementById('firstname').innerHTML = "";
+	document.getElementById('lastname').innerHTML = "";
+	document.getElementById('email').innerHTML = "";
+	document.getElementById('userid').innerHTML = "";
+	document.getElementById('passid').innerHTML = "";
+	document.getElementById('errormsg').innerHTML = "";
+	document.getElementById('errorMsg').innerHTML = "";
+}
