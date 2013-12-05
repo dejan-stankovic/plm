@@ -12,6 +12,7 @@ Purpose: Add a new release/iteration for a current project
 var iterDates = new Array();
 var iterList = new Array();
 
+
 /************************************************************
 Function name: displayList
 Author: Christian Heckendorf
@@ -23,9 +24,6 @@ function displayList(){
 
 	tok = getToken();
         pid = getCurProject();
-
-	cb = $("select#releaseddl").data("kendoComboBox");
-	cb.setDataSource(new kendo.data.DataSource({ data: [] })); // Empty it first
 
 	$.ajax({
 		type: 'POST',
@@ -39,23 +37,23 @@ function displayList(){
 			token: tok
 		}),
 		success: function(data){
-			var combobox, results;
-			combobox = $("select#releaseddl").data("kendoComboBox");
-
+			iterDates = new Array();
+			iterList = new Array();
 			for(x in data.releases){
-				combobox.dataSource.add(data.releases[x]);
-                                $('curIters').append("<h1>"+data.releases[x]+"</h1>");
                                 iterDates.push(data.releases[x]);
 			}
+
                         
-                        for(var i=0;i<iterDates.length;i+=2)
+                        for(var i=0;i<iterDates.length;i++)
                         {
-                            var pointer = iterDates[i];
-                            while(pointer<iterDates[i+1])
-                            {
-                                iterList.push(pointer);
-                                pointer++;
-                            }
+				var sd = iterDates[i].startDate.split("-");
+				var currentDate = new Date(sd[0],sd[1]-1,sd[2]);
+				var ed = iterDates[i].endDate.split("-");
+				var endDate = new Date(ed[0],ed[1]-1,ed[2]);
+				while (currentDate <= endDate) {
+					iterList.push(currentDate)
+					currentDate.setDate(currentDate.getDate()+1);
+				}
                         }
 		},
 		error: function(data){
@@ -73,16 +71,28 @@ function displayList(){
 ***************************************************************************************/
 $(function() {
     $("#start").datepicker({beforeShowDay: function(date){
-        var string = $.datepicker.formatDate('yy-mm-dd', date);
-        return [ iterList.indexOf(string) === -1 ];
+	for(var i=0;i<iterDates.length;i++){
+		var ad=new Date(iterDates[i].startDate);
+		var bd=new Date(iterDates[i].endDate);
+		if(date>=ad && date<=bd){
+			return [false,"","Unavailable"];
+		}
+	}
+	return [true,"","Available"];
     },
     minDate: 0});
 });
             
 $(function() {
     $("#end").datepicker({beforeShowDay: function(date){
-        var string = $.datepicker.formatDate('yy-mm-dd', date);
-        return [ iterList.indexOf(string) === -1 ];
+	for(var i=0;i<iterDates.length;i++){
+		var ad=new Date(iterDates[i].startDate);
+		var bd=new Date(iterDates[i].endDate);
+		if(date>=ad && date<=bd){
+			return [false,"","Unavailable"];
+		}
+	}
+	return [true,"","Available"];
     },
     minDate: 1, maxDate: "+6m"});
 });
@@ -135,3 +145,7 @@ function createIter(info){
     }
     });             
 }
+
+$(document).ready(function () {
+	displayList();
+});
