@@ -103,19 +103,23 @@ Created date: 11/2/2013
 Purpose: kendofy all the controls on the page
 ************************************************************/
 function kendofy() {
-    $("#projectLbl").text(projectName);
+    var projectDdl = $("#cur-project").data("kendoComboBox");
+    if (projectDdl != null) {
+        projectName = projectDdl.text();
+        $("#projectLbl").text(projectName);
+    }
     $("#releaseddl").kendoComboBox({ placeholder: "Select..." });
     $("#statusddl").kendoComboBox({ placeholder: "Select..." });
     $("#editStatusDdl").kendoComboBox({ placeholder: "Select..." });
     $("#editPriorityDdl").kendoComboBox();
-    $("#ownerTxt").kendoAutoComplete({
+    /*$("#ownerTxt").kendoAutoComplete({
         dataSource: usersData,
 		dataTextName: "name",
 		dataTextValue: "id",
         filter: "startswith",
         placeholder: "select user...",
         separator: ", "
-    });
+    });*/
     $("#storyPointTxt").kendoNumericTextBox({
         min: 1,
         max: 5,
@@ -277,6 +281,9 @@ function registerEvents() {
             updateUserStory(item,selectedUserStoryId);
         }
         selectedUserStoryId = 0;
+        setTimeout(function () {
+            $("#progressInfo").hide();
+        }, 3000);
     });
     $("#cancelSave").click(function () {
         selectedUserStoryId = 0;
@@ -441,11 +448,15 @@ function loadStatusDropDown(id, dataSource) {
 }
 function loadUsersData(id, dataSource) {
     usersData = dataSource;
+    //$("#" + id).kendoAutoComplete({
     $("#" + id).kendoComboBox({
-        dataTextField: "name",
-        dataValueField: "id",
-        dataSource: dataSource
+        dataSource: dataSource,
+	dataTextField: "name",
+	dataValueField: "id",
     });
+        //filter: "startswith",
+        //placeholder: "select user...",
+        //separator: ","
 }
 /************************************************************
 Function name: loaduserStories 
@@ -497,6 +508,15 @@ function loadReleases(releases) {
 			getUserStories(releaseId);
 		}
     });
+    $("#currentReleaseDdl").kendoComboBox({
+        dataSource: releases,
+        dataTextField: "version",
+        dataTextValue: "id",
+        select: function (e) {
+            releaseId = this.dataItem(e.item.index()).id;
+            updateRelease();
+        }
+    }); 
 }
 // service calls
 /************************************************************
@@ -540,7 +560,8 @@ function updateUserStory(item,uid) {
 	var cb = $("#editStatusDdl").data("kendoComboBox");
 	var sid = cb.dataItem().id;
 
-	cb = $("#ownerTxt").data("kendoAutoComplete");
+	cb = $("#ownerTxt").data("kendoComboBox");
+	//cb = $("#ownerTxt").data("kendoAutoComplete");
 	var uid = cb.value();
 
     $.ajax({
@@ -571,6 +592,7 @@ function updateUserStory(item,uid) {
         success: function (data) {
             /* code: id or -1, message: success/error message */
             /* {"code":4,"message":"Success"} */
+            $("#progressInfo").hide();
             alert(data.code + " " + data.message);
         },
         error: function (data) {
@@ -578,7 +600,36 @@ function updateUserStory(item,uid) {
         }
     });
 }
-
+/************************************************************
+Function name: updatesRelease
+Author: Manav
+Created date: 10/26/2013
+Purpose: Updates a user story
+************************************************************/
+function updateRelease() {
+    $.ajax({
+        type: 'POST',
+        url: "/plm/rest/userstory/migrate/u/" + selectedUserStoryId + "/r/" + releaseId,
+        contentType: 'application/json; charset=UTF-8',
+        accepts: {
+            text: 'application/json'
+        },
+        dataType: 'json',
+        data: JSON.stringify({
+            token: {
+                token: token
+            }
+        }),
+        success: function (data) {
+            /* code: id or -1, message: success/error message */
+            /* {"code":4,"message":"Success"} */
+            alert(data.code + " " + data.message);
+        },
+        error: function (data) {
+            alert("error");
+        }
+    });
+}
 
 /************************************************************
 Function name: createUserStory
@@ -590,7 +641,8 @@ function createUserStory(item) {
 	var cb = $("#editStatusDdl").data("kendoComboBox");
 	var sid = cb.dataItem().id;
 
-	cb = $("#ownerTxt").data("kendoAutoComplete");
+	//cb = $("#ownerTxt").data("kendoAutoComplete");
+	cb = $("#ownerTxt").data("kendoComboBox");
 	var uid = cb.value();
 
     $.ajax({
@@ -621,6 +673,7 @@ function createUserStory(item) {
         success: function (data) {
             /* code: new id or -1, message: success/error message */
             /* {"code":4,"message":"Success"} */
+            $("#progressInfo").hide();
             updateUserStory();
         },
         error: function (data) {

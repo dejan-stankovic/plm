@@ -87,7 +87,17 @@ $(document).ready(function () {
     window.data("kendoWindow").center().open();
     setTimeout(function () { window.data("kendoWindow").close(); document.getElementById("body").style.display = ""; }, 3000);
 
-	$("a#loginbtn").click(function(){
+    $("a#loginbtn").click(function () {
+        user = $("input#user").val();
+        pass = $("input#pass").val();
+        if (user == null || user == '') {
+            $("#errormsg").html("Username is required");
+            return;
+        }
+        if (pass == null || pass == '') {
+            $("#errormsg").html("Password is required");
+            return;
+        }
 		loginHandler();
 	})
 

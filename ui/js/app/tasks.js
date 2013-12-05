@@ -18,7 +18,7 @@ var taskData = [];
 var token = null;
 //project id extracted from query string
 var projectId = 1;
-//project name extracted from query string
+//project name extracted from query string 
 var projectName = 'Employee Portal';
 var userStoryId = 0;
 var userStoryName = "";
@@ -99,14 +99,14 @@ function kendofy() {
     $("#userStoryLbl").text(userStoryName);
     $("#statusddl").kendoComboBox({ placeholder: "Select..." });
     $("#editStatusDdl").kendoComboBox({ placeholder: "Select..." });
-    $("#assignddl").kendoAutoComplete({
+    /*$("#assignddl").kendoAutoComplete({
         dataSource: usersData,
-        		dataTextName: "name",
-                dataTextValue: "id",
+        		dataTextField: "name",
+                dataValueField: "id",
         filter: "startswith",
         placeholder: "select user...",
         separator: ", "
-    });
+    });*/
     
     $("#createInfo").hide();
     $("#errorInfo").hide();
@@ -414,8 +414,8 @@ function updateTask(item,tid) {
 	var cb = $("#editStatusDdl").data("kendoComboBox");
 	var sid = cb.dataItem().id;
 
-	cb = $("#assignddl").data("kendoAutoComplete");
-    var uid = cb.value();
+	cb = $("#assignddl").data("kendoComboBox");
+    var uid = cb.dataItem().id;
 
     $.ajax({
         type: 'POST',
@@ -471,8 +471,8 @@ function createTask(item) {
 	var cb = $("#editStatusDdl").data("kendoComboBox");
 	var sid = cb.dataItem().id;
 
-	cb = $("#assignddl").data("kendoAutoComplete");
-    var uid = cb.value();
+	cb = $("#assignddl").data("kendoComboBox");
+    var uid = cb.dataItem().id;
 
     $.ajax({
         type: 'POST',
