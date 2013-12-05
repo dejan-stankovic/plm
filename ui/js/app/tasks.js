@@ -18,7 +18,7 @@ var taskData = [];
 var token = null;
 //project id extracted from query string
 var projectId = 1;
-//project name extracted from query string
+//project name extracted from query string 
 var projectName = 'Employee Portal';
 var userStoryId = 0;
 var userStoryName = "";

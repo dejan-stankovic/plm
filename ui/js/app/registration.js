@@ -17,7 +17,7 @@ function regUser(){
 
 		$("#errormsg").html("");
 
-		user = $("input#uname").val();
+		user = $("input#uname").val(); 
 		pass = $("input#pwd").val();
 
 
