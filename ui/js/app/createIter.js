@@ -6,6 +6,8 @@ Purpose: Add a new release/iteration for a current project
 ************************************************************/
 
 //Global variable of current iterations in a project
+//Dates is the start and end dates, while list is the range
+//of dates that should be greyed out on the datepicker
 
 var iterDates = new Array();
 var iterList = new Array();
@@ -98,7 +100,7 @@ $(function() {
 function createIter(info){
     /*Formats the dates selected by user + current project's ID*/
     var formatStart = $.datepicker.formatDate("yy-mm-dd", new Date(info.elements.startDate.value));
-    var formatEnd = $.datepicket.formatDate("yy-mm-dd", new Date(info.elements.endDate.value));
+    var formatEnd = $.datepicker.formatDate("yy-mm-dd", new Date(info.elements.endDate.value));
     var projectID = getCurProject();
     var version = info.elements.version.value;
     tok = getToken();
@@ -122,7 +124,8 @@ function createIter(info){
         }
     }),
     success: function(data){
-    // Returns success message
+    // Returns success message, resets the array of lists that should be greyed out
+    // Calls on displayList to repopulate the current iteration list + greyed out ranges
         iterList = new Array();
         $("div#updateMessage").html("New iteration: " + version + " created for project " + projectID);
         displayList();
