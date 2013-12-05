@@ -448,14 +448,15 @@ function loadStatusDropDown(id, dataSource) {
 }
 function loadUsersData(id, dataSource) {
     usersData = dataSource;
-    $("#" + id).kendoAutoComplete({
-        dataSource: usersData,
-		dataTextName: "name",
-		dataTextValue: "id",
-        filter: "startswith",
-        placeholder: "select user...",
-        separator: ", "
+    //$("#" + id).kendoAutoComplete({
+    $("#" + id).kendoComboBox({
+        dataSource: dataSource,
+	dataTextField: "name",
+	dataValueField: "id",
     });
+        //filter: "startswith",
+        //placeholder: "select user...",
+        //separator: ","
 }
 /************************************************************
 Function name: loaduserStories 
@@ -559,7 +560,8 @@ function updateUserStory(item,uid) {
 	var cb = $("#editStatusDdl").data("kendoComboBox");
 	var sid = cb.dataItem().id;
 
-	cb = $("#ownerTxt").data("kendoAutoComplete");
+	cb = $("#ownerTxt").data("kendoComboBox");
+	//cb = $("#ownerTxt").data("kendoAutoComplete");
 	var uid = cb.value();
 
     $.ajax({
@@ -639,7 +641,8 @@ function createUserStory(item) {
 	var cb = $("#editStatusDdl").data("kendoComboBox");
 	var sid = cb.dataItem().id;
 
-	cb = $("#ownerTxt").data("kendoAutoComplete");
+	//cb = $("#ownerTxt").data("kendoAutoComplete");
+	cb = $("#ownerTxt").data("kendoComboBox");
 	var uid = cb.value();
 
     $.ajax({
