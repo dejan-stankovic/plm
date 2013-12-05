@@ -7,6 +7,7 @@
 <script src="../js/lib/kendo.all.min.js"></script>
 <script src="../js/lib/bootstrap.min.js"></script>
 <script src="../js/app/registration.js"></script>
+
 <link rel="stylesheet" href="../css/app.css" />
 <link rel='stylesheet' href='js-form-validation.css' type='text/css' />
 <link rel="stylesheet" href="http://cdn.kendostatic.com/2013.2.918/styles/kendo.common.min.css" />
@@ -38,7 +39,7 @@
 <body style="background-image: url('../css/Images/bg.png'); opacity: 0.8;" onload="document.registration.firstname.focus();">
     
 <h1>Registration Form</h1>
-<form name='registration' onSubmit="return formValidation();">
+<form name='registration'">
 <table class="table table-condensed" style="width:70%;font-weight:700;margin-left:10%;">
                 <tr>
                 <td></td>
@@ -53,32 +54,31 @@
                 <tr>
                     <td>First name </td>
                     <td>
-                        <input type="text" name="firstname" size="25" /></td>
+                        <input type="text" id="firstName" size="25" /></td>
                 </tr>
                 <tr   class="success">
                     <td>Last name </td>
                     <td>
-                        <input type="text" name="lastname" size="25" /></td>
+                        <input type="text" id="lastName" size="25" /></td>
                 </tr>
                 <tr>
                     <td>E-mail </td>
                     <td>
-                        <input type="text" name="email" size="25" /></td>
+                        <input type="text" id="email" size="25" /></td>
                 </tr>
                 <tr   class="success">
                     <td>Username </td>
                     <td>
-                        <input type="text" name="userid" size="25" /></td>
+                        <input type="text" id="userid" size="25" /></td>
                 </tr>
                 <tr>
                     <td>Password </td>
                     <td>
-                        <input type="password" name="passid" size="25" /></td>
+                        <input type="password" id="passid" size="25" /></td>
                 </tr>
                 <tr>
-                    <td></td>
-                    <td><input type="submit" name="submit" value="Submit" style="position: absolute; left: 540px;" /></td>
-                    <td><input type="submit" name="reset" value="Reset" style="position: absolute; left: 640px;"/></td>
+                    <td><button id="submitBtn" class="btn btn-primary" value="Submit" style="position: absolute; left: 540px;" >Submit</button></td>
+                    <td><button id="resetBtn" class="btn btn-primary" value="Reset" style="position: absolute; left: 640px;" >Reset</button></td>
                 </tr>
             </table>
 </form>
