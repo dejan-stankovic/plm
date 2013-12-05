@@ -13,7 +13,10 @@ if(allLetter(lastname))
 {
 if(ValidateEmail(uemail))
 {
+if(allLetterUid(uid))
+{
   regUser();
+}
 }
 }
 }
@@ -49,6 +52,22 @@ uemail.focus();
 return false;
 }
 }
+
+function allLetterUid(uname)
+{ 
+var letters = /^[A-Za-z0-9_]{3,20}+$/;
+if(uname.value.match(letters))
+{
+return true;
+}
+else
+{
+document.getElementById('errorMsg').innerHTML = "Username can have only alphabets, numbers and _";
+uname.focus();
+return false;
+}
+}
+
 function regUser(){
  
               var  user = $("input#userid").val();
