@@ -147,7 +147,7 @@ Feature: None
                         <div id="details">
                             <table class="table table-hover" style="border: 2px solid gray; width: 99%; text-align: center; margin: 5px; font-weight: 700; font-size:small">
                                 <tr>
-                                    <td colspan="8">
+                                    <td colspan="10">
                                         <div id="createInfo" class="alert alert-info">* Please enter new user story information below and click on save.</div>
                                         <div id="errorInfo" class="alert alert-danger"></div>
                                         <div id="progressInfo" class="alert alert-success">Save in progress...</div>
@@ -155,7 +155,7 @@ Feature: None
                                 </tr>
                                 <tr>
                                     <td style="width: 150px">Title : </td>
-                                    <td colspan="7">
+                                    <td colspan="9">
                                         <input id="titleTxt" type="text" style="width: 99%" /></td>
                                 </tr>
                                 <tr>
@@ -168,7 +168,7 @@ Feature: None
                                     <td>Status : </td>
                                     <td>
                                         <select id="editStatusDdl">
-
+                                           
                                         </select>
 
                                     </td>
@@ -181,22 +181,27 @@ Feature: None
                                         </select>
 
                                     </td>
+                                    <td>Release : </td>
+                                    <td>
+                                        <select id="currentReleaseDdl">
+                                        </select>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Details :</td>
-                                    <td colspan="7">
+                                    <td colspan="9">
                                         <textarea id="descriptionTxt" cols="5" rows="5" style="width: 99%"></textarea>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Comments : </td>
-                                    <td colspan="7">
+                                    <td colspan="9">
                                         <div style="font-size:small" id="commentsGrid" />
                                     </td>
                                 </tr>
                                 <tr>
                                     <td></td>
-                                    <td  colspan="7">
+                                    <td  colspan="9">
                                         <input id="txtNewComment" type="text" style="width: 90%" />&nbsp;
                                         <button id="btnAddComment" class="btn btn-primary">Add</button>
                                     </td>
@@ -206,7 +211,7 @@ Feature: None
                                         <button id="btnSave" class="btn btn-primary">Save</button>&nbsp;
                                         <button id="btnCancel" class="btn">Cancel</button>
                                     </td>
-                                    <td colspan="5"></td>
+                                    <td colspan="7"></td>
                                     <td align="right" style="text-align:right">
                                         <button id="btnCreateUserStory" class="btn btn-inverse">Create User Story</button>
                                     </td>

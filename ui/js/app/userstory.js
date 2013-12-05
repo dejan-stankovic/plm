@@ -103,7 +103,11 @@ Created date: 11/2/2013
 Purpose: kendofy all the controls on the page
 ************************************************************/
 function kendofy() {
-    $("#projectLbl").text(projectName);
+    var projectDdl = $("#cur-project").data("kendoComboBox");
+    if (projectDdl != null) {
+        projectName = projectDdl.text();
+        $("#projectLbl").text(projectName);
+    }
     $("#releaseddl").kendoComboBox({ placeholder: "Select..." });
     $("#statusddl").kendoComboBox({ placeholder: "Select..." });
     $("#editStatusDdl").kendoComboBox({ placeholder: "Select..." });
@@ -277,6 +281,9 @@ function registerEvents() {
             updateUserStory(item,selectedUserStoryId);
         }
         selectedUserStoryId = 0;
+        setTimeout(function () {
+            $("#progressInfo").hide();
+        }, 3000);
     });
     $("#cancelSave").click(function () {
         selectedUserStoryId = 0;
@@ -441,10 +448,13 @@ function loadStatusDropDown(id, dataSource) {
 }
 function loadUsersData(id, dataSource) {
     usersData = dataSource;
-    $("#" + id).kendoComboBox({
-        dataTextField: "name",
-        dataValueField: "id",
-        dataSource: dataSource
+    $("#" + id).kendoAutoComplete({
+        dataSource: usersData,
+		dataTextName: "name",
+		dataTextValue: "id",
+        filter: "startswith",
+        placeholder: "select user...",
+        separator: ", "
     });
 }
 /************************************************************
@@ -497,6 +507,15 @@ function loadReleases(releases) {
 			getUserStories(releaseId);
 		}
     });
+    $("#currentReleaseDdl").kendoComboBox({
+        dataSource: releases,
+        dataTextField: "version",
+        dataTextValue: "id",
+        select: function (e) {
+            releaseId = this.dataItem(e.item.index()).id;
+            updateRelease();
+        }
+    }); 
 }
 // service calls
 /************************************************************
@@ -579,7 +598,36 @@ function updateUserStory(item,uid) {
         }
     });
 }
-
+/************************************************************
+Function name: updatesRelease
+Author: Manav
+Created date: 10/26/2013
+Purpose: Updates a user story
+************************************************************/
+function updateRelease() {
+    $.ajax({
+        type: 'POST',
+        url: "/plm/rest/userstory/migrate/u/" + selectedUserStoryId + "/r/" + releaseId,
+        contentType: 'application/json; charset=UTF-8',
+        accepts: {
+            text: 'application/json'
+        },
+        dataType: 'json',
+        data: JSON.stringify({
+            token: {
+                token: token
+            }
+        }),
+        success: function (data) {
+            /* code: id or -1, message: success/error message */
+            /* {"code":4,"message":"Success"} */
+            alert(data.code + " " + data.message);
+        },
+        error: function (data) {
+            alert("error");
+        }
+    });
+}
 
 /************************************************************
 Function name: createUserStory
