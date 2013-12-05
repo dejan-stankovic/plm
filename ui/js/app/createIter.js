@@ -104,6 +104,11 @@ function createIter(info){
     var projectID = getCurProject();
     var version = info.elements.version.value;
     tok = getToken();
+    
+    if (formatStart>formatEnd){
+        $("div#updateMessage").html("Iteration end date cannot be earlier than start date. Please check your inputs and try again.");
+        return false;
+    }
                 
     $.ajax({
         type: 'POST',
