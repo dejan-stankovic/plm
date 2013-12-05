@@ -101,8 +101,8 @@ function kendofy() {
     $("#editStatusDdl").kendoComboBox({ placeholder: "Select..." });
     /*$("#assignddl").kendoAutoComplete({
         dataSource: usersData,
-        		dataTextName: "name",
-                dataTextValue: "id",
+        		dataTextField: "name",
+                dataValueField: "id",
         filter: "startswith",
         placeholder: "select user...",
         separator: ", "
@@ -414,8 +414,8 @@ function updateTask(item,tid) {
 	var cb = $("#editStatusDdl").data("kendoComboBox");
 	var sid = cb.dataItem().id;
 
-	cb = $("#assignddl").data("kendoAutoComplete");
-    var uid = cb.value();
+	cb = $("#assignddl").data("kendoComboBox");
+    var uid = cb.dataItem().id;
 
     $.ajax({
         type: 'POST',
@@ -471,8 +471,8 @@ function createTask(item) {
 	var cb = $("#editStatusDdl").data("kendoComboBox");
 	var sid = cb.dataItem().id;
 
-	cb = $("#assignddl").data("kendoAutoComplete");
-    var uid = cb.value();
+	cb = $("#assignddl").data("kendoComboBox");
+    var uid = cb.dataItem().id;
 
     $.ajax({
         type: 'POST',
