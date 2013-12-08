@@ -1,0 +1,47 @@
+Filename : TaskDao.java
+Total Function : 5
+Total Line of Code : 62
+-------------------------------
+/************************************************************
+Filename: TaskDao.java
+Author: Christian Heckendorf
+Created date: 10/27/2013
+Purpose: Accesses the task entity
+Feature: Tasks
+************************************************************/
+
+/************************************************************
+Function name: getTaskList()
+Author: Christian Heckendorf
+Created date: 10/27/2013
+Purpose: Returns a list of tasks under a user story
+************************************************************/
+
+/************************************************************
+Function name: createTask()
+Author: Christian Heckendorf
+Created date: 10/27/2013
+Purpose: Creates a task under a user story
+************************************************************/
+
+/************************************************************
+Function name: updateTask()
+Author: Christian Heckendorf
+Created date: 10/27/2013
+Purpose: Updates a task in the database
+************************************************************/
+
+/************************************************************
+Function name: convert()
+Author: Christian Heckendorf
+Created date: 10/27/2013
+Purpose: Converts a JSONTask to a Task
+************************************************************/
+
+/************************************************************
+Function name: getTaskById()
+Author: Christian Heckendorf
+Created date: 10/27/2013
+Purpose: Returns a task given a task id
+************************************************************/
+

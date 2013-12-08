@@ -1,0 +1,72 @@
+Filename : common.js
+Total Function : 7
+Total Line of Code : 222
+-------------------------------
+Filename : createIter.js
+Total Function : 3
+Total Line of Code : 99
+-------------------------------
+Filename : createProject.js
+Total Function : 2
+Total Line of Code : 82
+-------------------------------
+Filename : dashboard.js
+Total Function : 8
+Total Line of Code : 245
+-------------------------------
+Filename : home.js
+Total Function : 1
+Total Line of Code : 3
+-------------------------------
+Filename : login.js
+Total Function : 3
+Total Line of Code : 70
+-------------------------------
+Filename : manageroles.js
+Total Function : 5
+Total Line of Code : 230
+-------------------------------
+Filename : manageUsers.js
+Total Function : 8
+Total Line of Code : 259
+-------------------------------
+Filename : notifications.js
+Total Function : 1
+Total Line of Code : 0
+-------------------------------
+Filename : phasetasks.js
+Total Function : 0
+Total Line of Code : 1133
+-------------------------------
+Filename : registration.js
+Total Function : 0
+Total Line of Code : 108
+-------------------------------
+Filename : tasks.js
+Total Function : 19
+Total Line of Code : 419
+-------------------------------
+Filename : userstory.js
+Total Function : 25
+Total Line of Code : 591
+-------------------------------
+Filename : serviceResponse.js
+Total Function : 0
+Total Line of Code : 9
+-------------------------------
+Filename : bootstrap.min.js
+Total Function : 0
+Total Line of Code : 1
+-------------------------------
+Filename : jquery.min.js
+Total Function : 0
+Total Line of Code : 4
+-------------------------------
+Filename : kendo.all.min.js
+Total Function : 0
+Total Line of Code : 39
+-------------------------------
+Filename : require.js
+Total Function : 0
+Total Line of Code : 35
+-------------------------------

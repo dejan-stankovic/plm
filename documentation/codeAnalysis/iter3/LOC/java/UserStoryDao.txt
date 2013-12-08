@@ -1,0 +1,40 @@
+Filename : UserStoryDao.java
+Total Function : 4
+Total Line of Code : 56
+-------------------------------
+/************************************************************
+Filename: UserStoryDao.java
+Author: Christian Heckendorf
+Created date: 10/26/2013
+Purpose: Accesses user story information in the database
+Feature: None
+************************************************************/
+
+/************************************************************
+Function name: createUserStory()
+Author: Christian Heckendorf
+Created date: 10/26/2013
+Purpose: Creates a user story
+************************************************************/
+
+/************************************************************
+Function name: updateUserStory()
+Author: Christian Heckendorf
+Created date: 10/27/2013
+Purpose: Updates a user story
+************************************************************/
+
+/************************************************************
+Function name: convert()
+Author: Christian Heckendorf
+Created date: 11/02/2013
+Purpose: Converts a JSONUserStory to a UserStory
+************************************************************/
+
+/************************************************************
+Function name: getUserStoryById()
+Author: Christian Heckendorf
+Created date: 10/27/2013
+Purpose: Returns a user story by id
+************************************************************/
+

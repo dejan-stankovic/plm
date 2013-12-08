@@ -1,0 +1,68 @@
+Filename : SessionToken.java
+Total Function : 8
+Total Line of Code : 92
+-------------------------------
+/***************************************************************
+Filename: SessionToken.java
+Author: Christian Heckendorf
+Created Date: 9/28/13
+Purpose: Generate and decode a session token
+Features: All session protected features
+***************************************************************/
+
+/***************************************************************
+Function name: SessionToken
+Author: Christian Heckendorf
+Created Date: 9/28/13
+Purpose: Initializes an object
+***************************************************************/
+
+/***************************************************************
+Function name: hexStringToByteArray
+Author: Christian Heckendorf
+Created Date: 9/28/13
+Purpose: Converts a hex string to byte array
+***************************************************************/
+
+/***************************************************************
+Function name: byteArrayToHex
+Author: Christian Heckendorf
+Created Date: 9/28/13
+Purpose: Converts a byte array into a hex string
+***************************************************************/
+
+/***************************************************************
+Function name: generateHash
+Author: Christian Heckendorf
+Created Date: 9/28/13
+Purpose: Generates the hash of a byte array (string)
+***************************************************************/
+
+/***************************************************************
+Function name: getDataBytes
+Author: Christian Heckendorf
+Created Date: 9/28/13
+Purpose: Converts the uid and exp into a byte array with a hash
+***************************************************************/
+
+/***************************************************************
+Function name: generateToken
+Author: Christian Heckendorf
+Created Date: 9/28/13
+Purpose: The main method to generate a session token
+***************************************************************/
+
+/***************************************************************
+Function name: parseToken
+Author: Christian Heckendorf
+Created Date: 9/28/13
+Purpose: Converts a token string back to uid and exp if valid
+***************************************************************/
+
+/***************************************************************
+Function name: SessionToken
+Author: Christian Heckendorf
+Created Date: 9/28/13
+Purpose: Constructor to convert string to uid and exp
+***************************************************************/
+

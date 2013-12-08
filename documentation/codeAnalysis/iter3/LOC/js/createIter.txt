@@ -1,0 +1,35 @@
+Filename : createIter.js
+Total Function : 3
+Total Line of Code : 99
+-------------------------------
+/************************************************************
+Filename: createIter.js
+Author: Alan Tang, Christian Heckendorf
+Date last updated: 11/5/2013
+Purpose: Add a new release/iteration for a current project
+************************************************************/
+
+/************************************************************
+Function name: displayList
+Author: Christian Heckendorf
+Created date: 10/13/2013
+Purpose: Displays a list of releases in a project
+************************************************************/
+
+/***************************************************************************************
+Function name: getDates
+Author: Alan Tang
+Created date: 11/05/2013
+Purpose: Retrieve unformatted start and end date of iteration from user
+***************************************************************************************/
+
+/***************************************************************************************
+Function name: createIter
+Author: Alan Tang
+Created date: 11/05/2013
+Purpose: Generates a new release under current project given start
+and end dates + version name
+***************************************************************************************/
+
+/*Formats the dates selected by user + current project's ID*/
+

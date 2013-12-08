@@ -1,0 +1,47 @@
+Filename : StatusList.java
+Total Function : 5
+Total Line of Code : 23
+-------------------------------
+/************************************************************
+Filename: StatusList.java
+Author: Christian Heckendorf
+Created date: 11/02/2013
+Purpose: Holds a list of JSONStatuses
+Feature: Dashboard
+************************************************************/
+
+/************************************************************
+Function name: StatusList()
+Author: Christian Heckendorf
+Created date: 10/13/2013
+Purpose: Default constructor
+************************************************************/
+
+/************************************************************
+Function name: addStatus()
+Author: Christian Heckendorf
+Created date: 11/02/2013
+Purpose: Adds a status to the list
+************************************************************/
+
+/************************************************************
+Function name: addStatuses()
+Author: Christian Heckendorf
+Created date: 10/13/2013
+Purpose: Adds a list of statuses
+************************************************************/
+
+/************************************************************
+Function name: getStatuses()
+Author: Christian Heckendorf
+Created date: 11/02/2013
+Purpose: Returns the list of statuses
+************************************************************/
+
+/************************************************************
+Function name: setStatuses()
+Author: Christian Heckendorf
+Created date: 11/02/2013
+Purpose: Sets the list of statuses
+************************************************************/
+

@@ -1,0 +1,33 @@
+Filename : RoleManager.java
+Total Function : 3
+Total Line of Code : 67
+-------------------------------
+/************************************************************
+Filename: RoleManager.java
+Author: Christian Heckendorf
+Created date: 10/01/2013
+Purpose: Manages roles
+Feature: None
+************************************************************/
+
+/************************************************************
+Function name: getRoles
+Author: Christian Heckendorf
+Created date: 10/01/2013
+Purpose: Returns a list of available roles
+************************************************************/
+
+/************************************************************
+Function name: getUserRole
+Author: Christian Heckendorf
+Created date: 10/01/2013
+Purpose: Gets the current role for the user
+************************************************************/
+
+/************************************************************
+Function name: setUserRole()
+Author: Christian Heckendorf
+Created date: 10/04/2013
+Purpose: Sets a new role for a user
+************************************************************/
+

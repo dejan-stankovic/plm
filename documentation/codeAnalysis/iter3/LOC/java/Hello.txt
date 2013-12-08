@@ -1,0 +1,19 @@
+Filename : Hello.java
+Total Function : 1
+Total Line of Code : 18
+-------------------------------
+/***************************************************************
+Filename: Hello.java
+Author: Christian Heckendorf
+Created Date: 9/21/13
+Purpose: Example service
+Features: None
+***************************************************************/
+
+/***************************************************************
+Function name: getHelloMessage
+Author: Christian Heckendorf
+Created Date: 9/21/13
+Purpose: Returns the hello message
+***************************************************************/
+

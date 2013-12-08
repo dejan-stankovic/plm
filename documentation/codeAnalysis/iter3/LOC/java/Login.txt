@@ -1,0 +1,19 @@
+Filename : Login.java
+Total Function : 1
+Total Line of Code : 38
+-------------------------------
+/***************************************************************
+Filename: Login.java
+Author: Christian Heckendorf
+Created Date: 9/28/13
+Purpose: Authenticates a user and creates a session token
+Features: Login
+***************************************************************/
+
+/***************************************************************
+Function name: getLoginMessage
+Author: Christian Heckendorf
+Created Date: 9/21/13
+Purpose: Returns a session token or error
+***************************************************************/
+

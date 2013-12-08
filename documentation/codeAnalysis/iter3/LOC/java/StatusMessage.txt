@@ -1,0 +1,61 @@
+Filename : StatusMessage.java
+Total Function : 7
+Total Line of Code : 26
+-------------------------------
+/************************************************************
+Filename: StatusMessage.java
+Author: Christian Heckendorf
+Created date: 09/29/2013
+Purpose: Holds a generic status message
+Feature: Register
+************************************************************/
+
+/************************************************************
+Function name: StatusMessage
+Author: Christian Heckendorf
+Created date: 09/29/2013
+Purpose: Constructs a message
+************************************************************/
+
+/************************************************************
+Function name: StatusMessage()
+Author: Christian Heckendorf
+Created date: 10/23/2013
+Purpose: Constructs a message
+************************************************************/
+
+/************************************************************
+Function name: StatusMessage()
+Author: Christian Heckendorf
+Created date: 10/26/2013
+Purpose: Default constructor
+************************************************************/
+
+/************************************************************
+Function name: getCode
+Author: Christian Heckendorf
+Created date: 09/29/2013
+Purpose: Returns the code
+************************************************************/
+
+/************************************************************
+Function name: setCode
+Author: Christian Heckendorf
+Created date: 09/29/2013
+Purpose: Sets the code
+************************************************************/
+
+/************************************************************
+Function name: getMessage
+Author: Christian Heckendorf
+Created date: 09/29/2013
+Purpose: Returns the message
+************************************************************/
+
+/************************************************************
+Function name: setMessage
+Author: Christian Heckendorf
+Created date: 09/29/2013
+Purpose: Sets a message
+************************************************************/
+
