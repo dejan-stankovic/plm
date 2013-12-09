@@ -1,0 +1,37 @@
+Filename : manageroles.html
+Total Function : 0
+Total Line of Code : 137
+-------------------------------
+<!--
+Filename: manageroles.html
+Author: Alan
+Created date: 09/30/2013
+Purpose: view to handle manage roles functionality
+Feature: None
+-->
+
+<!--
+<br />
+<br />
+<div id="rolesGrid"></div>
+<br />
+<br />
+<div>
+<table style="border: 1px dotted orangered; width: 40%; text-align: center; margin: 5px">
+<tr>
+<td><b>User :</b></td>
+<td>
+<input id="newUsersddl" />
+
+</td>
+<td><b>Role :</b></td>
+<td>
+<select id="newRolesddl">
+</select>&nbsp;
+<span class="icon_16 add"></span>
+</td>
+</tr>
+</table>
+</div>
+-->
+

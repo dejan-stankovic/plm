@@ -104,4 +104,17 @@ public class UserStoryServiceTest extends JerseyTest{
 
 		assertTrue(res.getMessage().equals("Success"));
 	}
+
+	@Test
+	public void migrateUserStory(){
+		TokenMessage tm = new TokenMessage();
+
+		tm.setToken(tok);
+
+		StatusMessage res =  target("userstory").path("migrate/u/1/r/2")
+			.request(MediaType.APPLICATION_JSON_TYPE)
+			.post(Entity.entity(tm,MediaType.APPLICATION_JSON_TYPE),StatusMessage.class);
+
+		assertTrue(res.getMessage().equals("Success"));
+	}
 }

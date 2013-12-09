@@ -1,0 +1,117 @@
+Filename : JSONUserStory.java
+Total Function : 15
+Total Line of Code : 61
+-------------------------------
+/************************************************************
+Filename: JSONUserStory.java
+Author: Christian Heckendorf
+Created date: 10/22/2013
+Purpose: Holds the public user story information
+Feature: User Story
+************************************************************/
+
+/************************************************************
+Function name: JSONUserStory()
+Author: Christian Heckendorf
+Created date: 10/22/2013
+Purpose: Default constructor
+************************************************************/
+
+/************************************************************
+Function name: toUserStory()
+Author: Christian Heckendorf
+Created date: 10/26/2013
+Purpose: Converts to UserStory object
+************************************************************/
+
+/************************************************************
+Function name: JSONUserStory()
+Author: Christian Heckendorf
+Created date: 10/22/2013
+Purpose: Constructs a JSONUserStory from a UserStory
+************************************************************/
+
+/************************************************************
+Function name: getId
+Author: Christian Heckendorf
+Created date: 10/22/2013
+Purpose: Returns the user ID
+************************************************************/
+
+/************************************************************
+Function name: setId
+Author: Christian Heckendorf
+Created date: 10/22/2013
+Purpose: Sets the user ID
+************************************************************/
+
+/************************************************************
+Function name: getName
+Author: Christian Heckendorf
+Created date: 10/22/2013
+Purpose: Returns the name
+************************************************************/
+
+/************************************************************
+Function name: setName
+Author: Christian Heckendorf
+Created date: 10/22/2013
+Purpose: Sets the name
+************************************************************/
+
+/************************************************************
+Function name: getDescription()
+Author: Christian Heckendorf
+Created date: 10/22/2013
+Purpose: Returns a description
+************************************************************/
+
+/************************************************************
+Function name: setDescription()
+Author: Christian Heckendorf
+Created date: 10/22/2013
+Purpose: Sets a description
+************************************************************/
+
+/************************************************************
+Function name: getOwner()
+Author: Christian Heckendorf
+Created date: 11/02/2013
+Purpose: Returns a owner
+************************************************************/
+
+/************************************************************
+Function name: setOwner()
+Author: Christian Heckendorf
+Created date: 11/02/2013
+Purpose: Sets a owner
+************************************************************/
+
+/************************************************************
+Function name: getStatus()
+Author: Christian Heckendorf
+Created date: 11/02/2013
+Purpose: Returns a status
+************************************************************/
+
+/************************************************************
+Function name: setStatus()
+Author: Christian Heckendorf
+Created date: 11/02/2013
+Purpose: Sets a status
+************************************************************/
+
+/************************************************************
+Function name: getPoints()
+Author: Christian Heckendorf
+Created date: 11/02/2013
+Purpose: Returns a points
+************************************************************/
+
+/************************************************************
+Function name: setPoints()
+Author: Christian Heckendorf
+Created date: 11/02/2013
+Purpose: Sets a points
+************************************************************/
+

@@ -1,0 +1,68 @@
+Filename : UserProject.java
+Total Function : 8
+Total Line of Code : 48
+-------------------------------
+/************************************************************
+Filename: UserProject.java
+Author: Christian Heckendorf
+Created date: 09/29/2013
+Purpose: Holds a UserProject entity
+Feature: None
+************************************************************/
+
+/************************************************************
+Function name: getId
+Author: Christian Heckendorf
+Created date: 09/29/2013
+Purpose: Returns the ID
+************************************************************/
+
+/************************************************************
+Function name: setId
+Author: Christian Heckendorf
+Created date: 09/29/2013
+Purpose: Sets the ID
+************************************************************/
+
+/************************************************************
+Function name: getUser
+Author: Christian Heckendorf
+Created date: 09/29/2013
+Purpose: Returns the user
+************************************************************/
+
+/************************************************************
+Function name: setUser
+Author: Christian Heckendorf
+Created date: 09/29/2013
+Purpose: Sets the user
+************************************************************/
+
+/************************************************************
+Function name: getRole
+Author: Christian Heckendorf
+Created date: 09/29/2013
+Purpose: Returns the role
+************************************************************/
+
+/************************************************************
+Function name: setRole
+Author: Christian Heckendorf
+Created date: 09/29/2013
+Purpose: Sets the role
+************************************************************/
+
+/************************************************************
+Function name: getProject
+Author: Christian Heckendorf
+Created date: 09/29/2013
+Purpose: Returns the project
+************************************************************/
+
+/************************************************************
+Function name: setProject
+Author: Christian Heckendorf
+Created date: 09/29/2013
+Purpose: Sets the project
+************************************************************/
+

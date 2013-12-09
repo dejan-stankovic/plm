@@ -1,0 +1,40 @@
+Filename : ReleaseDao.java
+Total Function : 4
+Total Line of Code : 55
+-------------------------------
+/************************************************************
+Filename: ReleaseDao.java
+Author: Christian Heckendorf
+Created date: 10/26/2013
+Purpose: Accesses the Release entity
+Feature: None
+************************************************************/
+
+/************************************************************
+Function name: createRelease()
+Author: Christian Heckendorf
+Created date: 10/26/2013
+Purpose: Creates a release under a project
+************************************************************/
+
+/************************************************************
+Function name: updateRelease()
+Author: Christian Heckendorf
+Created date: 10/26/2013
+Purpose: Updates a release
+************************************************************/
+
+/************************************************************
+Function name: getUserStoryList()
+Author: Christian Heckendorf
+Created date: 10/26/2013
+Purpose: Returns a list of user stories under the release
+************************************************************/
+
+/************************************************************
+Function name: getReleaseById()
+Author: Christian Heckendorf
+Created date: 10/26/2013
+Purpose: Returns a release given a release id
+************************************************************/
+

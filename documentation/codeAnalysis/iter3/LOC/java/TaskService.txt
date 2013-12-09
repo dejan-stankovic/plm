@@ -1,0 +1,33 @@
+Filename : TaskService.java
+Total Function : 3
+Total Line of Code : 79
+-------------------------------
+/************************************************************
+Filename: TaskService.java
+Author: Christian Heckendorf
+Created date: 10/27/2013
+Purpose: Provides task related services
+Feature: Tasks
+************************************************************/
+
+/************************************************************
+Function name: getTaskList()
+Author: Christian Heckendorf
+Created date: 10/27/2013
+Purpose: Gets a list of tasks under a user story
+************************************************************/
+
+/************************************************************
+Function name: createTask()
+Author: Christian Heckendorf
+Created date: 10/27/2013
+Purpose: Creates a task under a user story
+************************************************************/
+
+/************************************************************
+Function name: updateTask()
+Author: Christian Heckendorf
+Created date: 10/27/2013
+Purpose: Updates a task
+************************************************************/
+

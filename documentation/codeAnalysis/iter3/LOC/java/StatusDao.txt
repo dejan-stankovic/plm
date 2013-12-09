@@ -1,0 +1,26 @@
+Filename : StatusDao.java
+Total Function : 2
+Total Line of Code : 33
+-------------------------------
+/************************************************************
+Filename: StatusDao.java
+Author: Christian Heckendorf
+Created date: 11/02/2013
+Purpose: Status object access
+Feature: None
+************************************************************/
+
+/************************************************************
+Function name: getStatusList()
+Author: Christian Heckendorf
+Created date: 11/02/2013
+Purpose: Returns the statuses in the system
+************************************************************/
+
+/************************************************************
+Function name: getStatusById()
+Author: Christian Heckendorf
+Created date: 11/02/2013
+Purpose: Finds a status by id
+************************************************************/
+

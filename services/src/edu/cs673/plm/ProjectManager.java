@@ -30,6 +30,30 @@ import edu.cs673.plm.model.StatusMessage;
 @Path( "/projectmanage" )
 public class ProjectManager {
 	/************************************************************
+	Function name: getOtherUserList()
+	Author: Christian Heckendorf
+	Created date: 11/18/2013
+	Purpose: Returns a list of users not in a project
+	************************************************************/
+	@Path( "/p/{pid}/otherusers" )
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public UserList getOtherUserList(@PathParam("pid") long pid, TokenMessage token) {
+		UserList ul = null;
+		Dba dba = new Dba(true);
+		try{
+			if(Permission.canAccess(dba,new SessionToken(token.getToken()),pid,Permission.INVITE_USER)){
+				ul = UserProjectDao.getOtherMemberList(dba,pid);
+			}
+		} finally{
+			dba.closeEm();
+		}
+
+		return ul;
+	}
+
+	/************************************************************
 	Function name: getUserList()
 	Author: Christian Heckendorf
 	Created date: 10/05/2013
@@ -136,7 +160,7 @@ public class ProjectManager {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public StatusMessage createProject(@PathParam("pid") long pid, JSONProjectRequest req) {
+	public StatusMessage createProject(JSONProjectRequest req) {
 		StatusMessage sm = new StatusMessage(-1,"Internal Error");
 		SessionToken st = new SessionToken(req.getToken().getToken());
 		Dba dba = new Dba(false);
@@ -144,6 +168,77 @@ public class ProjectManager {
 			Project proj = new Project();
 			proj.overlay(req.getProject());
 			sm = ProjectDao.createProject(dba,proj,st.getUid());
+		} finally{
+			dba.closeEm();
+		}
+
+		return sm;
+	}
+
+	/************************************************************
+	Function name: addUser()
+	Author: Christian Heckendorf
+	Created date: 11/18/2013
+	Purpose: Adds a user to a project
+	************************************************************/
+	@Path( "/p/{pid}/adduser/u/{uid}" )
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public StatusMessage addUser(@PathParam("pid") long pid, @PathParam("uid") long uid, TokenMessage token) {
+		StatusMessage sm = new StatusMessage(1,"Internal Error");
+		SessionToken st = new SessionToken(token.getToken());
+		Dba dba = new Dba(false);
+		try{
+			if(Permission.canAccess(dba,st,pid,Permission.INVITE_USER)){
+				User u;
+				Project p;
+
+				if(UserProjectDao.findUserProjectByPid(dba,uid,pid)!=null)
+					sm = new StatusMessage(3,"User already in project");
+				else{
+					p = ProjectDao.getProjectById(dba,pid);
+					u = UserDao.getUserById(dba,uid);
+					if(u==null || p==null)
+						sm = new StatusMessage(2,"Invalid user or project");
+					else{
+						UserProjectDao.createUserProject(dba,u,p,RoleDao.findRoleById(dba,RoleDao.ROLE_DEVELOPER));
+						sm = new StatusMessage(0,"Success");
+					}
+				}
+			}
+		} finally{
+			dba.closeEm();
+		}
+
+		return sm;
+	}
+
+	/************************************************************
+	Function name: removeUser()
+	Author: Christian Heckendorf
+	Created date: 11/19/2013
+	Purpose: Removes a user from a project
+	************************************************************/
+	@Path( "/p/{pid}/removeuser/u/{uid}" )
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public StatusMessage removeUser(@PathParam("pid") long pid, @PathParam("uid") long uid, TokenMessage token) {
+		StatusMessage sm = new StatusMessage(1,"Internal Error");
+		SessionToken st = new SessionToken(token.getToken());
+		Dba dba = new Dba(false);
+		try{
+			if(Permission.canAccess(dba,st,pid,Permission.INVITE_USER)){
+				UserProject up = UserProjectDao.findUserProjectByPid(dba,uid,pid);
+
+				if(up==null)
+					sm = new StatusMessage(2,"User not in project");
+				else{
+					UserProjectDao.removeUserProject(dba,up);
+					sm = new StatusMessage(0,"Success");
+				}
+			}
 		} finally{
 			dba.closeEm();
 		}

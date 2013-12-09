@@ -1,0 +1,19 @@
+Filename : UnixTime.java
+Total Function : 1
+Total Line of Code : 9
+-------------------------------
+/***************************************************************
+Filename: UnixTime.java
+Author: Christian Heckendorf
+Created Date: 9/28/13
+Purpose: Gets the system time as a Unix timestamp
+Features: All session protected features
+***************************************************************/
+
+/***************************************************************
+Function name: currentTime
+Author: Christian Heckendorf
+Created Date: 9/28/13
+Purpose: Gets the system time as a Unix timestamp
+***************************************************************/
+

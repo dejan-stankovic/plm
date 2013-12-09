@@ -1,0 +1,40 @@
+Filename : JSONTaskRequest.java
+Total Function : 4
+Total Line of Code : 17
+-------------------------------
+/************************************************************
+Filename: JSONTaskRequest.java
+Author: Christian Heckendorf
+Created date: 10/27/2013
+Purpose: Holds a token and task for requests
+Feature: Task
+************************************************************/
+
+/************************************************************
+Function name: getToken()
+Author: Christian Heckendorf
+Created date: 10/27/2013
+Purpose: Returns a token
+************************************************************/
+
+/************************************************************
+Function name: setToken()
+Author: Christian Heckendorf
+Created date: 10/27/2013
+Purpose: Sets a token
+************************************************************/
+
+/************************************************************
+Function name: getJSONTask()
+Author: Christian Heckendorf
+Created date: 10/27/2013
+Purpose: Returns a task
+************************************************************/
+
+/************************************************************
+Function name: setJSONTask()
+Author: Christian Heckendorf
+Created date: 10/27/2013
+Purpose: Sets a task
+************************************************************/
+

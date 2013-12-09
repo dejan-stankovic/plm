@@ -1,0 +1,61 @@
+Filename : ProjectDao.java
+Total Function : 7
+Total Line of Code : 93
+-------------------------------
+/***************************************************************
+Filename: ProjectDao.java
+Author: Christian Heckendorf
+Created Date: 9/29/13
+Purpose: Accesses the Project entity
+Features: None yet
+***************************************************************/
+
+/************************************************************
+Function name: createProject()
+Author: Christian Heckendorf
+Created date: 10/26/2013
+Purpose: Creates a project and sets the project leader
+************************************************************/
+
+/************************************************************
+Function name: getProjectById()
+Author: Christian Heckendorf
+Created date: 10/26/2013
+Purpose: Gets a project by ID
+************************************************************/
+
+/***************************************************************
+Function name: getMemberCount
+Author: Christian Heckendorf
+Created Date: 9/29/13
+Purpose: Returns the number of users in a project
+***************************************************************/
+
+/************************************************************
+Function name: getReleaseList()
+Author: Christian Heckendorf
+Created date: 10/08/2013
+Purpose: Returns a list of releases under a project
+************************************************************/
+
+/************************************************************
+Function name: getProjectIdFromRelease()
+Author: Christian Heckendorf
+Created date: 10/26/2013
+Purpose: Gets a project id given a release id
+************************************************************/
+
+/************************************************************
+Function name: getProjectIdFromUserStory()
+Author: Christian Heckendorf
+Created date: 10/26/2013
+Purpose: Gets a project id given a user story id
+************************************************************/
+
+/************************************************************
+Function name: getProjectIdFromTask()
+Author: Christian Heckendorf
+Created date: 10/27/2013
+Purpose: Gets a project id given a task id
+************************************************************/
+

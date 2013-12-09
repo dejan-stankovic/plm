@@ -1,88 +1,139 @@
-/*************************************************************************
-		File name: registration.js
-		Author: Yuvaraj
-		Created date: 10/13/2013
-		Purpose: client functionality associated with registration page
-**************************************************************************/
-
-/************************************************************
-		Function name: regUser
-		Author: Yuvaraj
-		Created date: 10/13/2013
-		Purpose: Processes the registration form
-**************************************************************/
+function trim(stringToTrim) {
+	return stringToTrim.replace(/^\s+|\s+$/g,"");
+}
+function ltrim(stringToTrim) {
+	return stringToTrim.replace(/^\s+/,"");
+}
+function rtrim(stringToTrim) {
+	return stringToTrim.replace(/\s+$/,"");
+}
+function resetHandler() {
+                                $("input#userid").val("");
+                                $("input#passid").val("");
+                                $("input#firstname").val("");
+                                $("input#lastname").val("");
+                                $("input#email").val("");
+                                $("#errormsg").html("");
+                                $("#errorMsg").html("");
+}
 
 function regUser(){
-		var user;
+ 	var user = $("input#userid").val();
+	var pass = $("input#passid").val();
 
-		$("#errormsg").html("");
+	$.ajax({
+		type: 'POST',
+		url: '/plm/rest/register',
+		contentType: 'application/json; charset=UTF-8',
+		accepts: {
+			text: 'application/json'
+		},
+		dataType: 'json',
+		data: JSON.stringify({
+			name: user,
+			password: pass
+		}),
+		success: function(data){
 
-		user = $("input#uname").val();
-		pass = $("input#pwd").val();
-
-
-				$.ajax({
-					type: 'POST',
-					url: '/plm/rest/register',
-					contentType: 'application/json; charset=UTF-8',
-					accepts: {
-						text: 'application/json'
-					},
-					dataType: 'json',
-					data: JSON.stringify({
-						name: user,
-						password: pass
-					}),
-					success: function(data){
-
-						/*the following code checkes whether the entered userid is valid */
-						 if(data.code==0)
-						  {
-						  $("h1").html("Registration Successful!! Welcome to PLM");
-						  window.location="login.html"; /*Redirect to the login page after succesful registration*/
-						  }
-						 else if(data.code==1)
-						 {
-						   $("#errormsg").html("Invalid Username or Password"); /*displays error message*/
-			             }
-			               else { /* Usually internal error or other */
-				           $("#errormsg").html(data.message);
-			             }
-					},
-					error: function(data){
-						alert("error");
-					}
-				});
+			/*the following code checks whether the entered userid is valid */
+			if(data.code==0)
+			{
+				$("#errormsg").html("Registration Successful!! Welcome to PLM");
+				window.location="login.html"; /*Redirect to the login page after succesful registration*/
+			}
+			else if(data.code==1)
+			{
+				$("#errormsg").html("Invalid Username or Password");/*displays error message*/
+			}
+			else 
+			{ /* Usually internal error or other */
+				$("#errormsg").html(data.message);
+			}
+		},
+		error: function(data){
+			alert("error");
 		}
-
-/************************************************************
-Function name: resetHandler
-Author: Yuvaraj
-Created date: 10/13/2013
-Purpose: Cancels the registration form
-************************************************************/
-function resetHandler() {
-	$("input#uname").val("");
-	$("input#pwd").val("");
-	$("input#fname").val("");
-	$("input#lname").val("");
-	$("input#email").val("");
-	$("#errormsg").html("");
+	});
 }
-/************************************************************
-		Function name: onready
-		Author: Yuvaraj
-		Created date: 10/13/2013
-		Purpose: ready function invoked when page is rendered
-**************************************************************/
+
+
 $(document).ready(function () {
 
-$("a#submitbtn").click(function(){
-		regUser();
-	})
+    $("#submitBtn").click(function(){ 
+    	var fname = trim($("input#firstName").val());
+		var lname = trim($("input#lastName").val());
+		var emai = $("input#email").val();
+		var un = trim($("input#userid").val());
+		var pw = trim($("input#passid").val());
+		// this function will execute if the button is being hit
+		if($("input#firstName").val()=="")
+		{
+			$("#errormsg").html("One or more fields cannot be empty!");
+		}
+		else if($("input#lastName").val()=="")
+		{
+			$("#errormsg").html("One or more fields cannot be empty!");
+		}
+		else if($("input#email").val()=="")
+		{
+			$("#errormsg").html("One or more fields cannot be empty!");
+		}
+		else if($("input#userid").val()=="")
+		{
+			$("#errormsg").html("One or more fields cannot be empty!");
+		}
+		else if($("input#passid").val()=="")
+		{
+			$("#errormsg").html("One or more fields cannot be empty!");
+		}
+		else if(fname.match(/^[A-Za-z ]+$/) != null )
+		{
+			if(lname.match(/^[A-Za-z ]+$/) != null )
+			{
+			if(un.match(/^[A-Za-z0-9 ]+$/) != null )
+			{
+			regUser();
+			}
+		}
+		else
+			{
+				$("#errormsg").html("One or more fields are invalid!");
+			}
+			return false;
+		}
+		else
+		{	
+			// var uid = $("input#userid").val();
+			// var passid = $("input#passid").val();
+			// var fname = $("input#firstName").val();
+			// var lname = $("input#lastName").val();
+			// var emai = $("input#email").val();
 
-$("a#resetbtn").click(function(){
-		resetHandler();
-	})
+			// if(allLetter(fname))
+			// {
+			// if(allLetter(lname))
+			// {
+			// if(ValidateEmail(emai))
+			// {
+			// if(allLetterUid(uid))
+			// {
+			// regUser();
+			// }
+			// }
+			// }
+			// }
+			// else
+			// {
+				$("#errormsg").html("One or more fields are invalid!");
+			// }
+			// return false;
+		}
+		return false;
+	});
+	
+	$('#resetBtn').click( function() { 
 
+	resetHandler();
+	});
+	
 });

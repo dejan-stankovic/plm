@@ -1,0 +1,12 @@
+Filename : notifications.html
+Total Function : 0
+Total Line of Code : 93
+-------------------------------
+Ôªø<!--
+Filename: notifications.html
+Author: Christian Heckendorf
+Created date: 09/30/2013
+Purpose: view to handle notifications functionality
+Feature: None
+-->
+

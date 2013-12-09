@@ -1,0 +1,145 @@
+Filename : UserStory.java
+Total Function : 19
+Total Line of Code : 93
+-------------------------------
+/************************************************************
+Filename: UserStory.java
+Author: Christian Heckendorf
+Created date: 10/01/2013
+Purpose: Holds a user story
+Feature: None
+************************************************************/
+
+/************************************************************
+Function name: overlay()
+Author: Christian Heckendorf
+Created date: 10/26/2013
+Purpose: Overlays the attributes from another user story
+************************************************************/
+
+/***************************************************************
+Function name: getId
+Author: Christian Heckendorf
+Created Date: 10/01/13
+Purpose: Gets an id
+***************************************************************/
+
+/***************************************************************
+Function name: setId
+Author: Christian Heckendorf
+Created Date: 10/01/13
+Purpose: Sets an id
+***************************************************************/
+
+/***************************************************************
+Function name: getName
+Author: Christian Heckendorf
+Created Date: 10/01/13
+Purpose: Gets a name
+***************************************************************/
+
+/***************************************************************
+Function name: setName
+Author: Christian Heckendorf
+Created Date: 10/01/13
+Purpose: Sets a name
+***************************************************************/
+
+/************************************************************
+Function name: getDescription()
+Author: Christian Heckendorf
+Created date: 10/01/2013
+Purpose: Returns the description
+************************************************************/
+
+/************************************************************
+Function name: setDescription()
+Author: Christian Heckendorf
+Created date: 10/01/2013
+Purpose: Sets the description
+************************************************************/
+
+/************************************************************
+Function name: getRelease()
+Author: Christian Heckendorf
+Created date: 10/01/2013
+Purpose: Returns the release
+************************************************************/
+
+/************************************************************
+Function name: setRelease()
+Author: Christian Heckendorf
+Created date: 10/01/2013
+Purpose: Sets a release
+************************************************************/
+
+/************************************************************
+Function name: getTasks()
+Author: Christian Heckendorf
+Created date: 10/01/2013
+Purpose: Returns the tasks
+************************************************************/
+
+/************************************************************
+Function name: setTasks()
+Author: Christian Heckendorf
+Created date: 10/01/2013
+Purpose: Sets the tasks
+************************************************************/
+
+/************************************************************
+Function name: getStatus()
+Author: Christian Heckendorf
+Created date: 11/01/2013
+Purpose: Returns a status
+************************************************************/
+
+/************************************************************
+Function name: setStatus()
+Author: Christian Heckendorf
+Created date: 11/01/2013
+Purpose: Sets a status
+************************************************************/
+
+/************************************************************
+Function name: getOwner()
+Author: Christian Heckendorf
+Created date: 11/01/2013
+Purpose: Returns a owner
+************************************************************/
+
+/************************************************************
+Function name: setOwner()
+Author: Christian Heckendorf
+Created date: 11/01/2013
+Purpose: Sets a owner
+************************************************************/
+
+/************************************************************
+Function name: getPoints()
+Author: Christian Heckendorf
+Created date: 11/02/2013
+Purpose: Returns the points
+************************************************************/
+
+/************************************************************
+Function name: setPoints()
+Author: Christian Heckendorf
+Created date: 11/02/2013
+Purpose: Sets the points
+************************************************************/
+
+/************************************************************
+Function name: getComments()
+Author: Christian Heckendorf
+Created date: 11/02/2013
+Purpose: Returns the comments
+************************************************************/
+
+/************************************************************
+Function name: setComments()
+Author: Christian Heckendorf
+Created date: 11/02/2013
+Purpose: Sets the comments
+************************************************************/
+

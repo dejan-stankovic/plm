@@ -1,0 +1,54 @@
+Filename : JSONStatus.java
+Total Function : 6
+Total Line of Code : 23
+-------------------------------
+/************************************************************
+Filename: JSONStatus.java
+Author: Christian Heckendorf
+Created date: 11/02/2013
+Purpose: Holds the public fields of a Status
+Feature: None
+************************************************************/
+
+/************************************************************
+Function name: JSONStatus()
+Author: Christian Heckendorf
+Created date: 11/02/2013
+Purpose: Default constructor
+************************************************************/
+
+/************************************************************
+Function name: JSONStatus()
+Author: Christian Heckendorf
+Created date: 11/02/2013
+Purpose: Constructs a JSONStatus from a Status
+************************************************************/
+
+/************************************************************
+Function name: getId
+Author: Christian Heckendorf
+Created date: 11/02/2013
+Purpose: Returns the status ID
+************************************************************/
+
+/************************************************************
+Function name: setId
+Author: Christian Heckendorf
+Created date: 11/02/2013
+Purpose: Sets the status ID
+************************************************************/
+
+/************************************************************
+Function name: getname
+Author: Christian Heckendorf
+Created date: 11/02/2013
+Purpose: Returns the name
+************************************************************/
+
+/************************************************************
+Function name: setname
+Author: Christian Heckendorf
+Created date: 11/02/2013
+Purpose: Sets the name
+************************************************************/
+

@@ -104,7 +104,11 @@ function getCurProjects(){
 		success: function(data){
 			var pid;
 			var combobox;
+			
 			combobox = $("#cur-project").data("kendoComboBox");
+
+			emptyComboBox(combobox);
+
 			for(x in data.projects){
 				combobox.dataSource.add(data.projects[x]);
 			}
@@ -121,6 +125,15 @@ function getCurProjects(){
 			alert("error");
 		}
 	});
+}
+
+function emptyComboBox(comboBox)
+{
+	var totalData = comboBox.dataSource.total();
+	for(i=0;i<totalData;i++)
+	{
+		comboBox.dataSource.remove(comboBox.dataSource.at(0));
+	}
 }
 
 function updateMenuOptions(perm){
@@ -149,9 +162,9 @@ function updateMenuOptions(perm){
 
 	if(perm.indexOf("EditRelease")>=0){
 		menuitems.push({
-			text: "Release Management", imageUrl: "../css/Images/download_enable.png",
+			text: "Iteration Management", imageUrl: "../css/Images/download_enable.png",
 			items: [
-				{ text: "Manage Release", imageUrl: "http://demos.kendoui.com/content/shared/icons/16/star.png" },
+				{ text: "Manage Iteration", imageUrl: "http://demos.kendoui.com/content/shared/icons/16/star.png" },
 			]
 		});
 	}
@@ -212,6 +225,17 @@ function getPermissions(pid){
 			alert("error");
 		}
 	});
+}
+
+/**
+ * to remove token after user hit signout link
+ * author : tandhy
+ * date : 11.14.13
+ */
+function userSignOut()
+{
+	setToken("");
+	window.location = "login.html";
 }
 
 /************************************************************
@@ -277,13 +301,16 @@ $(document).ready(function () {
             case ('Notifications'):
                 window.location = "notifications.html";
                 break;
+            case ('Manage Users'):
+                window.location = "manageUsers.html";
+                break;
             case ('Manage Roles'):
                 window.location = "manageroles.html";
                 break;
             case ('Manage User Stories'):
                 window.location = "userstory.html";
                 break;
-            case ('Release Management'):
+            case ('Manage Iteration'):
                 window.location = "createIter.html";
                 break;
             case ('Manage Projects'):
@@ -291,4 +318,5 @@ $(document).ready(function () {
                 break;
         }
     }
+	
 });
