@@ -1,0 +1,61 @@
+Filename : ProjectManager.java
+Total Function : 7
+Total Line of Code : 179
+-------------------------------
+/************************************************************
+Filename: ProjectManager.java
+Author: Christian Heckendorf
+Created date: 10/05/2013
+Purpose: Services for project management
+Feature: None
+************************************************************/
+
+/************************************************************
+Function name: getOtherUserList()
+Author: Christian Heckendorf
+Created date: 11/18/2013
+Purpose: Returns a list of users not in a project
+************************************************************/
+
+/************************************************************
+Function name: getUserList()
+Author: Christian Heckendorf
+Created date: 10/05/2013
+Purpose: Returns a list of users associated with a project
+************************************************************/
+
+/************************************************************
+Function name: getReleaseList()
+Author: Christian Heckendorf
+Created date: 10/08/2013
+Purpose: Gets a list of releases under a project
+************************************************************/
+
+/************************************************************
+Function name: createRelease()
+Author: Christian Heckendorf
+Created date: 10/26/2013
+Purpose: Creates a release under a project
+************************************************************/
+
+/************************************************************
+Function name: updateRelease()
+Author: Christian Heckendorf
+Created date: 10/26/2013
+Purpose: Updates a release
+************************************************************/
+
+/************************************************************
+Function name: addUser()
+Author: Christian Heckendorf
+Created date: 11/18/2013
+Purpose: Adds a user to a project
+************************************************************/
+
+/************************************************************
+Function name: removeUser()
+Author: Christian Heckendorf
+Created date: 11/19/2013
+Purpose: Removes a user from a project
+************************************************************/
+

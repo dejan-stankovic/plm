@@ -1,0 +1,40 @@
+Filename : login.js
+Total Function : 3
+Total Line of Code : 70
+-------------------------------
+Ôªø/*************************************************************************
+File name: login.js
+Author: Rachit
+Created date: 09/30/2013
+Purpose: client functionality associated with login page
+**************************************************************************/
+
+/************************************************************
+Function name: loginHandler
+Author: Christian Heckendorf, Rachit
+Created date: 10/13/2013
+Purpose: Processes the login form
+************************************************************/
+
+/*the following code checkes whether the entered userid and password are matching*/
+
+window.location = "dashboard.html"; /*opens the target page while Id & password matches*/
+
+$("#errormsg").html("Invalid Username or Password"); /*displays error message*/
+
+else { /* Usually internal error or other */
+
+/************************************************************
+Function name: cancelHandler
+Author: Christian Heckendorf
+Created date: 10/13/2013
+Purpose: Cancels the login form
+************************************************************/
+
+/************************************************************
+Function name: onready
+Author: Rachit
+Created date: 09/30/2013
+Purpose: ready function invoked when page is rendered
+**************************************************************/
+

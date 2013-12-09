@@ -1,0 +1,40 @@
+Filename : RoleList.java
+Total Function : 4
+Total Line of Code : 18
+-------------------------------
+/************************************************************
+Filename: RoleList.java
+Author: Christian Heckendorf
+Created date: 10/04/2013
+Purpose: Holds a list of roles
+Feature: Role management
+************************************************************/
+
+/************************************************************
+Function name: RoleList()
+Author: Christian Heckendorf
+Created date: 10/13/2013
+Purpose: Default constructor
+************************************************************/
+
+/************************************************************
+Function name: getRoles()
+Author: Christian Heckendorf
+Created date: 10/04/2013
+Purpose: Adds a role to the list
+************************************************************/
+
+/************************************************************
+Function name: setRoles()
+Author: Christian Heckendorf
+Created date: 10/04/2013
+Purpose: Returns the roles
+************************************************************/
+
+/************************************************************
+Function name: setRoles()
+Author: Christian Heckendorf
+Created date: 10/04/2013
+Purpose: Sets the roles
+************************************************************/
+

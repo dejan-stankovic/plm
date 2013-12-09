@@ -1,0 +1,52 @@
+Filename : createIter.html
+Total Function : 0
+Total Line of Code : 116
+-------------------------------
+Filename : createProject.html
+Total Function : 0
+Total Line of Code : 138
+-------------------------------
+Filename : dashboard.html
+Total Function : 0
+Total Line of Code : 149
+-------------------------------
+Filename : home.html
+Total Function : 0
+Total Line of Code : 184
+-------------------------------
+Filename : login.html
+Total Function : 0
+Total Line of Code : 137
+-------------------------------
+Filename : manageroles.html
+Total Function : 0
+Total Line of Code : 137
+-------------------------------
+Filename : manageUsers.html
+Total Function : 0
+Total Line of Code : 136
+-------------------------------
+Filename : notifications.html
+Total Function : 0
+Total Line of Code : 93
+-------------------------------
+Filename : phasetasks.html
+Total Function : 0
+Total Line of Code : 447
+-------------------------------
+Filename : registration.html
+Total Function : 0
+Total Line of Code : 136
+-------------------------------
+Filename : task.html
+Total Function : 0
+Total Line of Code : 187
+-------------------------------
+Filename : test.html
+Total Function : 0
+Total Line of Code : 454
+-------------------------------
+Filename : userstory.html
+Total Function : 0
+Total Line of Code : 219
+-------------------------------

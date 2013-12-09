@@ -1,0 +1,19 @@
+Filename : Register.java
+Total Function : 1
+Total Line of Code : 25
+-------------------------------
+/***************************************************************
+Filename: Register.java
+Author: Christian Heckendorf
+Created Date: 9/21/13
+Purpose: Registers a new user
+Features: Register
+***************************************************************/
+
+/***************************************************************
+Function name: getRegisterMessage
+Author: Christian Heckendorf
+Created Date: 9/21/13
+Purpose: Creates a user
+***************************************************************/
+

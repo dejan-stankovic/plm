@@ -1,0 +1,103 @@
+Filename : Release.java
+Total Function : 13
+Total Line of Code : 74
+-------------------------------
+/************************************************************
+Filename: Release.java
+Author: Christian Heckendorf
+Created date: 10/01/2013
+Purpose: Holds a release
+Feature: None
+************************************************************/
+
+/************************************************************
+Function name: overlay()
+Author: Christian Heckendorf
+Created date: 10/26/2013
+Purpose: Overlays a JSONRelease onto this object
+************************************************************/
+
+/***************************************************************
+Function name: getId
+Author: Christian Heckendorf
+Created Date: 10/01/13
+Purpose: Gets an id
+***************************************************************/
+
+/***************************************************************
+Function name: setId
+Author: Christian Heckendorf
+Created Date: 10/01/13
+Purpose: Sets an id
+***************************************************************/
+
+/***************************************************************
+Function name: getVersion
+Author: Christian Heckendorf
+Created Date: 10/01/13
+Purpose: Gets a version
+***************************************************************/
+
+/***************************************************************
+Function name: setVersion
+Author: Christian Heckendorf
+Created Date: 10/01/13
+Purpose: Sets a version
+***************************************************************/
+
+/************************************************************
+Function name: getProject()
+Author: Christian Heckendorf
+Created date: 10/01/2013
+Purpose: Returns the project
+************************************************************/
+
+/************************************************************
+Function name: setProject()
+Author: Christian Heckendorf
+Created date: 10/01/2013
+Purpose: Sets a project
+************************************************************/
+
+/************************************************************
+Function name: getUserStories()
+Author: Christian Heckendorf
+Created date: 10/01/2013
+Purpose: Returns the user stories
+************************************************************/
+
+/************************************************************
+Function name: setUserStories()
+Author: Christian Heckendorf
+Created date: 10/01/2013
+Purpose: Sets the user stories
+************************************************************/
+
+/************************************************************
+Function name: getEndDate()
+Author: Christian Heckendorf
+Created date: 11/02/2013
+Purpose: Returns a endDate
+************************************************************/
+
+/************************************************************
+Function name: setEndDate()
+Author: Christian Heckendorf
+Created date: 11/02/2013
+Purpose: Sets a endDate
+************************************************************/
+
+/************************************************************
+Function name: getStartDate()
+Author: Christian Heckendorf
+Created date: 11/02/2013
+Purpose: Returns a startDate
+************************************************************/
+
+/************************************************************
+Function name: setStartDate()
+Author: Christian Heckendorf
+Created date: 11/02/2013
+Purpose: Sets a startDate
+************************************************************/
+

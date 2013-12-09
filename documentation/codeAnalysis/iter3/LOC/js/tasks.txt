@@ -1,0 +1,166 @@
+Filename : tasks.js
+Total Function : 19
+Total Line of Code : 419
+-------------------------------
+/*************************************************************************
+File name: tasks.js
+Author: Yuvaraj, Manav, Rachit & Christian
+Created date: 11/3/2013
+Purpose: client functionality associated with task page
+**************************************************************************/
+
+/*global variables */
+
+/************************************************************
+Function name: onready
+Author: Yuvaraj, Manav, Rachit
+Created date: 11/3/2013
+Purpose: document on ready function to load the page
+************************************************************/
+
+/* load methods */
+
+/************************************************************
+Function name: load 
+Author: Yuvaraj, Manav, Rachit
+Created date: 11/2/2013
+Purpose: global on load to load all the contents
+************************************************************/
+
+/************************************************************
+Function name: loadData
+Author: Yuvaraj, Manav, Rachit
+Created date: 11/3/2013
+Purpose: load fetches the data from services and loads page
+************************************************************/
+
+/************************************************************
+Function name: loadDummyData
+Author: Yuvaraj, Manav, Rachit
+Created date: 11/2/2013
+Purpose:load dummy data
+************************************************************/
+
+/************************************************************
+Function name: loadDataFromServices
+Author: Yuvaraj, Manav, Rachit
+Created date: 11/3/2013
+Purpose: invokes services to load the data
+************************************************************/
+
+/************************************************************
+Function name: kendofy 
+Author: Yuvaraj, Manav, Rachit
+Created date: 11/3/2013
+Purpose: kendofy all the controls on the page
+************************************************************/
+
+});*/
+
+/************************************************************
+Function name: loadTaskGrid
+Author: Yuvaraj, Manav, Rachit
+Created date: 11/3/2013
+Purpose: load user story grid
+************************************************************/
+
+/************************************************************
+Function name: registerEvents 
+Author: Yuvaraj, Manav, Rachit
+Created date: 11/3/2013
+Purpose: register all control events
+************************************************************/
+
+/*private methods*/
+
+/************************************************************
+Function name: isNull 
+Author: Manav
+Created date: 11/3/2013
+Purpose: helper method to check if value is null or not
+************************************************************/
+
+/************************************************************
+Function name: reqdQueryString 
+Author: Manav
+Created date: 11/3/2013
+Purpose: read query string and fetch the value for the key passed
+************************************************************/
+
+/************************************************************
+Function name: validate 
+Author: Manav
+Created date: 11/3/2013
+Purpose: validate the ui before save
+************************************************************/
+
+/************************************************************
+Function name: update 
+Author: Manav
+Created date: 11/3/2013
+Purpose: update the model before save
+************************************************************/
+
+/************************************************************
+Function name: getNewId 
+Author: Manav
+Created date: 11/3/2013
+Purpose: get the new User Storyid/ comment id
+************************************************************/
+
+/************************************************************
+Function name: loadStatusDropDown 
+Author: Manav
+Created date: 11/3/2013
+Purpose: load status drop down
+************************************************************/
+
+/************************************************************
+Function name: loadTasks 
+Author: Yuvaraj, Manav, Rachit
+Created date: 11/3/2013
+Purpose: load status drop down
+************************************************************/
+
+*/
+
+/************************************************************
+Function name: getUsersInProject
+Author: Christian Heckendorf
+Created date: 10/14/2013
+Purpose: Gets all users in the project
+************************************************************/
+
+/************************************************************
+Function name: updatesUserStory
+Author: Christian Heckendorf
+Created date: 10/26/2013
+Purpose: Updates a user story
+************************************************************/
+
+}*/
+
+/* code: id or -1, message: success/error message */
+
+/* {"code":4,"message":"Success"} */
+
+/************************************************************
+Function name: createTask
+Author: Christian Heckendorf, Yuvaraj, Rachit
+Created date: 10/26/2013
+Purpose: Creates a new task
+************************************************************/
+
+}*/
+
+/* code: new id or -1, message: success/error message */
+
+/* {"code":4,"message":"Success"} */
+
+/************************************************************
+Function name: getTasks
+Author: Christian Heckendorf
+Created date: 10/26/2013
+Purpose: Displays a list of user stories under a release
+************************************************************/
+

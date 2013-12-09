@@ -1,0 +1,82 @@
+Filename : JSONUserRole.java
+Total Function : 10
+Total Line of Code : 39
+-------------------------------
+/************************************************************
+Filename: JSONUserRole.java
+Author: Christian Heckendorf
+Created date: 09/30/2013
+Purpose: Holds public information for JSON conversion
+Feature: None
+************************************************************/
+
+/************************************************************
+Function name: JSONUserRole
+Author: Christian Heckendorf
+Created date: 09/30/2013
+Purpose: Default constructor
+************************************************************/
+
+/************************************************************
+Function name: JSONUserRole
+Author: Christian Heckendorf
+Created date: 09/30/2013
+Purpose: Convert from user and role
+************************************************************/
+
+/************************************************************
+Function name: getUserId
+Author: Christian Heckendorf
+Created date: 09/30/2013
+Purpose: Returns the user ID
+************************************************************/
+
+/************************************************************
+Function name: setUserId
+Author: Christian Heckendorf
+Created date: 09/30/2013
+Purpose: Sets the user ID
+************************************************************/
+
+/************************************************************
+Function name: getUserName
+Author: Christian Heckendorf
+Created date: 09/30/2013
+Purpose: Returns the name
+************************************************************/
+
+/************************************************************
+Function name: setUserName
+Author: Christian Heckendorf
+Created date: 09/30/2013
+Purpose: Sets the name
+************************************************************/
+
+/************************************************************
+Function name: getRoleId()
+Author: Christian Heckendorf
+Created date: 10/04/2013
+Purpose: Returns the role ID
+************************************************************/
+
+/************************************************************
+Function name: setRoleId()
+Author: Christian Heckendorf
+Created date: 10/04/2013
+Purpose: Sets the role ID
+************************************************************/
+
+/************************************************************
+Function name: getRoleName
+Author: Christian Heckendorf
+Created date: 09/30/2013
+Purpose: Returns the role name
+************************************************************/
+
+/************************************************************
+Function name: setRoleName
+Author: Christian Heckendorf
+Created date: 09/30/2013
+Purpose: Sets the role name
+************************************************************/
+

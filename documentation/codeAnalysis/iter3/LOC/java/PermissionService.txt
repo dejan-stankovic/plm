@@ -1,0 +1,19 @@
+Filename : PermissionService.java
+Total Function : 1
+Total Line of Code : 37
+-------------------------------
+/************************************************************
+Filename: PermissionService.java
+Author: Christian Heckendorf
+Created date: 10/05/2013
+Purpose: Service to get permissions
+Feature: None
+************************************************************/
+
+/************************************************************
+Function name: getUserPermissions()
+Author: Christian Heckendorf
+Created date: 10/05/2013
+Purpose: Returns a list of permissions available to a user
+************************************************************/
+

@@ -1,0 +1,75 @@
+Filename : manageUsers.js
+Total Function : 8
+Total Line of Code : 259
+-------------------------------
+Ôªø/*************************************************************************
+File name: manageUsers.js
+Author: Tandhy
+Created date: 11/17/2013
+Purpose: handle page functionality associated with manageUsers page
+**************************************************************************/
+
+/*global variables */
+
+/************************************************************
+Function name: getUsersInProject
+Author: Tandhy
+Created date: 10/20/2013
+Purpose: Gets all users in the project
+************************************************************/
+
+/************************************************************
+Function name: getUsersInProject
+Author: tandhy
+Created date: 12/04/2013
+Purpose: Gets all users in the project
+************************************************************/
+
+/************************************************************
+Function name: addUserToProject
+Author: Tandhy
+Created date: 10/20/2013
+Purpose: Add user into project
+************************************************************/
+
+{ /* Usually internal error or other */
+
+/************************************************************
+Function name: getNonAssociatedUser
+Author: Tandhy
+Created date: 10/20/2013
+Purpose: Get list of users that are not associated with the project 
+************************************************************/
+
+/************************************************************
+Function name: loadData
+Author: Tandhy
+Created date: 11/17/2013
+Purpose: load fetches the data from services and loads page
+************************************************************/
+
+/************************************************************
+Function name: loadManageUsersGrid
+Author: Tandhy
+Created date: 11/17/2013
+Purpose: load user list grid
+************************************************************/
+
+],*/
+
+/************************************************************
+Function name: removeUserFromProject
+Author: Tandhy
+Created date: 11/17/2013
+Purpose: remove user from project
+************************************************************/
+
+{ /* Usually internal error or other */
+
+/************************************************************
+Function name: onready
+Author: tandhy
+Created date: 11/2/2013
+Purpose: document on ready function to load the page
+************************************************************/
+

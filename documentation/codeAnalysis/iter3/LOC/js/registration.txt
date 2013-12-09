@@ -1,0 +1,12 @@
+Filename : registration.js
+Total Function : 0
+Total Line of Code : 108
+-------------------------------
+/*the following code checks whether the entered userid is valid */
+
+window.location="login.html"; /*Redirect to the login page after succesful registration*/
+
+document.getElementById('errorMsg').innerHTML = "Invalid Username or Password";/*displays error message*/
+
+{ /* Usually internal error or other */
+
